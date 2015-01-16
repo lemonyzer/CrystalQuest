@@ -20,4 +20,12 @@ public class MoveToTarget : MonoBehaviour {
 		//transform.Translate ();
 
 	}
+
+//	void OnCollisionEnter(Collision coll)
+//	{
+//		
+//		if (coll.gameObject.layer == LayerMask.NameToLayer ("Player")) {
+//			LevelDamageHit();
+//		}
+//	}
 }

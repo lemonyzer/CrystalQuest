@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Bomb : MonoBehaviour {
 
+	StatsScript statsScript;
+
 	public bool triggered = false;
 
 	Vector3 triggerPos;
@@ -14,8 +16,11 @@ public class Bomb : MonoBehaviour {
 	float endRadius = 4f;
 	float currentRadius;
 
+	float effectTime = 1.0f;
+
 	// Use this for initialization
 	void Start () {
+		statsScript = GameObject.FindGameObjectWithTag ("GameController").GetComponent<StatsScript> ();
 		currentRadius = startRadius;
 	}
 	
@@ -26,26 +31,68 @@ public class Bomb : MonoBehaviour {
 			currentRadius += radiusStepps;
 			Physics.CheckSphere (this.transform.position, currentRadius);
 			DebugCircle();
+			Destroy(this.gameObject, effectTime);
 		}
 	}
 
+	void OnTriggerStay(Collider other)
+	{
+		if (other.gameObject.layer == LayerMask.NameToLayer ("Enemy")) {
+			if (triggered) {
+				Debug.Log ("crystal bombed");
+				Destroy (other.transform.gameObject);
+				statsScript.BombHitEnemy();
+			}
+		}
+	}
+
+
 	void OnTriggerEnter(Collider other) {
+		/**
+		 * Layer 
+		 **/
+		if (other.gameObject.layer == LayerMask.NameToLayer ("Enemy")) {
+			if (triggered) {
+				Debug.Log ("crystal bombed");
+				Destroy (other.transform.gameObject);
+				statsScript.BombHitEnemy();
+			}
+		}
+
+		/**
+		 * Tags 
+		 **/
 		if(other.tag == "Player")
 		{
 			if(!triggered)
 				TriggerAction();
 		}
-		else if(other.tag == "Crystal")
+		else if(other.tag == "Enemy")
 		{
-			Debug.Log("crystal bombed");
-			Destroy(other.transform.gameObject);
+			if(triggered) {
+				Debug.Log("Enemy bombed");
+				Destroy(other.transform.gameObject);
+			}
 		}
 	}
+
+//	void OnCollisionEnter(Collision coll) {
+//		if(coll.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+//		{
+//			if(triggered) {
+//				Debug.Log("crystal bombed");
+//				Destroy(coll.transform.gameObject);
+//			}
+//		}
+//	}
 
 	void TriggerAction()
 	{
 		triggered = true;
 		triggerPos = this.transform.position;
+
+		rigidbody.velocity = Vector3.zero;
+		this.transform.Find ("LevelStopper").gameObject.SetActive(false);
 
 		this.GetComponent<Animator> ().SetTrigger ("explode");
 	}

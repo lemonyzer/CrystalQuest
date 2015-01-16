@@ -4,7 +4,10 @@ using System.Collections;
 
 public class Accelerator : MonoBehaviour {
 
+	public float minPosX, maxPosX;
+	public float minPosY, maxPosY;
 
+	public bool LevelLimitByCollider = true;
 
 	// Move object using accelerometer
 	float speed = 10.0f;
@@ -32,6 +35,15 @@ public class Accelerator : MonoBehaviour {
 		dir *= Time.deltaTime;
 
 		transform.Translate (dir * speed, Space.World);
+
+		//transform.rigidbody.velocity = dir * speed;
+
+		// verhindern das Spieler aus Spielbereich entweicht! (ohne Physik)
+		if(!LevelLimitByCollider)
+		{
+			transform.position = new Vector3(Mathf.Clamp(transform.position.x, minPosX, maxPosX),
+			                                 Mathf.Clamp(transform.position.y, minPosY, maxPosY), 0);
+		}
 
 		Vector3 relativePos = new Vector3 (dir.x, 0, 0);
 		transform.rotation = Quaternion.LookRotation(relativePos, new Vector3(0,0,0));
