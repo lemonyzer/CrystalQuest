@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Bomb : MonoBehaviour {
 
-	StatsScript statsScript;
+//	StatsScript statsScript;
+	GameControllerScript gScript;
 
 	public bool triggered = false;
 
@@ -20,7 +21,8 @@ public class Bomb : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		statsScript = GameObject.FindGameObjectWithTag ("GameController").GetComponent<StatsScript> ();
+//		statsScript = GameObject.FindGameObjectWithTag ("GameController").GetComponent<StatsScript> ();
+		gScript = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameControllerScript> ();
 		currentRadius = startRadius;
 	}
 	
@@ -41,7 +43,8 @@ public class Bomb : MonoBehaviour {
 			if (triggered) {
 				Debug.Log ("crystal bombed");
 				Destroy (other.transform.gameObject);
-				statsScript.BombHitEnemy();
+//				statsScript.BombHitEnemy();
+				gScript.BombHitEnemy();
 			}
 		}
 	}
@@ -55,7 +58,8 @@ public class Bomb : MonoBehaviour {
 			if (triggered) {
 				Debug.Log ("crystal bombed");
 				Destroy (other.transform.gameObject);
-				statsScript.BombHitEnemy();
+//				statsScript.BombHitEnemy();
+				gScript.BombHitEnemy();
 			}
 		}
 

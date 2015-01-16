@@ -16,12 +16,14 @@ public class Collisions : MonoBehaviour {
 
 	public Text pointsText;
 
-	StatsScript statsScript;
+//	StatsScript statsScript;
+	GameControllerScript gScript;
 
 	void Awake()
 	{
-		statsScript = GameObject.FindGameObjectWithTag ("GameController").GetComponent<StatsScript> ();
-
+//		statsScript = GameObject.FindGameObjectWithTag ("GameController").GetComponent<StatsScript> ();
+		gScript = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameControllerScript> ();
+		
 		currentHealth = startingHealth;
 		healthSlider.value = currentHealth;
 	}
@@ -76,12 +78,14 @@ public class Collisions : MonoBehaviour {
 			}
 			if(currentHealth <= 0)
 			{
-				Application.LoadLevel(Application.loadedLevel);
+				gScript.PlayerDied();
+//				Application.LoadLevel(Application.loadedLevel);
 			}
 		}
 		else if(other.gameObject.layer == LayerMask.NameToLayer (layerCrystal))
 		{
-			statsScript.PlayerHitCrystal();
+//			statsScript.PlayerHitCrystal();
+			gScript.PlayerHitCrystal();
 			Destroy (other.gameObject);
 		}
 	}
@@ -121,7 +125,7 @@ public class Collisions : MonoBehaviour {
 		}
 		if(currentHealth <= 0)
 		{
-			Application.LoadLevel(Application.loadedLevel);
+			gScript.PlayerDied();
 		}
 	}
 

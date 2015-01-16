@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class CrystalScript : MonoBehaviour {
 
-	public GameObject crystalPrefab;
+//	public GameObject crystalPrefab;
 
 
 //	List<GameObject> crystalList;
@@ -23,16 +23,16 @@ public class CrystalScript : MonoBehaviour {
 	
 	}
 
-	public void RandomSpawn(int quantity)
-	{
-		for(int i=0; i<=quantity; i++)
-		{
-			GameObject randomPosCrystal = Instantiate (crystalPrefab,
-			                                           LevelScript.RandomPosition (),
-			                                           Quaternion.identity) as GameObject;
-			
-//			crystalList.Add (randomPosCrystal);
-		}
-
-	}
+//	public void RandomSpawn(int quantity)
+//	{
+//		for(int i=0; i<=quantity; i++)
+//		{
+//			GameObject randomPosCrystal = Instantiate (crystalPrefab,
+//			                                           LevelScript.RandomPosition (),
+//			                                           Quaternion.identity) as GameObject;
+//			
+////			crystalList.Add (randomPosCrystal);
+//		}
+//
+//	}
 }

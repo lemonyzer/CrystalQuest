@@ -5,6 +5,8 @@ public class SpawnPowerUp : MonoBehaviour {
 
 	public GameObject[] prefabPowerUps;
 
+	public bool SpawnPowerUpEnable = false;
+
 	public float left;
 	public float right;
 	public float top;
@@ -23,6 +25,10 @@ public class SpawnPowerUp : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (!SpawnPowerUpEnable)
+			return;
+
 		currentInterval -= Time.deltaTime;
 
 		if (currentInterval <= 0) {
