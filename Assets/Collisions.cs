@@ -90,7 +90,7 @@ public class Collisions : MonoBehaviour {
 			}
 			else
 			{
-				audio.PlayOneShot(playerGetHitClip);
+				audio.PlayOneShot(playerGetHitByBulletClip);
 			}
 		}
 		else if(other.gameObject.layer == LayerMask.NameToLayer (layerEnemy))
@@ -161,9 +161,11 @@ public class Collisions : MonoBehaviour {
 		if(currentHealth >=0)
 		{
 			healthSlider.value = currentHealth;
+			audio.PlayOneShot(playerGetHitClip);
 		}
 		if(currentHealth <= 0)
 		{
+			audio.PlayOneShot(playerDiedClip);
 			gScript.PlayerDied();
 		}
 	}

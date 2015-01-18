@@ -5,6 +5,7 @@ using System.Collections;
 public class GameControllerScript : MonoBehaviour {
 
 	public AudioClip newHighScoreClip;
+	public AudioClip gateOpenClip;
 
 	public GameObject PrefabCrystal;
 	public GameObject PrefabPlayer;
@@ -462,6 +463,7 @@ public class GameControllerScript : MonoBehaviour {
 		
 		if(currentPlayerCollectedCrystals == currentLevelCrystalQuantity)
 		{
+			audio.PlayOneShot(gateOpenClip);
 			OpenNextLevelGate();
 		}
 	}

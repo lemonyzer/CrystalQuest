@@ -24,8 +24,21 @@ public class Accelerator : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		dir.x = Input.acceleration.x - Gyroskop.refPoint.x;
-		dir.y = Input.acceleration.y - Gyroskop.refPoint.y;
+
+
+		float maxRef = 0f;
+		if(Mathf.Abs(Gyroskop.refPoint.x) < Mathf.Abs(Gyroskop.refPoint.y))
+		{
+			maxRef = Gyroskop.refPoint.y;
+		}
+		else
+		{
+			maxRef = Gyroskop.refPoint.x;
+		}
+
+		dir.x = (Input.acceleration.x - Gyroskop.refPoint.x) * (10/(10*(1-Mathf.Abs(maxRef))));
+		//		dir.y = Input.acceleration.y - Gyroskop.refPoint.y;
+		dir.y = (Input.acceleration.y - Gyroskop.refPoint.y) * (10/(10*(1-Mathf.Abs(maxRef))));
 
 		magnitude = Input.acceleration.sqrMagnitude;
 

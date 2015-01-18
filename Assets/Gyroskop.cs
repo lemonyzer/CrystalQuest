@@ -6,10 +6,13 @@ public class Gyroskop : MonoBehaviour {
 
 	public GameObject sensor;
 	public GameObject sensorRelative;
+	public GameObject sensorTranslated;
 	public Vector3 sensorDefaultPosition;
 
 	public Text textCurrentSpeed;
 	public Text textAccCurrentPoint;
+	public Text textAccTranslationCurrentPoint;
+	public Text textAccTranslationClampedCurrentPoint;
 	public Text textAccRefPoint;
 
 	public static Vector3 refPoint = Vector3.zero;
@@ -28,13 +31,37 @@ public class Gyroskop : MonoBehaviour {
 	void Update () {
 	
 		
-		textAccCurrentPoint.text = Input.acceleration.ToString ();
+		textAccCurrentPoint.text = "Acc:" + Input.acceleration.ToString ();
 		
 		sensor.transform.position = sensorDefaultPosition + Input.acceleration;
 		sensorRelative.transform.position = sensorDefaultPosition + Input.acceleration - refPoint;
+
+		// max. |Refpunkt| suchen... Bewegung soll sich gleichmäßig anfühlen!
+		float maxRef = 0f;
+		if(Mathf.Abs(refPoint.x) < Mathf.Abs(refPoint.y))
+		{
+			maxRef = refPoint.y;
+		}
+		else
+		{
+			maxRef = refPoint.x;
+		}
+
+		dir.x = (Input.acceleration.x - refPoint.x) * (1/((1-Mathf.Abs(maxRef))));
+		dir.y = (Input.acceleration.y - refPoint.y) * (1/((1-Mathf.Abs(maxRef))));
+
+		if(textAccTranslationCurrentPoint != null)
+			textAccTranslationCurrentPoint.text = "AccT:" + dir.ToString ();
+
+		dir.y = Mathf.Clamp (dir.y, -1f, 1f);
+
+		if(textAccTranslationClampedCurrentPoint != null)
+			textAccTranslationClampedCurrentPoint.text = "AccTC:" + dir.ToString ();
+
+		sensorTranslated.transform.position = sensorDefaultPosition + dir;
 		
-		dir.x = Input.acceleration.x - refPoint.x;
-		dir.y = Input.acceleration.y - refPoint.y;
+
+
 		
 		magnitude = Input.acceleration.sqrMagnitude;
 		
@@ -45,7 +72,7 @@ public class Gyroskop : MonoBehaviour {
 		// Make it move 10 meters per second instead of 10 meters per frame...
 		dir *= Time.deltaTime;
 		
-		textCurrentSpeed.text = (dir * speed).ToString ();
+		textCurrentSpeed.text = "Speed:" + (dir * speed).ToString ();
 		
 		
 		Vector3 forward = new Vector3(Input.acceleration.x, Input.acceleration.y, Input.acceleration.z);
@@ -59,7 +86,7 @@ public class Gyroskop : MonoBehaviour {
 
 	public void ButtonSetRef()
 	{
-		textAccRefPoint.text = Input.acceleration.ToString ();
+		textAccRefPoint.text = "RefP:" + Input.acceleration.ToString ();
 		refPoint.x = Input.acceleration.x;
 		refPoint.y = Input.acceleration.y;
 	}
