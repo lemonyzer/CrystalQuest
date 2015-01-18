@@ -3,6 +3,8 @@ using System.Collections;
 
 public class NextLevel : MonoBehaviour {
 
+	public AudioClip levelFinishClip;
+
 	LevelScript levelScript;
 	GameControllerScript gScript;
 
@@ -21,6 +23,7 @@ public class NextLevel : MonoBehaviour {
 	{
 		if(other.gameObject.tag == "Player")
 		{
+			audio.PlayOneShot(levelFinishClip);
 			gScript.nextLevel();
 //			levelScript.nextLevel();
 		}

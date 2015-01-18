@@ -3,8 +3,13 @@ using System.Collections;
 
 public class Bomb : MonoBehaviour {
 
+	public AudioClip bombExplode;
+	public AudioClip bombHitEnemy;
+
 //	StatsScript statsScript;
 	GameControllerScript gScript;
+
+
 
 	public bool triggered = false;
 
@@ -75,6 +80,8 @@ public class Bomb : MonoBehaviour {
 		{
 			if(triggered) {
 				Debug.Log("Enemy bombed");
+//				audio.PlayOneShot (bombHitEnemy);
+				GameObject.FindGameObjectWithTag ("GameController").audio.PlayOneShot (bombHitEnemy);
 				Destroy(other.transform.gameObject);
 			}
 		}
@@ -94,6 +101,9 @@ public class Bomb : MonoBehaviour {
 	{
 		triggered = true;
 		triggerPos = this.transform.position;
+
+//		audio.PlayOneShot (bombExplode);
+		GameObject.FindGameObjectWithTag ("GameController").audio.PlayOneShot (bombExplode);
 
 		rigidbody.velocity = Vector3.zero;
 		this.transform.Find ("LevelStopper").gameObject.SetActive(false);

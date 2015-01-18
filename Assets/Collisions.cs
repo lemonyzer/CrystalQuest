@@ -4,8 +4,14 @@ using System.Collections;
 
 public class Collisions : MonoBehaviour {
 
+	public AudioClip crystalCollectedClip;
+	public AudioClip playerGetHitByBulletClip;
+	public AudioClip playerGetHitClip;
+	public AudioClip playerDiedClip;
+
 	public static string layerDamage = "Damage";
 	public static string layerEnemy = "Enemy";
+	public static string layerBullet = "Bullet";
 	public static string layerCrystal = "Crystal";
 
 	public int startingHealth = 100;
@@ -60,6 +66,33 @@ public class Collisions : MonoBehaviour {
 		if (other.gameObject.layer == LayerMask.NameToLayer (layerDamage)) {
 			LevelDamageHit();
 		}
+		else if(other.gameObject.layer == LayerMask.NameToLayer (layerBullet))
+		{
+			//EnemyHit(); <-- kein Zugriff auf Kollidierendes GameObject!
+			//EnemyHit(coll); <-- mit Zugriff auf Kollidierendes GameObject
+			Debug.Log ("Bullet Hit");
+			//Destroy(other.gameObject);
+			
+			points -= 10;
+			
+			Destroy(other.gameObject);
+			
+			currentHealth -= 10;
+			if(currentHealth >=0)
+			{
+				healthSlider.value = currentHealth;
+			}
+			if(currentHealth <= 0)
+			{
+				gScript.PlayerDied();
+				audio.PlayOneShot(playerDiedClip);
+				//				Application.LoadLevel(Application.loadedLevel);
+			}
+			else
+			{
+				audio.PlayOneShot(playerGetHitClip);
+			}
+		}
 		else if(other.gameObject.layer == LayerMask.NameToLayer (layerEnemy))
 		{
 			//EnemyHit(); <-- kein Zugriff auf Kollidierendes GameObject!
@@ -79,13 +112,19 @@ public class Collisions : MonoBehaviour {
 			if(currentHealth <= 0)
 			{
 				gScript.PlayerDied();
+				audio.PlayOneShot(playerDiedClip);
 //				Application.LoadLevel(Application.loadedLevel);
+			}
+			else
+			{
+				audio.PlayOneShot(playerGetHitClip);
 			}
 		}
 		else if(other.gameObject.layer == LayerMask.NameToLayer (layerCrystal))
 		{
 //			statsScript.PlayerHitCrystal();
 			gScript.PlayerHitCrystal();
+			audio.PlayOneShot(crystalCollectedClip);
 			Destroy (other.gameObject);
 		}
 	}

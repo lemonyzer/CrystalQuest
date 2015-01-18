@@ -4,6 +4,8 @@ using System.Collections;
 
 public class GameControllerScript : MonoBehaviour {
 
+	public AudioClip newHighScoreClip;
+
 	public GameObject PrefabCrystal;
 	public GameObject PrefabPlayer;
 	public GameObject PrefabEnemy;
@@ -61,6 +63,7 @@ public class GameControllerScript : MonoBehaviour {
 		GamingView ();
 		ResetToLevelZero ();
 		Start ();
+		Application.LoadLevel (Application.loadedLevel);
 	}
 
 	public void ResetToLevelZero()
@@ -191,6 +194,7 @@ public class GameControllerScript : MonoBehaviour {
 
 		if(lastMaxLevel < currentLevelNumber)
 		{
+			audio.PlayOneShot(newHighScoreClip);
 			PlayerPrefs.SetInt(MAXLEVEL, currentLevelNumber);
 			ScoreboardMaxLevel.text = "Max Level: " +  currentLevelNumber.ToString();
 		}

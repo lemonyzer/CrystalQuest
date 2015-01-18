@@ -3,9 +3,11 @@ using System.Collections;
 
 public class SpawnEnemy : MonoBehaviour {
 
+	public AudioClip enemySpawnClip;
+	private AudioSource spawnAudioSource;
 	public GameObject player;
 	public GameObject[] spawnPositions;
-	public GameObject prefabEnemy;
+	public GameObject[] prefabEnemy;
 	public float spawnInterval = 2.0f;
 	float currentInterval;
 
@@ -14,6 +16,9 @@ public class SpawnEnemy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentInterval = spawnInterval;
+		spawnAudioSource = this.GetComponent<AudioSource> ();
+		//spawnAudioSource.clip = enemySpawn;	// multiple clips by PlayOnShot(<clip>)
+
 	}
 	
 	// Update is called once per frame
@@ -38,11 +43,18 @@ public class SpawnEnemy : MonoBehaviour {
 			//	schwerer: in der nähe 
 			//	leichter: weiter weg
 
-			GameObject enemy = (GameObject) Instantiate(prefabEnemy, spawnPositions[currentSpawnPos].transform.position, Quaternion.identity);
-			enemy.GetComponent<MoveToTarget>().target = player;
+			int randomEnemy = Random.Range(0,prefabEnemy.Length);
 
-			enemy = (GameObject) Instantiate(prefabEnemy, spawnPositions[secondSpawnPos].transform.position, Quaternion.identity);
-			enemy.GetComponent<MoveToTarget>().target = player;
+			GameObject enemy = (GameObject) Instantiate(prefabEnemy[randomEnemy], spawnPositions[currentSpawnPos].transform.position, Quaternion.identity);
+			if(randomEnemy == 0)
+				enemy.GetComponent<MoveToTarget>().target = player;
+			else
+				enemy.GetComponent<MoveToTargetAndShoot>().target = player;
+
+//			enemy = (GameObject) Instantiate(prefabEnemy[randomEnemy], spawnPositions[secondSpawnPos].transform.position, Quaternion.identity);
+//			enemy.GetComponent<MoveToTarget>().target = player;
+
+			spawnAudioSource.PlayOneShot(enemySpawnClip);
 		}
 	}
 
