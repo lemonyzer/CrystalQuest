@@ -139,16 +139,19 @@ public class GameControllerScript : MonoBehaviour {
 	{
 		currentPlayerCollectedCrystals = 0;
 
-		DisablePlayerMovement ();
-		ResetPlayerPos ();
+
 		DisableEnemySpawn ();	// disable Enemyspawn
 		RemoveEnemys ();		// remove Enemys
 		DisablePowerUpSpawn ();
 		RemovePowerUps ();		// remove PowerUps
+		RemoveCrystals ();
+		RemoveBullets ();
 		currentLevelNumber++;	// count Levelnumber up
 		CalculateCrystalQuantity (); // calculate new Crystal Quantity
 		SpawnCrystals (currentLevelCrystalQuantity); // SpawnCrystals
-		
+
+		DisablePlayerMovement ();
+		ResetPlayerPos ();
 
 		CloseNextLevelGate ();
 		// animation (levelübergang)
@@ -296,6 +299,7 @@ public class GameControllerScript : MonoBehaviour {
 		DisablePowerUpSpawn ();	// disable PowerUp spawn
 		RemovePowerUps ();		// remove PowerUps
 		RemoveCrystals ();
+		RemoveBullets ();
 
 		ShowScoreBoard ();
 	}
@@ -420,6 +424,18 @@ public class GameControllerScript : MonoBehaviour {
 		for(int i=0; i<currentPowerUpCount; i++)
 		{
 			Destroy(crystals[i]);
+		}
+	}
+
+	public void RemoveBullets ()
+	{
+		GameObject[] bullets = GameObject.FindGameObjectsWithTag ("Bullet");
+		
+		int currentPowerUpCount = bullets.Length;
+		
+		for(int i=0; i<currentPowerUpCount; i++)
+		{
+			Destroy(bullets[i]);
 		}
 	}
 

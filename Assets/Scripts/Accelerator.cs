@@ -13,7 +13,7 @@ public class Accelerator : MonoBehaviour {
 
 	// Move object using accelerometer
 	float speed = 20.0f;
-	Vector3 dir;
+	public Vector3 dir;
 	float magnitude = 0.0f;
 
 	// Use this for initialization
