@@ -513,7 +513,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_Position.x
-      value: 278.747681
+      value: 256.654205
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_Position.y
@@ -587,7 +587,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 278.747681
+      value: 256.654205
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05a81c3d5091440058129444d28322f3, type: 2}
@@ -2898,7 +2898,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_Position.x
-      value: 278.747681
+      value: 256.654205
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_Position.y
@@ -2946,7 +2946,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 278.747681
+      value: 256.654205
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05a81c3d5091440058129444d28322f3, type: 2}
@@ -8929,11 +8929,38 @@ MonoBehaviour:
   - name: Annoyer
     icon: {fileID: 21300000, guid: e4f3d82b69fcc5b41a8cb86076e2dec4, type: 3}
     isOn: 1
+  - name: Worrier
+    icon: {fileID: 21300000, guid: 54ced772727d6f2498de7204cf4556e2, type: 3}
+    isOn: 1
+  - name: Pest
+    icon: {fileID: 21300000, guid: 9f82063dd694c374fa3d4d46f1fe8b6e, type: 3}
+    isOn: 1
   - name: Dumple
     icon: {fileID: 21300000, guid: 37c899806236431488e4936a8070d28b, type: 3}
     isOn: 1
+  - name: Zarklephaser
+    icon: {fileID: 21300000, guid: ecc557a7ebdeefc48a5785c292d146ab, type: 3}
+    isOn: 1
   - name: Trimpet
     icon: {fileID: 21300000, guid: 98cc37f292e562a4290a6b49ba86121c, type: 3}
+    isOn: 1
+  - name: Husket
+    icon: {fileID: 21300000, guid: 3fa419e442c3724499f599f462f472bf, type: 3}
+    isOn: 1
+  - name: Bane
+    icon: {fileID: 21300000, guid: 7448042bdd49c8448b545b5ace9e397e, type: 3}
+    isOn: 1
+  - name: Menace
+    icon: {fileID: 21300000, guid: d4705be048c6e874681dccd3e05adf02, type: 3}
+    isOn: 1
+  - name: Tentawarble
+    icon: {fileID: 21300000, guid: 93589cf3d5a14cd4ea83721128fa8320, type: 3}
+    isOn: 1
+  - name: Shrapwarden
+    icon: {fileID: 21300000, guid: 061b3135113b0c24c933ae5cb5cf0d4c, type: 3}
+    isOn: 1
+  - name: Parasite
+    icon: {fileID: 21300000, guid: 13d1a5d3d52c9004193ba9f6fb8e0690, type: 3}
     isOn: 1
 --- !u!4 &753247514
 Transform:
@@ -9422,7 +9449,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 278.747681
+      value: 256.654205
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_AnchoredPosition.y
@@ -10561,7 +10588,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400002, guid: a93c012dd9ef6454fa7d140e976926f7, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 278.747681
+      value: 256.654205
       objectReference: {fileID: 0}
     - target: {fileID: 22400002, guid: a93c012dd9ef6454fa7d140e976926f7, type: 2}
       propertyPath: m_AnchoredPosition.y
@@ -12230,7 +12257,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 278.747681
+      value: 256.654205
       objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 05a81c3d5091440058129444d28322f3, type: 2}
       propertyPath: m_AnchoredPosition.y
@@ -18735,7 +18762,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22400002, guid: a93c012dd9ef6454fa7d140e976926f7, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 275.635284
+      value: 220.401642
       objectReference: {fileID: 0}
     - target: {fileID: 22400002, guid: a93c012dd9ef6454fa7d140e976926f7, type: 2}
       propertyPath: m_AnchoredPosition.y
