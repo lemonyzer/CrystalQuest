@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerScript : MonoBehaviour {
-
-
+public class ItemScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

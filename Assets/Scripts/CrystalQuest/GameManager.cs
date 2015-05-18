@@ -3,6 +3,8 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
+	public static PlayerScript playerScript;
+
     void OnEnable()
     {
 		CollisionScript.onTriggerEnter += OnTriggerEnter;
