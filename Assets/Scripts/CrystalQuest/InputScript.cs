@@ -29,7 +29,7 @@ public class InputScript : MonoBehaviour {
         moveDirection.y = Input.GetAxis("Vertical");
 
         shoot = Input.GetButton("Fire1");
-        useItem = Input.GetButton("Jump");
+		useItem = Input.GetButton("UseItem");
 
         moveScript.InputDirection = moveDirection;
 	}
