@@ -7,16 +7,16 @@ public class CrystalQuestGameManager : MonoBehaviour {
 	
     void OnEnable()
     {
-		PlayerObjectScript.onTriggerEnter2D += PlayerTriggerEnter2D;
-		EnemyObjectScript.onTriggerEnter2D += EnemyTriggerEnter2D;
-		ProjectileObjectScript.onTriggerEnter2D += ProjectileTriggerEnter2D;
+//		PlayerObjectScript.onTriggerEnter2D += PlayerTriggerEnter2D;
+//		EnemyObjectScript.onTriggerEnter2D += EnemyTriggerEnter2D;
+//		ProjectileObjectScript.onTriggerEnter2D += ProjectileTriggerEnter2D;
     }
 
     void OnDisable()
     {
-		PlayerObjectScript.onTriggerEnter2D -= PlayerTriggerEnter2D;
-		EnemyObjectScript.onTriggerEnter2D -= EnemyTriggerEnter2D;
-		ProjectileObjectScript.onTriggerEnter2D -= ProjectileTriggerEnter2D;
+//		PlayerObjectScript.onTriggerEnter2D -= PlayerTriggerEnter2D;
+//		EnemyObjectScript.onTriggerEnter2D -= EnemyTriggerEnter2D;
+//		ProjectileObjectScript.onTriggerEnter2D -= ProjectileTriggerEnter2D;
     }
 
 	// wie kann ich Collision zwischen Sub-Klassen differenzieren? 

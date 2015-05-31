@@ -4,7 +4,25 @@ using System.Collections.Generic;
 
 public enum AiMovementType
 {
-	ShortestPath, Following, Buzzing, Diagonal, Orthogonal 
+	ShortestPath, Following, Buzzing, Random, AreaBuzzing, Diagonal, Orthogonal, Orbit 
+};
+
+public enum AiMoveState {
+	Idle,
+	Move,
+	MoveToTarget
+}
+
+public enum AreaMoveState {
+	MoveToAreaCenter,
+	Idle,
+	StayInArea
+};
+
+public enum OrbitMoveState {
+	Idle,
+	MoveToPointOfInterest,
+	Circle
 };
 
 public class EnemyWithTarget : EnemyObjectScript {
@@ -15,6 +33,9 @@ public class EnemyWithTarget : EnemyObjectScript {
 
 	[SerializeField]
 	protected AiMovementType aiMovementType = AiMovementType.Diagonal;
+
+	[SerializeField]
+	protected AiMoveState aiMoveState = AiMoveState.Idle;
 
 	[SerializeField]
 	protected bool limitedDegreeChange = true;
@@ -29,24 +50,56 @@ public class EnemyWithTarget : EnemyObjectScript {
 	protected Vector2 moveDirection;
 	#endregion
 
-	#region Move
-	[SerializeField]
-	protected float nextMoveTimestamp = 0f;	//hibernate?
 
-	[SerializeField]
-	protected float nextChangeDirectionTimestamp = 0f;
 
+
+	#region Level Dimension (maxima)
 	[SerializeField]
-	protected float changeDirectionInterval = 0.5f;
+	protected float levelLeft = -10f;		// 
+	[SerializeField]
+	protected float levelTop = 5f;		// 
+	[SerializeField]
+	protected float levelWidth = 20f;		// 
+	[SerializeField]
+	protected float levelHeight = 10f;		// 
 	#endregion
+	
 
-//	[SerializeField]
-//	protected GameObject targetGO;
-//	
-//	public void SetTargetGO(GameObject go)
-//	{
-//		targetGO = go;
-//	}
+
+	#region Area
+	[SerializeField]
+	protected AreaMoveState currentAreaMoveState = AreaMoveState.Idle;
+
+	[SerializeField]
+	protected Vector3 areaCenterPosition = Vector3.zero;		// 
+
+	[SerializeField]
+	protected bool interruptMovingToAreaCenter = true;		// 
+
+	[SerializeField]
+	protected float areaCenterMinDistanceToReachEnable = 0.25f;		// wie schnell soll der Ort gewechselt werden
+
+	[SerializeField]
+	protected float changeAreaInterval = 2f;		// wie schnell soll der Ort gewechselt werden
+
+	[SerializeField]
+	protected float nextChangeAreaTimestamp = 0f;		// wann wird nächste Area festgelegt
+
+	[SerializeField]
+	protected float nextAreaDistanceMin = 2f;		// wie weit ist die nächste Area mindestns entfernt?
+	[SerializeField]
+	protected float nextAreaDistanceMax = 5f;		// wie weit ist die nächste Area mindestns entfernt?
+
+	[SerializeField]
+	protected float nextAreaDistance = 0f;		// wie weit ist die nächste Area mindestns entfernt?
+
+	[SerializeField]
+	protected bool moveingToNextArea = false;	
+	/*
+	 * übergeordnet:
+	 * 		- KI wechselt zwischen Bewegungsarten
+	 */
+	#endregion
 
 	public void SetTargetScript(CrystalQuestObjectScript script)
 	{
@@ -57,26 +110,60 @@ public class EnemyWithTarget : EnemyObjectScript {
 	{
 		if(targetScript == null)
 			return;
-		if(targetScript.transform == null)
-			return;
+		else
+		{
+			if(targetScript.transform == null)
+				return;
+			else
+			{
+				moveDirection = AiMove(targetScript.transform);
+				moveDirection.Normalize();
+				rb2D.MovePosition(rb2D.position + (moveDirection*maxVelocity) * Time.fixedDeltaTime);
+			}
+		}
+	}
+	[SerializeField]
+	protected float deltaDistanceToReach = 0.1f;
 
-		moveDirection = AiMove(targetScript.transform);
-		moveDirection.Normalize();
-		rb2D.MovePosition(rb2D.position + (moveDirection*maxVelocity) * Time.fixedDeltaTime);
+	bool ReachedTargetPosition (Vector3 targetPos)
+	{
+		Vector2 distance = transform.position - targetPos; 
+		if (distance.sqrMagnitude < deltaDistanceToReach)
+			return true;
+
+		return false;
 	}
 
-	Vector2 AiMove(Transform targetTransform)
+	Vector2 AiMove (Transform targetTransform)
 	{
 		Vector2 currentMoveDirection = Vector2.zero;
 
-		Vector2 distance = transform.position - targetTransform.position; 
-		if (distance.sqrMagnitude < 0.1f)
-			return Vector2.zero;
+		if(aiMoveState == AiMoveState.MoveToTarget)
+		{
+			if(ReachedTargetPosition (targetTransform.position))
+			{
+				return Vector2.zero;
+			}
+			else
+			{
+
+			}
+		}
+		else if (aiMoveState == AiMoveState.Move)
+		{
+
+		}
 
 		switch(aiMovementType)
 		{
 		case AiMovementType.Buzzing:
 			currentMoveDirection = Buzzing(targetTransform);
+			break;
+		case AiMovementType.Random:
+			currentMoveDirection = RandomBuzzing();
+			break;
+		case AiMovementType.AreaBuzzing:
+			currentMoveDirection = AreaBuzzing(targetTransform);
 			break;
 		case AiMovementType.Diagonal:
 			currentMoveDirection = Diagonal(targetTransform);
@@ -90,6 +177,9 @@ public class EnemyWithTarget : EnemyObjectScript {
 		case AiMovementType.ShortestPath:
 			currentMoveDirection = ShortestPath(targetTransform);
 			break;
+		case AiMovementType.Orbit:
+			currentMoveDirection = Orbit(targetTransform.position, transform.position, orbitDistance, orbitSpeed);
+			break;
 		default:
 			// Default
 			break;
@@ -99,42 +189,12 @@ public class EnemyWithTarget : EnemyObjectScript {
 	}
 	#endregion
 
-	Vector2 Buzzing(Transform targetTransform)
+	Vector2 RandomPosition (float left, float top, float width, float height)
 	{
-		Vector2 moveDirection = this.moveDirection;
-		if(Time.time >= nextChangeDirectionTimestamp)
-		{
-			nextChangeDirectionTimestamp = Time.time + changeDirectionInterval;
-			moveDirection = ShortestPath(targetTransform);
-		}
-
-		return moveDirection;
+		Vector2 randomPosition = Vector2.zero;
+		randomPosition.x = Random.Range(left,left + width); 
+		randomPosition.y = Random.Range(top,top - height); 
+		return randomPosition;
 	}
 
-	Vector2 Diagonal(Transform targetTransform)
-	{
-		Vector2 moveDirection = Vector2.zero;
-
-		return moveDirection;
-	}
-
-	Vector2 Following(Transform targetTransform)
-	{
-		Vector2 moveDirection = Vector2.zero;
-		
-		return moveDirection;
-	}
-
-	Vector2 Orthogonal(Transform targetTransform)
-	{
-		Vector2 moveDirection = Vector2.zero;
-		
-		return moveDirection;
-	}
-
-	Vector2 ShortestPath(Transform targetTransform)
-	{
-		Vector2 moveDirection = -transform.position + targetTransform.position;
-		return moveDirection;
-	}
 }

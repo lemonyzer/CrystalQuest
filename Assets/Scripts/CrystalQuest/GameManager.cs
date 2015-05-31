@@ -7,15 +7,15 @@ public class GameManager : MonoBehaviour {
 
     void OnEnable()
     {
-		CollisionScript.onTriggerEnter += OnTriggerEnter;
-		CollisionScript.onTriggerEnter2D += OnTriggerEnter2D;
+		CollisionScript.onTriggerEnter += onTriggerEnter;
+		CollisionScript.onTriggerEnter2D += onTriggerEnter2D;
 		//PlayerCollisionScript.onTriggered2D += OnPlayerCollision2D;
     }
 
     void OnDisable()
     {
-		CollisionScript.onTriggerEnter -= OnTriggerEnter;
-		CollisionScript.onTriggerEnter2D -= OnTriggerEnter2D;
+		CollisionScript.onTriggerEnter -= onTriggerEnter;
+		CollisionScript.onTriggerEnter2D -= onTriggerEnter2D;
 		//PlayerCollisionScript.onTriggered2D -= OnPlayerCollision2D;
     }
 
@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="collisionScript">Collision script.</param>
 	/// <param name="otherCollisionScript">Other collision script.</param>
-	void OnTriggerEnter(CollisionScript collisionScript, CollisionScript otherCollisionScript)
+	void onTriggerEnter(CollisionScript collisionScript, CollisionScript otherCollisionScript)
 	{
 	}
 
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="collisionScript">Collision script.</param>
 	/// <param name="otherCollisionScript">Other collision script.</param>
-	void OnTriggerEnter2D(CollisionScript collisionScript, CollisionScript otherCollisionScript)
+	void onTriggerEnter2D(CollisionScript collisionScript, CollisionScript otherCollisionScript)
 	{
 		collisionScript.CollisionObject.Triggered(otherCollisionScript.CollisionObject);
 	}
@@ -52,17 +52,17 @@ public class GameManager : MonoBehaviour {
 
 	//void OnCollision2D(CollisionScript collisionScript, CollisionObject collisionObject, Collider2D otherCollider)
 	//void OnCollision2D(CollisionScript collisionScript, Collider2D otherCollider)
-	void OnCollision2D(CollisionScript collisionScript, CollisionScript otherCollisionScript)
+	void onCollision2D(CollisionScript collisionScript, CollisionScript otherCollisionScript)
 	{
 		//collisionScript.CollisionObject.Collecting();
 	}
 
-	void OnTrigger2D(CollisionScript collisionScript, CollisionScript otherCollisionScript)
+	void onTrigger2D(CollisionScript collisionScript, CollisionScript otherCollisionScript)
 	{
 		//collisionScript.CollisionObject.Collecting();
 	}
 
-	void OnPlayerCollision2D(PlayerCollisionScript collisionScript, CollisionObject collisionObject, Collider2D otherCollider)
+	void onPlayerCollision2D(PlayerCollisionScript collisionScript, CollisionObject collisionObject, Collider2D otherCollider)
     {
 
     }
