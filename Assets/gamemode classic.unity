@@ -281,32 +281,11 @@ MonoBehaviour:
   aiMovementType: 3
   aiMoveState: 0
   limitedDegreeChange: 1
-  useDegreeList: 0
-  degreeList: []
   moveDirection: {x: 0, y: 0}
-  nextMoveTimestamp: 0
-  nextChangeDirectionTimestamp: 0
-  changeDirectionIntervalMax: .5
-  changeDirectionIntervalMin: .100000001
   levelLeft: -10
   levelTop: 5
   levelWidth: 20
   levelHeight: 10
-  currentOrbitMoveState: 0
-  orbitCenterPosition: {x: 0, y: 0, z: 0}
-  orbitDistance: 1
-  orbitCurrentRadialPosition: 0
-  orbitSpeed: 2
-  currentAreaMoveState: 1
-  areaCenterPosition: {x: 0, y: 0, z: 0}
-  interruptMovingToAreaCenter: 1
-  areaCenterMinDistanceToReachEnable: .25
-  changeAreaInterval: 2
-  nextChangeAreaTimestamp: 0
-  nextAreaDistanceMin: 2
-  nextAreaDistanceMax: 5
-  nextAreaDistance: 0
-  moveingToNextArea: 0
   deltaDistanceToReach: .100000001
 --- !u!50 &68902586
 Rigidbody2D:
@@ -492,32 +471,11 @@ MonoBehaviour:
   aiMovementType: 3
   aiMoveState: 0
   limitedDegreeChange: 1
-  useDegreeList: 0
-  degreeList: []
   moveDirection: {x: 0, y: 0}
-  nextMoveTimestamp: 0
-  nextChangeDirectionTimestamp: 0
-  changeDirectionIntervalMax: .5
-  changeDirectionIntervalMin: .100000001
   levelLeft: -10
   levelTop: 5
   levelWidth: 20
   levelHeight: 10
-  currentOrbitMoveState: 0
-  orbitCenterPosition: {x: 0, y: 0, z: 0}
-  orbitDistance: 1
-  orbitCurrentRadialPosition: 0
-  orbitSpeed: 2
-  currentAreaMoveState: 1
-  areaCenterPosition: {x: 0, y: 0, z: 0}
-  interruptMovingToAreaCenter: 1
-  areaCenterMinDistanceToReachEnable: .25
-  changeAreaInterval: 2
-  nextChangeAreaTimestamp: 0
-  nextAreaDistanceMin: 2
-  nextAreaDistanceMax: 5
-  nextAreaDistance: 0
-  moveingToNextArea: 0
   deltaDistanceToReach: .100000001
 --- !u!50 &239715109
 Rigidbody2D:
@@ -1016,32 +974,11 @@ MonoBehaviour:
   aiMovementType: 3
   aiMoveState: 0
   limitedDegreeChange: 1
-  useDegreeList: 0
-  degreeList: []
   moveDirection: {x: 0, y: 0}
-  nextMoveTimestamp: 0
-  nextChangeDirectionTimestamp: 0
-  changeDirectionIntervalMax: .5
-  changeDirectionIntervalMin: .100000001
   levelLeft: -10
   levelTop: 5
   levelWidth: 20
   levelHeight: 10
-  currentOrbitMoveState: 0
-  orbitCenterPosition: {x: 0, y: 0, z: 0}
-  orbitDistance: 1
-  orbitCurrentRadialPosition: 0
-  orbitSpeed: 2
-  currentAreaMoveState: 1
-  areaCenterPosition: {x: 0, y: 0, z: 0}
-  interruptMovingToAreaCenter: 1
-  areaCenterMinDistanceToReachEnable: .25
-  changeAreaInterval: 2
-  nextChangeAreaTimestamp: 0
-  nextAreaDistanceMin: 2
-  nextAreaDistanceMax: 5
-  nextAreaDistance: 0
-  moveingToNextArea: 0
   deltaDistanceToReach: .100000001
 --- !u!50 &472275280
 Rigidbody2D:
@@ -1167,7 +1104,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519947531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .649999976, z: 0}
+  m_LocalPosition: {x: -.201000005, y: -1.42400002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1275,32 +1212,11 @@ MonoBehaviour:
   aiMovementType: 3
   aiMoveState: 0
   limitedDegreeChange: 1
-  useDegreeList: 0
-  degreeList: []
   moveDirection: {x: 0, y: 0}
-  nextMoveTimestamp: 0
-  nextChangeDirectionTimestamp: 0
-  changeDirectionIntervalMax: .5
-  changeDirectionIntervalMin: .100000001
   levelLeft: -10
   levelTop: 5
   levelWidth: 20
   levelHeight: 10
-  currentOrbitMoveState: 0
-  orbitCenterPosition: {x: 0, y: 0, z: 0}
-  orbitDistance: 1
-  orbitCurrentRadialPosition: 0
-  orbitSpeed: 2
-  currentAreaMoveState: 1
-  areaCenterPosition: {x: 0, y: 0, z: 0}
-  interruptMovingToAreaCenter: 1
-  areaCenterMinDistanceToReachEnable: .25
-  changeAreaInterval: 2
-  nextChangeAreaTimestamp: 0
-  nextAreaDistanceMin: 2
-  nextAreaDistanceMax: 5
-  nextAreaDistance: 0
-  moveingToNextArea: 0
   deltaDistanceToReach: .100000001
 --- !u!50 &627664745
 Rigidbody2D:
@@ -1575,32 +1491,11 @@ MonoBehaviour:
   aiMovementType: 3
   aiMoveState: 0
   limitedDegreeChange: 1
-  useDegreeList: 0
-  degreeList: []
   moveDirection: {x: 0, y: 0}
-  nextMoveTimestamp: 0
-  nextChangeDirectionTimestamp: 0
-  changeDirectionIntervalMax: .5
-  changeDirectionIntervalMin: .100000001
   levelLeft: -10
   levelTop: 5
   levelWidth: 20
   levelHeight: 10
-  currentOrbitMoveState: 0
-  orbitCenterPosition: {x: 0, y: 0, z: 0}
-  orbitDistance: 1
-  orbitCurrentRadialPosition: 0
-  orbitSpeed: 2
-  currentAreaMoveState: 1
-  areaCenterPosition: {x: 0, y: 0, z: 0}
-  interruptMovingToAreaCenter: 1
-  areaCenterMinDistanceToReachEnable: .25
-  changeAreaInterval: 2
-  nextChangeAreaTimestamp: 0
-  nextAreaDistanceMin: 2
-  nextAreaDistanceMax: 5
-  nextAreaDistance: 0
-  moveingToNextArea: 0
   deltaDistanceToReach: .100000001
 --- !u!50 &852712427
 Rigidbody2D:
@@ -1805,7 +1700,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 972775237}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.51300001, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1928,32 +1823,11 @@ MonoBehaviour:
   aiMovementType: 3
   aiMoveState: 0
   limitedDegreeChange: 1
-  useDegreeList: 0
-  degreeList: []
   moveDirection: {x: 0, y: 0}
-  nextMoveTimestamp: 0
-  nextChangeDirectionTimestamp: 0
-  changeDirectionIntervalMax: .5
-  changeDirectionIntervalMin: .100000001
   levelLeft: -10
   levelTop: 5
   levelWidth: 20
   levelHeight: 10
-  currentOrbitMoveState: 0
-  orbitCenterPosition: {x: 0, y: 0, z: 0}
-  orbitDistance: 1
-  orbitCurrentRadialPosition: 0
-  orbitSpeed: 2
-  currentAreaMoveState: 1
-  areaCenterPosition: {x: 0, y: 0, z: 0}
-  interruptMovingToAreaCenter: 1
-  areaCenterMinDistanceToReachEnable: .25
-  changeAreaInterval: 2
-  nextChangeAreaTimestamp: 0
-  nextAreaDistanceMin: 2
-  nextAreaDistanceMax: 5
-  nextAreaDistance: 0
-  moveingToNextArea: 0
   deltaDistanceToReach: .100000001
 --- !u!50 &1050808125
 Rigidbody2D:
@@ -2139,32 +2013,11 @@ MonoBehaviour:
   aiMovementType: 3
   aiMoveState: 0
   limitedDegreeChange: 1
-  useDegreeList: 0
-  degreeList: []
   moveDirection: {x: 0, y: 0}
-  nextMoveTimestamp: 0
-  nextChangeDirectionTimestamp: 0
-  changeDirectionIntervalMax: .5
-  changeDirectionIntervalMin: .100000001
   levelLeft: -10
   levelTop: 5
   levelWidth: 20
   levelHeight: 10
-  currentOrbitMoveState: 0
-  orbitCenterPosition: {x: 0, y: 0, z: 0}
-  orbitDistance: 1
-  orbitCurrentRadialPosition: 0
-  orbitSpeed: 2
-  currentAreaMoveState: 1
-  areaCenterPosition: {x: 0, y: 0, z: 0}
-  interruptMovingToAreaCenter: 1
-  areaCenterMinDistanceToReachEnable: .25
-  changeAreaInterval: 2
-  nextChangeAreaTimestamp: 0
-  nextAreaDistanceMin: 2
-  nextAreaDistanceMax: 5
-  nextAreaDistance: 0
-  moveingToNextArea: 0
   deltaDistanceToReach: .100000001
 --- !u!50 &1226771116
 Rigidbody2D:
@@ -2284,32 +2137,11 @@ MonoBehaviour:
   aiMovementType: 3
   aiMoveState: 0
   limitedDegreeChange: 1
-  useDegreeList: 0
-  degreeList: []
   moveDirection: {x: 0, y: 0}
-  nextMoveTimestamp: 0
-  nextChangeDirectionTimestamp: 0
-  changeDirectionIntervalMax: .5
-  changeDirectionIntervalMin: .100000001
   levelLeft: -10
   levelTop: 5
   levelWidth: 20
   levelHeight: 10
-  currentOrbitMoveState: 0
-  orbitCenterPosition: {x: 0, y: 0, z: 0}
-  orbitDistance: 1
-  orbitCurrentRadialPosition: 0
-  orbitSpeed: 2
-  currentAreaMoveState: 1
-  areaCenterPosition: {x: 0, y: 0, z: 0}
-  interruptMovingToAreaCenter: 1
-  areaCenterMinDistanceToReachEnable: .25
-  changeAreaInterval: 2
-  nextChangeAreaTimestamp: 0
-  nextAreaDistanceMin: 2
-  nextAreaDistanceMax: 5
-  nextAreaDistance: 0
-  moveingToNextArea: 0
   deltaDistanceToReach: .100000001
 --- !u!50 &1243746707
 Rigidbody2D:
@@ -2669,7 +2501,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1618331594}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.72000003, y: 3.3900001, z: 0}
+  m_LocalPosition: {x: -3.49000001, y: 2.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2130414024}
@@ -2695,7 +2527,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1618331594}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 432ef5406e92fdf41a17388c8b9ad756, type: 3}
+  m_Script: {fileID: 11500000, guid: 758350b674596564999b204476ff0181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   transform: {fileID: 0}
@@ -2704,7 +2536,7 @@ MonoBehaviour:
   inputFire: 0
   inputUseItem: 0
   canMove: 1
-  maxVelocity: 5
+  maxVelocity: 1
   rb2D: {fileID: 0}
   selfAttack: 0
   teamAttack: 0
@@ -2716,37 +2548,55 @@ MonoBehaviour:
   lifes: 3
   minLifes: 0
   isDead: 0
-  targetScript: {fileID: 519947532}
-  aiMovementType: 3
+  targetScript: {fileID: 0}
+  aiMovementType: 0
   aiMoveState: 0
   limitedDegreeChange: 1
-  useDegreeList: 0
-  degreeList: []
   moveDirection: {x: 0, y: 0}
-  nextMoveTimestamp: 0
-  nextChangeDirectionTimestamp: 0
-  changeDirectionIntervalMax: .5
-  changeDirectionIntervalMin: .100000001
   levelLeft: -10
   levelTop: 5
   levelWidth: 20
   levelHeight: 10
-  currentOrbitMoveState: 0
-  orbitCenterPosition: {x: 0, y: 0, z: 0}
-  orbitDistance: 1
-  orbitCurrentRadialPosition: 0
-  orbitSpeed: 2
-  currentAreaMoveState: 1
-  areaCenterPosition: {x: 0, y: 0, z: 0}
-  interruptMovingToAreaCenter: 1
-  areaCenterMinDistanceToReachEnable: .25
-  changeAreaInterval: 2
-  nextChangeAreaTimestamp: 0
-  nextAreaDistanceMin: 2
-  nextAreaDistanceMax: 5
-  nextAreaDistance: 0
-  moveingToNextArea: 0
   deltaDistanceToReach: .100000001
+  useTargetPosition: 1
+  targetPosition: {x: 0, y: 0, z: 0}
+  targetReached: 0
+  currentMovement:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: 0
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: 0
+    changeDirectionIntervalMin: 0
+  idleMovement:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: 0
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: 0
+    changeDirectionIntervalMin: 0
+  orbitMovement:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: 100
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: 0
+    changeDirectionIntervalMin: 0
+    orbitCenterPosition: {x: 0, y: 0, z: 0}
+    orbitDistance: 1
+    winkelGeschwindigkeit: 20
+  moveToPositionMovement:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: .5
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: 0
+    changeDirectionIntervalMin: 0
+    destination: {x: 0, y: 0, z: 0}
 --- !u!50 &1618331600
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -2865,32 +2715,11 @@ MonoBehaviour:
   aiMovementType: 3
   aiMoveState: 0
   limitedDegreeChange: 1
-  useDegreeList: 0
-  degreeList: []
   moveDirection: {x: 0, y: 0}
-  nextMoveTimestamp: 0
-  nextChangeDirectionTimestamp: 0
-  changeDirectionIntervalMax: .5
-  changeDirectionIntervalMin: .100000001
   levelLeft: -10
   levelTop: 5
   levelWidth: 20
   levelHeight: 10
-  currentOrbitMoveState: 0
-  orbitCenterPosition: {x: 0, y: 0, z: 0}
-  orbitDistance: 1
-  orbitCurrentRadialPosition: 0
-  orbitSpeed: 2
-  currentAreaMoveState: 1
-  areaCenterPosition: {x: 0, y: 0, z: 0}
-  interruptMovingToAreaCenter: 1
-  areaCenterMinDistanceToReachEnable: .25
-  changeAreaInterval: 2
-  nextChangeAreaTimestamp: 0
-  nextAreaDistanceMin: 2
-  nextAreaDistanceMax: 5
-  nextAreaDistance: 0
-  moveingToNextArea: 0
   deltaDistanceToReach: .100000001
 --- !u!50 &1691796571
 Rigidbody2D:
@@ -3010,32 +2839,11 @@ MonoBehaviour:
   aiMovementType: 3
   aiMoveState: 0
   limitedDegreeChange: 1
-  useDegreeList: 0
-  degreeList: []
   moveDirection: {x: 0, y: 0}
-  nextMoveTimestamp: 0
-  nextChangeDirectionTimestamp: 0
-  changeDirectionIntervalMax: .5
-  changeDirectionIntervalMin: .100000001
   levelLeft: -10
   levelTop: 5
   levelWidth: 20
   levelHeight: 10
-  currentOrbitMoveState: 0
-  orbitCenterPosition: {x: 0, y: 0, z: 0}
-  orbitDistance: 1
-  orbitCurrentRadialPosition: 0
-  orbitSpeed: 2
-  currentAreaMoveState: 1
-  areaCenterPosition: {x: 0, y: 0, z: 0}
-  interruptMovingToAreaCenter: 1
-  areaCenterMinDistanceToReachEnable: .25
-  changeAreaInterval: 2
-  nextChangeAreaTimestamp: 0
-  nextAreaDistanceMin: 2
-  nextAreaDistanceMax: 5
-  nextAreaDistance: 0
-  moveingToNextArea: 0
   deltaDistanceToReach: .100000001
 --- !u!50 &1714743627
 Rigidbody2D:
@@ -3584,32 +3392,11 @@ MonoBehaviour:
   aiMovementType: 3
   aiMoveState: 0
   limitedDegreeChange: 1
-  useDegreeList: 0
-  degreeList: []
   moveDirection: {x: 0, y: 0}
-  nextMoveTimestamp: 0
-  nextChangeDirectionTimestamp: 0
-  changeDirectionIntervalMax: .5
-  changeDirectionIntervalMin: .100000001
   levelLeft: -10
   levelTop: 5
   levelWidth: 20
   levelHeight: 10
-  currentOrbitMoveState: 0
-  orbitCenterPosition: {x: 0, y: 0, z: 0}
-  orbitDistance: 1
-  orbitCurrentRadialPosition: 0
-  orbitSpeed: 2
-  currentAreaMoveState: 1
-  areaCenterPosition: {x: 0, y: 0, z: 0}
-  interruptMovingToAreaCenter: 1
-  areaCenterMinDistanceToReachEnable: .25
-  changeAreaInterval: 2
-  nextChangeAreaTimestamp: 0
-  nextAreaDistanceMin: 2
-  nextAreaDistanceMax: 5
-  nextAreaDistance: 0
-  moveingToNextArea: 0
   deltaDistanceToReach: .100000001
 --- !u!58 &2077847648
 CircleCollider2D:

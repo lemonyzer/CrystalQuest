@@ -9,8 +9,9 @@ public class CrystalQuestObjectScript : MonoBehaviour {
 	#endregion
 
 	#region Initialisation
-	void Awake()
+	protected virtual void Awake()
 	{
+		Debug.Log(this.name + " Awake() " + this.ToString());
 		transform = this.GetComponent<Transform>();
 		InitializeRigidbody2D();
 	}
