@@ -42,6 +42,11 @@ public class ProtectorScript : EnemyWithTarget {
 		
 	void Start ()
 	{
+		SetTarget();
+	}
+
+	void SetTarget()
+	{
 		orbitMovement.OrbitCenterPosition = targetPosition;
 		moveToPositionMovement.Destination = targetPosition;
 	}
@@ -56,6 +61,7 @@ public class ProtectorScript : EnemyWithTarget {
 	{
 		this.targetPosition = newTargetPosition;
 		Reset();
+		SetTarget();
 	}
 
 	public void Reset()

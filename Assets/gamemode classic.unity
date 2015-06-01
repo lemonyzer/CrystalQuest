@@ -2580,18 +2580,18 @@ MonoBehaviour:
   orbitMovement:
     transform: {fileID: 0}
     moveDirection: {x: 0, y: 0}
-    moveSpeed: 100
+    moveSpeed: 3
     nextMoveTimestamp: 0
     nextChangeDirectionTimestamp: 0
     changeDirectionIntervalMax: 0
     changeDirectionIntervalMin: 0
     orbitCenterPosition: {x: 0, y: 0, z: 0}
     orbitDistance: 1
-    winkelGeschwindigkeit: 20
+    winkelGeschwindigkeit: 10
   moveToPositionMovement:
     transform: {fileID: 0}
     moveDirection: {x: 0, y: 0}
-    moveSpeed: .5
+    moveSpeed: 2
     nextMoveTimestamp: 0
     nextChangeDirectionTimestamp: 0
     changeDirectionIntervalMax: 0
@@ -2690,7 +2690,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1691796566}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 432ef5406e92fdf41a17388c8b9ad756, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d07e4727c32f8e488f21ed16efdff83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   transform: {fileID: 0}
@@ -2712,7 +2712,7 @@ MonoBehaviour:
   minLifes: 0
   isDead: 0
   targetScript: {fileID: 519947532}
-  aiMovementType: 3
+  aiMovementType: 0
   aiMoveState: 0
   limitedDegreeChange: 1
   moveDirection: {x: 0, y: 0}
@@ -2721,6 +2721,31 @@ MonoBehaviour:
   levelWidth: 20
   levelHeight: 10
   deltaDistanceToReach: .100000001
+  currentMovement:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: 0
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: 0
+    changeDirectionIntervalMin: 0
+  idleMovement:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: 0
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: 0
+    changeDirectionIntervalMin: 0
+  moveToTargetTransform:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: 2
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: 0
+    changeDirectionIntervalMin: 0
+    targetTransform: {fileID: 0}
 --- !u!50 &1691796571
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -3367,7 +3392,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2077847644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 432ef5406e92fdf41a17388c8b9ad756, type: 3}
+  m_Script: {fileID: 11500000, guid: 251618a30271a324da4dadcd064d5b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   transform: {fileID: 0}
@@ -3388,8 +3413,8 @@ MonoBehaviour:
   lifes: 3
   minLifes: 0
   isDead: 0
-  targetScript: {fileID: 519947532}
-  aiMovementType: 3
+  targetScript: {fileID: 0}
+  aiMovementType: 0
   aiMoveState: 0
   limitedDegreeChange: 1
   moveDirection: {x: 0, y: 0}
@@ -3398,6 +3423,32 @@ MonoBehaviour:
   levelWidth: 20
   levelHeight: 10
   deltaDistanceToReach: .100000001
+  currentMovement:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: 0
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: 0
+    changeDirectionIntervalMin: 0
+  idleMovement:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: 0
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: 0
+    changeDirectionIntervalMin: 0
+  moveRandom:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: 2
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: 0
+    changeDirectionIntervalMin: 0
+    minAngle: 0
+    maxAngle: 360
 --- !u!58 &2077847648
 CircleCollider2D:
   m_ObjectHideFlags: 0

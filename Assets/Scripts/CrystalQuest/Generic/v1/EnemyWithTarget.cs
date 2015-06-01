@@ -18,6 +18,12 @@ public class EnemyWithTarget : EnemyObjectScript {
 	[SerializeField]
 	protected CrystalQuestObjectScript targetScript;
 
+	public CrystalQuestObjectScript TargetScript
+	{
+		get { return targetScript; }
+		set { targetScript = value; }
+	}
+
 	[SerializeField]
 	protected AiMovementType aiMovementType = AiMovementType.Idle;
 

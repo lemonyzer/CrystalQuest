@@ -12,6 +12,8 @@ public class MoveDirection {
 		moveDirection.x = Mathf.Cos (rand);
 		// Returns the sine of angle f in radians.
 		moveDirection.y = Mathf.Sin (rand);
+
+		moveDirection.Normalize();
 		return moveDirection;
 	}
 
@@ -26,7 +28,6 @@ public class MoveDirection {
 		{
 			Debug.LogError("minAngle > maxAngle");
 			rand = Random.Range (maxAngle, minAngle);
-			
 		}
 
 		Vector2 moveDirection;
@@ -34,18 +35,24 @@ public class MoveDirection {
 		moveDirection.x = Mathf.Cos (rand);
 		// Returns the sine of angle f in radians.
 		moveDirection.y = Mathf.Sin (rand);
+
+		moveDirection.Normalize();
 		return moveDirection;
 	}
 
 	public static Vector2 ShortestPath (Transform objetTransform, Transform targetTransform)
 	{
 		Vector2 moveDirection = -objetTransform.position + targetTransform.position;
+
+		moveDirection.Normalize();
 		return moveDirection;
 	}
 	
 	public static Vector2 ShortestPath(Vector2 begin, Vector2 destination)
 	{
 		Vector2 moveDirection = -begin + destination;
+
+		moveDirection.Normalize();
 		return moveDirection;
 	}
 
@@ -62,6 +69,7 @@ public class MoveDirection {
 		moveDirection.x = RandomSign();
 		moveDirection.y = RandomSign();
 
+		moveDirection.Normalize();
 		return moveDirection;
 	}
 
@@ -141,6 +149,7 @@ public class MoveDirection {
 		moveDirection.x *= RandomSign();
 		moveDirection.y *= RandomSign();
 		
+		moveDirection.Normalize();
 		return moveDirection;
 	}
 
