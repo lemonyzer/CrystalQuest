@@ -42,7 +42,7 @@ public class Movement {
 		return moveDirection;
 	}
 
-	float RandomChangeDirectionInterval()
+	public float RandomChangeDirectionInterval()
 	{
 		return Random.Range(changeDirectionIntervalMin, changeDirectionIntervalMax);
 	}

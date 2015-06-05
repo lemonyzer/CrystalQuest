@@ -37,7 +37,12 @@ public class MoveRandom : Movement {
 
 	public override Vector2 NextMoveDirection ()
 	{
-		return GetMoveDirection (transform, minAngle, maxAngle, moveSpeed);
+		if (nextMoveTimestamp <= Time.time)
+		{
+			nextMoveTimestamp = Time.time + RandomChangeDirectionInterval();
+			moveDirection = GetMoveDirection (transform, minAngle, maxAngle, moveSpeed);
+		}
+		return moveDirection; 
 	}
 
 	public Vector2 GetMoveDirection (Transform myTransform, float minAngle, float maxAngle, float moveSpeed)

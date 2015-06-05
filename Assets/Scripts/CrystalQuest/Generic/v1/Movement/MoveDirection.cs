@@ -9,9 +9,9 @@ public class MoveDirection {
 		float rand = Random.Range (0f, 360f);
 		Vector2 moveDirection;
 		// Returns the cosine of angle f in radians.
-		moveDirection.x = Mathf.Cos (rand);
+		moveDirection.x = Mathf.Cos (rand * Mathf.Deg2Rad);
 		// Returns the sine of angle f in radians.
-		moveDirection.y = Mathf.Sin (rand);
+		moveDirection.y = Mathf.Sin (rand * Mathf.Deg2Rad);
 
 		moveDirection.Normalize();
 		return moveDirection;
@@ -32,9 +32,9 @@ public class MoveDirection {
 
 		Vector2 moveDirection;
 		// Returns the cosine of angle f in radians.
-		moveDirection.x = Mathf.Cos (rand);
+		moveDirection.x = Mathf.Cos (rand * Mathf.Deg2Rad);
 		// Returns the sine of angle f in radians.
-		moveDirection.y = Mathf.Sin (rand);
+		moveDirection.y = Mathf.Sin (rand * Mathf.Deg2Rad);
 
 		moveDirection.Normalize();
 		return moveDirection;
