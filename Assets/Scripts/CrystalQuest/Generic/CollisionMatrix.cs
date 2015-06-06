@@ -6,9 +6,27 @@ using System.Collections.Generic;
 public class CollisionMatrix : ScriptableObject {
 
 	[SerializeField]
-	private bool[] row;
+	private bool[] matrix;
 
-	[SerializeField]
-	private List<bool> column;
+
+
+	void OnEnable()
+	{
+		if (matrix == null)
+		{
+			FirstInit();
+		}
+	}
+
+	void FirstInit() {
+
+	}
+
+	void UpdateMatrix ()
+	{
+		// http://www.plyoung.com/blog/define-unity-layers-in-script.html
+		// http://stackoverflow.com/questions/13363062/unity-custom-editor-like-layer-collision-matrix
+		// http://answers.unity3d.com/questions/558158/how-to-get-a-list-from-user-layers.html
+	}
 
 }

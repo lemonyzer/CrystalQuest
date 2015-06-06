@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerObjectScript : CrystalQuestObjectScript {
+public class PlayerObjectScript : MovingObject {
 
 	#region Input
 	void Update()

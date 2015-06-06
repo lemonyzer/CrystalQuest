@@ -766,6 +766,8 @@ GameObject:
   - 212: {fileID: 424941006}
   - 61: {fileID: 424941005}
   - 114: {fileID: 424941007}
+  - 50: {fileID: 424941009}
+  - 114: {fileID: 424941008}
   m_Layer: 0
   m_Name: Port Left
   m_TagString: Untagged
@@ -846,6 +848,33 @@ MonoBehaviour:
   nextEnemySpawnTimestamp: 0
   enemySpawnIntervallMin: 1
   enemySpawnIntervallMax: 2
+--- !u!114 &424941008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 424941003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 862d283f76f9c974896cbe83295b817f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transform: {fileID: 0}
+--- !u!50 &424941009
+Rigidbody2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 424941003}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!4 &472275277 stripped
 Transform:
   m_PrefabParentObject: {fileID: 462248, guid: 71d35ad1dd89db94eaaca5311ff5b2fc, type: 2}
@@ -881,13 +910,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transform: {fileID: 0}
-  enableInput: 1
-  inputMoveDirection: {x: 0, y: 0}
-  inputFire: 0
-  inputUseItem: 0
-  canMove: 1
-  maxVelocity: 5
-  rb2D: {fileID: 0}
   selfAttack: 0
   teamAttack: 0
   collisionSendDamageValue: Infinity
@@ -898,6 +920,13 @@ MonoBehaviour:
   lifes: 3
   minLifes: 0
   isDead: 0
+  enableInput: 1
+  inputMoveDirection: {x: 0, y: 0}
+  inputFire: 0
+  inputUseItem: 0
+  canMove: 1
+  maxVelocity: 5
+  rb2D: {fileID: 0}
 --- !u!58 &519947533
 CircleCollider2D:
   m_ObjectHideFlags: 0
