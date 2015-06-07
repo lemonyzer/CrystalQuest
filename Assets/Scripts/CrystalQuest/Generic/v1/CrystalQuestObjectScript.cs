@@ -17,6 +17,13 @@ public class CrystalQuestObjectScript : MonoBehaviour {
 	#endregion
 	
 
+	[SerializeField]
+	protected float points;
+
+	public float Points {
+		get { return points; }
+		set { points = value; }
+	}
 	
 
 }

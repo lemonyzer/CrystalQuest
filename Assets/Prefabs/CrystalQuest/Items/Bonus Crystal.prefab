@@ -10,6 +10,8 @@ GameObject:
   - 4: {fileID: 428458}
   - 212: {fileID: 21212956}
   - 60: {fileID: 6028182}
+  - 50: {fileID: 5033476}
+  - 114: {fileID: 11453920}
   m_Layer: 0
   m_Name: Bonus Crystal
   m_TagString: Untagged
@@ -24,18 +26,33 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 177916}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .870000005, y: -1.23000002, z: 0}
+  m_LocalPosition: {x: 1.29961348, y: -.722987831, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &5033476
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177916}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!60 &6028182
 PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 177916}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
@@ -50,6 +67,36 @@ PolygonCollider2D:
       - {x: .359375, y: -.078125}
       - {x: .359375, y: .078125}
       - {x: .078125, y: .359375}
+--- !u!114 &11453920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 041ec568088f7894c9317d93fd41dc1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transform: {fileID: 0}
+  points: 0
+  selfAttack: 0
+  teamAttack: 0
+  invincible: 0
+  minHealth: 0
+  maxHealth: 100
+  currentHealth: 100
+  lifes: 3
+  minLifes: 0
+  isDead: 0
+  collisionSendDamageValue: Infinity
+  enableInput: 1
+  inputMoveDirection: {x: 0, y: 0}
+  inputFire: 0
+  inputUseItem: 0
+  canMove: 1
+  maxVelocity: 5
+  rb2D: {fileID: 0}
 --- !u!212 &21212956
 SpriteRenderer:
   m_ObjectHideFlags: 1

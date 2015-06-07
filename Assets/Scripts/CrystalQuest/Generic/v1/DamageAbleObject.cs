@@ -47,10 +47,19 @@ public class DamageAbleObject : CrystalQuestObjectScript {
 		get {return currentHealth;}
 		set
 		{
-			if (currentHealth >= minHealth)
+			if (currentHealth > maxHealth)
+			{
+				currentHealth = maxHealth;
+			}
+			else if (currentHealth >= minHealth)
+			{
 				currentHealth = value;
+			}
 			else
+			{
 				currentHealth = minHealth;
+				Die ();
+			}
 		}
 	}
 	
@@ -77,21 +86,25 @@ public class DamageAbleObject : CrystalQuestObjectScript {
 	{
 		if(invincible)
 			return;
-		
+
+		float temp = Health;
 		Health = Health - damageValue;
-		if (Health <= minHealth)
-		{
-			// damageValue > health -> lebensabzug
-			Die();
-		}
-		else
-		{
-			// not dead, gogogo
-		}
-		NotifyHealthListener(Health);
+
+		if (temp != Health)
+			NotifyHealthListener(Health); 
+			
+//		if (Health <= minHealth)
+//		{
+//			// damageValue > health -> lebensabzug
+//			Die();
+//		}
+//		else
+//		{
+//			// not dead, gogogo
+//		}
 	}
 	
-	void Die ()
+	public virtual void Die ()
 	{
 		DecreaseLifeCount (-1);
 		isDead = true;

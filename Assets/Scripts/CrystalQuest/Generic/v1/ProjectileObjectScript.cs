@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ProjectileObjectScript : CrystalQuestObjectScript {
+public class ProjectileObjectScript : MovingObject {
 
 	[SerializeField]
-	private CrystalQuestObjectScript ownerObjectScript;
+	protected CrystalQuestObjectScript ownerObjectScript;
 
 	public CrystalQuestObjectScript OwnerObjectScript {
 		get { return ownerObjectScript; }

@@ -8,18 +8,21 @@ public class CollisionObject : DamageAbleObject
 	#region CollisionObject
 
 	[SerializeField]
+	protected bool useCollisionEvents = false;
+
+	[SerializeField]
 	private float collisionSendDamageValue = float.PositiveInfinity;
 	public float CollisionSendDamageValue {
 		get { return collisionSendDamageValue; }
 		set { collisionSendDamageValue = value; }
 	}
 
-	public float GetCollisionDamageValue()
+	public float GetCollisionDamageValue ()
 	{
 		return collisionSendDamageValue;
 	}
 
-	public void ApplyCollisionDamage(CollisionObject otherObjectScript)
+	public void ApplyCollisionDamage (CollisionObject otherObjectScript)
 	{
 		ReceiveDamage(otherObjectScript.collisionSendDamageValue);
 	}
@@ -59,7 +62,7 @@ public class CollisionObject : DamageAbleObject
 	 * Triggering 2D
 	 **/
 	
-	public delegate void TriggerEnter2D(CrystalQuestObjectScript objectScript, CrystalQuestObjectScript otherObjectScript);
+	public delegate void TriggerEnter2D (CrystalQuestObjectScript objectScript, CrystalQuestObjectScript otherObjectScript);
 	public static event TriggerEnter2D onTriggerEnter2D;
 	
 	/// <summary>
@@ -72,9 +75,10 @@ public class CollisionObject : DamageAbleObject
 	}
 	
 	// 2D
-	void Triggering2DHandling(Collider2D collider2D)
+	public virtual void Triggering2DHandling(Collider2D collider2D)
 	{
-		//		TriggerHandling(collider2D.gameObject);
+		TriggerHandling(collider2D.gameObject);
+
 		CollisionObject otherScript = collider2D.GetComponent<CollisionObject>();
 		if (otherScript != null)
 		{
@@ -88,7 +92,8 @@ public class CollisionObject : DamageAbleObject
 	#region Unity 2D Event Handling
 	void CollisionHandling(GameObject otherGameObject)
 	{
-		NotifyCollisionEnter2DListener(this, otherGameObject.GetComponent<CrystalQuestObjectScript>());
+//		NotifyCollisionEnter2DListener (this, otherGameObject.GetComponent<CrystalQuestObjectScript>());
+		NotifyCollisionEnter2DListener (this, otherGameObject.GetComponent<CollisionObject>());
 		//		if(otherGameObject.layer == LayerMask.NameToLayer(Globals.layerStringEnemy))
 		//		{
 		//			// Enemy
@@ -116,7 +121,8 @@ public class CollisionObject : DamageAbleObject
 	}
 	void TriggerHandling(GameObject otherGameObject)
 	{
-		NotifyTriggerEnter2DListener(this, otherGameObject.GetComponent<CrystalQuestObjectScript>());
+		//NotifyTriggerEnter2DListener (this, otherGameObject.GetComponent<CrystalQuestObjectScript>());
+		NotifyTriggerEnter2DListener (this, otherGameObject.GetComponent<CollisionObject>());
 		//		if(otherGameObject.layer == LayerMask.NameToLayer(Globals.layerStringEnemy))
 		//		{
 		//			// Enemy
@@ -142,8 +148,33 @@ public class CollisionObject : DamageAbleObject
 		//			// Collect
 		//		}
 	}
-	void NotifyTriggerEnter2DListener(CrystalQuestObjectScript detectorObjectScript, CrystalQuestObjectScript otherObjectScript)
+//	void NotifyTriggerEnter2DListener (CrystalQuestObjectScript detectorObjectScript, CrystalQuestObjectScript otherObjectScript)
+//	{
+//		if(onTriggerEnter2D != null)
+//		{
+//			onTriggerEnter2D (detectorObjectScript, otherObjectScript);
+//		}
+//		else
+//		{
+//			Debug.LogError("no \"onTriggerEnter2D\" Listener");
+//		}
+//	}
+//	void NotifyCollisionEnter2DListener (CrystalQuestObjectScript detectorObjectScript, CrystalQuestObjectScript otherObjectScript)
+//	{
+//		if(onCollisionEnter2D != null)
+//		{
+//			onCollisionEnter2D (detectorObjectScript, otherObjectScript);
+//		}
+//		else
+//		{
+//			Debug.LogError("no \"onCollisionEnter2D\" Listener");
+//		}
+//	}
+	void NotifyTriggerEnter2DListener (CollisionObject detectorObjectScript, CollisionObject otherObjectScript)
 	{
+		if (!useCollisionEvents)
+			return;
+
 		if(onTriggerEnter2D != null)
 		{
 			onTriggerEnter2D (detectorObjectScript, otherObjectScript);
@@ -153,8 +184,11 @@ public class CollisionObject : DamageAbleObject
 			Debug.LogError("no \"onTriggerEnter2D\" Listener");
 		}
 	}
-	void NotifyCollisionEnter2DListener(CrystalQuestObjectScript detectorObjectScript, CrystalQuestObjectScript otherObjectScript)
+	void NotifyCollisionEnter2DListener (CollisionObject detectorObjectScript, CollisionObject otherObjectScript)
 	{
+		if (!useCollisionEvents)
+			return;
+
 		if(onCollisionEnter2D != null)
 		{
 			onCollisionEnter2D (detectorObjectScript, otherObjectScript);
