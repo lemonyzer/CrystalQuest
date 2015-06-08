@@ -410,6 +410,7 @@ GameObject:
   - 224: {fileID: 229437262}
   - 222: {fileID: 229437264}
   - 114: {fileID: 229437263}
+  - 114: {fileID: 229437265}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -466,6 +467,19 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 229437261}
+--- !u!114 &229437265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 229437261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afabf96092493bb4daf3d7a0fabb618d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preScoreString: 'Score: '
+  textScore: {fileID: 229437263}
 --- !u!4 &239715106 stripped
 Transform:
   m_PrefabParentObject: {fileID: 431050, guid: 502df42babaadf0479dfccb4ebfbb1c6, type: 2}
@@ -653,6 +667,7 @@ GameObject:
   - 4: {fileID: 366570075}
   - 114: {fileID: 366570076}
   - 114: {fileID: 366570077}
+  - 114: {fileID: 366570078}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -694,6 +709,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b47edfea6f35e84b894291e4992400e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &366570078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 366570074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cefa2f06bbd7e846b739d59375b3106, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLevelPoints: 0
+  currentSessionPoints: 0
 --- !u!1 &415301072
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,6 +888,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transform: {fileID: 0}
   points: 0
+  releasePoints:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   selfAttack: 0
   teamAttack: 0
   invincible: 1
@@ -869,6 +902,7 @@ MonoBehaviour:
   lifes: 3
   minLifes: 0
   isDead: 0
+  useCollisionEvents: 0
   collisionSendDamageValue: Infinity
 --- !u!4 &472275277 stripped
 Transform:
@@ -906,6 +940,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transform: {fileID: 0}
   points: 0
+  releasePoints:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   selfAttack: 0
   teamAttack: 0
   invincible: 0
@@ -915,6 +954,7 @@ MonoBehaviour:
   lifes: 3
   minLifes: 0
   isDead: 0
+  useCollisionEvents: 0
   collisionSendDamageValue: Infinity
   enableInput: 1
   inputMoveDirection: {x: 0, y: 0}
@@ -2544,6 +2584,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   transform: {fileID: 0}
   points: 0
+  releasePoints:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   selfAttack: 0
   teamAttack: 0
   invincible: 1
@@ -2553,6 +2598,7 @@ MonoBehaviour:
   lifes: 3
   minLifes: 0
   isDead: 0
+  useCollisionEvents: 0
   collisionSendDamageValue: Infinity
 --- !u!1 &2059590406
 GameObject:

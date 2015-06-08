@@ -5,9 +5,15 @@ using System.Collections;
 public class UIScoreScript : MonoBehaviour {
 
 	[SerializeField]
-	private string preScoreString = "Score: ";
+	private static string preScoreString = "Score: ";
+
 	[SerializeField]
-	private Text textScore;
+	private static Text textScore;
+
+	public static void SetScore (int value) {
+		if (textScore != null)
+			textScore.text = preScoreString + value;
+	}
 
 	#region Initialisation
 	void Awake()
@@ -19,13 +25,20 @@ public class UIScoreScript : MonoBehaviour {
 	}
 	#endregion
 
-	// Use this for initialization
-	void Start () {
-	
+	#region Subscriptions
+	void OnEnable() {
+		PointsObject.onReleasePoints += UpdateUI;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void OnDisable() {
+		PointsObject.onReleasePoints -= UpdateUI;
 	}
+	#endregion
+
+	// UpdateUI (T template)
+	void UpdateUI (int value)
+	{
+		SetScore (value);
+	}
+	
 }

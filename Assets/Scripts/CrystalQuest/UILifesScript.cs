@@ -5,9 +5,10 @@ using System.Collections;
 public class UILifesScript : MonoBehaviour {
 
 	[SerializeField]
-	private string preString = "Lifes: ";
+	private static string preString = "Lifes: ";
+
 	[SerializeField]
-	private Text uiText;
+	private static Text uiText;
 
 	#region Initialisation
 	void Awake()
@@ -32,7 +33,8 @@ public class UILifesScript : MonoBehaviour {
 	#region Update
 	void UpdateUI(int value)
 	{
-		uiText.text = preString + value;
+		if (uiText != null)
+			uiText.text = preString + value;
 	}
 	#endregion
 }

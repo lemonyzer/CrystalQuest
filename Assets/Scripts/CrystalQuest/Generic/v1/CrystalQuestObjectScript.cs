@@ -15,15 +15,6 @@ public class CrystalQuestObjectScript : MonoBehaviour {
 //		InitializeRigidbody2D();
 	}
 	#endregion
-	
 
-	[SerializeField]
-	protected float points;
-
-	public float Points {
-		get { return points; }
-		set { points = value; }
-	}
-	
 
 }

@@ -1,7 +1,7 @@
-﻿//using UnityEngine;
-//using System.Collections;
-//
-//public class CrystalQuestGameManager : MonoBehaviour {
+﻿using UnityEngine;
+using System.Collections;
+
+public class CrystalQuestGameManager : MonoBehaviour {
 //
 ////	public static Player playerScript;
 //	
@@ -113,4 +113,4 @@
 //		detectorObjectScript.ApplyCollisionDamage(otherObjectScript);
 //	}
 //
-//}
+}

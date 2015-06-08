@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DamageAbleObject : CrystalQuestObjectScript {
+public class DamageAbleObject : PointsObject {
 
 	#region Health
 	/**
@@ -51,11 +51,11 @@ public class DamageAbleObject : CrystalQuestObjectScript {
 			{
 				currentHealth = maxHealth;
 			}
-			else if (currentHealth >= minHealth)
+			else if (currentHealth > minHealth)
 			{
 				currentHealth = value;
 			}
-			else
+			else if (currentHealth <= minHealth)
 			{
 				currentHealth = minHealth;
 				Die ();
