@@ -7,10 +7,10 @@ public class DamageAbleObject : PointsObject {
 	/**
 	 * Health
 	 **/
-	public delegate void LostLife(int numberOfRemainingLifes);
-	public static event LostLife onLostLife;
-	public delegate void UpdateHealth(float currentHealthValue);
-	public static event UpdateHealth onUpdateHealth;
+	public delegate void LifeUpdate (int numberOfRemainingLifes);
+	public static event LifeUpdate onLifeUpdate;
+	public delegate void HealthUpdate (float currentHealthValue);
+	public static event HealthUpdate onHealthUpdate;
 	
 	[SerializeField]
 	protected bool selfAttack = false;
@@ -47,6 +47,7 @@ public class DamageAbleObject : PointsObject {
 		get {return currentHealth;}
 		set
 		{
+			float temp = currentHealth;
 			if (currentHealth > maxHealth)
 			{
 				currentHealth = maxHealth;
@@ -60,11 +61,14 @@ public class DamageAbleObject : PointsObject {
 				currentHealth = minHealth;
 				Die ();
 			}
+
+			if (temp != currentHealth)
+				HealthUpdated ();
 		}
 	}
 	
 	[SerializeField]
-	private int lifes = 3;
+	protected int lifes = 3;
 	
 	[SerializeField]
 	private int minLifes = 0;
@@ -82,6 +86,11 @@ public class DamageAbleObject : PointsObject {
 	[SerializeField]
 	protected bool isDead = false;
 
+	protected virtual void HealthUpdated ()
+	{
+
+	}
+
 	public void ReceiveDamage(float damageValue)
 	{
 		if(invincible)
@@ -90,8 +99,9 @@ public class DamageAbleObject : PointsObject {
 		float temp = Health;
 		Health = Health - damageValue;
 
-		if (temp != Health)
-			NotifyHealthListener(Health); 
+		// only on Player -> HealthUpdated
+//		if (temp != Health)
+//			NotifyHealthListener(Health); 
 			
 //		if (Health <= minHealth)
 //		{
@@ -106,12 +116,13 @@ public class DamageAbleObject : PointsObject {
 	
 	public virtual void Die ()
 	{
-		DecreaseLifeCount (-1);
+		// only on Player
+		// DecreaseLifeCount ();
 		isDead = true;
 		this.gameObject.SetActive (false);
 	}
 	
-	void DecreaseLifeCount(int decreaseAmount)
+	protected void DecreaseLifeCount(int decreaseAmount = 1)
 	{
 		Lifes = Lifes - decreaseAmount;
 		if (Lifes == minLifes)
@@ -122,30 +133,34 @@ public class DamageAbleObject : PointsObject {
 		{
 			// not GameOver, keep trying
 		}
-		NotifyLostLifeListener(Lifes);
+		NotifyLifeListener(Lifes);
 	}
 	
-	void NotifyHealthListener(float currentHealth)
+	protected void NotifyHealthListener(float currentHealth)
 	{
-		if(onUpdateHealth != null)
+		if(onHealthUpdate != null)
 		{
-			onUpdateHealth(currentHealth);
+			onHealthUpdate (currentHealth);
 		}
+#if UNITY_EDITOR
 		else
 		{
-			Debug.LogError("no \"onUpdateHealth\" Listener");
+			Debug.LogError(this.ToString() + " no \"onHealthUpdate\" Listener");
 		}
+#endif
 	}
-	void NotifyLostLifeListener(int numberOfLifes)
+	protected void NotifyLifeListener(int numberOfLifes)
 	{
-		if(onLostLife != null)
+		if(onLifeUpdate != null)
 		{
-			onLostLife(numberOfLifes);
+			onLifeUpdate (numberOfLifes);
 		}
+#if UNITY_EDITOR
 		else
 		{
-			Debug.LogError("no \"onLostLife\" Listener");
+			Debug.LogError(this.ToString() + " no \"onLifeUpdate\" Listener");
 		}
+#endif
 	}
 	#endregion
 

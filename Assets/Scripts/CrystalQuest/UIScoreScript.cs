@@ -8,9 +8,20 @@ public class UIScoreScript : MonoBehaviour {
 	private static string preScoreString = "Score: ";
 
 	[SerializeField]
+	private static float score;
+	
+	[SerializeField]
 	private static Text textScore;
 
-	public static void SetScore (int value) {
+	public float Score {
+		get {return score;}
+		set {
+			score = value;
+			SetScoreText (score);
+		}
+	}
+
+	void SetScoreText (float value) {
 		if (textScore != null)
 			textScore.text = preScoreString + value;
 	}
@@ -27,18 +38,28 @@ public class UIScoreScript : MonoBehaviour {
 
 	#region Subscriptions
 	void OnEnable() {
-		PointsObject.onReleasePoints += UpdateUI;
+//		// Variante A
+//		// 
+//		PointsObject.onReleasePoints += UpdateUI;
+//		// Variante B
+//		// score wird von PlayerObjectScript verwaltet
+//		PlayerObjectScript.onScoreUpdate += UpdateUI;
+		// Variante C
+		// score wird von CrystalQuestScoreManager verwaltet
+		CrystalQuestScoreManager.onScoreUpdate += UpdateUI;
 	}
 	
 	void OnDisable() {
-		PointsObject.onReleasePoints -= UpdateUI;
+//		PointsObject.onReleasePoints -= UpdateUI;
+//		PlayerObjectScript.onScoreUpdate -= UpdateUI;
+		CrystalQuestScoreManager.onScoreUpdate -= UpdateUI;
 	}
 	#endregion
 
 	// UpdateUI (T template)
-	void UpdateUI (int value)
+	void UpdateUI (float value)
 	{
-		SetScore (value);
+		Score = value;
 	}
 	
 }

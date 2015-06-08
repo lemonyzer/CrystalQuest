@@ -12,7 +12,7 @@ GameObject:
   - 58: {fileID: 5843080}
   - 50: {fileID: 5012240}
   - 114: {fileID: 11493340}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,16 +113,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transform: {fileID: 0}
-  enableInput: 1
-  inputMoveDirection: {x: 0, y: 0}
-  inputFire: 0
-  inputUseItem: 0
-  canMove: 1
-  maxVelocity: 5
-  rb2D: {fileID: 0}
+  destroyScore: 100
+  releasePoints:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   selfAttack: 0
   teamAttack: 0
-  collisionSendDamageValue: Infinity
   invincible: 0
   minHealth: 0
   maxHealth: 100
@@ -130,6 +128,15 @@ MonoBehaviour:
   lifes: 3
   minLifes: 0
   isDead: 0
+  useCollisionEvents: 0
+  collisionSendDamageValue: Infinity
+  enableInput: 1
+  inputMoveDirection: {x: 0, y: 0}
+  inputFire: 0
+  inputUseItem: 0
+  canMove: 1
+  maxVelocity: 5
+  rb2D: {fileID: 0}
   targetScript: {fileID: 0}
   aiMovementType: 0
   aiMoveState: 0

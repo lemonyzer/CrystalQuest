@@ -181,7 +181,7 @@ public class CollisionObject : DamageAbleObject
 		}
 		else
 		{
-			Debug.LogError("no \"onTriggerEnter2D\" Listener");
+			Debug.LogError(this.ToString() + " no \"onTriggerEnter2D\" Listener");
 		}
 	}
 	void NotifyCollisionEnter2DListener (CollisionObject detectorObjectScript, CollisionObject otherObjectScript)
@@ -195,7 +195,7 @@ public class CollisionObject : DamageAbleObject
 		}
 		else
 		{
-			Debug.LogError("no \"onCollisionEnter2D\" Listener");
+			Debug.LogError(this.ToString() + " no \"onCollisionEnter2D\" Listener");
 		}
 	}
 	#endregion

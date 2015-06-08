@@ -478,8 +478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afabf96092493bb4daf3d7a0fabb618d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preScoreString: 'Score: '
-  textScore: {fileID: 229437263}
 --- !u!4 &239715106 stripped
 Transform:
   m_PrefabParentObject: {fileID: 431050, guid: 502df42babaadf0479dfccb4ebfbb1c6, type: 2}
@@ -582,7 +580,7 @@ GameObject:
   - 61: {fileID: 354082614}
   - 61: {fileID: 354082613}
   - 61: {fileID: 354082612}
-  m_Layer: 14
+  m_Layer: 15
   m_Name: 2D World
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -668,6 +666,7 @@ GameObject:
   - 114: {fileID: 366570076}
   - 114: {fileID: 366570077}
   - 114: {fileID: 366570078}
+  - 114: {fileID: 366570079}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -720,8 +719,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cefa2f06bbd7e846b739d59375b3106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevelPoints: 0
+  currentLevelScore: 0
   currentSessionPoints: 0
+--- !u!114 &366570079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 366570074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d8c418a4ed9ce46955b8a76cb91970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: {fileID: 0}
+  life: {fileID: 0}
 --- !u!1 &415301072
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,7 +899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transform: {fileID: 0}
-  points: 0
+  destroyScore: 0
   releasePoints:
     m_PersistentCalls:
       m_Calls: []
@@ -920,7 +932,7 @@ GameObject:
   - 50: {fileID: 519947534}
   - 58: {fileID: 519947533}
   - 114: {fileID: 519947532}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player Ship 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -939,7 +951,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transform: {fileID: 0}
-  points: 0
+  destroyScore: 0
   releasePoints:
     m_PersistentCalls:
       m_Calls: []
@@ -947,7 +959,7 @@ MonoBehaviour:
       PublicKeyToken=null
   selfAttack: 0
   teamAttack: 0
-  invincible: 0
+  invincible: 1
   minHealth: 0
   maxHealth: 100
   currentHealth: 100
@@ -2583,7 +2595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transform: {fileID: 0}
-  points: 0
+  destroyScore: 0
   releasePoints:
     m_PersistentCalls:
       m_Calls: []
@@ -2610,6 +2622,7 @@ GameObject:
   - 224: {fileID: 2059590407}
   - 222: {fileID: 2059590409}
   - 114: {fileID: 2059590408}
+  - 114: {fileID: 2059590410}
   m_Layer: 5
   m_Name: Lifes
   m_TagString: Untagged
@@ -2666,6 +2679,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2059590406}
+--- !u!114 &2059590410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2059590406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d49186f30d0e6439ec14c8ddda3088, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2077847646 stripped
 Transform:
   m_PrefabParentObject: {fileID: 480786, guid: 3a8be213035263440a5f44a0e884cef2, type: 2}

@@ -7,6 +7,12 @@ public class PlayerScript : MonoBehaviour {
 	void Awake()
 	{
 		InitializeRigidbody2D();
+		NotifyLifeListener (lifes);
+	}
+
+	void Start ()
+	{
+		NotifyLifeListener (lifes);
 	}
 	#endregion
 
@@ -115,10 +121,10 @@ public class PlayerScript : MonoBehaviour {
 	/**
 	 * Health
 	 **/
-	public delegate void LostLife(int numberOfRemainingLifes);
-	public static event LostLife onLostLife;
-	public delegate void UpdateHealth(float currentHealthValue);
-	public static event UpdateHealth onUpdateHealth;
+	public delegate void LifeUpdate (int numberOfRemainingLifes);
+	public static event LifeUpdate onLifeUpdate;
+	public delegate void HealthUpdate (float currentHealthValue);
+	public static event HealthUpdate onHealthUpdate;
 
 	[SerializeField]
 	private float collisionSendDamageValue = float.PositiveInfinity;
@@ -191,7 +197,7 @@ public class PlayerScript : MonoBehaviour {
 				// Keep Trying
 				lifes = newLifeCount;
 			}
-			NotifyLostLifeListener(lifes);
+			NotifyLifeListener(lifes);
 		}
 		else
 		{
@@ -201,22 +207,22 @@ public class PlayerScript : MonoBehaviour {
 		NotifyHealthListener(health);
 	}
 
-	void NotifyHealthListener(float currentHealth)
+	void NotifyHealthListener (float currentHealth)
 	{
-		if(onUpdateHealth != null)
+		if(onHealthUpdate != null)
 		{
-			onUpdateHealth(currentHealth);
+			onHealthUpdate (currentHealth);
 		}
 		else
 		{
 			Debug.LogError("no \"onUpdateHealth\" Listener");
 		}
 	}
-	void NotifyLostLifeListener(int numberOfLifes)
+	void NotifyLifeListener (int numberOfLifes)
 	{
-		if(onLostLife != null)
+		if(onLifeUpdate != null)
 		{
-			onLostLife(numberOfLifes);
+			onLifeUpdate (numberOfLifes);
 		}
 		else
 		{

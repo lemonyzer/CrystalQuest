@@ -16,11 +16,11 @@ TagManager:
   - Player
   - Enemy
   - EnemyProjectiles
+  - PlayerProjectiles
   - Items
-  - LevelMines
   - LevelStopper
+  - LevelMines
   - Level
-  - 
   - 
   - 
   - 

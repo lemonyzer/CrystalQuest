@@ -5,11 +5,11 @@ using System.Collections;
 public class PointsObject : CrystalQuestObjectScript {
 
 	[SerializeField]
-	protected int points;
+	protected float destroyScore;
 	
-	public int Points {
-		get { return points; }
-		set { points = value; }
+	public float DestroyScore {
+		get { return destroyScore; }
+		set { destroyScore = value; }
 	}
 
 	#region UnityEvent
@@ -20,13 +20,13 @@ public class PointsObject : CrystalQuestObjectScript {
 	#endregion
 
 	#region Delegate
-	public delegate void ReleasePoints (int score);
+	public delegate void ReleasePoints (float score);
 	public static event ReleasePoints onReleasePoints;
 	#endregion
 
-	protected virtual void Score ()
+	protected virtual void TriggerScore ()
 	{
 		if (onReleasePoints != null)
-			onReleasePoints (points);
+			onReleasePoints (destroyScore);
 	}
 }

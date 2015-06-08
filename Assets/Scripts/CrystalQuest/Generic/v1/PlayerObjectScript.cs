@@ -3,6 +3,13 @@ using System.Collections;
 
 public class PlayerObjectScript : MovingObject {
 
+	#region Initialization
+	void Start ()
+	{
+		NotifyLifeListener (lifes);
+	}
+	#endregion
+
 	#region Input
 	void Update()
 	{
@@ -34,6 +41,20 @@ public class PlayerObjectScript : MovingObject {
 		// Movement
 		if(CanMove())
 			rb2D.MovePosition(rb2D.position + (inputMoveDirection*maxVelocity) * Time.fixedDeltaTime);
+	}
+	#endregion
+
+	#region customs
+	protected override void HealthUpdated ()
+	{
+		base.HealthUpdated ();
+		NotifyHealthListener(Health); 
+	}
+
+	public override void Die ()
+	{
+		base.Die ();
+		DecreaseLifeCount ();
 	}
 	#endregion
 }
