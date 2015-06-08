@@ -17,7 +17,7 @@ TagManager:
   - Enemy
   - EnemyProjectiles
   - PlayerProjectiles
-  - Items
+  - Collectables
   - LevelStopper
   - LevelMines
   - Level

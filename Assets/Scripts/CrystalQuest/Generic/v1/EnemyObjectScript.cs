@@ -10,4 +10,10 @@ public class EnemyObjectScript : MovingObject {
 		TriggerScore ();
 	}
 
+	public override void RestartLevel ()
+	{
+		base.RestartLevel ();
+		this.gameObject.SetActive (false);
+	}
+
 }

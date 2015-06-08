@@ -73,7 +73,7 @@ public class MovingObject : CollisionObject {
 		rb2D = this.GetComponent<Rigidbody2D>();
 		if(rb2D == null)
 		{
-			Debug.LogError("Rigidbody2D fehlt");
+			Debug.LogError(this.ToString() + " Rigidbody2D fehlt");
 		}
 		else
 		{

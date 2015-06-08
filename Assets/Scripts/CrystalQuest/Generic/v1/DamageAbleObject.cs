@@ -11,6 +11,8 @@ public class DamageAbleObject : PointsObject {
 	public static event LifeUpdate onLifeUpdate;
 	public delegate void HealthUpdate (float currentHealthValue);
 	public static event HealthUpdate onHealthUpdate;
+	public delegate void Died (int numberOfRemainingLifes);
+	public static event Died onDied;
 	
 	[SerializeField]
 	protected bool selfAttack = false;
@@ -48,16 +50,20 @@ public class DamageAbleObject : PointsObject {
 		set
 		{
 			float temp = currentHealth;
-			if (currentHealth > maxHealth)
+			if (value > maxHealth)
 			{
+//				Debug.LogError ("[" + value + "] > " + maxHealth);
 				currentHealth = maxHealth;
 			}
-			else if (currentHealth > minHealth)
+			else if (maxHealth >= value &&
+			         value > minHealth)
 			{
+//				Debug.LogError (maxHealth + " >= [" + value + "] > " + minHealth);
 				currentHealth = value;
 			}
-			else if (currentHealth <= minHealth)
+			else if (value <= minHealth)
 			{
+//				Debug.LogError ("[" + value + "] <= " + minHealth);
 				currentHealth = minHealth;
 				Die ();
 			}
@@ -76,7 +82,7 @@ public class DamageAbleObject : PointsObject {
 		get {return lifes;}
 		set
 		{
-			if (lifes >= minLifes)
+			if (value >= minLifes)
 				lifes = value;
 			else
 				lifes = minLifes;
@@ -96,7 +102,7 @@ public class DamageAbleObject : PointsObject {
 		if(invincible)
 			return;
 
-		float temp = Health;
+//		float temp = Health;
 		Health = Health - damageValue;
 
 		// only on Player -> HealthUpdated
@@ -122,7 +128,7 @@ public class DamageAbleObject : PointsObject {
 		this.gameObject.SetActive (false);
 	}
 	
-	protected void DecreaseLifeCount(int decreaseAmount = 1)
+	protected void DecreaseLifeCount(int decreaseAmount)
 	{
 		Lifes = Lifes - decreaseAmount;
 		if (Lifes == minLifes)
@@ -142,12 +148,12 @@ public class DamageAbleObject : PointsObject {
 		{
 			onHealthUpdate (currentHealth);
 		}
-#if UNITY_EDITOR
+		#if UNITY_EDITOR
 		else
 		{
 			Debug.LogError(this.ToString() + " no \"onHealthUpdate\" Listener");
 		}
-#endif
+		#endif
 	}
 	protected void NotifyLifeListener(int numberOfLifes)
 	{
@@ -155,12 +161,25 @@ public class DamageAbleObject : PointsObject {
 		{
 			onLifeUpdate (numberOfLifes);
 		}
-#if UNITY_EDITOR
+		#if UNITY_EDITOR
 		else
 		{
 			Debug.LogError(this.ToString() + " no \"onLifeUpdate\" Listener");
 		}
-#endif
+		#endif
+	}
+	protected void NotifyDiedListener(int numberOfLifes)
+	{
+		if(onDied != null)
+		{
+			onDied (numberOfLifes);
+		}
+		#if UNITY_EDITOR
+		else
+		{
+			Debug.LogError(this.ToString() + " no \"onDie\" Listener");
+		}
+		#endif
 	}
 	#endregion
 

@@ -129,7 +129,7 @@ MonoBehaviour:
   minLifes: 0
   isDead: 0
   useCollisionEvents: 0
-  collisionSendDamageValue: 100
+  collisionSendDamageValue: 3.40282347e+38
   enableInput: 1
   inputMoveDirection: {x: 0, y: 0}
   inputFire: 0

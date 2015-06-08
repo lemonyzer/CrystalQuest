@@ -2,115 +2,88 @@
 using System.Collections;
 
 public class CrystalQuestGameManager : MonoBehaviour {
-//
-////	public static Player playerScript;
-//	
-//    void OnEnable()
-//    {
-////		PlayerObjectScript.onTriggerEnter2D += PlayerTriggerEnter2D;
-////		EnemyObjectScript.onTriggerEnter2D += EnemyTriggerEnter2D;
-////		ProjectileObjectScript.onTriggerEnter2D += ProjectileTriggerEnter2D;
-//    }
-//
-//    void OnDisable()
-//    {
-////		PlayerObjectScript.onTriggerEnter2D -= PlayerTriggerEnter2D;
-////		EnemyObjectScript.onTriggerEnter2D -= EnemyTriggerEnter2D;
-////		ProjectileObjectScript.onTriggerEnter2D -= ProjectileTriggerEnter2D;
-//    }
-//
-//	// wie kann ich Collision zwischen Sub-Klassen differenzieren? 
-//	// CrystalQuestObjectScript
-//	// PlayerObjectScript;
-//	// EnemyObjectScript;
-//	// ProjectileObjectScript;
-//
-//	void PlayerTriggerEnter2D(CrystalQuestObjectScript detectorObjectScript, CrystalQuestObjectScript otherObjectScript)
-//	{
-//		//CollisionDetected2D(detectorObjectScript, otherObjectScript);
-//		if(otherObjectScript != null)
+
+
+    void OnEnable()
+    {
+		PlayerObjectScript.onDied += PlayerDied;
+    }
+
+    void OnDisable()
+    {
+		PlayerObjectScript.onDied -= PlayerDied;
+    }
+
+	void PlayerDied (int numberOfRemainingLifes)
+	{
+		if (numberOfRemainingLifes > 0)
+			RestartLevel ();
+		else
+		{
+			GameOver ();
+		}
+	}
+
+	void RestartLevel ()
+	{
+		// Methode 1
+		// Variante A
+		// TODO: PROBLEM TODO nur Aktive GameObjecte/Scripte werden gefunden!!!!
+		// TODO cachen:
+		// A) alle Objecte CrystalGameObjectScript haben ein OnInstantiated Event und Manager hört auf Event und trägt GO/Script in Liste ein
+		// B) alle Objecte CrystalGameObjectScript haben ein OnInstantiated Event und registrieren sich bei einem InstantiatedManager (PoolManager)
+		CrystalQuestObjectScript[] objects = GameObject.FindObjectsOfType<CrystalQuestObjectScript>();
+		foreach (CrystalQuestObjectScript script in objects)
+		{
+			script.RestartLevel ();
+		}
+		
+		// Variante B
+		//
+//		CrystalQuestObjectManagerScript[] managers = GameObject.FindObjectsOfType<CrystalQuestObjectManagerScript>();
+//		foreach (CrystalQuestObjectManagerScript manager in managers)
 //		{
-//			if(otherObjectScript.GetType() == typeof(PlayerObjectScript))
-//			{
-//				// kollision mit Spieler ?!
-//				Debug.LogError("Spieler kollidiert mit Spieler? " + detectorObjectScript.gameObject.name + "<->" + otherObjectScript.gameObject.name);
-//			}
-//			else if(otherObjectScript.GetType() == typeof(EnemyObjectScript))
-//			{
-//				// kollision mit enemy
-//				Debug.LogWarning("Spieler kollidiert mit Enemy? " + detectorObjectScript.gameObject.name + "<->" + otherObjectScript.gameObject.name);
-//			}
-//			else if(otherObjectScript.GetType() == typeof(ProjectileObjectScript))
-//			{
-//				// kollision mit projectil
-//				Debug.LogWarning("Spieler kollidiert mit Projectil? " + detectorObjectScript.gameObject.name + "<->" + otherObjectScript.gameObject.name);
-//
-//				if (detectorObjectScript.SelfAttack)
-//				{
-//					// Detector kann schaden von eigenen Projektilen nehmen
-//				}
-//				else
-//				{
-//					// Detector kann kein schaden von eigenen Projektilen nehmen
-//					if ( ((ProjectileObjectScript)otherObjectScript).OwnerObjectScript == detectorObjectScript )
-//					{
-//						// Own Projectile -> no Damage
-//					}
-//					else
-//					{
-//						// Enemy Projectile -> Apply Damage
-//						ApplyCollisionDamage(detectorObjectScript, otherObjectScript);
-//					}
-//				}
-//			}
+//			manager.RestartLevel ();
 //		}
-//		else
-//		{
-//			Debug.LogError("otherObjectScript == NULL");
-//		}
-//	}
-//	
-//	void EnemyTriggerEnter2D(CrystalQuestObjectScript detectorObjectScript, CrystalQuestObjectScript otherObjectScript)
-//	{
-//		//CollisionDetected2D(detectorObjectScript, otherObjectScript);
-//		if(otherObjectScript != null)
-//		{
-//			if(otherObjectScript.GetType() == typeof(PlayerObjectScript))
-//			{
-//				// kollision mit Spieler ?!
-//				Debug.LogError("Enemy kollidiert mit Spieler? " + detectorObjectScript.gameObject.name + "<->" + otherObjectScript.gameObject.name);
-//			}
-//			else if(otherObjectScript.GetType() == typeof(EnemyObjectScript))
-//			{
-//				// kollision mit enemy
-//				Debug.LogWarning("Enemy kollidiert mit Enemy? " + detectorObjectScript.gameObject.name + "<->" + otherObjectScript.gameObject.name);
-//			}
-//			else if(otherObjectScript.GetType() == typeof(ProjectileObjectScript))
-//			{
-//				// kollision mit projectil
-//				Debug.LogWarning("Enemy kollidiert mit Projectil? " + detectorObjectScript.gameObject.name + "<->" + otherObjectScript.gameObject.name);
-//			}
-//		}
-//		else
-//		{
-//			Debug.LogError("otherObjectScript == NULL");
-//		}
-//	}
-//	
-//	void ProjectileTriggerEnter2D(CrystalQuestObjectScript detectorObjectScript, CrystalQuestObjectScript otherObjectScript)
-//	{
-//		CollisionDetected2D(detectorObjectScript, otherObjectScript);
-//	}
-//
-//	void CollisionDetected2D(CrystalQuestObjectScript detectorObjectScript, CrystalQuestObjectScript otherObjectScript)
-//	{
-//		Debug.LogWarning(detectorObjectScript.gameObject.name + " -> " + otherObjectScript.gameObject.name);
+		
+		// Variante C
+		//
+//		EnemyObjectScript[] enemies = GameObject.FindObjectsOfType<EnemyObjectScript>();
+//		ProjectileObjectScript[] projectiles = GameObject.FindObjectsOfType<ProjectileObjectScript>();
 //		
-//	}
+//		foreach (EnemyObjectScript script in enemies)
+//			GameObject.Destroy (script.gameObject);
+//		
+//		foreach (ProjectileObjectScript script in projectiles)
+//			GameObject.Destroy (script.gameObject);
+//		
+//		PlayerObjectScript player = GameObject.FindObjectOfType<PlayerObjectScript>();
+//		player.transform.position = Vector3.zero;
+//		player.gameObject.SetActive (true);
+	}
+
+	// Methode 2
+	//
+//	public delegate void RestartLevel ();
+//	public static event RestartLevel onRestartLevel;
 //
-//	void ApplyCollisionDamage(CrystalQuestObjectScript detectorObjectScript, CrystalQuestObjectScript otherObjectScript)
+//	void RestartLevelDelegate ()
 //	{
-//		detectorObjectScript.ApplyCollisionDamage(otherObjectScript);
+//		// Methode 2
+//		if (onRestartLevel != null)
+//			onRestartLevel ();
+//		else
+//			Debug.LogError (this.ToString() + " no onRestartLevel listener");
 //	}
-//
+
+
+	// Methode 3 
+	//
+//	EventManager.listen ("RestartLevel");
+
+	void GameOver ()
+	{
+
+	}
+
 }

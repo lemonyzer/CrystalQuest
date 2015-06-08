@@ -54,7 +54,16 @@ public class PlayerObjectScript : MovingObject {
 	public override void Die ()
 	{
 		base.Die ();
-		DecreaseLifeCount ();
+		DecreaseLifeCount (1);
+		NotifyDiedListener (Lifes);
+	}
+
+	public override void RestartLevel ()
+	{
+		base.RestartLevel ();
+		isDead = false;
+		this.gameObject.SetActive (true);
+		this.transform.position = Vector3.zero;
 	}
 	#endregion
 }

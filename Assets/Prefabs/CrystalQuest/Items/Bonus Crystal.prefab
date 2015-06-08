@@ -12,7 +12,7 @@ GameObject:
   - 60: {fileID: 6028182}
   - 50: {fileID: 5033476}
   - 114: {fileID: 11453920}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Bonus Crystal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transform: {fileID: 0}
-  points: 0
+  destroyScore: 0
+  releasePoints:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   selfAttack: 0
   teamAttack: 0
   invincible: 0
@@ -89,6 +94,7 @@ MonoBehaviour:
   lifes: 3
   minLifes: 0
   isDead: 0
+  useCollisionEvents: 0
   collisionSendDamageValue: Infinity
   enableInput: 1
   inputMoveDirection: {x: 0, y: 0}
@@ -97,6 +103,11 @@ MonoBehaviour:
   canMove: 1
   maxVelocity: 5
   rb2D: {fileID: 0}
+  collected:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!212 &21212956
 SpriteRenderer:
   m_ObjectHideFlags: 1

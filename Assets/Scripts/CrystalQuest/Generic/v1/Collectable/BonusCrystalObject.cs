@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BonusCrystalObject : MovingObject {
+public class BonusCrystalObject : CollectableObject {
 
 
 }

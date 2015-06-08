@@ -22,9 +22,14 @@ public class CollisionObject : DamageAbleObject
 		return collisionSendDamageValue;
 	}
 
-	public void ApplyCollisionDamage (CollisionObject otherObjectScript)
+	public virtual void ApplyCollisionDamage (CollisionObject otherObjectScript)
 	{
 		ReceiveDamage(otherObjectScript.collisionSendDamageValue);
+	}
+
+	public virtual void SendCollisionDamage (CollisionObject otherObjectScript)
+	{
+		otherObjectScript.ApplyCollisionDamage (this);
 	}
 
 	#endregion
@@ -82,7 +87,12 @@ public class CollisionObject : DamageAbleObject
 		CollisionObject otherScript = collider2D.GetComponent<CollisionObject>();
 		if (otherScript != null)
 		{
-			this.ApplyCollisionDamage (otherScript);
+			// old (zugriff auf andere ebene) ...
+//			this.ApplyCollisionDamage (otherScript);
+			// new (in sich geschlossenes System:
+			// object das sendet weiß ob es senden kann (override SendDamage() )
+			// object das empfängt weiß ob es schaden empfangen kann)
+			this.SendCollisionDamage (otherScript);
 		}
 		else
 			Debug.LogError ( collider2D.gameObject.name + " hat kein CrystalQuestObjectScript");

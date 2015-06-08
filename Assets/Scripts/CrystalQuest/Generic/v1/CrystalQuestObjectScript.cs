@@ -17,4 +17,9 @@ public class CrystalQuestObjectScript : MonoBehaviour {
 	#endregion
 
 
+	public virtual void RestartLevel ()
+	{
+
+	}
+
 }

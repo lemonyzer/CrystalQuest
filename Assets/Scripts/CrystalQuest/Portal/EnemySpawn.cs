@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnemySpawn : MonoBehaviour {
+public class EnemySpawn : CrystalQuestObjectScript {
 
 	public delegate void EnemySpawned(CrystalQuestObjectScript enemyScript);
 	public static event EnemySpawned onEnemySpawned;
@@ -153,4 +153,13 @@ public class EnemySpawn : MonoBehaviour {
 	{
 		return GameObject.Instantiate (prefab, position + spawnPositionOffset, Quaternion.identity) as GameObject;
 	}
+
+	#region Customs
+	public override void RestartLevel ()
+	{
+		base.RestartLevel ();
+		this.gameObject.SetActive (true);
+		this.SpawnCount = 0;
+	}
+	#endregion
 }
