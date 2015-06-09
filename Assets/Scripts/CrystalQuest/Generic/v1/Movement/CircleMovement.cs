@@ -58,7 +58,7 @@ public class CircleMovement : Movement {
 		
 		float h = Mathf.Abs ( (center.y + r) - position.y );
 		
-		float s = 2 * Mathf.Sqrt ( 2*r*h - h*h  );
+//		float s = 2 * Mathf.Sqrt ( 2*r*h - h*h  );
 
 		// Mathf.Asin (f)
 		// Returns the arc-sine of f - the angle in radians whose sine is f.

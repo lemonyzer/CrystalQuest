@@ -18,19 +18,20 @@ public class RandomizerScript : EnemyWithTarget {
 	
 	protected override void Awake()
 	{
-		base.Awake();
+		base.Awake ();
 		idleMovement.Transform = transform;
 //		moveToPositionMovement.Transform = transform;
 		moveRandom.Transform = transform;
 	}
-	
+
 //	public void SetNewDestination(Vector3 targetPosition)
 //	{
 //		moveToPositionMovement.Destination = targetPosition;
 //	}
 	
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
+		base.Start ();
 //		if (targetScript != null)
 //		{
 //			SetNewDestination (targetScript.transform.position);

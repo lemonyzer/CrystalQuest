@@ -50,15 +50,17 @@ public class CollisionObject : DamageAbleObject
 	public static event CollisionEnter2D onCollisionEnter2D;
 	
 	// 2D
-	void OnCollisionEnter2D(Collision2D collision)
+	void OnCollisionEnter2D (Collision2D collision)
 	{
-		Collision2DHandling(collision);
+		Collision2DHandling (collision);
 	}
 	
 	// 2D
-	void Collision2DHandling(Collision2D collision2D)
+	void Collision2DHandling (Collision2D collision2D)
 	{
-		//		CollisionHandling(collision2D.gameObject);
+		CollisionHandling (collision2D.gameObject);
+		CollisionObject otherObjectScript = collision2D.collider.GetComponent<CollisionObject>();
+		CollisionAndTriggerHandling2D (otherObjectScript);
 	}
 	
 	#endregion
@@ -87,15 +89,32 @@ public class CollisionObject : DamageAbleObject
 		CollisionObject otherScript = collider2D.GetComponent<CollisionObject>();
 		if (otherScript != null)
 		{
-			// old (zugriff auf andere ebene) ...
-//			this.ApplyCollisionDamage (otherScript);
-			// new (in sich geschlossenes System:
-			// object das sendet weiß ob es senden kann (override SendDamage() )
-			// object das empfängt weiß ob es schaden empfangen kann)
-			this.SendCollisionDamage (otherScript);
+			CollisionAndTriggerHandling2D (otherScript);
+//			// old (zugriff auf andere ebene) ...
+////			this.ApplyCollisionDamage (otherScript);
+//			// new (in sich geschlossenes System:
+//			// object das sendet weiß ob es senden kann (override SendDamage() )
+//			// object das empfängt weiß ob es schaden empfangen kann)
+//			this.SendCollisionDamage (otherScript);
 		}
 		else
 			Debug.LogError ( collider2D.gameObject.name + " hat kein CrystalQuestObjectScript");
+	}
+	#endregion
+	#region Collision and Trigger
+	public virtual void CollisionAndTriggerHandling2D (CollisionObject otherObjectScript)
+	{
+		if (otherObjectScript != null)
+		{
+			// old (zugriff auf andere ebene) ...
+			//			this.ApplyCollisionDamage (otherScript);
+			// new (in sich geschlossenes System:
+			// object das sendet weiß ob es senden kann (override SendDamage() )
+			// object das empfängt weiß ob es schaden empfangen kann)
+			this.SendCollisionDamage (otherObjectScript);
+		}
+//		else
+//			Debug.LogError (collider2D.gameObject.name + " hat kein CrystalQuestObjectScript");
 	}
 	#endregion
 	

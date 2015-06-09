@@ -26,7 +26,8 @@ public class ParasiteScript : EnemyWithTarget {
 	}
 
 	// Use this for initialization
-	void Start () {
+	protected override void Start () {
+		base.Start();
 		if (targetScript != null)
 		{
 			SetNewTarget (targetScript.transform);

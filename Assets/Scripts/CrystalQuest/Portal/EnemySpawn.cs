@@ -62,8 +62,8 @@ public class EnemySpawn : CrystalQuestObjectScript {
 
 
 	// Use this for initialization
-	void Start () {
-	
+	protected override void Start () {
+		base.Start();
 	}
 
 	int RandomEnemyId()

@@ -1,30 +1,64 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CrystalQuestGameManager : MonoBehaviour {
 
+	[SerializeField]
+	private GameObject playerGo;
+	[SerializeField]
+	private PlayerObjectScript playerScript;
+	[SerializeField]
+	private List<CrystalQuestObjectScript> cachedScripts;
+
+	void Awake ()
+	{
+//		cachedScripts = new List<CrystalQuestObjectScript>();
+	}
+
+	void RegisterObjectScript (CrystalQuestObjectScript objectScript)
+	{
+		cachedScripts.Add (objectScript);
+	}
+
+	void UnregisterObjectScript (CrystalQuestObjectScript objectScript)
+	{
+		cachedScripts.Remove (objectScript);
+	}
 
     void OnEnable()
     {
+		CrystalQuestObjectScript.onCreated += RegisterObjectScript;
+		CrystalQuestObjectScript.onDestroyed += UnregisterObjectScript;
 		PlayerObjectScript.onDied += PlayerDied;
     }
 
     void OnDisable()
     {
+		CrystalQuestObjectScript.onCreated -= RegisterObjectScript;
+		CrystalQuestObjectScript.onDestroyed -= UnregisterObjectScript;
 		PlayerObjectScript.onDied -= PlayerDied;
     }
 
 	void PlayerDied (int numberOfRemainingLifes)
 	{
 		if (numberOfRemainingLifes > 0)
-			RestartLevel ();
+			TriggerRestartLevel ();
 		else
 		{
 			GameOver ();
 		}
 	}
 
-	void RestartLevel ()
+	void TriggerRestartLevel ()
+	{
+		foreach (CrystalQuestObjectScript script in cachedScripts)
+		{
+			script.RestartLevel ();
+		}
+	}
+
+	void RestartLevelNotCached ()
 	{
 		// Methode 1
 		// Variante A

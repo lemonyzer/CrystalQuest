@@ -4,8 +4,9 @@ using System.Collections;
 public class PlayerObjectScript : MovingObject {
 
 	#region Initialization
-	void Start ()
+	protected override void Start ()
 	{
+		base.Start ();
 		NotifyLifeListener (lifes);
 	}
 	#endregion

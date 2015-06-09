@@ -40,8 +40,8 @@ public class ProtectorScript : EnemyWithTarget {
 
 	}
 		
-	void Start ()
-	{
+	protected override void Start () {
+		base.Start();
 		SetTarget();
 	}
 

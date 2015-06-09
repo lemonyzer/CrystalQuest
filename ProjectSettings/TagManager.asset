@@ -19,7 +19,7 @@ TagManager:
   - PlayerProjectiles
   - Collectables
   - LevelStopper
-  - LevelMines
+  - LevelDamage
   - Level
   - 
   - 

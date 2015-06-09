@@ -14,6 +14,7 @@ public class EnemyObjectScript : MovingObject {
 	{
 		base.RestartLevel ();
 		this.gameObject.SetActive (false);
+		Debug.Log (this.ToString() + " RestartLevel ()");
 	}
 
 }
