@@ -11,8 +11,8 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 	[SerializeField]
 	List<CrystalObject> crystals;
 
-	[SerializeField]
-	List<CollectableObject> crystals2;
+//	[SerializeField]
+//	List<CollectableObject> crystals2;
 
 	// listen to Crystal collected
 	// remove from list, count elements
@@ -21,36 +21,43 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 
 	void OnEnable ()
 	{
-		CrystalObject.onCollected += Collected;
-		CrystalObject.onCreated += RegisterObjectScript;
-		CrystalObject.onDestroyed += UnregisterObjectScript;
+		CrystalObject.onCrystalCreated += Created;
+		CrystalObject.onCrystalCollected += Collected;
+//		CrystalObject.onCreated += RegisterObjectScript;
+//		CrystalObject.onDestroyed += UnregisterObjectScript;
 	}
 
 	void OnDisable ()
 	{
-		CrystalObject.onCollected -= Collected;
-		CrystalObject.onCreated -= RegisterObjectScript;
-		CrystalObject.onDestroyed -= UnregisterObjectScript;
+		CrystalObject.onCrystalCreated -= Created;
+		CrystalObject.onCrystalCollected -= Collected;
+//		CrystalObject.onCreated -= RegisterObjectScript;
+//		CrystalObject.onDestroyed -= UnregisterObjectScript;
 	}
 
-	void RegisterObjectScript (CrystalQuestObjectScript objectScript)
-	{
-		crystals2.Add (objectScript);
-	}
-	
-	void UnregisterObjectScript (CrystalQuestObjectScript objectScript)
-	{
-		crystals2.Remove (objectScript);
-	}
+//	void RegisterObjectScript (CrystalQuestObjectScript objectScript)
+//	{
+//		crystals2.Add (objectScript);
+//	}
+//	
+//	void UnregisterObjectScript (CrystalQuestObjectScript objectScript)
+//	{
+//		crystals2.Remove (objectScript);
+//	}
 
 //	void Collected (CrystalQuestObjectScript crystalScript)
 //	{
 //		crystals.Remove (crystalScript);
 //	}
 
-	void Collected (CollectableObject crystalScript)
+//	void Collected (CollectableObject crystalScript)
+//	{
+//		crystals.Remove (crystalScript);
+//	}
+
+	void Created (CrystalObject crystalScript)
 	{
-		crystals2.Remove (crystalScript);
+		crystals.Add (crystalScript);
 	}
 
 	void Collected (CrystalObject crystalScript)

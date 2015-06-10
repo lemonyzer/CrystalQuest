@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if Unity_4
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
@@ -24,3 +25,4 @@ public class CollisionMatrixEditorScripts {
 	}
 
 }
+#endif

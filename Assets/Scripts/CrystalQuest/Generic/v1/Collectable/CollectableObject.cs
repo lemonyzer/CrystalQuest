@@ -19,8 +19,15 @@ public class CollectableObject : MovingObject {
 		base.Awake ();
 //		CollisionSendDamageValue = 0f;		// kein Damage -> Methode B
 
-		useCollisionEvents = true;	// TODO Methode A
+		//TODO WHY??useCollisionEvents = true;	// TODO Methode A
 									// Require: Layer only in reaction with Player
+
+	}
+
+	protected override void Start ()
+	{
+		base.Start ();
+//		NotifyCollectableCreatedListener (); TODO nicht alle Collectables müssen registriert werden
 	}
 
 	/// <summary>
@@ -44,7 +51,7 @@ public class CollectableObject : MovingObject {
 	public override void ApplyCollisionDamage (CollisionObject otherObjectScript)
 	{
 		//base.ApplyCollisionDamage (otherObjectScript);
-		this.ReceiveDamage (Health);
+		this.ReceiveDamage (Health);	// destroy immediatly (senddamge of collcetor is ignored)
 	}
 
 	[SerializeField]
@@ -62,6 +69,31 @@ public class CollectableObject : MovingObject {
 			collected.Invoke ();
 	}
 
-	public delegate void Collected (CollectableObject myObjectScript);
-	public static event Collected onCollected;
+
+	// TODO kann nicht generalisiert werden
+	// ausblenden in unterklassen: public new delegate nützt nichts
+	// virtual/abstract nicht möglich
+//	public delegate void Collected (CollectableObject myObjectScript);
+//	public static event Collected onCollected;
+//
+//	public delegate void CollectableCreated (CollectableObject myObjectScript);
+//	public static event CollectableCreated onCollectableCreated;
+//	
+//	void NotifyCollectableCreatedListener ()
+//	{
+//		if (onCollectableCreated != null)
+//			onCollectableCreated (this);
+//		else
+//			Debug.LogError ("no onCollectableCreated listener");
+//	}
+//
+//	void NotifyCollectedListener ()
+//	{
+//		if (onCollected != null)
+//		{
+//			onCollected (this);
+//		}
+//		else
+//			Debug.LogError ("no onCollected listener");
+//	}
 }
