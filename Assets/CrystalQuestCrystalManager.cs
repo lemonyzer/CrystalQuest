@@ -1,15 +1,60 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CrystalQuestCrystalManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
+	// sucht alle in der Scene instanziierten Crystalle
+	// listen to neue Crystalinstanziierung
+	// listen to destroy Crystal
+
+	[SerializeField]
+	List<CrystalObject> crystals;
+
+	[SerializeField]
+	List<CollectableObject> crystals2;
+
+	// listen to Crystal collected
+	// remove from list, count elements
+	// element count = 0 -> open gate
+
+
+	void OnEnable ()
+	{
+		CrystalObject.onCollected += Collected;
+		CrystalObject.onCreated += RegisterObjectScript;
+		CrystalObject.onDestroyed += UnregisterObjectScript;
+	}
+
+	void OnDisable ()
+	{
+		CrystalObject.onCollected -= Collected;
+		CrystalObject.onCreated -= RegisterObjectScript;
+		CrystalObject.onDestroyed -= UnregisterObjectScript;
+	}
+
+	void RegisterObjectScript (CrystalQuestObjectScript objectScript)
+	{
+		crystals2.Add (objectScript);
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
+	void UnregisterObjectScript (CrystalQuestObjectScript objectScript)
+	{
+		crystals2.Remove (objectScript);
+	}
+
+//	void Collected (CrystalQuestObjectScript crystalScript)
+//	{
+//		crystals.Remove (crystalScript);
+//	}
+
+	void Collected (CollectableObject crystalScript)
+	{
+		crystals2.Remove (crystalScript);
+	}
+
+	void Collected (CrystalObject crystalScript)
+	{
+		crystals.Remove (crystalScript);
 	}
 }

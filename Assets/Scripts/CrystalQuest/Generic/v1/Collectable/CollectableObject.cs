@@ -18,6 +18,9 @@ public class CollectableObject : MovingObject {
 	{
 		base.Awake ();
 //		CollisionSendDamageValue = 0f;		// kein Damage -> Methode B
+
+		useCollisionEvents = true;	// TODO Methode A
+									// Require: Layer only in reaction with Player
 	}
 
 	/// <summary>
@@ -58,4 +61,7 @@ public class CollectableObject : MovingObject {
 		if (collected != null)
 			collected.Invoke ();
 	}
+
+	public delegate void Collected (CollectableObject myObjectScript);
+	public static event Collected onCollected;
 }
