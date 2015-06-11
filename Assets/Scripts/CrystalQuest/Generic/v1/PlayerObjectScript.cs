@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerObjectScript : MovingObject {
 
@@ -8,6 +9,68 @@ public class PlayerObjectScript : MovingObject {
 	{
 		base.Start ();
 		NotifyLifeListener (lifes);
+
+		CreateProjectilePool ();
+	}
+	#endregion
+
+	#region Weapon
+	[SerializeField]
+	float weaponForce = 10f;
+	#endregion
+
+	#region Projectile Pool
+	[SerializeField]
+	int projectilePoolAmount = 5;
+
+	[SerializeField]
+	bool projectilePoolWillGrow = false;
+
+	[SerializeField]
+	int projectilePoolAmountMax = 10;
+	
+	[SerializeField]
+	List<GameObject> projectilePool;
+
+	[SerializeField]
+	GameObject projectilePrefab;
+
+	void CreateProjectilePool ()
+	{
+		if (projectilePrefab != null)
+		{
+			for (int i=0; i < projectilePoolAmount; i++)
+			{
+				AddNewToPool ();
+			}
+		}
+	}
+
+	GameObject AddNewToPool ()
+	{
+		GameObject obj = (GameObject) Instantiate (projectilePrefab);
+		obj.SetActive (false);
+		projectilePool.Add (obj);
+		return obj;
+	}
+
+	// Update is called once per frame
+	public GameObject GetPooledObject () {
+		for (int i=0; i < projectilePoolAmount; i++)
+		{
+			if(!projectilePool[i].activeInHierarchy)
+			{
+				return projectilePool[i];
+			}
+		}
+		
+		if (projectilePoolWillGrow)
+		{
+			if (projectilePool.Count < projectilePoolAmountMax)
+				return AddNewToPool (); 
+		}
+		
+		return null;
 	}
 	#endregion
 
@@ -25,6 +88,47 @@ public class PlayerObjectScript : MovingObject {
 		else
 		{
 
+		}
+
+		if (inputFire)
+		{
+
+			GameObject projectile = GetPooledObject ();
+			if (projectile != null)
+			{
+				ProjectileObjectScript projectileScript = projectile.GetComponent<ProjectileObjectScript>();
+				projectileScript.OwnerObjectScript = this;
+				Vector3 shootDirection = inputMoveDirection;
+				if (shootDirection == Vector3.zero)
+				{
+					shootDirection = transform.rotation.eulerAngles;
+					if (shootDirection == Vector3.zero)
+						shootDirection = Vector2.up;
+				}
+				projectileScript.transform.position = this.transform.position + shootDirection;
+				projectile.SetActive (true);
+				projectileScript.ReleasedWithVelocity (shootDirection, weaponForce);
+			}
+
+			// no Objectpooling, bad performance
+//			if (projectilePrefab != null)
+//			{
+//				// http://answers.unity3d.com/questions/40379/how-is-the-rotation-of-a-transform-converted-into.html
+//				GameObject projectile = (GameObject) Instantiate (projectilePrefab, transform.position, Quaternion.identity);
+//				ProjectileObjectScript projectileScript = projectile.GetComponent<ProjectileObjectScript>();
+//				projectileScript.OwnerObjectScript = this;
+////				Vector3 shootDirection = this.transform.rotation.eulerAngles;
+////				Vector3 shootDirection = this.rb2D.velocity.normalized;
+//				Vector3 shootDirection = inputMoveDirection;
+//				if (shootDirection == Vector3.zero)
+//				{
+//					shootDirection = transform.rotation.eulerAngles;
+//					if (shootDirection == Vector3.zero)
+//						shootDirection = Vector2.up;
+//				}
+////				Debug.Log (shootDirection);
+//				projectileScript.ReleasedWithVelocity (shootDirection, weaponForce);
+//			}
 		}
 	}
 	#endregion

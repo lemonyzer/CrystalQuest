@@ -96,6 +96,7 @@ MonoBehaviour:
   maxVelocity: 5
   rb2D: {fileID: 0}
   ownerObjectScript: {fileID: 0}
+  releaseForce: 0
 --- !u!212 &21298974
 SpriteRenderer:
   m_ObjectHideFlags: 1

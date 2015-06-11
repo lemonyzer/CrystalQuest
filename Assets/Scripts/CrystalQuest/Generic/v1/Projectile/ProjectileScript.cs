@@ -3,6 +3,14 @@ using System.Collections;
 
 public class ProjectileScript : MonoBehaviour {
 
+	//[SerializeField]
+	private GameObject myGO;
+
+	public GameObject MyGO {
+		get;
+		private set;
+	}
+
 	[SerializeField]
 	private CrystalQuestObjectScript owner;
 
@@ -46,6 +54,7 @@ public class ProjectileScript : MonoBehaviour {
 	void Awake () {
 		InitRigidbody2D ();
 		InitAllCollider2D ();
+		myGO = this.gameObject;
 	}
 
 //	// Use this for initialization
@@ -58,14 +67,14 @@ public class ProjectileScript : MonoBehaviour {
 //	
 //	}
 
-	public void Released (Vector3 forward)
+	public void Released (Vector3 direction)
 	{
-		rb2d.AddForce (forward * force);
+		rb2d.AddForce (direction * force);
 	}
 
-	public void Released (Vector3 forward, float force)
+	public void Released (Vector3 direction, float force)
 	{
-		rb2d.AddForce (forward * force);
+		rb2d.AddForce (direction * force);
 	}
 
 	public virtual void OnTriggerEnter2D (Collider2D otherCollider)
