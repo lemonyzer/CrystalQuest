@@ -50,7 +50,12 @@ public class CrystalQuestObjectScript : MonoBehaviour {
 
 	public virtual void RestartLevel ()
 	{
+		
+	}
 
+	public virtual void NextLevel (int level)
+	{
+		
 	}
 
 	protected virtual void OnDestroy ()

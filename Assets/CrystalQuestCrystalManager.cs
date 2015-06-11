@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class CrystalQuestCrystalManager : MonoBehaviour {
+public class CrystalQuestCrystalManager : CrystalQuestObjectScript {
 
 	// sucht alle in der Scene instanziierten Crystalle
 	// listen to neue Crystalinstanziierung
@@ -10,6 +10,9 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 
 	[SerializeField]
 	List<CrystalObject> crystals;
+
+	[SerializeField]
+	float collectedCount = 0;
 
 //	[SerializeField]
 //	List<CollectableObject> crystals2;
@@ -21,7 +24,7 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 
 	void OnEnable ()
 	{
-		CrystalObject.onCrystalCreated += Created;
+		CrystalObject.onCrystalCreated += OnCrystalCreated;
 		CrystalObject.onCrystalCollected += Collected;
 //		CrystalObject.onCreated += RegisterObjectScript;
 //		CrystalObject.onDestroyed += UnregisterObjectScript;
@@ -29,7 +32,7 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 
 	void OnDisable ()
 	{
-		CrystalObject.onCrystalCreated -= Created;
+		CrystalObject.onCrystalCreated -= OnCrystalCreated;
 		CrystalObject.onCrystalCollected -= Collected;
 //		CrystalObject.onCreated -= RegisterObjectScript;
 //		CrystalObject.onDestroyed -= UnregisterObjectScript;
@@ -55,13 +58,36 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 //		crystals.Remove (crystalScript);
 //	}
 
-	void Created (CrystalObject crystalScript)
+	void OnCrystalCreated (CrystalObject crystalScript)
 	{
 		crystals.Add (crystalScript);
 	}
 
 	void Collected (CrystalObject crystalScript)
 	{
-		crystals.Remove (crystalScript);
+		// crystals.Remove (crystalScript);
+		collectedCount++;
+		if (collectedCount >= crystals.Count)
+		{
+			NotifyAllCrystalsCollectedListener ();
+		}
+	}
+
+	// portal gate öffnen
+	public delegate void AllCrystalsCollected ();
+	public static event AllCrystalsCollected onAllCrystalsCollected;
+
+	void NotifyAllCrystalsCollectedListener ()
+	{
+		if (onAllCrystalsCollected != null)
+			onAllCrystalsCollected ();
+		else
+			Debug.LogError (this.ToString() + " no onAllCrystalsCollected listener");
+	}
+
+	public override void NextLevel (int level)
+	{
+		base.NextLevel (level);
+		this.collectedCount = 0;
 	}
 }
