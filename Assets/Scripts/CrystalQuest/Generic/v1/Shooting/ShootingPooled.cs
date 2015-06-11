@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ShootingPooled : MonoBehaviour {
+
+	void Awake ()
+	{
+		CreateProjectilePool ();
+	}
 
 	bool CanUseWeapon ()
 	{
@@ -28,7 +34,7 @@ public class ShootingPooled : MonoBehaviour {
 	protected bool canUseWeapon = true;
 	
 	[SerializeField]
-	protected float fireRate = 1f;
+	protected float fireRateIntervall = 1f;
 	
 	[SerializeField]
 	protected int numberOfProjectilesPerShoot = 1;
@@ -56,6 +62,7 @@ public class ShootingPooled : MonoBehaviour {
 	{
 		if (CanShoot ())
 		{
+			if (inputShoot)
 			Shoot ();
 		}
 	}
@@ -67,7 +74,7 @@ public class ShootingPooled : MonoBehaviour {
 		
 		if (Time.time >= nextShootTimestamp)
 		{
-			nextShootTimestamp += fireRate;
+			nextShootTimestamp += fireRateIntervall;
 			return true;
 		}
 		return false;
@@ -75,13 +82,111 @@ public class ShootingPooled : MonoBehaviour {
 	
 	void Shoot ()
 	{
-		if(projectilePrefab != null)
+		GameObject projectile = GetPooledObject ();
+		if (projectile != null)
 		{
-			GameObject projectile = GameObject.Instantiate(projectilePrefab, projectileSpawnPosition, Quaternion.identity) as GameObject;
 			ProjectileObjectScript projectileScript = projectile.GetComponent<ProjectileObjectScript>();
-			// Projectile Enemyspezifisch initialisieren
-//			projectileScript.OwnerObjectScript = this;
+			projectileScript.OwnerObjectScript = this.GetComponent<CrystalQuestObjectScript>();
+			Vector3 shootDirection = inputMoveDirection;
+			if (shootDirection == Vector3.zero)
+			{
+				shootDirection = transform.rotation.eulerAngles;
+				if (shootDirection == Vector3.zero)
+					shootDirection = Vector2.up;
+			}
+			projectileScript.transform.position = this.transform.position + shootDirection;
+			projectile.SetActive (true);
+			projectileScript.ReleasedWithVelocity (shootDirection, weaponForce);
 		}
+	}
+	#endregion
+	
+	#region Weapon
+	[SerializeField]
+	float weaponForce = 10f;
+	#endregion
+	
+	#region Projectile Pool
+
+	[SerializeField]
+	int projectilePoolAmount = 5;
+	
+	[SerializeField]
+	bool projectilePoolWillGrow = false;
+	
+	[SerializeField]
+	int projectilePoolAmountMax = 10;
+	
+	[SerializeField]
+	List<GameObject> projectilePool;
+	
+//	[SerializeField]
+//	GameObject projectilePrefab;
+	
+	void CreateProjectilePool ()
+	{
+		if (projectilePrefab != null)
+		{
+			if (projectilePool != null)
+			{
+				InitPool ();
+			}
+			else
+			{
+				projectilePool = new List<GameObject>();
+				InitPool ();
+			}
+		}
+	}
+	
+	void InitPool ()
+	{
+		for (int i=0; i < projectilePoolAmount; i++)
+		{
+			AddNewToPool ();
+		}
+	}
+	
+	GameObject AddNewToPool ()
+	{
+		GameObject obj = (GameObject) Instantiate (projectilePrefab);
+		obj.SetActive (false);
+		projectilePool.Add (obj);
+		return obj;
+	}
+	
+	// Update is called once per frame
+	public GameObject GetPooledObject () {
+		
+		//		for (int i=0; i < projectilePoolAmount; i++)
+		for (int i=0; i < projectilePool.Count; i++)
+		{
+			if(!projectilePool[i].activeInHierarchy)
+			{
+				return projectilePool[i];
+			}
+		}
+		
+		if (projectilePoolWillGrow)
+		{
+			if (projectilePool.Count < projectilePoolAmountMax)
+				return AddNewToPool (); 
+		}
+		
+		return null;
+	}
+	#endregion
+
+	#region Input
+
+	Vector2 inputMoveDirection;
+	bool inputShoot = false;
+
+	void Update()
+	{
+		inputMoveDirection.x = Input.GetAxis("Horizontal");
+		inputMoveDirection.y = Input.GetAxis("Vertical");
+		inputShoot = Input.GetButton("Fire1");
 	}
 	#endregion
 }

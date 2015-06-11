@@ -1030,12 +1030,6 @@ MonoBehaviour:
   canMove: 1
   maxVelocity: 5
   rb2D: {fileID: 0}
-  weaponForce: 10
-  projectilePoolAmount: 5
-  projectilePoolWillGrow: 1
-  projectilePoolAmountMax: 10
-  projectilePool: []
-  projectilePrefab: {fileID: 173978, guid: 942db8722dbb115479e10fe983f9252b, type: 2}
 --- !u!58 &519947533
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1114,16 +1108,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85bcd71db7bbd6744910341533cd81fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 173978, guid: 942db8722dbb115479e10fe983f9252b, type: 2}
   projectileSpawnPosition: {x: 0, y: 0, z: 0}
   canUseWeapon: 1
-  fireRate: 1
+  fireRateIntervall: .100000001
   numberOfProjectilesPerShoot: 1
   reloadTime: 1.5
   magazineSize: 5
   currentMagazineSize: 0
   lastShootTimestamp: 0
   nextShootTimestamp: 0
+  weaponForce: 10
+  projectilePoolAmount: 5
+  projectilePoolWillGrow: 0
+  projectilePoolAmountMax: 10
+  projectilePool: []
 --- !u!1001 &599728630
 Prefab:
   m_ObjectHideFlags: 0

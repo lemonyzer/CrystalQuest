@@ -9,7 +9,7 @@ public class MovingObject : CollisionObject {
 	{
 		base.Awake();
 		Debug.Log(this.name + " Awake() " + this.ToString());
-		InitializeRigidbody2D();
+		InitializeRigidbody2D ();
 	}
 	#endregion
 	
