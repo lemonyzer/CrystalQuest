@@ -49,6 +49,17 @@ public class ProjectileObjectScript : MovingObject {
 		rb2D.velocity = direction * force;
 	}
 
-	
+	public override void RestartLevel ()
+	{
+		base.RestartLevel ();
+		DisableCachedGameObject();		// dont destroy, this object is cached. just disable it
+												// manager could disable it !!! consistent?
+	}
+
+	public void DisableCachedGameObject ()
+	{
+		this.gameObject.SetActive (false);		// dont destroy, this object is cached. just disable it
+		// manager could disable it !!! consistent?
+	}
 
 }

@@ -39,10 +39,23 @@ public class PlayerObjectScript : MovingObject {
 	{
 		if (projectilePrefab != null)
 		{
-			for (int i=0; i < projectilePoolAmount; i++)
+			if (projectilePool != null)
 			{
-				AddNewToPool ();
+				InitPool ();
 			}
+			else
+			{
+				projectilePool = new List<GameObject>();
+				InitPool ();
+			}
+		}
+	}
+
+	void InitPool ()
+	{
+		for (int i=0; i < projectilePoolAmount; i++)
+		{
+			AddNewToPool ();
 		}
 	}
 
@@ -56,7 +69,9 @@ public class PlayerObjectScript : MovingObject {
 
 	// Update is called once per frame
 	public GameObject GetPooledObject () {
-		for (int i=0; i < projectilePoolAmount; i++)
+
+//		for (int i=0; i < projectilePoolAmount; i++)
+		for (int i=0; i < projectilePool.Count; i++)
 		{
 			if(!projectilePool[i].activeInHierarchy)
 			{

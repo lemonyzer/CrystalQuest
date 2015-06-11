@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Shooting : MovingObject {
+public class ShootingPooled : MonoBehaviour {
 
 	bool CanUseWeapon ()
 	{
@@ -73,7 +73,7 @@ public class Shooting : MovingObject {
 		return false;
 	}
 	
-	protected void Shoot ()
+	void Shoot ()
 	{
 		if(projectilePrefab != null)
 		{
