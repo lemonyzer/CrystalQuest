@@ -8,7 +8,7 @@ public class MovingObject : CollisionObject {
 	protected override void Awake()
 	{
 		base.Awake();
-		Debug.Log(this.name + " Awake() " + this.ToString());
+//		Debug.Log(this.name + " Awake() " + this.ToString());
 		InitializeRigidbody2D ();
 	}
 	#endregion

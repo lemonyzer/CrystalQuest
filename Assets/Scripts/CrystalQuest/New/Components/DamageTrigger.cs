@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ScoreManagerScript : MonoBehaviour {
+public class DamageTrigger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

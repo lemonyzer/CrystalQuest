@@ -10,7 +10,7 @@ public class CrystalQuestObjectScript : MonoBehaviour {
 	#region Initialisation
 	protected virtual void Awake ()
 	{
-		Debug.Log(this.name + " Awake() " + this.ToString());
+//		Debug.Log(this.name + " Awake() " + this.ToString());
 		transform = this.GetComponent<Transform>();
 //		InitializeRigidbody2D();
 //		NotifyCreatedListener ();	// in Start, da CrystalQuestGameManager in Awake Liste initialisiert und in OnEnable erst "zuhört" und wir keine ScriptOrder setzen möchten
