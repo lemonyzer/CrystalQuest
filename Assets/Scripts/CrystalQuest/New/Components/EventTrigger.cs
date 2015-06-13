@@ -3,22 +3,47 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
+public class MyIntEvent : UnityEvent<int>
+{
+	
+}
+
+public class MyFloatEvent : UnityEvent<float>
+{
+	
+}
+
+public class MyDataEvent : UnityEvent<MyDataClass>
+{
+	
+}
+
+[System.Serializable]
+public class MyDataClass
+{
+
+}
+
 public class EventTrigger : MonoBehaviour {
 
-	public static UnityEvent myStaticEvent;	// For GameManager 1 - n partnership
+	// Parameter / arguments in UnityEvent
+	// http://forum.unity3d.com/threads/how-to-addlistener-featuring-an-argument.266934/
+	// http://gamedev.stackexchange.com/questions/83027/unity-new-ui-dynamically-change-the-functions-called-by-gui-elements
+
+	public static UnityEvent myStaticEvent;			// For GameManager 1 - n partnership
 
 	[SerializeField]
-	protected UnityEvent myEvent;			// Event for my Domain
+	protected UnityEvent myEvent;					// Event for my Event-Domain
 
 	[SerializeField]
-	protected UnityAction myListener;		// listener for the TriggerDomain
+	protected UnityAction myTriggerListener;		// listener for the Triggers (Trigger-Domain)
 
 	[SerializeField]
 	protected List<EventTrigger> triggerScripts;
 
 	void Awake ()
 	{
-		myListener = new UnityAction (Action);
+		myTriggerListener = new UnityAction (Action);
 	}
 
 	public virtual void Action ()
@@ -31,9 +56,9 @@ public class EventTrigger : MonoBehaviour {
 		Debug.LogError (this.ToString () + " StartTriggerListening");
 		if (triggerScripts != null)
 		{
-			for (int i=0; i < triggerScripts.Count; i++)
+			for (int i = 0; i < triggerScripts.Count; i++)
 			{
-				triggerScripts[i].StartListening (myListener);
+				triggerScripts[i].StartListening (myTriggerListener);
 			}
 		}
 	}
@@ -43,9 +68,9 @@ public class EventTrigger : MonoBehaviour {
 		Debug.LogError (this.ToString () + " StopTriggerListening");
 		if (triggerScripts != null)
 		{
-			for (int i=0; i < triggerScripts.Count; i++)
+			for (int i = 0; i < triggerScripts.Count; i++)
 			{
-				triggerScripts[i].StopListening (myListener);
+				triggerScripts[i].StopListening (myTriggerListener);
 			}
 		}
 	}

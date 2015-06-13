@@ -969,6 +969,7 @@ GameObject:
   - 58: {fileID: 519947533}
   - 114: {fileID: 519947532}
   - 114: {fileID: 519947537}
+  - 114: {fileID: 519947541}
   - 114: {fileID: 519947538}
   - 114: {fileID: 519947540}
   - 114: {fileID: 519947539}
@@ -1125,6 +1126,12 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   triggerScripts: []
+  triggerPlayerLayer: 0
+  triggerEnemyLayer: 0
+  triggerPlayerProjetileLayer: 0
+  triggerEnemyProjetileLayer: 0
+  triggerLevelDamageLayer: 0
+  triggerCollectables: 0
 --- !u!114 &519947539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1160,6 +1167,33 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   triggerScripts: []
+--- !u!114 &519947541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519947531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1e19dccaf738304a8d647259b92563d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  triggerScripts:
+  - {fileID: 519947538}
+  selfAttack: 0
+  teamAttack: 0
+  invincible: 0
+  minHealth: 0
+  maxHealth: 100
+  currentHealth: 100
+  lifes: 3
+  minLifes: 0
+  isDead: 0
 --- !u!1001 &599728630
 Prefab:
   m_ObjectHideFlags: 0

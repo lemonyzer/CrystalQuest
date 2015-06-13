@@ -3,18 +3,59 @@ using System.Collections;
 
 public class CollideableObject : EventTrigger {
 
-	float timeIntervall = 0.5f;
-	float lastTime = 0;
+	[SerializeField]
+	bool triggerPlayerLayer = false;
 
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown (KeyCode.Space))
+	[SerializeField]
+	bool triggerEnemyLayer = false;
+
+	[SerializeField]
+	bool triggerPlayerProjetileLayer = false;
+
+	[SerializeField]
+	bool triggerEnemyProjetileLayer = false;
+
+	[SerializeField]
+	bool triggerLevelDamageLayer = false;
+
+	[SerializeField]
+	bool triggerCollectables = false;
+
+	void OnTriggerEnter2D (Collider2D otherCollider2d)
+	{
+		int otherObjectsLayer = otherCollider2d.gameObject.layer;
+		if (otherObjectsLayer == LayerMask.NameToLayer ("Player"))
 		{
-			if (Time.time >= lastTime)
-			{
-				lastTime = Time.time + timeIntervall;
+			if (triggerPlayerLayer)
 				TriggerEvent ();
-			}
 		}
+		else if (otherObjectsLayer == LayerMask.NameToLayer ("Enemy"))
+		{
+			if (triggerEnemyLayer)
+				TriggerEvent ();
+		}
+		else if (otherObjectsLayer == LayerMask.NameToLayer ("EnemyProjectiles"))
+		{
+			if (triggerEnemyProjetileLayer)
+				TriggerEvent ();
+		}
+		else if (otherObjectsLayer == LayerMask.NameToLayer ("PlayerProjectiles"))
+		{
+			if (triggerPlayerProjetileLayer)
+				TriggerEvent ();
+		}
+		else if (otherObjectsLayer == LayerMask.NameToLayer ("LevelDamage"))
+		{
+			if (triggerLevelDamageLayer)
+				TriggerEvent ();
+		}
+		else if (otherObjectsLayer == LayerMask.NameToLayer ("Collectables"))
+		{
+			if (triggerCollectables)
+				TriggerEvent ();
+		}
+		else
+			Debug.LogError (otherCollider2d.gameObject.name + " ist in Layer = " + LayerMask.LayerToName (otherObjectsLayer) + " und nicht in " + this.ToString () + " registriert");
 	}
+
 }
