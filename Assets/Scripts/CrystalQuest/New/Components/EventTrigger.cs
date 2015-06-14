@@ -15,6 +15,7 @@ public class MyFloatEvent : UnityEvent<float>
 	
 }
 
+[System.Serializable]
 public class MyDataEvent : UnityEvent<MyDataClass>
 {
 	

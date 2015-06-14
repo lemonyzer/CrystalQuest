@@ -1123,17 +1123,31 @@ MonoBehaviour:
     ignoreCollision: 0
   - layerName: Player
     ignoreCollision: 0
-  - layerName: EnemyProjectile
+  - layerName: EnemyProjectiles
+    ignoreCollision: 0
+  - layerName: PlayerProjectiles
     ignoreCollision: 0
   IgnoreCollisionIfLayerNotInList: 0
   sendDamageEnabled: 1
-  sendDamageValue: 0
+  sendDamageValue: 3.40282347e+38
   sendDamageMulti: 1
   receiveDamageEnabled: 1
   receiveDamageMulti: 1
   myCollisionDamageEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 519947539}
+        m_MethodName: ReceiveDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   myCollisionEvent:
     m_PersistentCalls:
@@ -1151,11 +1165,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcda33b01ece77e46a2b3c7aa150a626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  lifes: 0
-  invincible: 0
+  healthData:
+    minHealth: 0
+    maxHealth: 100
+    currentHealth: 100
+    lifes: 3
+    minLifes: 0
+  myHealthUpdateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  myLifesUpdateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MyIntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   collisionTriggerScripts:
   - {fileID: 519947538}
+  invincible: 0
+  isDead: 0
 --- !u!1001 &599728630
 Prefab:
   m_ObjectHideFlags: 0
