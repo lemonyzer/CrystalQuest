@@ -12,7 +12,7 @@ public abstract class HealthTrigger : MonoBehaviour {
 	abstract protected void OnHealthHealing (int healingValue);
 	abstract protected void OnHealthUpdate (int healthValue);
 
-	[SerializeField]
-	List<CollisionTrigger> collisionTrigger;
+//	[SerializeField]
+//	List<CollisionTrigger> collisionTrigger;
 
 }

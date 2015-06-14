@@ -3,11 +3,13 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
 public class MyIntEvent : UnityEvent<int>
 {
 	
 }
 
+[System.Serializable]
 public class MyFloatEvent : UnityEvent<float>
 {
 	

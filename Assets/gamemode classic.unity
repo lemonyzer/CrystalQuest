@@ -970,6 +970,7 @@ GameObject:
   - 114: {fileID: 519947532}
   - 114: {fileID: 519947537}
   - 114: {fileID: 519947538}
+  - 114: {fileID: 519947539}
   m_Layer: 8
   m_Name: Player Ship 2
   m_TagString: Untagged
@@ -1114,15 +1115,47 @@ MonoBehaviour:
   m_GameObject: {fileID: 519947531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48d592168ce190b4485a046e98545b67, type: 3}
+  m_Script: {fileID: 11500000, guid: 1225f381e1c2f5244b157da856cfb9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionDamage: 0
-  myEvent:
+  layerCollision:
+  - layerName: Enemy
+    ignoreCollision: 0
+  - layerName: Player
+    ignoreCollision: 0
+  - layerName: EnemyProjectile
+    ignoreCollision: 0
+  IgnoreCollisionIfLayerNotInList: 0
+  sendDamageEnabled: 1
+  sendDamageValue: 0
+  sendDamageMulti: 1
+  receiveDamageEnabled: 1
+  receiveDamageMulti: 1
+  myCollisionDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  myCollisionEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &519947539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519947531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcda33b01ece77e46a2b3c7aa150a626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  lifes: 0
+  invincible: 0
+  collisionTriggerScripts:
+  - {fileID: 519947538}
 --- !u!1001 &599728630
 Prefab:
   m_ObjectHideFlags: 0
@@ -2561,6 +2594,37 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 439874, guid: fac0eda404c51d442b8fee512a3eb2af, type: 2}
   m_PrefabInternal: {fileID: 1822080652}
+--- !u!1 &1831859450 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 108424, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
+  m_PrefabInternal: {fileID: 1483839328}
+--- !u!114 &1831859455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1831859450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1225f381e1c2f5244b157da856cfb9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerCollision: []
+  IgnoreCollisionIfLayerNotInList: 0
+  sendDamageEnabled: 1
+  sendDamageValue: 100
+  sendDamageMulti: 1
+  receiveDamageEnabled: 1
+  receiveDamageMulti: 1
+  myCollisionDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  myCollisionEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1942887668
 GameObject:
   m_ObjectHideFlags: 0
