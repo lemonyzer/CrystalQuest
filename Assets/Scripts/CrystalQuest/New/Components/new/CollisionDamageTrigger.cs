@@ -24,7 +24,7 @@ public class LayerCollision
 
 // ScriptableObject List<LayerCollision> ... TODO
 
-public class CollisionTrigger : MonoBehaviour {
+public class CollisionDamageTrigger : MonoBehaviour {
 
 	// TODO für EventTrigger<T>
 	// TODO für FloatEventTrigger<T>
@@ -37,7 +37,7 @@ public class CollisionTrigger : MonoBehaviour {
 //	}
 
 	[SerializeField]
-	List<LayerCollision> layerCollision;
+	List<LayerCollision> layerCollision;// = new List<LayerCollision>();	//TODO -.-  BUG! not visible in Inspector!
 
 	[SerializeField]
 	bool IgnoreCollisionIfLayerNotInList = false;
@@ -56,7 +56,7 @@ public class CollisionTrigger : MonoBehaviour {
 
 	protected void OnTriggerEnter2D (Collider2D otherCollider2d)
 	{
-		CollisionTrigger otherCollisionTrigger = otherCollider2d.GetComponent <CollisionTrigger>(); 
+		CollisionDamageTrigger otherCollisionTrigger = otherCollider2d.GetComponent <CollisionDamageTrigger>(); 
 		if (otherCollisionTrigger != null)
 		{
 
@@ -169,15 +169,18 @@ public class CollisionTrigger : MonoBehaviour {
 		else
 			Debug.LogError (this.ToString () + " myCollisionDamageEvent == NULL");
 	}
-	
 
+	// use either Send Damage or Reveice Damage
+	// dont use both!
 	public void ReceiveDamage (float damageValue)
 	{
 		if (receiveDamageEnabled)
 			Trigger (damageValue);
 	}
 
-	public void SendDamage (CollisionTrigger otherCollisionTrigger, float damageValue)
+	// use either Send Damage or Reveice Damage
+	// dont use both!
+	public void SendDamage (CollisionDamageTrigger otherCollisionTrigger, float damageValue)
 	{
 		if (sendDamageEnabled)
 			otherCollisionTrigger.ReceiveDamage (damageValue);

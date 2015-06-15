@@ -215,7 +215,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 431050, guid: 502df42babaadf0479dfccb4ebfbb1c6, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 502df42babaadf0479dfccb4ebfbb1c6, type: 2}
@@ -311,7 +311,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 479882, guid: 88954efd43fa6a0458ed485404b56320, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88954efd43fa6a0458ed485404b56320, type: 2}
@@ -675,6 +675,7 @@ GameObject:
   - 114: {fileID: 366570079}
   - 114: {fileID: 366570080}
   - 114: {fileID: 366570081}
+  - 114: {fileID: 366570082}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -770,6 +771,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac28846999ac1d54e8e618029d2660e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &366570082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 366570074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbd758cb188da045a006b8ab4fe841c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreData:
+    scoreValue: 0
+  scoreDataDelegated:
+    scoreValue: 0
 --- !u!1 &415301072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1180,6 +1196,14 @@ MonoBehaviour:
     currentHealth: 100
     lifes: 3
     minLifes: 0
+  myDieEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  myGameOverEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   myHealthUpdateEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1188,8 +1212,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: MyIntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  collisionTriggerScripts:
-  - {fileID: 519947538}
+  collisionDamageTriggerScripts: []
   invincible: 0
   isDead: 0
 --- !u!114 &519947540
@@ -1205,22 +1228,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreData:
-    scoreValue: 0
-  releaseScore:
+    scoreValue: 100
+  scored:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 366570078}
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1001 &599728630
 Prefab:
@@ -1259,7 +1270,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 497176, guid: 63331e900502b3a45b3ab66ecc9c12e1, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 63331e900502b3a45b3ab66ecc9c12e1, type: 2}
@@ -1576,7 +1587,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 495554, guid: 3115b449b84e3aa4bb4b7b3b0690541b, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3115b449b84e3aa4bb4b7b3b0690541b, type: 2}
@@ -1585,6 +1596,56 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 479882, guid: 88954efd43fa6a0458ed485404b56320, type: 2}
   m_PrefabInternal: {fileID: 155066484}
+--- !u!1001 &882157842
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2130414024}
+    m_Modifications:
+    - target: {fileID: 480342, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -6.23000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 480342, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.48000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 480342, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 480342, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 480342, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 480342, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 480342, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 480342, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 108424, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
+      propertyPath: m_Name
+      value: Pest 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493340, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
+      propertyPath: targetScript
+      value: 
+      objectReference: {fileID: 519947532}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &919091745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1934,6 +1995,10 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 494188, guid: a557d9103071b6344a8815e281ab83f1, type: 2}
   m_PrefabInternal: {fileID: 1184985777}
+--- !u!4 &1200621748 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 480342, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
+  m_PrefabInternal: {fileID: 882157842}
 --- !u!4 &1226771113 stripped
 Transform:
   m_PrefabParentObject: {fileID: 482256, guid: 9912cf216a55db4419b69256dc65cb9b, type: 2}
@@ -2395,11 +2460,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 480342, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.80000019
+      value: -6.51000023
       objectReference: {fileID: 0}
     - target: {fileID: 480342, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.05999994
+      value: 3.97000003
       objectReference: {fileID: 0}
     - target: {fileID: 480342, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2429,6 +2494,10 @@ Prefab:
       propertyPath: targetScript
       value: 
       objectReference: {fileID: 519947532}
+    - target: {fileID: 11470852, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
+      propertyPath: scoreData.scoreValue
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
   m_IsPrefabParent: 0
@@ -2469,7 +2538,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 405130, guid: 38a1aa96cc2659747bb37091bd33ade0, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 38a1aa96cc2659747bb37091bd33ade0, type: 2}
@@ -2710,37 +2779,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 439874, guid: fac0eda404c51d442b8fee512a3eb2af, type: 2}
   m_PrefabInternal: {fileID: 1822080652}
---- !u!1 &1831859450 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 108424, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
-  m_PrefabInternal: {fileID: 1483839328}
---- !u!114 &1831859455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1831859450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1225f381e1c2f5244b157da856cfb9f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerCollision: []
-  IgnoreCollisionIfLayerNotInList: 0
-  sendDamageEnabled: 1
-  sendDamageValue: 100
-  sendDamageMulti: 1
-  receiveDamageEnabled: 1
-  receiveDamageMulti: 1
-  myCollisionDamageEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  myCollisionEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!1 &1942887668
 GameObject:
   m_ObjectHideFlags: 0
@@ -3031,6 +3069,7 @@ Transform:
   - {fileID: 1243746703}
   - {fileID: 1618331596}
   - {fileID: 1691796568}
+  - {fileID: 1200621748}
   - {fileID: 1714743624}
   - {fileID: 852712424}
   - {fileID: 239715106}
