@@ -166,29 +166,126 @@ public class HealthDataModel {
 
 public class HealthManager : MonoBehaviour {
 
-	[SerializeField]
-	private HealthDataModel m_healthData;// = new HealthDataModel();		//TODO -.-  BUG #1 not visible in Inspector!
+	// UnityEvent dynamic parameter
+	// http://answers.unity3d.com/questions/917623/how-to-fire-unityevent-with-parameters-passed-prog.html
+
+
+//	[SerializeField]
+//	private HealthDataModel m_healthData;// = new HealthDataModel();		//TODO -.-  BUG #1 not visible in Inspector!
 
 //	void InitHealthDataModellSO (HealthDataModel myHealthData)
 //	{
 //		myHealthData = ScriptableObject.CreateInstance<HealthDataModel>();
 //	}
+//	void StartHealthModelListening (HealthDataModel healthData)
+//	{
+//		// TODO Bug #1 not registered for listening to the riht HealthDataModel object/instance!
+//		healthData.onHealthUpdate += OnHealthUpdate;
+//		healthData.onLifeUpdate += OnLifeUpdate;
+//		healthData.onDied += OnDie;
+//		healthData.onGameOver += OnGameOver;
+//	}
+//	void StopHealthModelListening (HealthDataModel healthData)
+//	{
+//		healthData.onHealthUpdate -= OnHealthUpdate;
+//		healthData.onLifeUpdate -= OnLifeUpdate;
+//		healthData.onDied -= OnDie;
+//		healthData.onGameOver -= OnGameOver;
+//	}
 
-	void StartHealthModelListening (HealthDataModel healthData)
-	{
-		// TODO Bug #1 not registered for listening to the riht HealthDataModel object/instance!
-		healthData.onHealthUpdate += OnHealthUpdate;
-		healthData.onLifeUpdate += OnLifeUpdate;
-		healthData.onDied += OnDie;
-		healthData.onGameOver += OnGameOver;
+	[SerializeField]
+	private float minHealth = 0f;
+	
+//	public float MinHealth {
+//		get {return minHealth;}
+//		set {minHealth = value;}
+//	}
+	
+	[SerializeField]
+	private float maxHealth = 100f;
+	
+//	public float MaxHealth {
+//		get {return maxHealth;}
+//		set {maxHealth = value;}
+//	}
+	
+	[SerializeField]
+	private float currentHealth = 100f;
+	
+//	public float Health {
+//		get {return currentHealth;}
+//		set {currentHealth = value;}
+//	}
+	
+	private float Health {
+		get {return currentHealth;}
+		set
+		{
+			float temp = currentHealth;
+			if (value > maxHealth)
+			{
+				//				Debug.LogError ("[" + value + "] > " + maxHealth);
+				currentHealth = maxHealth;
+			}
+			else if (maxHealth >= value &&
+			         value > minHealth)
+			{
+				//				Debug.LogError (maxHealth + " >= [" + value + "] > " + minHealth);
+				currentHealth = value;
+			}
+			else if (value <= minHealth)
+			{
+				//				Debug.LogError ("[" + value + "] <= " + minHealth);
+				currentHealth = minHealth;
+				OnDie ();
+			}
+			
+			if (temp != currentHealth)
+				OnHealthUpdate (currentHealth);
+		}
 	}
-	void StopHealthModelListening (HealthDataModel healthData)
+	
+	void Die ()
 	{
-		healthData.onHealthUpdate -= OnHealthUpdate;
-		healthData.onLifeUpdate -= OnLifeUpdate;
-		healthData.onDied -= OnDie;
-		healthData.onGameOver -= OnGameOver;
+		Lifes--;
+		isDead = true;
 	}
+	
+	[SerializeField]
+	private int lifes = 3;
+	
+	[SerializeField]
+	private int minLifes = 0;
+	
+//	public float MinLifes {
+//		get {return minLifes;}
+//	}
+	
+	private int Lifes {
+		get {return lifes;}
+		set
+		{
+			int tempLifes = lifes;
+			bool gameOver = false;
+			
+			if (value > minLifes)
+				lifes = value;
+			else
+			{
+				lifes = minLifes;
+				// TODO FIX problem #1  gameOver flag, zum merken und späteren ausführen von GameOver () notify, als LifeUpdate ()
+				gameOver = true;
+				// NotifyGameOverListener ();			// TODO problem #1, reihenfolge!
+			}
+			
+			if (lifes != tempLifes)
+				OnLifeUpdate (lifes);	// TODO problem #1, reihenfolge
+			
+			if (gameOver)
+				OnGameOver ();				// TODO Fix problem #1
+		}
+	}
+
 	void OnHealthUpdate (float newHealth)
 	{
 		// notify healthValue listener
@@ -201,6 +298,7 @@ public class HealthManager : MonoBehaviour {
 	}
 	void OnDie ()
 	{
+		Die ();
 		// notify die interface
 		NotifyDieListener ();
 	}
@@ -212,13 +310,13 @@ public class HealthManager : MonoBehaviour {
 
 	void OnEnable ()
 	{
-		StartHealthModelListening (m_healthData);
+//		StartHealthModelListening (m_healthData);
 		StartTriggerListListening ();
 	}
 	
 	void OnDisable ()
 	{
-		StopHealthModelListening (m_healthData);
+//		StopHealthModelListening (m_healthData);
 		StopTriggerListListening ();
 	}
 
@@ -229,16 +327,16 @@ public class HealthManager : MonoBehaviour {
 	public static MyFloatEvent myStaticLifesUpdateEvent;		// für was?
 
 	[SerializeField]
-	protected MyEvent myDieEvent;
+	private MyEvent myDieEvent;
 
 	[SerializeField]
-	protected MyEvent myGameOverEvent;
+	private MyEvent myGameOverEvent;
 
 	[SerializeField]
-	protected MyFloatEvent myHealthUpdateEvent;
+	private MyFloatEvent myHealthUpdateEvent;
 
 	[SerializeField]
-	protected MyIntEvent myLifesUpdateEvent;
+	private MyIntEvent myLifesUpdateEvent;
 
 	#region collision trigger AKA Health Modifiing Trigger 
 //	[SerializeField]
@@ -319,7 +417,7 @@ public class HealthManager : MonoBehaviour {
 			return;
 
 		//		float temp = Health;
-		m_healthData.Health -= damageValue;
+		Health -= damageValue;
 		
 		// only on Player -> HealthUpdated
 		//		if (temp != Health)
@@ -336,17 +434,17 @@ public class HealthManager : MonoBehaviour {
 		//		}
 	}
 	
-	void Die ()
-	{
-		// only on Player
-		// DecreaseLifeCount ();
-		isDead = true;
-//		this.gameObject.SetActive (false);
-	}
+//	void Die ()
+//	{
+//		// only on Player
+//		// DecreaseLifeCount ();
+//		isDead = true;
+////		this.gameObject.SetActive (false);
+//	}
 
 	public void ReceiveLifeDamge(int lifeDamage)
 	{
-		m_healthData.Lifes -= lifeDamage;
+		Lifes -= lifeDamage;
 
 		// wird schon von HealthModell über delegates aufgerufen
 //		if (healthData.Lifes == healthData.MinLifes)

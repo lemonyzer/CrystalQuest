@@ -26,23 +26,59 @@ public class LayerCollision
 
 public class CollisionDamageTrigger : MonoBehaviour {
 
-	// TODO für EventTrigger<T>
-	// TODO für FloatEventTrigger<T>
-	// TODO für IntEventTrigger<T>
-	// TODO für BoolEventTrigger<T>
-//	void Awake ()
+	[SerializeField]
+	private HealthManager healthManager;
+
+//	void InitHealthManager (HealthManager myHealthManager)
 //	{
-//		// check if CollisionTrigger is listenting itself (wahrscheinlich added trough Inspector)!
-//		//TODO
+//		if (myHealthManager != null)
+//			return;
+//		else
+//		{
+//			Debug.Log ("trying auto. setting Healthmanager...");
+//			myHealthManager = this.GetComponent<HealthManager>();
+//		}
+//
+//		if (myHealthManager == null)
+//			Debug.LogError (this.ToString() + " needs a HealthManager to send Damage");
 //	}
 
-	[SerializeField]
-	List<LayerCollision> layerCollision;// = new List<LayerCollision>();	//TODO -.-  BUG! not visible in Inspector!
+	HealthManager InitHealthManager (HealthManager currentHealthManager)
+	{
+		if (currentHealthManager != null)
+			return currentHealthManager;
+		else
+		{
+			Debug.Log ("trying auto. setting Healthmanager...");
+			HealthManager myHealthManager = this.GetComponent<HealthManager>();
+			if (myHealthManager == null)
+				Debug.LogError ("Auto. setting Failed " + this.ToString() + " needs a HealthManager to send Damage!");
+			return myHealthManager;
+		}
+	}
 
 	[SerializeField]
-	bool IgnoreCollisionIfLayerNotInList = false;
+	private bool sendDamageEnabled = true;
+	
+	[SerializeField]
+	private float sendDamageValue = 100f;
+	
+	[SerializeField]
+	private float sendDamageMulti = 1f;
+	
+	[SerializeField]
+	private bool receiveDamageEnabled = true;
+	
+	[SerializeField]
+	private float receiveDamageMulti = 1f;
 
-	bool IgnoreCollision (Collider2D otherCollider2D)
+	[SerializeField]
+	private bool IgnoreCollisionIfLayerNotInList = false;
+
+	[SerializeField]
+	private List<LayerCollision> layerCollision;// = new List<LayerCollision>();	//TODO -.-  BUG! not visible in Inspector!
+
+	private bool CheckIfCollisionShouldBeIgnored (Collider2D otherCollider2D)
 	{
 		for (int i=0; i<layerCollision.Count; i++)
 		{
@@ -54,24 +90,27 @@ public class CollisionDamageTrigger : MonoBehaviour {
 		return IgnoreCollisionIfLayerNotInList;
 	}
 
-	protected void OnTriggerEnter2D (Collider2D otherCollider2d)
+	private void OnTriggerEnter2D (Collider2D otherCollider2d)
 	{
 		CollisionDamageTrigger otherCollisionTrigger = otherCollider2d.GetComponent <CollisionDamageTrigger>(); 
 		if (otherCollisionTrigger != null)
 		{
 
-			if (IgnoreCollision (otherCollider2d))
+			if (CheckIfCollisionShouldBeIgnored (otherCollider2d))
 			{
 				// generic, alle Collisionen werden gleich behandelt/verarbeitet
 			}
 			else
 			{
+				// Collision is not Ignored -> Start Triggering
 				Debug.Log (this.ToString() + " Collision is not Ignored -> Start Triggering ");
 				float otherSendDamageValue = otherCollisionTrigger.GetDamageValue ();
 				float myDamageValue = sendDamageValue * sendDamageMulti;
 				Debug.Log (this.ToString() + " otherSendDamageValue " + otherSendDamageValue);
 				Debug.Log (this.ToString() + " myDamageValue " + myDamageValue);
-				
+
+				// de-coupling
+
 				// Trigger Collision Event
 				Trigger ();
 
@@ -80,6 +119,10 @@ public class CollisionDamageTrigger : MonoBehaviour {
 					Trigger (otherSendDamageValue);
 				else
 					Trigger (0f);
+
+				// coupling
+//				healthManager.ReceiveHealthDamage (otherSendDamageValue);
+
 			}
 
 //			if (otherCollider2d.gameObject.layer == LayerMask.NameToLayer ("Enemy"))
@@ -100,21 +143,6 @@ public class CollisionDamageTrigger : MonoBehaviour {
 		}
 	}
 
-	[SerializeField]
-	protected bool sendDamageEnabled = true;
-
-	[SerializeField]
-	protected float sendDamageValue = 100f;
-
-	[SerializeField]
-	protected float sendDamageMulti = 1f;
-
-	[SerializeField]
-	protected bool receiveDamageEnabled = true;
-
-	[SerializeField]
-	protected float receiveDamageMulti = 1f;
-
 	public float GetDamageValue ()
 	{
 		if (sendDamageEnabled)
@@ -124,15 +152,16 @@ public class CollisionDamageTrigger : MonoBehaviour {
 	}
 	
 	[SerializeField]
-	protected MyFloatEvent myCollisionDamageEvent;					// Event for my Event-Domain
+	private MyFloatEvent myCollisionDamageEvent;					// Event for my Event-Domain
 
 	void Awake ()
 	{
+		healthManager = InitHealthManager (healthManager);
 //		myCollisionDamageEvent = new MyFloatEvent();
 	}
 
 	[SerializeField]
-	protected UnityEvent myCollisionEvent;								// Event for my Event-Domain
+	private UnityEvent myCollisionEvent;								// Event for my Event-Domain
 
 //	public void StartListening (UnityAction newListener)
 //	{

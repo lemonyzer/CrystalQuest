@@ -57,7 +57,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 108424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.23000002, y: 1.48000002, z: 0}
+  m_LocalPosition: {x: -6.51000023, y: 3.97000003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 450400}
@@ -115,12 +115,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcda33b01ece77e46a2b3c7aa150a626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthData:
-    minHealth: 0
-    maxHealth: 100
-    currentHealth: 100
-    lifes: 1
-    minLifes: 0
+  minHealth: 0
+  maxHealth: 100
+  currentHealth: 100
+  lifes: 1
+  minLifes: 0
   myDieEvent:
     m_PersistentCalls:
       m_Calls:
@@ -164,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreData:
-    scoreValue: 150
+    m_scoreValue: 399
   scored:
     m_PersistentCalls:
       m_Calls: []
@@ -251,29 +250,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1225f381e1c2f5244b157da856cfb9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerCollision:
-  - layerName: Player
-    ignoreCollision: 0
-  - layerName: PlayerProjectiles
-    ignoreCollision: 0
-  IgnoreCollisionIfLayerNotInList: 1
+  healthManager: {fileID: 0}
   sendDamageEnabled: 1
   sendDamageValue: 100
   sendDamageMulti: 1
   receiveDamageEnabled: 1
   receiveDamageMulti: 1
+  IgnoreCollisionIfLayerNotInList: 1
+  layerCollision:
+  - layerName: Player
+    ignoreCollision: 0
+  - layerName: PlayerProjectiles
+    ignoreCollision: 0
   myCollisionDamageEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11428786}
         m_MethodName: ReceiveHealthDamage
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
-          m_FloatArgument: 100
+          m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2

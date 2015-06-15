@@ -22,6 +22,12 @@ public class MyFloatEvent : UnityEvent<float>
 }
 
 [System.Serializable]
+public class MyVector3Event : UnityEvent<Vector3>
+{
+	
+}
+
+[System.Serializable]
 public class MyDataEvent : UnityEvent<MyDataClass>
 {
 	
