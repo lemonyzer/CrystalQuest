@@ -27,7 +27,7 @@ public class CrystalQuestScoreManager : MonoBehaviour {
 		PointsObject.onReleasePoints -= AddPoints;
 	}
 
-	void AddPoints (float value)
+	public void AddPoints (float value)
 	{
 		CurrentLevelScore += value;
 	}
