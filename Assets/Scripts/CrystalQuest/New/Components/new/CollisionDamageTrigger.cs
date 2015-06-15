@@ -101,16 +101,16 @@ public class CollisionDamageTrigger : MonoBehaviour {
 	}
 
 	[SerializeField]
-	protected bool sendDamageEnabled = false;
+	protected bool sendDamageEnabled = true;
 
 	[SerializeField]
-	protected float sendDamageValue = 0f;
+	protected float sendDamageValue = 100f;
 
 	[SerializeField]
 	protected float sendDamageMulti = 1f;
 
 	[SerializeField]
-	protected bool receiveDamageEnabled = false;
+	protected bool receiveDamageEnabled = true;
 
 	[SerializeField]
 	protected float receiveDamageMulti = 1f;

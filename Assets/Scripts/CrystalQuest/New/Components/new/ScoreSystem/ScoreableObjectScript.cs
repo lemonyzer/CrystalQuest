@@ -5,23 +5,23 @@ using System.Collections;
 public class ScoreDataModell {
 
 	[SerializeField]
-	float scoreValue;
+	float m_scoreValue;
 
 	public float ScoreValue {
-		get {return scoreValue;}
-		set {scoreValue = value;}
+		get {return m_scoreValue;}
+		set {m_scoreValue = value;}
 	}
 
 	public void AddPoints (float value)
 	{
-		Debug.Log ("AddPoints " + scoreValue + " + " + value); 
-		scoreValue += value;
+		Debug.Log ("AddPoints " + m_scoreValue + " + " + value); 
+		m_scoreValue += value;
 	}
 
-	public void AddPoints (ScoreDataModell scoreData)
+	public void AddPoints (ScoreDataModell addingScoreData)
 	{
-		Debug.Log ("AddPoints " + scoreValue + " + " + scoreData.scoreValue); 
-		scoreValue += scoreData.ScoreValue;
+		Debug.Log ("AddPoints " + m_scoreValue + " + " + addingScoreData.ScoreValue); 
+		m_scoreValue += addingScoreData.ScoreValue;
 	}
 }
 

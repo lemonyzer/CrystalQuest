@@ -28,7 +28,9 @@ GameObject:
   - 58: {fileID: 5839542}
   - 50: {fileID: 5025186}
   - 114: {fileID: 11441904}
+  - 114: {fileID: 11474924}
   - 114: {fileID: 11466754}
+  - 114: {fileID: 11410624}
   m_Layer: 9
   m_Name: Parasite
   m_TagString: Untagged
@@ -102,6 +104,23 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .5, y: .5}
+--- !u!114 &11410624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c482436b2cdb6b642a075462ea5c853e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreData:
+    m_scoreValue: 10101010
+  scored:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11441904
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -198,12 +217,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcda33b01ece77e46a2b3c7aa150a626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthData:
+  m_healthData:
     minHealth: 0
     maxHealth: 100
     currentHealth: 100
-    lifes: 3
+    lifes: 1
     minLifes: 0
+  myDieEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11410624}
+        m_MethodName: ReleaseScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  myGameOverEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   myHealthUpdateEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -212,9 +251,48 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: MyIntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  collisionTriggerScripts: []
+  collisionDamageTriggerScripts: []
   invincible: 0
   isDead: 0
+--- !u!114 &11474924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1225f381e1c2f5244b157da856cfb9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerCollision: []
+  IgnoreCollisionIfLayerNotInList: 0
+  sendDamageEnabled: 1
+  sendDamageValue: 0
+  sendDamageMulti: 1
+  receiveDamageEnabled: 1
+  receiveDamageMulti: 1
+  myCollisionDamageEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11466754}
+        m_MethodName: ReceiveHealthDamage
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 100
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  myCollisionEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!212 &21224284
 SpriteRenderer:
   m_ObjectHideFlags: 1

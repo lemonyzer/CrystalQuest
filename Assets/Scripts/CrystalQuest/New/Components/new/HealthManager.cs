@@ -81,7 +81,11 @@ public class HealthDataModel {
 		if (onGameOver != null)
 			onGameOver ();
 		else
-			Debug.LogError ("onGameOver no listener");
+		{
+			#if UNITY_EDITOR
+			Debug.LogError ("no \"onGameOver\" listener");
+			#endif
+		}
 	}
 
 	void NotifyDieListener ()
@@ -89,7 +93,11 @@ public class HealthDataModel {
 		if (onDied != null)
 			onDied ();
 		else
-			Debug.LogError ("onDied no listener");
+		{
+			#if UNITY_EDITOR
+			Debug.LogError ("no \"onDied\" listener");
+			#endif
+		}
 	}
 
 	void NotifyHealthValueUpdateListener (float currentHealth)
@@ -98,12 +106,12 @@ public class HealthDataModel {
 		{
 			onHealthUpdate (currentHealth);
 		}
-		#if UNITY_EDITOR
 		else
 		{
-			Debug.LogError(this.ToString() + " no \"onHealthUpdate\" Listener");
+			#if UNITY_EDITOR
+			Debug.LogError(this.ToString () + " no \"onHealthUpdate\" Listener");
+			#endif
 		}
-		#endif
 	}
 
 	void NotifyLifeValueUpdateListener(int numberOfLifes)
@@ -112,12 +120,12 @@ public class HealthDataModel {
 		{
 			onLifeUpdate (numberOfLifes);
 		}
-		#if UNITY_EDITOR
 		else
 		{
-			Debug.LogError(this.ToString() + " no \"onLifeUpdate\" Listener");
+			#if UNITY_EDITOR
+			Debug.LogError(this.ToString () + " no \"onLifeUpdate\" Listener");
+			#endif
 		}
-		#endif
 	}
 	
 	[SerializeField]
@@ -159,7 +167,12 @@ public class HealthDataModel {
 public class HealthManager : MonoBehaviour {
 
 	[SerializeField]
-	private HealthDataModel healthData;// = new HealthDataModel();		//TODO -.-  BUG #1 not visible in Inspector!
+	private HealthDataModel m_healthData;// = new HealthDataModel();		//TODO -.-  BUG #1 not visible in Inspector!
+
+//	void InitHealthDataModellSO (HealthDataModel myHealthData)
+//	{
+//		myHealthData = ScriptableObject.CreateInstance<HealthDataModel>();
+//	}
 
 	void StartHealthModelListening (HealthDataModel healthData)
 	{
@@ -197,14 +210,15 @@ public class HealthManager : MonoBehaviour {
 		NotifyGameOverListener ();
 	}
 
-	void OnEnable () {
-		StartHealthModelListening (healthData);
+	void OnEnable ()
+	{
+		StartHealthModelListening (m_healthData);
 		StartTriggerListListening ();
 	}
 	
 	void OnDisable ()
 	{
-		StopHealthModelListening (healthData);
+		StopHealthModelListening (m_healthData);
 		StopTriggerListListening ();
 	}
 
@@ -242,6 +256,7 @@ public class HealthManager : MonoBehaviour {
 
 	void Awake ()
 	{
+//		InitHealthDataModellSO (healthData);
 		myCollisionTriggerListener = new UnityAction<float> (CollisionAction);
 	}
 
@@ -253,7 +268,7 @@ public class HealthManager : MonoBehaviour {
 
 	void StartTriggerListListening ()
 	{
-		Debug.LogError (this.ToString () + " StartTriggerListListening");
+//		Debug.LogError (this.ToString () + " StartTriggerListListening");
 		if (collisionDamageTriggerScripts != null)
 		{
 			for (int i = 0; i < collisionDamageTriggerScripts.Count; i++)
@@ -265,7 +280,7 @@ public class HealthManager : MonoBehaviour {
 	
 	void StopTriggerListListening ()
 	{
-		Debug.LogError (this.ToString () + " StopTriggerListListening");
+//		Debug.LogError (this.ToString () + " StopTriggerListListening");
 		if (collisionDamageTriggerScripts != null)
 		{
 			for (int i = 0; i < collisionDamageTriggerScripts.Count; i++)
@@ -304,7 +319,7 @@ public class HealthManager : MonoBehaviour {
 			return;
 
 		//		float temp = Health;
-		healthData.Health = healthData.Health - damageValue;
+		m_healthData.Health -= damageValue;
 		
 		// only on Player -> HealthUpdated
 		//		if (temp != Health)
@@ -331,7 +346,7 @@ public class HealthManager : MonoBehaviour {
 
 	public void ReceiveLifeDamge(int lifeDamage)
 	{
-		healthData.Lifes -= lifeDamage;
+		m_healthData.Lifes -= lifeDamage;
 
 		// wird schon von HealthModell über delegates aufgerufen
 //		if (healthData.Lifes == healthData.MinLifes)
