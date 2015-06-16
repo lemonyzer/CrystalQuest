@@ -17,6 +17,8 @@ GameObject:
   - 114: {fileID: 11421846}
   - 114: {fileID: 11478180}
   - 114: {fileID: 11418152}
+  - 114: {fileID: 11405768}
+  - 114: {fileID: 11429200}
   m_Layer: 9
   m_Name: Menace
   m_TagString: Untagged
@@ -106,6 +108,33 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .5, y: .5}
+--- !u!114 &11405768
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 597f619f0b5ea8f43afbdb918b852234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSmartBombTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11489298}
+        m_MethodName: ReceiveFullDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11418152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,6 +235,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11429200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ccf55ab0400b5b48ba01e15000ed547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11430064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -344,7 +384,7 @@ MonoBehaviour:
     m_TypeName: MyIntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   collisionDamageTriggerScripts: []
   invincible: 0
-  isDead: 0
+  m_isDead: 0
 --- !u!212 &21254990
 SpriteRenderer:
   m_ObjectHideFlags: 1

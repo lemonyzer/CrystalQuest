@@ -673,6 +673,9 @@ GameObject:
   - 114: {fileID: 366570081}
   - 114: {fileID: 366570082}
   - 114: {fileID: 366570083}
+  - 114: {fileID: 366570084}
+  - 114: {fileID: 366570085}
+  - 114: {fileID: 366570086}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -810,6 +813,39 @@ MonoBehaviour:
     poolAmount: 0
     poolAmountMax: 0
     canGrow: 0
+--- !u!114 &366570084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 366570074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c2b68dad551b6e4394f51e071925142, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &366570085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 366570074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe1d5ea1fbd99a4baa26a5313ee0f01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &366570086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 366570074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49f426c38fb3064dafda7e09dc7da94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &415301072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1014,6 +1050,9 @@ GameObject:
   - 114: {fileID: 519947541}
   - 114: {fileID: 519947542}
   - 114: {fileID: 519947532}
+  - 114: {fileID: 519947540}
+  - 114: {fileID: 519947543}
+  - 114: {fileID: 519947544}
   m_Layer: 8
   m_Name: Player Ship 2
   m_TagString: Untagged
@@ -1148,7 +1187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1225f381e1c2f5244b157da856cfb9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthManager: {fileID: 519947539}
+  healthManager: {fileID: 0}
   sendDamageEnabled: 1
   sendDamageValue: 3.40282347e+38
   sendDamageMulti: 1
@@ -1158,15 +1197,23 @@ MonoBehaviour:
   layerCollision:
   - layerName: Enemy
     ignoreCollision: 0
-  - layerName: Player
-    ignoreCollision: 0
   - layerName: EnemyProjectiles
-    ignoreCollision: 0
-  - layerName: PlayerProjectiles
     ignoreCollision: 0
   myCollisionDamageEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 519947539}
+        m_MethodName: ReceiveHealthDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   myCollisionEvent:
     m_PersistentCalls:
@@ -1217,6 +1264,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 519947543}
+        m_MethodName: ActivateWithDelay
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 2
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 519947544}
+        m_MethodName: Die
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   myGameOverEvent:
     m_PersistentCalls:
@@ -1232,7 +1303,23 @@ MonoBehaviour:
     m_TypeName: MyIntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   collisionDamageTriggerScripts: []
   invincible: 0
-  isDead: 0
+  m_isDead: 0
+--- !u!114 &519947540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519947531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be554cff936d0424dbce357c42f3f72c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smartBombsAmount: 3
+  minAmountToUse: 1
+  minAmount: 0
+  minUseIntervall: .100000001
+  nextPossibleTrigger: 0
 --- !u!114 &519947541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1254,6 +1341,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 796b3e87015521b4ea93ce192e41a759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &519947543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519947531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f57efe26efd7b49a157254ccf71e0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reactivatePos: {x: 0, y: 0, z: 0}
+  m_ReactivateDelay: 2
+  activated:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &519947544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519947531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dc8af452f77f924eb133abd346a041c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &599728630
@@ -1585,10 +1700,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 2130414024}
     m_Modifications:
-    - target: {fileID: 11428786, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
-      propertyPath: myDieEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 480342, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
       propertyPath: m_LocalPosition.x
       value: -6.23000002
@@ -1621,40 +1732,13 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 11493340, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
-      propertyPath: targetScript
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 108424, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
       propertyPath: m_Name
       value: Pest 1
       objectReference: {fileID: 0}
-    - target: {fileID: 11428786, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
-      propertyPath: myDieEvent.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11428786, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
-      propertyPath: myDieEvent.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &882157843 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 108424, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
-  m_PrefabInternal: {fileID: 882157842}
---- !u!114 &882157844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 882157843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 796b3e87015521b4ea93ce192e41a759, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &919091745
 GameObject:
   m_ObjectHideFlags: 0
@@ -2482,10 +2566,6 @@ Prefab:
     - target: {fileID: 480342, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
       propertyPath: m_RootOrder
       value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 11493340, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
-      propertyPath: targetScript
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}

@@ -33,6 +33,8 @@ GameObject:
   - 114: {fileID: 11442228}
   - 114: {fileID: 11476720}
   - 114: {fileID: 11406418}
+  - 114: {fileID: 11425808}
+  - 114: {fileID: 11478106}
   m_Layer: 9
   m_Name: Dumple
   m_TagString: Untagged
@@ -189,6 +191,33 @@ MonoBehaviour:
     changeDirectionIntervalMin: 1
     minAngle: 0
     maxAngle: 360
+--- !u!114 &11425808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 597f619f0b5ea8f43afbdb918b852234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSmartBombTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11482534}
+        m_MethodName: ReceiveFullDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11442228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -218,6 +247,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionTyp: 0
+--- !u!114 &11478106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ccf55ab0400b5b48ba01e15000ed547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11482534
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -300,7 +340,7 @@ MonoBehaviour:
     m_TypeName: MyIntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   collisionDamageTriggerScripts: []
   invincible: 0
-  isDead: 0
+  m_isDead: 0
 --- !u!114 &11495690
 MonoBehaviour:
   m_ObjectHideFlags: 1

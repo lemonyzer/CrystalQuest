@@ -17,6 +17,8 @@ GameObject:
   - 114: {fileID: 11496516}
   - 114: {fileID: 11493422}
   - 114: {fileID: 11426328}
+  - 114: {fileID: 11410758}
+  - 114: {fileID: 11474030}
   m_Layer: 9
   m_Name: Shrapwarden
   m_TagString: Untagged
@@ -106,6 +108,33 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .5, y: .5}
+--- !u!114 &11410758
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 597f619f0b5ea8f43afbdb918b852234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSmartBombTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11488712}
+        m_MethodName: ReceiveFullDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11426328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,6 +262,17 @@ MonoBehaviour:
     changeDirectionIntervalMin: .100000001
     minAngle: 0
     maxAngle: 360
+--- !u!114 &11474030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ccf55ab0400b5b48ba01e15000ed547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11488712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -315,7 +355,7 @@ MonoBehaviour:
     m_TypeName: MyIntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   collisionDamageTriggerScripts: []
   invincible: 0
-  isDead: 0
+  m_isDead: 0
 --- !u!114 &11493422
 MonoBehaviour:
   m_ObjectHideFlags: 1
