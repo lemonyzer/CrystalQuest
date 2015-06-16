@@ -11,7 +11,9 @@ GameObject:
   - 212: {fileID: 21212956}
   - 60: {fileID: 6028182}
   - 50: {fileID: 5033476}
-  - 114: {fileID: 11453920}
+  - 114: {fileID: 11459724}
+  - 114: {fileID: 11409238}
+  - 114: {fileID: 11402576}
   m_Layer: 12
   m_Name: Bonus Crystal
   m_TagString: Untagged
@@ -40,12 +42,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_FixedAngle: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!60 &6028182
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -67,7 +69,7 @@ PolygonCollider2D:
       - {x: .359375, y: -.078125}
       - {x: .359375, y: .078125}
       - {x: .078125, y: .359375}
---- !u!114 &11453920
+--- !u!114 &11402576
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,37 +77,76 @@ MonoBehaviour:
   m_GameObject: {fileID: 177916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 041ec568088f7894c9317d93fd41dc1c, type: 3}
+  m_Script: {fileID: 11500000, guid: c482436b2cdb6b642a075462ea5c853e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transform: {fileID: 0}
-  destroyScore: 0
-  releasePoints:
+  scoreData:
+    m_scoreValue: 1000
+  scored:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  selfAttack: 0
-  teamAttack: 0
-  invincible: 0
-  minHealth: 0
-  maxHealth: 100
-  currentHealth: 100
-  lifes: 3
-  minLifes: 0
-  isDead: 0
-  useCollisionEvents: 0
-  collisionSendDamageValue: Infinity
-  enableInput: 1
-  inputMoveDirection: {x: 0, y: 0}
-  inputFire: 0
-  inputUseItem: 0
-  canMove: 1
-  maxVelocity: 5
-  rb2D: {fileID: 0}
-  collected:
+    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11409238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796b3e87015521b4ea93ce192e41a759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11459724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1225f381e1c2f5244b157da856cfb9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthManager: {fileID: 0}
+  sendDamageEnabled: 0
+  sendDamageValue: 0
+  sendDamageMulti: 1
+  receiveDamageEnabled: 0
+  receiveDamageMulti: 1
+  IgnoreCollisionIfLayerNotInList: 0
+  layerCollision: []
+  myCollisionDamageEvent:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  myCollisionEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11409238}
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11402576}
+        m_MethodName: ReleaseScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
 --- !u!212 &21212956

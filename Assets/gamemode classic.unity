@@ -1008,12 +1008,12 @@ GameObject:
   - 212: {fileID: 519947535}
   - 50: {fileID: 519947534}
   - 58: {fileID: 519947533}
-  - 114: {fileID: 519947532}
   - 114: {fileID: 519947537}
   - 114: {fileID: 519947538}
   - 114: {fileID: 519947539}
-  - 114: {fileID: 519947540}
   - 114: {fileID: 519947541}
+  - 114: {fileID: 519947542}
+  - 114: {fileID: 519947532}
   m_Layer: 8
   m_Name: Player Ship 2
   m_TagString: Untagged
@@ -1024,40 +1024,21 @@ GameObject:
 --- !u!114 &519947532
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11454766, guid: 74c92f7a73d01894e80af9a9069f4380,
-    type: 2}
-  m_PrefabInternal: {fileID: 771116970}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519947531}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce364bd78272c144eb13619724ae2161, type: 3}
+  m_Script: {fileID: 11500000, guid: 79932393550f6f941beaae95eb365544, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transform: {fileID: 0}
-  destroyScore: 0
-  releasePoints:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  selfAttack: 0
-  teamAttack: 0
-  invincible: 1
-  minHealth: 0
-  maxHealth: 100
-  currentHealth: 100
-  lifes: 3
-  minLifes: 0
-  isDead: 0
-  useCollisionEvents: 0
-  collisionSendDamageValue: 100
-  enableInput: 1
-  inputMoveDirection: {x: 0, y: 0}
-  inputFire: 0
-  inputUseItem: 0
-  canMove: 1
-  maxVelocity: 5
-  rb2D: {fileID: 0}
+  m_moveDirection: {x: 0, y: 0}
+  m_Speed: 5
+  m_DefaultSpeed: 5
+  m_MaxSpeed: 5
+  m_MinSpeed: 5
+  moveEnabled: 0
+  rb2d: {fileID: 0}
 --- !u!58 &519947533
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1207,11 +1188,35 @@ MonoBehaviour:
   minHealth: 0
   maxHealth: 100
   currentHealth: 100
-  lifes: 3
+  lifes: 10
   minLifes: 0
   myDieEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 519947541}
+        m_MethodName: Explode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 519947542}
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   myGameOverEvent:
     m_PersistentCalls:
@@ -1228,24 +1233,6 @@ MonoBehaviour:
   collisionDamageTriggerScripts: []
   invincible: 0
   isDead: 0
---- !u!114 &519947540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11459894, guid: 74c92f7a73d01894e80af9a9069f4380,
-    type: 2}
-  m_PrefabInternal: {fileID: 771116970}
-  m_GameObject: {fileID: 519947531}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c482436b2cdb6b642a075462ea5c853e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scoreData:
-    m_scoreValue: 0
-  scored:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &519947541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1258,6 +1245,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionTyp: 0
+--- !u!114 &519947542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519947531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796b3e87015521b4ea93ce192e41a759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &599728630
 Prefab:
   m_ObjectHideFlags: 0
@@ -1530,7 +1528,8 @@ Prefab:
       propertyPath: m_Name
       value: Player Ship 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 74c92f7a73d01894e80af9a9069f4380, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &780838902
@@ -1625,7 +1624,7 @@ Prefab:
     - target: {fileID: 11493340, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
       propertyPath: targetScript
       value: 
-      objectReference: {fileID: 519947532}
+      objectReference: {fileID: 0}
     - target: {fileID: 108424, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
       propertyPath: m_Name
       value: Pest 1
@@ -1823,10 +1822,6 @@ Prefab:
     - target: {fileID: 462308, guid: 3db5a2bfe6e404244a0aa14f29455ef9, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 136244, guid: 3db5a2bfe6e404244a0aa14f29455ef9, type: 2}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3db5a2bfe6e404244a0aa14f29455ef9, type: 2}
@@ -2051,10 +2046,6 @@ Prefab:
     - target: {fileID: 442894, guid: c7f86345623961147a88f70779e755e1, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 173978, guid: c7f86345623961147a88f70779e755e1, type: 2}
-      propertyPath: m_Layer
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c7f86345623961147a88f70779e755e1, type: 2}
@@ -2495,7 +2486,7 @@ Prefab:
     - target: {fileID: 11493340, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
       propertyPath: targetScript
       value: 
-      objectReference: {fileID: 519947532}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
   m_IsPrefabParent: 0
