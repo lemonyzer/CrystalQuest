@@ -15,6 +15,8 @@ GameObject:
   - 114: {fileID: 11499348}
   - 114: {fileID: 11428786}
   - 114: {fileID: 11470852}
+  - 114: {fileID: 11415488}
+  - 114: {fileID: 11424828}
   m_Layer: 9
   m_Name: Pest
   m_TagString: Untagged
@@ -104,6 +106,29 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .5, y: .5}
+--- !u!114 &11415488
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2b4b0b3ca729cf47ae6b8cd6717ae02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionTyp: 0
+--- !u!114 &11424828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 108424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796b3e87015521b4ea93ce192e41a759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11428786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -125,6 +150,30 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11470852}
         m_MethodName: ReleaseScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11415488}
+        m_MethodName: Explode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11424828}
+        m_MethodName: Disable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -163,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreData:
-    m_scoreValue: 399
+    m_scoreValue: 111
   scored:
     m_PersistentCalls:
       m_Calls: []
