@@ -10,7 +10,25 @@ public class MyEvent : UnityEvent
 }
 
 [System.Serializable]
+public class ItemEvent : UnityEvent<ItemScript>
+{
+	
+}
+
+[System.Serializable]
+public class BoolEvent : UnityEvent<bool>
+{
+	
+}
+
+[System.Serializable]
 public class MyIntEvent : UnityEvent<int>
+{
+	
+}
+
+[System.Serializable]
+public class FloatEvent : UnityEvent<float>
 {
 	
 }

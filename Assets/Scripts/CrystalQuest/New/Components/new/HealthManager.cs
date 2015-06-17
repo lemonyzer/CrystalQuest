@@ -3,6 +3,15 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum HealthManagerEvents
+{
+	ReceiveDamage,
+	OnDie,
+	OnGameOver,
+	OnHealthValueUpdate,
+	OnLifeValueUpdate,
+};
+
 public class HealthManager : MonoBehaviour {
 
 	// UnityEvent dynamic parameter

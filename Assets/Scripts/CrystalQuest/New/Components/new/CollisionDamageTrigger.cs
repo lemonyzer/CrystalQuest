@@ -172,6 +172,24 @@ public class CollisionDamageTrigger : MonoBehaviour {
 //	{
 //		myCollisionEvent.RemoveListener (newListener);
 //	}
+
+//	[SerializeField]
+	private UnityAction<float> collisionDamage;
+
+	void OnEnable ()
+	{
+		DomainEventManager.StartListening (this.gameObject, "Collision", collisionDamage);
+	}
+
+	void OnDisable ()
+	{
+		DomainEventManager.StopListening (this.gameObject, "Collision", collisionDamage);
+	}
+
+	void OnDestroy ()
+	{
+		DomainEventManager.StopListening (this.gameObject, "Collision", collisionDamage);
+	}
 	
 	public void StartListening (UnityAction<float> newFloatListener)
 	{

@@ -676,6 +676,7 @@ GameObject:
   - 114: {fileID: 366570084}
   - 114: {fileID: 366570085}
   - 114: {fileID: 366570086}
+  - 114: {fileID: 366570087}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -844,6 +845,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b49f426c38fb3064dafda7e09dc7da94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &366570087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 366570074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ce506148c55254a941ca13e3412b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &415301072
@@ -1053,6 +1065,8 @@ GameObject:
   - 114: {fileID: 519947540}
   - 114: {fileID: 519947543}
   - 114: {fileID: 519947544}
+  - 114: {fileID: 519947546}
+  - 114: {fileID: 519947545}
   m_Layer: 8
   m_Name: Player Ship 2
   m_TagString: Untagged
@@ -1146,6 +1160,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 227723916}
+  - {fileID: 1536924326}
   m_Father: {fileID: 0}
   m_RootOrder: 7
 --- !u!114 &519947537
@@ -1301,7 +1316,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: MyIntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  collisionDamageTriggerScripts: []
+  collisionDamageTriggerScripts:
+  - {fileID: 0}
   invincible: 0
   m_isDead: 0
 --- !u!114 &519947540
@@ -1371,6 +1387,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dc8af452f77f924eb133abd346a041c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &519947545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519947531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8ce506148c55254a941ca13e3412b6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &519947546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 519947531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e9014c4b07002344b8aa2940093424c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectors:
+  - {fileID: 1536924327}
 --- !u!1001 &599728630
 Prefab:
   m_ObjectHideFlags: 0
@@ -2570,6 +2610,59 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1536924325
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1536924326}
+  - 58: {fileID: 1536924328}
+  - 114: {fileID: 1536924327}
+  m_Layer: 8
+  m_Name: Collector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1536924326
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1536924325}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 519947536}
+  m_RootOrder: 1
+--- !u!114 &1536924327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1536924325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b0037352889d58489d5fd6cbddbb619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &1536924328
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1536924325}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: .25
 --- !u!1001 &1565616936
 Prefab:
   m_ObjectHideFlags: 0
