@@ -165,12 +165,18 @@ public class HealthManager : MonoBehaviour {
 
 	void OnEnable ()
 	{
+
+		DomainEventManager.StartListening (this.gameObject, EventNames.OnReceiveDamage, ReceiveHealthDamage);
+
 //		StartHealthModelListening (m_healthData);
 		StartTriggerListListening ();
 	}
 	
 	void OnDisable ()
 	{
+		DomainEventManager.StopListening (this.gameObject, EventNames.OnReceiveDamage, ReceiveHealthDamage);
+		
+
 //		StopHealthModelListening (m_healthData);
 		StopTriggerListListening ();
 	}
@@ -340,6 +346,7 @@ public class HealthManager : MonoBehaviour {
 
 	void NotifyHealthValueListener (float currentAmountOfHealth)
 	{
+		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnHealthValueUpdate, currentAmountOfHealth);
 		if (myHealthUpdateEvent != null)
 			myHealthUpdateEvent.Invoke (currentAmountOfHealth);
 		else

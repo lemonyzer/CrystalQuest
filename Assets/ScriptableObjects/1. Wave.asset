@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd0632ec22b9054e8a451d1a3feedc7, type: 3}
+  m_Name: 1. Wave
+  m_EditorClassIdentifier: 
+  enemies:
+  - enabled: 1
+    enemy: {fileID: 11400000, guid: d74d45a75c6b31447b73b5dd57e7c0eb, type: 2}
+    amount: 5
+  - enabled: 1
+    enemy: {fileID: 11400000, guid: c61961f1144f66c4d9c80984cb838685, type: 2}
+    amount: 0
+  - enabled: 1
+    enemy: {fileID: 11400000, guid: 9c25048cdf6b0b744a624c7ed69ba2c6, type: 2}
+    amount: 0
+  - enabled: 1
+    enemy: {fileID: 11400000, guid: b8e8c18822225fb478342af918f1b873, type: 2}
+    amount: 0
+  - enabled: 1
+    enemy: {fileID: 11400000, guid: 29148d3e8c92d3a4ab7b0c47e75cd76b, type: 2}
+    amount: 0
+  - enabled: 1
+    enemy: {fileID: 11400000, guid: aa4a48099f4e1c24ea6a0c173f52be7e, type: 2}
+    amount: 0
+  - enabled: 1
+    enemy: {fileID: 11400000, guid: 69732c1979f180d44a4d83efe996db74, type: 2}
+    amount: 0
+  - enabled: 1
+    enemy: {fileID: 11400000, guid: 55566849dae4f8243b5f53e7e0e02039, type: 2}
+    amount: 0
+  - enabled: 1
+    enemy: {fileID: 11400000, guid: d6818c9f47d7a0a40ba1d54af1c10a2d, type: 2}
+    amount: 0
+  - enabled: 1
+    enemy: {fileID: 11400000, guid: 65b73d97817b5fc42a5856c9d74e2951, type: 2}
+    amount: 0
+  - enabled: 1
+    enemy: {fileID: 11400000, guid: 5ed9bc1852fdd6f4da7edb94107c59c9, type: 2}
+    amount: 0
+  - enabled: 1
+    enemy: {fileID: 11400000, guid: 05b76665ff5fc3c40b317bb5ed29939e, type: 2}
+    amount: 0

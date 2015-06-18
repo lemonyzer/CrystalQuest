@@ -19,7 +19,126 @@ using System.Collections.Generic;
 //	}
 //}
 
+// Events auch durch Polymorphie und Interfaces realisierbar
+
+
+/// <summary>
+/// Start, Stop Listening kann durch count  und WithFloatValue automatisiert werden
+/// 
+/// </summary>
+public enum DomainHealthManager
+{
+	HealthValueUpdated,
+	ReceiveHealthDamage,
+	ReceiveLifeDamage,
+	LifeValueUpdated,
+	Count
+};
+
+public enum DomainHealthManagerWithIntValue
+{
+	ReceiveLifeDamage,
+	LifeValueUpdated,
+	Count
+};
+
+public enum DomainHealthManagerWithFloatValue
+{
+	HealthValueUpdated,
+	ReceiveHealthDamage,
+	ReceiveLifeDamage,
+	LifeValueUpdated,
+	Count
+};
+
+public enum DomainPlayer
+{
+	OnDie,
+	OnReceiveDamage,
+	OnRespawn,
+	OnGameOver,
+	On
+};
+
+public class EventNames 
+{
+	
+	/**
+	 * 
+	 * Local
+	 * 
+	 **/
+	
+	public const string OnReceiveDamage = "OnReceiveDamage";
+	public const string OnCollision = "OnCollision";
+	public const string OnDisableCollision = "OnDisableCollision";
+	public const string OnEnableCollision = "OnEnableCollision";
+	public const string OnInvincibleEnabled = "OnInvincibleEnabled";
+	public const string OnInvincibleDisbled = "OnInvincibleDisbled";
+	public const string OnCollisionDamage = "OnCollisionDamage";
+	public const string OnHealthValueUpdate = "OnHealthValueUpdate";
+	public const string OnLifeValueUpdate = "OnLifeValueUpdate";
+	public const string OnDie = "OnLifeValueUpdate";
+	public const string OnExplode = "OnExplode";
+	public const string OnGameOver = "OnLifeValueUpdate";
+	public const string OnDisabled = "OnDisabled";						// inconsistent Start, Stop Listening in -> OnEnable () & OnDisable ()
+	
+	
+	/**
+	 * 
+	 * Global
+	 * 
+	 **/
+	
+	public const string Pause = "Pause"; 								// Stop Spawning, Stop Moving, Stop Timer 
+	public const string Resume = "Resume"; 								// Resum
+	
+	public const string SoundEffectsVolumeChange = "SoundEffectsVolumeChange"; 	// AudioSource -> slider.value update
+	public const string MusicVolumeChange = "MusicVolumeChange"; 		// AudioSource -> slider.value update
+	
+	
+	public const string SmartBombCollected = "SmartBombCollected"; 		// ++ numberOfSmartBombs
+	public const string SmartBombTriggered = "SmartBombTriggered"; 		// -> kill all enemies, bonus items
+	
+	public const string RemoveAllItemTriggered = "RemoveAllItemTriggered";
+	public const string RemoveAllEnemysTriggered = "RemoveAllEnemysTriggered";
+	
+	public const string RemoveAllItems = "RemoveAllItems"; 				// <-
+	
+	public const string RemoveAllEnemies = "RemoveAllEnemies"; 			// -> remove all enemies
+	public const string KillAllEnemies = "KillAllEnemies"; 				// -> kill all enemies
+	
+	public const string DisableControlls = "DisableControlls"; 			// onDie
+	public const string EnableControlls = "EnableControlls"; 			// onRespawn
+	
+	public const string PlayerHitted = "PlayerHitted"; 					// Animation ?? Overlayeffekt
+	public const string PlayerDied = "PlayerDied"; 						// Respawner, instant respawn/ respawn with delay
+	public const string PlayerRespawn = "PlayerRespawn"; 				// ->
+	public const string PlayerRespawned = "PlayerRespawned"; 			// -> ControllsEnable ?
+	public const string PlayerGameOver = "PlayerGameOver"; 				// -> TODO doppelter event DIE/GameOver
+	
+	public const string ShowHightScore = "ShowHightScore"; 
+	
+	public const string DestroyCurrentWave = "DestroyCurrentWave"; 
+	public const string InitNextWave = "InitNextWave"; 					// Load new Wave Objects in Pool
+	public const string StartWave = "StartWave"; 
+	
+	public const string AllCrystalsCollected = "AllCrystalsCollected"; 	// -> Open Portal
+	public const string OpenLevelPortal = "OpenLevelPortal"; 			// -> Open Portal
+	public const string LevelPortalOpened = "LevelPortalOpened"; 		// -> Enemy: Agressiv
+	public const string CloseLevelPortal = "CloseLevelPortal"; 			// -> Close Portal
+	public const string PortalReached = "PortalReached";	 			//
+	public const string LevelMissionComplete = "LevelMissionComplete";	// -> Destroy(Disable)CurrentWave
+	public const string WaveComplete = "WaveComplete"; 
+	
+	public const string StartEnemySpawning = "StartEnemySpawning"; 
+	public const string StopEnemySpawning = "StopEnemySpawning"; 
+}
+
 public class DomainEventManager : MonoBehaviour {
+
+	[SerializeField]
+	private List<string> registeredDomains;
 
 	private Dictionary <string, UnityEvent> eventDictionary;
 	private Dictionary <string, FloatEvent> floatEventDictionary;
@@ -75,30 +194,59 @@ public class DomainEventManager : MonoBehaviour {
 		}
 	}
 
-	public static string GetDomain (MonoBehaviour monoBehaviour, string eventName)
+	public static string GetDomain (Object obj, string eventName)
 	{
-		int id = -1;
-		if (monoBehaviour != null)
+		string prefix = "";
+		int id;
+		if (obj != null)
 		{
-			id = monoBehaviour.GetInstanceID ();
-			return id + "" + eventName;
+			prefix = "obj " + obj.ToString ();
+			id = obj.GetInstanceID ();
 		}
-		return id + "" + eventName;
+		else
+		{
+			prefix = "global";
+			id = 0;
+		}
+		return prefix + id + "" + eventName;
 	}
 
-	public static string GetDomain (GameObject gameObject, string eventName)
+//	public static string GetDomain (MonoBehaviour monoBehaviour, string eventName)
+//	{
+//		int id = -1;
+//		if (monoBehaviour != null)
+//		{
+//			id = monoBehaviour.GetInstanceID ();
+//			return id + "" + eventName;
+//		}
+//		return id + "" + eventName;
+//	}
+//
+//	public static string GetDomain (GameObject gameObject, string eventName)
+//	{
+//		int goId = -1;
+//		if (gameObject != null)
+//		{
+//			goId = gameObject.GetInstanceID ();
+//			return goId + "" + eventName;
+//		}
+//		return goId + "" + eventName;
+//	}
+
+	public static void ListDomain (string domain)
 	{
-		int goId = -1;
-		if (gameObject != null)
-		{
-			goId = gameObject.GetInstanceID ();
-			return goId + "" + eventName;
-		}
-		return goId + "" + eventName;
+		instance.registeredDomains.Add (domain);
+	}
+
+	public static void UnlistDomain (string domain)
+	{
+		instance.registeredDomains.Remove (domain);
 	}
 
 	public static void StartGlobalListening (string globalEventName, UnityAction listener)
 	{
+		ListDomain (globalEventName);
+
 		UnityEvent thisEvent = null;
 		if (instance.eventDictionary.TryGetValue (globalEventName, out thisEvent))
 		{
@@ -114,6 +262,8 @@ public class DomainEventManager : MonoBehaviour {
 
 	public static void StopGlobalListening (string globalEventName, UnityAction listener)
 	{
+		UnlistDomain (globalEventName);
+
 		if (eventManager == null) return;
 		UnityEvent thisEvent = null;
 		if (instance.eventDictionary.TryGetValue (globalEventName, out thisEvent))
@@ -124,6 +274,8 @@ public class DomainEventManager : MonoBehaviour {
 
 	public static void StartGlobalListening (string globalEventName, UnityAction<float> listener)
 	{
+		ListDomain (globalEventName);
+
 		FloatEvent thisEvent = null;
 		if (instance.floatEventDictionary.TryGetValue (globalEventName, out thisEvent))
 		{
@@ -139,6 +291,8 @@ public class DomainEventManager : MonoBehaviour {
 	
 	public static void StopGlobalListening (string globalEventName, UnityAction<float> listener)
 	{
+		UnlistDomain (globalEventName);
+
 		if (eventManager == null) return;
 		FloatEvent thisEvent = null;
 		if (instance.floatEventDictionary.TryGetValue (globalEventName, out thisEvent))
@@ -148,10 +302,10 @@ public class DomainEventManager : MonoBehaviour {
 	}
 
 	#region UnityEvent
-	public static void StartListening (GameObject go, string eventName, UnityAction listener)
+	public static void StartListening (Object obj, string eventName, UnityAction listener)
 	{
 		UnityEvent thisEvent = null;
-		string domain = GetDomain (go, eventName);
+		string domain = GetDomain (obj, eventName);
 		if (instance.eventDictionary.TryGetValue (domain, out thisEvent))
 		{
 			thisEvent.AddListener (listener);
@@ -164,11 +318,11 @@ public class DomainEventManager : MonoBehaviour {
 		}
 	}
 	
-	public static void StopListening (GameObject go, string eventName, UnityAction listener)
+	public static void StopListening (Object obj, string eventName, UnityAction listener)
 	{
 		if (eventManager == null) return;
 		UnityEvent thisEvent = null;
-		string domain = GetDomain (go, eventName);
+		string domain = GetDomain (obj, eventName);
 		if (instance.eventDictionary.TryGetValue (domain, out thisEvent))
 		{
 			thisEvent.RemoveListener (listener);
@@ -177,10 +331,10 @@ public class DomainEventManager : MonoBehaviour {
 	#endregion
 
 	#region UnityEvent<float>
-	public static void StartListening (GameObject go, string eventName, UnityAction<float> listener)
+	public static void StartListening (Object obj, string eventName, UnityAction<float> listener)
 	{
 		FloatEvent thisEvent = null;
-		string domain = GetDomain (go, eventName);
+		string domain = GetDomain (obj, eventName);
 		if (instance.floatEventDictionary.TryGetValue (domain, out thisEvent))
 		{
 			thisEvent.AddListener (listener);
@@ -193,11 +347,11 @@ public class DomainEventManager : MonoBehaviour {
 		}
 	}
 	
-	public static void StopListening (GameObject go, string eventName, UnityAction<float> listener)
+	public static void StopListening (Object obj, string eventName, UnityAction<float> listener)
 	{
 		if (eventManager == null) return;
 		FloatEvent thisEvent = null;
-		string domain = GetDomain (go, eventName);
+		string domain = GetDomain (obj, eventName);
 		if (instance.floatEventDictionary.TryGetValue (domain, out thisEvent))
 		{
 			thisEvent.RemoveListener (listener);
@@ -213,14 +367,52 @@ public class DomainEventManager : MonoBehaviour {
 			thisEvent.Invoke ();
 		}
 	}
+
+	public static void TriggerGlobalEvent (string globalEventName, float value)
+	{
+		FloatEvent thisEvent = null;
+		if (instance.floatEventDictionary.TryGetValue (globalEventName, out thisEvent))
+		{
+			thisEvent.Invoke (value);
+		}
+	}
+
+	public static void TriggerGlobalEvent (string globalEventName, bool value)
+	{
+		BoolEvent thisEvent = null;
+		if (instance.boolEventDictionary.TryGetValue (globalEventName, out thisEvent))
+		{
+			thisEvent.Invoke (value);
+		}
+	}
 	
-	public static void TriggerEvent (GameObject go, string eventName)
+	public static void TriggerEvent (Object obj, string eventName)
 	{
 		UnityEvent thisEvent = null;
-		string domain = GetDomain (go, eventName);
+		string domain = GetDomain (obj, eventName);
 		if (instance.eventDictionary.TryGetValue (domain, out thisEvent))
 		{
 			thisEvent.Invoke ();
+		}
+	}
+
+	public static void TriggerEvent (Object obj, string eventName, float value)
+	{
+		FloatEvent thisEvent = null;
+		string domain = GetDomain (obj, eventName);
+		if (instance.floatEventDictionary.TryGetValue (domain, out thisEvent))
+		{
+			thisEvent.Invoke (value);
+		}
+	}
+
+	public static void TriggerEvent (Object obj, string eventName, bool value)
+	{
+		BoolEvent thisEvent = null;
+		string domain = GetDomain (obj, eventName);
+		if (instance.boolEventDictionary.TryGetValue (domain, out thisEvent))
+		{
+			thisEvent.Invoke (value);
 		}
 	}
 }

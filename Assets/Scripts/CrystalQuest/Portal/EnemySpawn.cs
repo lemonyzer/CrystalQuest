@@ -10,6 +10,9 @@ public class EnemySpawn : CrystalQuestObjectScript {
 	public List<GameObject> enemyPrefabs;
 
 	[SerializeField]
+	private List<Transform> spawnPositions;
+
+	[SerializeField]
 	private Vector3 spawnPositionOffset;
 
 	[SerializeField]
@@ -80,7 +83,9 @@ public class EnemySpawn : CrystalQuestObjectScript {
 	{
 		return Random.Range (enemySpawnIntervallMin, enemySpawnIntervallMax);
 	}
-	
+
+	bool spawningEnabled = false;
+
 	// Update is called once per frame
 	void Update () {
 
@@ -93,6 +98,9 @@ public class EnemySpawn : CrystalQuestObjectScript {
 
 	bool Activ()
 	{
+		if (!spawningEnabled)
+			return false;
+
 		if (enemyPrefabs != null && enemyPrefabs.Count > 0)
 		{
 			if (!SpawnCountMaxReached ())
@@ -162,4 +170,32 @@ public class EnemySpawn : CrystalQuestObjectScript {
 		this.SpawnCount = 0;
 	}
 	#endregion
+
+	void StartSpawning ()
+	{
+		spawningEnabled = true;
+	}
+
+	void StopSpawning ()
+	{
+		spawningEnabled = false;
+	}
+
+	void NextWave ()
+	{
+
+	}
+
+	void OnEnable ()
+	{
+		DomainEventManager.StartGlobalListening (EventNames.StartEnemySpawning, StartSpawning);
+		DomainEventManager.StartGlobalListening (EventNames.StartEnemySpawning, StartSpawning);
+		DomainEventManager.StartGlobalListening (EventNames.StopEnemySpawning, StopSpawning);
+	}
+
+	void OnDisable ()
+	{
+		DomainEventManager.StopGlobalListening (EventNames.StartEnemySpawning, StartSpawning);
+		DomainEventManager.StopGlobalListening (EventNames.StopEnemySpawning, StopSpawning);
+	}
 }
