@@ -22,43 +22,43 @@ using System.Collections.Generic;
 // Events auch durch Polymorphie und Interfaces realisierbar
 
 
-/// <summary>
-/// Start, Stop Listening kann durch count  und WithFloatValue automatisiert werden
-/// 
-/// </summary>
-public enum DomainHealthManager
-{
-	HealthValueUpdated,
-	ReceiveHealthDamage,
-	ReceiveLifeDamage,
-	LifeValueUpdated,
-	Count
-};
-
-public enum DomainHealthManagerWithIntValue
-{
-	ReceiveLifeDamage,
-	LifeValueUpdated,
-	Count
-};
-
-public enum DomainHealthManagerWithFloatValue
-{
-	HealthValueUpdated,
-	ReceiveHealthDamage,
-	ReceiveLifeDamage,
-	LifeValueUpdated,
-	Count
-};
-
-public enum DomainPlayer
-{
-	OnDie,
-	OnReceiveDamage,
-	OnRespawn,
-	OnGameOver,
-	On
-};
+///// <summary>
+///// Start, Stop Listening kann durch count  und WithFloatValue automatisiert werden
+///// 
+///// </summary>
+//public enum DomainHealthManager
+//{
+//	HealthValueUpdated,
+//	ReceiveHealthDamage,
+//	ReceiveLifeDamage,
+//	LifeValueUpdated,
+//	Count
+//};
+//
+//public enum DomainHealthManagerWithIntValue
+//{
+//	ReceiveLifeDamage,
+//	LifeValueUpdated,
+//	Count
+//};
+//
+//public enum DomainHealthManagerWithFloatValue
+//{
+//	HealthValueUpdated,
+//	ReceiveHealthDamage,
+//	ReceiveLifeDamage,
+//	LifeValueUpdated,
+//	Count
+//};
+//
+//public enum DomainPlayer
+//{
+//	OnDie,
+//	OnReceiveDamage,
+//	OnRespawn,
+//	OnGameOver,
+//	On
+//};
 
 public class EventNames 
 {
@@ -69,18 +69,25 @@ public class EventNames
 	 * 
 	 **/
 	
+	public const string OnCollisionDamage = "OnCollisionDamage";
 	public const string OnReceiveDamage = "OnReceiveDamage";
+	public const string OnReceiveFullDamage = "OnReceiveFullDamage";
 	public const string OnCollision = "OnCollision";
 	public const string OnDisableCollision = "OnDisableCollision";
 	public const string OnEnableCollision = "OnEnableCollision";
 	public const string OnInvincibleEnabled = "OnInvincibleEnabled";
 	public const string OnInvincibleDisbled = "OnInvincibleDisbled";
-	public const string OnCollisionDamage = "OnCollisionDamage";
 	public const string OnHealthValueUpdate = "OnHealthValueUpdate";
 	public const string OnLifeValueUpdate = "OnLifeValueUpdate";
-	public const string OnDie = "OnLifeValueUpdate";
+	public const string OnDie = "OnDie";
+	public const string OnLife = "OnLife";
+	public const string RespawnTrigger = "RespawnTrigger";
+	public const string OnDelayedReactivateRequest = "OnDelayedReactivateRequest";
+	public const string OnRespawn = "OnRespawn";
+	public const string OnRespawned = "OnRespawned";
 	public const string OnExplode = "OnExplode";
-	public const string OnGameOver = "OnLifeValueUpdate";
+	public const string OnExplosionFinish = "OnExplosionFinish";		// Pooled Object: unsafe Event-Trigger-System!!!
+	public const string OnGameOver = "OnGameOver";
 	public const string OnDisabled = "OnDisabled";						// inconsistent Start, Stop Listening in -> OnEnable () & OnDisable ()
 	
 	
@@ -89,7 +96,10 @@ public class EventNames
 	 * Global
 	 * 
 	 **/
+
+	public const string ScoredValue = "ScoredValue"; 	 
 	
+
 	public const string Pause = "Pause"; 								// Stop Spawning, Stop Moving, Stop Timer 
 	public const string Resume = "Resume"; 								// Resum
 	
@@ -139,6 +149,18 @@ public class DomainEventManager : MonoBehaviour {
 
 	[SerializeField]
 	private List<string> registeredDomains;
+
+	bool IsAlreadyRegistered (string domain)
+	{
+		for (int i=0; i < registeredDomains.Count; i++)
+		{
+			if (registeredDomains[i].Equals (domain))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
 	private Dictionary <string, UnityEvent> eventDictionary;
 	private Dictionary <string, FloatEvent> floatEventDictionary;
@@ -235,7 +257,8 @@ public class DomainEventManager : MonoBehaviour {
 
 	public static void ListDomain (string domain)
 	{
-		instance.registeredDomains.Add (domain);
+		if (!instance.IsAlreadyRegistered (domain))
+			instance.registeredDomains.Add (domain);
 	}
 
 	public static void UnlistDomain (string domain)

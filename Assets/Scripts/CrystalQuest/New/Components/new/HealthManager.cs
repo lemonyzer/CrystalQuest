@@ -5,65 +5,24 @@ using System.Collections.Generic;
 
 public enum HealthManagerEvents
 {
-	ReceiveDamage,
+	OnReceiveDamage,
 	OnDie,
 	OnGameOver,
 	OnHealthValueUpdate,
 	OnLifeValueUpdate,
+	count
 };
 
 public class HealthManager : MonoBehaviour {
 
-	// UnityEvent dynamic parameter
-	// http://answers.unity3d.com/questions/917623/how-to-fire-unityevent-with-parameters-passed-prog.html
-
-
-//	[SerializeField]
-//	private HealthDataModel m_healthData;// = new HealthDataModel();		//TODO -.-  BUG #1 not visible in Inspector!
-
-//	void InitHealthDataModellSO (HealthDataModel myHealthData)
-//	{
-//		myHealthData = ScriptableObject.CreateInstance<HealthDataModel>();
-//	}
-//	void StartHealthModelListening (HealthDataModel healthData)
-//	{
-//		// TODO Bug #1 not registered for listening to the riht HealthDataModel object/instance!
-//		healthData.onHealthUpdate += OnHealthUpdate;
-//		healthData.onLifeUpdate += OnLifeUpdate;
-//		healthData.onDied += OnDie;
-//		healthData.onGameOver += OnGameOver;
-//	}
-//	void StopHealthModelListening (HealthDataModel healthData)
-//	{
-//		healthData.onHealthUpdate -= OnHealthUpdate;
-//		healthData.onLifeUpdate -= OnLifeUpdate;
-//		healthData.onDied -= OnDie;
-//		healthData.onGameOver -= OnGameOver;
-//	}
-
 	[SerializeField]
 	private float minHealth = 0f;
-	
-//	public float MinHealth {
-//		get {return minHealth;}
-//		set {minHealth = value;}
-//	}
 	
 	[SerializeField]
 	private float maxHealth = 100f;
 	
-//	public float MaxHealth {
-//		get {return maxHealth;}
-//		set {maxHealth = value;}
-//	}
-	
 	[SerializeField]
 	private float currentHealth = 100f;
-	
-//	public float Health {
-//		get {return currentHealth;}
-//		set {currentHealth = value;}
-//	}
 	
 	private float Health {
 		get {return currentHealth;}
@@ -85,7 +44,7 @@ public class HealthManager : MonoBehaviour {
 			{
 				//				Debug.LogError ("[" + value + "] <= " + minHealth);
 				currentHealth = minHealth;
-				OnDie ();
+				OnNoHealth ();
 			}
 			
 			if (temp != currentHealth)
@@ -111,10 +70,6 @@ public class HealthManager : MonoBehaviour {
 	
 	[SerializeField]
 	private int minLifes = 0;
-	
-//	public float MinLifes {
-//		get {return minLifes;}
-//	}
 	
 	private int Lifes {
 		get {return lifes;}
@@ -151,6 +106,12 @@ public class HealthManager : MonoBehaviour {
 		// notify lifeValue listener
 		NotifyLifeValueListener (newAmountOfLifes);
 	}
+
+	void OnNoHealth ()
+	{
+		OnDie ();
+	}
+
 	void OnDie ()
 	{
 		Die ();
@@ -165,30 +126,23 @@ public class HealthManager : MonoBehaviour {
 
 	void OnEnable ()
 	{
-
 		DomainEventManager.StartListening (this.gameObject, EventNames.OnReceiveDamage, ReceiveHealthDamage);
-
-//		StartHealthModelListening (m_healthData);
-		StartTriggerListListening ();
+		DomainEventManager.StartListening (this.gameObject, EventNames.OnReceiveFullDamage, ReceiveFullDamage);
+		DomainEventManager.StartListening (this.gameObject, EventNames.OnRespawn, Respawn);
 	}
 	
 	void OnDisable ()
 	{
 		DomainEventManager.StopListening (this.gameObject, EventNames.OnReceiveDamage, ReceiveHealthDamage);
-		
-
-//		StopHealthModelListening (m_healthData);
-		StopTriggerListListening ();
+		DomainEventManager.StopListening (this.gameObject, EventNames.OnReceiveFullDamage, ReceiveFullDamage);
+		DomainEventManager.StopListening (this.gameObject, EventNames.OnRespawn, Respawn);
 	}
-
-
-	[SerializeField]
-	public static MyFloatEvent myStaticHealthUpdateEvent;		// für was?
-	[SerializeField]
-	public static MyFloatEvent myStaticLifesUpdateEvent;		// für was?
 
 	[SerializeField]
 	private MyEvent myDieEvent;
+
+	[SerializeField]
+	private MyEvent myLifeEvent;
 
 	[SerializeField]
 	private MyEvent myGameOverEvent;
@@ -199,74 +153,13 @@ public class HealthManager : MonoBehaviour {
 	[SerializeField]
 	private MyIntEvent myLifesUpdateEvent;
 
-	#region collision trigger AKA Health Modifiing Trigger 
-//	[SerializeField]
-//	List<MyFloatEvent> healthModifiyingTrigger;				<-- TODO #1 Problem: kann nicht im Inspector ausgefüllt werden 
-
-//	[SerializeField]
-//	List<ScriptWithFloatEvent> healthModifyingTrigger;		<-- TODO #1 Lösung
-
-	[SerializeField]
-	public List<CollisionDamageTrigger> collisionDamageTriggerScripts;	// <-- CollisionTrigger statt FloatEventScript verhindert endloskette
-
-	[SerializeField]
-	public UnityAction<float> myCollisionTriggerListener;
-	#endregion 
-
 	void Awake ()
 	{
-//		InitHealthDataModellSO (healthData);
-		myCollisionTriggerListener = new UnityAction<float> (CollisionAction);
-	}
 
-	void CollisionAction (float damageValue)
-	{
-		ReceiveHealthDamage (damageValue);
-		Debug.Log ("YEAH");
 	}
-
-	void StartTriggerListListening ()
-	{
-//		Debug.LogError (this.ToString () + " StartTriggerListListening");
-		if (collisionDamageTriggerScripts != null)
-		{
-			for (int i = 0; i < collisionDamageTriggerScripts.Count; i++)
-			{
-				collisionDamageTriggerScripts[i].StartListening (myCollisionTriggerListener);
-			}
-		}
-	}
-	
-	void StopTriggerListListening ()
-	{
-//		Debug.LogError (this.ToString () + " StopTriggerListListening");
-		if (collisionDamageTriggerScripts != null)
-		{
-			for (int i = 0; i < collisionDamageTriggerScripts.Count; i++)
-			{
-				collisionDamageTriggerScripts[i].StopListening (myCollisionTriggerListener);
-			}
-		}
-	}
-
-//	public void StartListening (UnityAction<float> floatListener)
-//	{
-//		myEvent.AddListener (listener);
-//	}
-//	
-//	public void StopListening (UnityAction<float> floatListener)
-//	{
-//		myEvent.RemoveListener (listener);
-//	}
 
 	[SerializeField]
 	private bool invincible = false;
-
-	// gehört in collisionManagersebene, nicht in healthmanager
-	//	[SerializeField]
-	//	private bool projectileInvincible = false;
-	//	[SerializeField]
-	//	private bool collisionInvincible = false;
 	
 	[SerializeField]
 	private bool m_isDead = false;
@@ -279,7 +172,6 @@ public class HealthManager : MonoBehaviour {
 				m_isDead = value;
 				//	NotifyIsDeadUpdate ();		// TODO TO DO and check if nessesary, GGF. auslagern in DeadScript und -> Collision Verhindern
 			}
-
 		}
 	}
 
@@ -290,54 +182,25 @@ public class HealthManager : MonoBehaviour {
 	
 	public void ReceiveHealthDamage(float damageValue)
 	{
-		Debug.Log (this.ToString () + " ReceiveHealthDamage value: " + damageValue);
+		Debug.Log (this.ToString () + " ReceiveHealthDamage value: " + damageValue + " but INVINCIBLE!!!");
 		if(invincible)
 			return;
 
-		//		float temp = Health;
+		Debug.Log (this.ToString () + " ReceiveHealthDamage value: " + damageValue);
+
 		Health -= damageValue;
-		
-		// only on Player -> HealthUpdated
-		//		if (temp != Health)
-		//			NotifyHealthListener(Health); 
-		
-		//		if (Health <= minHealth)
-		//		{
-		//			// damageValue > health -> lebensabzug
-		//			Die();
-		//		}
-		//		else
-		//		{
-		//			// not dead, gogogo
-		//		}
 	}
 	
-//	void Die ()
-//	{
-//		// only on Player
-//		// DecreaseLifeCount ();
-//		isDead = true;
-////		this.gameObject.SetActive (false);
-//	}
 
 	public void ReceiveLifeDamge(int lifeDamage)
 	{
 		Lifes -= lifeDamage;
-
-		// wird schon von HealthModell über delegates aufgerufen
-//		if (healthData.Lifes == healthData.MinLifes)
-//		{
-//			// GameOver
-//		}
-//		else
-//		{
-//			// not GameOver, keep trying
-//		}
-//		NotifyLifeValueListener(healthData.Lifes);		
 	}
 
 	void NotifyLifeValueListener (int numberOflifes)
 	{
+		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnLifeValueUpdate, numberOflifes);
+
 		if (myLifesUpdateEvent != null)
 			myLifesUpdateEvent.Invoke (numberOflifes);
 		else
@@ -347,6 +210,7 @@ public class HealthManager : MonoBehaviour {
 	void NotifyHealthValueListener (float currentAmountOfHealth)
 	{
 		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnHealthValueUpdate, currentAmountOfHealth);
+
 		if (myHealthUpdateEvent != null)
 			myHealthUpdateEvent.Invoke (currentAmountOfHealth);
 		else
@@ -355,14 +219,28 @@ public class HealthManager : MonoBehaviour {
 
 	void NotifyDieListener ()
 	{
+		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnDie);
+		
 		if (myDieEvent != null)
 			myDieEvent.Invoke ();
 		else
 			Debug.LogError ("myDieEvent == NULL");
 	}
 
+	void NotifyLifeListener ()
+	{
+		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnLife);
+		
+		if (myLifeEvent != null)
+			myLifeEvent.Invoke ();
+		else
+			Debug.LogError ("myLifeEvent == NULL");
+	}
+
 	void NotifyGameOverListener ()
 	{
+		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnGameOver);
+
 		if (myGameOverEvent != null)
 			myGameOverEvent.Invoke ();
 		else

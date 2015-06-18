@@ -17,12 +17,14 @@ public class RespawnManager : MonoBehaviour {
 
 	void OnEnable ()
 	{
+//		DomainEventManager.StartGlobalListening (EventNames.OnDelayedReactivateRequest, ReactivateWithDelay);
 		RespawnScript.onDelayedReactivateRequest += ReactivateWithDelay;
 //		RespawnScript.onReactivateRequest += Reactivate;
 	}
 
 	void OnDisable ()
 	{
+//		DomainEventManager.StopGlobalListening (EventNames.OnDelayedReactivateRequest, ReactivateWithDelay);
 		RespawnScript.onDelayedReactivateRequest -= ReactivateWithDelay;
 //		RespawnScript.onReactivateRequest -= Reactivate;
 		

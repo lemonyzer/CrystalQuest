@@ -55,6 +55,8 @@ public class ScoreableObjectScript : MonoBehaviour {
 
 	void TriggerOnScored ()
 	{
+		DomainEventManager.TriggerGlobalEvent (EventNames.ScoredValue, this.scoreData.ScoreValue);
+
 		if (onScored != null)
 		{
 			onScored (this.scoreData);

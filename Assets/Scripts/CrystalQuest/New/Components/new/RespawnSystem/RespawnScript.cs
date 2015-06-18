@@ -18,6 +18,16 @@ public class RespawnScript : MonoBehaviour {
 	[SerializeField]
 	MyEvent activated;
 
+//	void OnEnable ()
+//	{
+//		DomainEventManager.StartListening (this.gameObject, EventNames.RespawnTrigger, ActivateWithDelay);
+//	}
+//
+//	void OnDisable ()
+//	{
+//		DomainEventManager.StopListening (this.gameObject, EventNames.RespawnTrigger, ActivateWithDelay);
+//	}
+
 	public delegate void DelayedReactivateRequest (GameObject my, RespawnScript me, float delay);
 	public static event DelayedReactivateRequest onDelayedReactivateRequest;
 
@@ -34,6 +44,7 @@ public class RespawnScript : MonoBehaviour {
 		this.transform.position = reactivatePos;
 		this.gameObject.SetActive (true);
 		activated.Invoke ();
+		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnRespawned);
 	}
 
 	public void ActivateInstant ()
@@ -43,6 +54,7 @@ public class RespawnScript : MonoBehaviour {
 
 	public void ActivateWithDelay ()
 	{
+//		DomainEventManager.TriggerGlobalEvent (EventNames.OnDelayedReactivateRequest);
 		StartCoroutine (WaitAndSpawn (m_ReactivateDelay));
 	}
 

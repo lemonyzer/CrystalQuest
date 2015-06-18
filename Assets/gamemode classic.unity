@@ -858,6 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ce506148c55254a941ca13e3412b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  registeredDomains: []
 --- !u!1 &415301072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,7 +1042,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1225f381e1c2f5244b157da856cfb9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthManager: {fileID: 0}
   sendDamageEnabled: 1
   sendDamageValue: 100
   sendDamageMulti: 1
@@ -1219,7 +1219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1225f381e1c2f5244b157da856cfb9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthManager: {fileID: 0}
   sendDamageEnabled: 1
   sendDamageValue: 3.40282347e+38
   sendDamageMulti: 1
@@ -1272,30 +1271,6 @@ MonoBehaviour:
   myDieEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519947541}
-        m_MethodName: Explode
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 519947542}
-        m_MethodName: Disable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 519947543}
         m_MethodName: ActivateWithDelay
         m_Mode: 4
@@ -1308,18 +1283,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 519947544}
-        m_MethodName: Die
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+    m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  myLifeEvent:
+    m_PersistentCalls:
+      m_Calls: []
     m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   myGameOverEvent:
     m_PersistentCalls:
@@ -1333,8 +1300,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: MyIntEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  collisionDamageTriggerScripts:
-  - {fileID: 0}
   invincible: 0
   m_isDead: 0
 --- !u!114 &519947540
@@ -1415,6 +1380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ce506148c55254a941ca13e3412b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  registeredDomains: []
 --- !u!114 &519947546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3176,7 +3142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1225f381e1c2f5244b157da856cfb9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthManager: {fileID: 0}
   sendDamageEnabled: 1
   sendDamageValue: 100
   sendDamageMulti: 1

@@ -8,6 +8,7 @@ public class LayerCollision
 {
 	[SerializeField]
 	string layerName;
+
 	[SerializeField]
 	bool ignoreCollision;
 
@@ -26,36 +27,37 @@ public class LayerCollision
 
 public class CollisionDamageTrigger : MonoBehaviour {
 
-	[SerializeField]
-	private HealthManager healthManager;
-
-//	void InitHealthManager (HealthManager myHealthManager)
+//	[SerializeField]
+//	private HealthManager healthManager;
+//
+//	// TODO REFERENCE BUG !!!??!!! CALL BY REF ?!!
+////	void InitHealthManager (HealthManager myHealthManager)
+////	{
+////		if (myHealthManager != null)
+////			return;
+////		else
+////		{
+////			Debug.Log ("trying auto. setting Healthmanager...");
+////			myHealthManager = this.GetComponent<HealthManager>();
+////		}
+////
+////		if (myHealthManager == null)
+////			Debug.LogError (this.ToString() + " needs a HealthManager to send Damage");
+////	}
+//
+//	HealthManager InitHealthManager (HealthManager currentHealthManager)
 //	{
-//		if (myHealthManager != null)
-//			return;
+//		if (currentHealthManager != null)
+//			return currentHealthManager;
 //		else
 //		{
 //			Debug.Log ("trying auto. setting Healthmanager...");
-//			myHealthManager = this.GetComponent<HealthManager>();
+//			HealthManager myHealthManager = this.GetComponent<HealthManager>();
+//			if (myHealthManager == null)
+//				Debug.LogError ("Auto. setting Failed " + this.ToString() + " needs a HealthManager to send Damage!");
+//			return myHealthManager;
 //		}
-//
-//		if (myHealthManager == null)
-//			Debug.LogError (this.ToString() + " needs a HealthManager to send Damage");
 //	}
-
-	HealthManager InitHealthManager (HealthManager currentHealthManager)
-	{
-		if (currentHealthManager != null)
-			return currentHealthManager;
-		else
-		{
-			Debug.Log ("trying auto. setting Healthmanager...");
-			HealthManager myHealthManager = this.GetComponent<HealthManager>();
-			if (myHealthManager == null)
-				Debug.LogError ("Auto. setting Failed " + this.ToString() + " needs a HealthManager to send Damage!");
-			return myHealthManager;
-		}
-	}
 
 	[SerializeField]
 	private bool sendDamageEnabled = true;
@@ -92,55 +94,87 @@ public class CollisionDamageTrigger : MonoBehaviour {
 
 	private void OnTriggerEnter2D (Collider2D otherCollider2d)
 	{
-		CollisionDamageTrigger otherCollisionTrigger = otherCollider2d.GetComponent <CollisionDamageTrigger>(); 
-		if (otherCollisionTrigger != null)
+		if (CheckIfCollisionShouldBeIgnored (otherCollider2d))
 		{
+			// generic, alle Collisionen werden gleich behandelt/verarbeitet
+		}
+		else
+		{
+			// Collision is not Ignored -> Start Triggering
+			CollisionDamageTrigger otherCollisionTrigger = otherCollider2d.GetComponent <CollisionDamageTrigger>(); 
+			if (otherCollisionTrigger != null)
+			{
 
-			if (CheckIfCollisionShouldBeIgnored (otherCollider2d))
-			{
-				// generic, alle Collisionen werden gleich behandelt/verarbeitet
-			}
-			else
-			{
-				// Collision is not Ignored -> Start Triggering
 				Debug.Log (this.ToString() + " Collision is not Ignored -> Start Triggering ");
 				float otherSendDamageValue = otherCollisionTrigger.GetDamageValue ();
 				float myDamageValue = sendDamageValue * sendDamageMulti;
 				Debug.Log (this.ToString() + " otherSendDamageValue " + otherSendDamageValue);
 				Debug.Log (this.ToString() + " myDamageValue " + myDamageValue);
 
+				float receiveDamageValue = receiveDamageMulti * otherSendDamageValue;
+
 				// de-coupling
 
 				// Trigger Collision Event
-				Trigger ();
+				NotifyCollision ();
 
 				// Trigger CollisionDamage Event
 				if (receiveDamageEnabled)
-					Trigger (otherSendDamageValue);
-				else
-					Trigger (0f);
+					NotifyCollisionDamage (receiveDamageValue);
+	//				else
+	//					NotifyCollisionDamage (0f);
 
-				// coupling
-//				healthManager.ReceiveHealthDamage (otherSendDamageValue);
-
+	//				// coupling
+	//				healthManager.ReceiveHealthDamage (otherSendDamageValue);
+			}
+			else
+			{
+				#if UNITY_EDITOR
+				Debug.LogError (otherCollider2d.gameObject.name + " has no CollisionTrigger Script attached!");
+				#endif
 			}
 
+		}
+
+//			// additional collisionbehaviour
 //			if (otherCollider2d.gameObject.layer == LayerMask.NameToLayer ("Enemy"))
 //			{
 //				// to this...
-//
-//		    }
+//				
+//			}
 //			else if (otherCollider2d.gameObject.layer == LayerMask.NameToLayer ("Player"))
 //			{
 //				// do that..
 //			}
-		}
-		else
-		{
-			#if UNITY_EDITOR
-			Debug.LogError (otherCollider2d.gameObject.name + " has no CollisionTrigger Script attached!");
-			#endif
-		}
+//
+//			// problem htis is a generic model, can
+//			// additional collisionbehaviour with seperation if this object is player or enemy or... (better with Polymorphism 
+//			// CollisionDamageTrigger <|- EnemyCollisionDamageTrigger
+//			// CollisionDamageTrigger <|- PlayerCollisionDmageTrigger
+//			if (this.gameObject.layer == "Player")
+//			{
+//				if (otherCollider2d.gameObject.layer == LayerMask.NameToLayer ("Enemy"))
+//				{
+//					// to this...
+//
+//			    }
+//				else if (otherCollider2d.gameObject.layer == LayerMask.NameToLayer ("Player"))
+//				{
+//					// do that..
+//				}
+//			}
+//			else if ("Enemy")
+//			{
+//				if (otherCollider2d.gameObject.layer == LayerMask.NameToLayer ("Enemy"))
+//				{
+//					// to this...
+//					
+//				}
+//				else if (otherCollider2d.gameObject.layer == LayerMask.NameToLayer ("Player"))
+//				{
+//					// do that..
+//				}
+//			}
 	}
 
 	public float GetDamageValue ()
@@ -156,7 +190,7 @@ public class CollisionDamageTrigger : MonoBehaviour {
 
 	void Awake ()
 	{
-		healthManager = InitHealthManager (healthManager);
+//		healthManager = InitHealthManager (healthManager);
 //		myCollisionDamageEvent = new MyFloatEvent();
 	}
 
@@ -174,21 +208,21 @@ public class CollisionDamageTrigger : MonoBehaviour {
 //	}
 
 //	[SerializeField]
-	private UnityAction<float> collisionDamage;
+//	private UnityAction<float> collisionDamage;
 
 	void OnEnable ()
 	{
-		DomainEventManager.StartListening (this.gameObject, "Collision", collisionDamage);
+//		DomainEventManager.StartListening (this.gameObject, "Collision", collisionDamage);
 	}
 
 	void OnDisable ()
 	{
-		DomainEventManager.StopListening (this.gameObject, "Collision", collisionDamage);
+//		DomainEventManager.StopListening (this.gameObject, "Collision", collisionDamage);
 	}
 
 	void OnDestroy ()
 	{
-		DomainEventManager.StopListening (this.gameObject, "Collision", collisionDamage);
+//		DomainEventManager.StopListening (this.gameObject, "Collision", collisionDamage);
 	}
 	
 	public void StartListening (UnityAction<float> newFloatListener)
@@ -201,16 +235,20 @@ public class CollisionDamageTrigger : MonoBehaviour {
 		myCollisionDamageEvent.RemoveListener (newFloatListener);
 	}
 
-	public void Trigger ()
+	public void NotifyCollision ()
 	{
+		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnCollision);
+
 		if (myCollisionEvent != null)
 			myCollisionEvent.Invoke ();
 		else
 			Debug.LogError (this.ToString () + " myCollisionEvent == NULL");
 	}
 
-	public void Trigger (float value)
+	public void NotifyCollisionDamage (float value)
 	{
+		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnCollisionDamage, value);
+	
 		if (myCollisionDamageEvent != null)
 			myCollisionDamageEvent.Invoke (value);
 		else
@@ -219,10 +257,10 @@ public class CollisionDamageTrigger : MonoBehaviour {
 
 	// use either Send Damage or Reveice Damage
 	// dont use both!
-	public void ReceiveDamage (float damageValue)
+	public void ReceiveCollisionDamage (float damageValue)
 	{
 		if (receiveDamageEnabled)
-			Trigger (damageValue);
+			NotifyCollisionDamage (damageValue);
 	}
 
 	// use either Send Damage or Reveice Damage
@@ -230,6 +268,6 @@ public class CollisionDamageTrigger : MonoBehaviour {
 	public void SendDamage (CollisionDamageTrigger otherCollisionTrigger, float damageValue)
 	{
 		if (sendDamageEnabled)
-			otherCollisionTrigger.ReceiveDamage (damageValue);
+			otherCollisionTrigger.ReceiveCollisionDamage (damageValue);
 	}
 }

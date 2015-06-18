@@ -11,6 +11,8 @@ public class ScoreableObjectController : MonoBehaviour {
 
 	void OnEnable ()
 	{
+		DomainEventManager.StartGlobalListening (EventNames.ScoredValue, AddPoints);
+
 		// delegate Listening
 		ScoreableObjectScript.onScored += AddPoints;
 		// Unity Event listening
@@ -19,6 +21,8 @@ public class ScoreableObjectController : MonoBehaviour {
 
 	void OnDisable ()
 	{
+		DomainEventManager.StopGlobalListening (EventNames.ScoredValue, AddPoints);
+		
 		ScoreableObjectScript.onScored -= AddPoints;
 		ScoreableObjectScript.gScored.RemoveListener (AddPoints);
 	}

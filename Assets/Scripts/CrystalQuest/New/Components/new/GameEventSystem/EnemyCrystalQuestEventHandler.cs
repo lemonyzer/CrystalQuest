@@ -3,28 +3,29 @@ using System.Collections;
 
 public class EnemyCrystalQuestEventHandler : MonoBehaviour {
 
-	void OnKillEnemy ()
+	void OnKillEnemies ()
 	{
-
+		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnReceiveFullDamage);
 	}
 
 	void OnPlayerDied ()
 	{
-		this.gameObject.SetActive (false);
+		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnDie);				// TODO EventNames.Disable
 	}
 
 	void OnEnable ()
 	{
-		CrystalQuestClassicEventManager.onPlayerDied += OnPlayerDied;
-//		DomainEventManager.StartListening (DomainEventManager.instance, EventNames.KillAllEnemies, OnKillEnemy);
-		DomainEventManager.StartGlobalListening (EventNames.KillAllEnemies, OnKillEnemy);
+//		CrystalQuestClassicEventManager.onPlayerDied += OnPlayerDied;
 		DomainEventManager.StartGlobalListening (EventNames.PlayerDied, OnPlayerDied);
+//		DomainEventManager.StartListening (DomainEventManager.instance, EventNames.KillAllEnemies, OnKillEnemy);
+		DomainEventManager.StartGlobalListening (EventNames.KillAllEnemies, OnKillEnemies);
 	}
 
 	void OnDisable ()
 	{
-		CrystalQuestClassicEventManager.onPlayerDied -= OnPlayerDied;
+//		CrystalQuestClassicEventManager.onPlayerDied -= OnPlayerDied;
+		DomainEventManager.StopGlobalListening (EventNames.PlayerDied, OnPlayerDied);
 //		DomainEventManager.StopListening (DomainEventManager.instance, EventNames.KillAllEnemies, OnKillEnemy);
-		DomainEventManager.StopGlobalListening (EventNames.KillAllEnemies, OnKillEnemy);
+		DomainEventManager.StopGlobalListening (EventNames.KillAllEnemies, OnKillEnemies);
 	}
 }

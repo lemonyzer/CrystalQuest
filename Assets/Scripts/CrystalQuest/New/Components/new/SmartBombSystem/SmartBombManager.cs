@@ -15,15 +15,18 @@ public class SmartBombManager : MonoBehaviour {
 		m_Instance = this;
 	}
 
-	public delegate void Bombing ();
-	public static event Bombing onSmartBombing;
+//	public delegate void Bombing ();
+//	public static event Bombing onSmartBombing;
 
 	// kann durch Singleton Pattern ausgeführt werden
 	public void BombTriggered ()
 	{
-		if (onSmartBombing != null)
-			onSmartBombing ();
-		else
-			Debug.LogError ("no \"onSmartBombing\" listener");
+
+		DomainEventManager.TriggerGlobalEvent (EventNames.SmartBombTriggered);
+
+//		if (onSmartBombing != null)
+//			onSmartBombing ();
+//		else
+//			Debug.LogError ("no \"onSmartBombing\" listener");
 	}
 }

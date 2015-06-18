@@ -4,6 +4,13 @@ using System.Collections;
 public class ExplosionAnimation : MonoBehaviour {
 
 	[SerializeField]
+	private Object m_eventDomain;
+	public Object EventDomain {
+		get {return m_eventDomain;}
+		set {m_eventDomain = value;}
+	}
+
+	[SerializeField]
 	private SpriteRenderer spriteRenderer;
 
 	[SerializeField]
@@ -22,10 +29,18 @@ public class ExplosionAnimation : MonoBehaviour {
 		get {return animationLoops;}
 		set {
 			if (value == 0)
-				Disable ();
+				AnimationFinished ();
 			else
 				animationLoops = value;
 		}
+	}
+
+	void AnimationFinished ()
+	{
+		DomainEventManager.TriggerEvent (m_eventDomain, EventNames.OnExplosionFinish);		// TODO Achtung: mit unlimited Animation [x] wird event nicht getriggert!
+																							// TODO wenn gameObject disabled ist kann ExplosionFinish Event nicht ausgeführt werden.
+																							// Hier wird getriggert, explodiertes GO ist aber vermutlich schon disabled oder im pool bereis wieder verewndet worden, gefährliheS EVENT!!! 
+		Disable ();
 	}
 
 	void Disable ()
