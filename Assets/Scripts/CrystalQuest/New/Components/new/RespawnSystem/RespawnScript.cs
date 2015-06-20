@@ -3,6 +3,12 @@ using System.Collections;
 
 public class RespawnScript : MonoBehaviour {
 
+	void NotExecuted ()
+	{
+		reactivatePos = Vector3.zero;
+		myActivatedEvent = null;
+	}
+
 //	[SerializeField]
 //	private bool setPositionEnabled = true;
 
@@ -16,7 +22,7 @@ public class RespawnScript : MonoBehaviour {
 	private float m_ReactivateDelay = 2f;
 
 	[SerializeField]
-	MyEvent activated;
+	MyEvent myActivatedEvent;
 
 //	void OnEnable ()
 //	{
@@ -31,20 +37,25 @@ public class RespawnScript : MonoBehaviour {
 	public delegate void DelayedReactivateRequest (GameObject my, RespawnScript me, float delay);
 	public static event DelayedReactivateRequest onDelayedReactivateRequest;
 
-	public delegate void ReactivateRequest (GameObject me);
-	public static event ReactivateRequest onReactivateRequest;
+//	public delegate void ReactivateRequest (GameObject me);
+//	public static event ReactivateRequest onReactivateRequest;
 
 	public void PushActivatedEvent ()
 	{
-		activated.Invoke ();
+		myActivatedEvent.Invoke ();
 	}
 
 	public void Activate ()
 	{
 		this.transform.position = reactivatePos;
 		this.gameObject.SetActive (true);
-		activated.Invoke ();
-		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnRespawned);
+
+		Rigidbody2D myRigibody2d = this.gameObject.GetComponent<Rigidbody2D>();
+		if (myRigibody2d != null)
+			myRigibody2d.WakeUp ();
+
+		myActivatedEvent.Invoke ();
+//		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnRespawned);
 	}
 
 	public void ActivateInstant ()
@@ -52,16 +63,17 @@ public class RespawnScript : MonoBehaviour {
 		Activate ();
 	}
 
+	// TODO funktioniert nicht wenn GameObject deaktiviert wurde
+//	public void ActivateWithDelay ()
+//	{
+////		DomainEventManager.TriggerGlobalEvent (EventNames.OnDelayedReactivateRequest);
+//		StartCoroutine (WaitAndSpawn (m_ReactivateDelay));								// doesnt w
+//	}
+
 	public void ActivateWithDelay ()
 	{
-//		DomainEventManager.TriggerGlobalEvent (EventNames.OnDelayedReactivateRequest);
-		StartCoroutine (WaitAndSpawn (m_ReactivateDelay));
-	}
-
-	public void ActivateWithDelay (float delay)
-	{
 		if (onDelayedReactivateRequest != null)
-			onDelayedReactivateRequest (gameObject, this, delay);
+			onDelayedReactivateRequest (gameObject, this, m_ReactivateDelay);
 		else
 			Debug.LogError ("no \"onDelayedReactivateRequest\" listener!");
 //		if (delay < 0f)

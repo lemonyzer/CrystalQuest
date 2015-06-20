@@ -5,6 +5,28 @@ using System.Collections;
 
 public class ExplosionScript : MonoBehaviour {
 
+	[SerializeField]
+	MyEvent explosionTriggered;
+
+	void NotExecuted ()
+	{
+		explosionTriggered = null;
+	}
+
+	void NotifyExplosionTriggered ()
+	{
+		if (explosionTriggered != null)
+		{
+			explosionTriggered.Invoke ();
+		}
+		else
+		{
+			#if UNITY_EDITOR 
+			Debug.LogError ("no \"explosionTriggered\" observer");
+			#endif
+		}
+	}
+
 	// Ohne Explosion Pool Manager
 	// Script Instantiert explosionPrefab an gewünschter stelle, oder an aktuelle GO position
 
@@ -26,18 +48,24 @@ public class ExplosionScript : MonoBehaviour {
 //	[SerializeField]
 //	private Explosion explosion;				// scriptable Object... kann verglichen werden
 
-	void OnEnable ()
-	{
-		DomainEventManager.StartListening (this.gameObject, EventNames.OnDie, Explode);
-	}
+//	void OnEnable ()
+//	{
+//		DomainEventManager.StartListening (this.gameObject, EventNames.OnDie, Explode);
+//	}
+//
+//	void OnDisable ()
+//	{
+//		DomainEventManager.StopListening (this.gameObject, EventNames.OnDie, Explode);
+//	}
 
-	void OnDisable ()
+	void OnExplode ()
 	{
-		DomainEventManager.StopListening (this.gameObject, EventNames.OnDie, Explode);
+		NotifyExplosionTriggered ();
 	}
 
 	public void Explode ()
 	{
+		OnExplode ();
 		GameObject go = ExplosionPoolManager.Instance.GetPooledObject(explosionTyp);
 		if (go != null)
 		{
@@ -58,9 +86,9 @@ public class ExplosionScript : MonoBehaviour {
 		
 	}
 
-	public void NotifyExplodeListener ()
-	{
-		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnExplode);
-		
-	}
+//	public void NotifyExplodeListener ()
+//	{
+//		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnExplode);
+//		
+//	}
 }

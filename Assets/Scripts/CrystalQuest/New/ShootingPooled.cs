@@ -4,6 +4,12 @@ using System.Collections.Generic;
 
 public class ShootingPooled : MonoBehaviour {
 
+	[SerializeField]
+	bool shootTrigger = false;
+
+	[SerializeField]
+	Vector2 m_ShootDirection;
+
 	void Awake ()
 	{
 		CreateProjectilePool ();
@@ -24,6 +30,12 @@ public class ShootingPooled : MonoBehaviour {
 	#region Projectile
 	[SerializeField]
 	protected GameObject projectilePrefab;
+
+	[SerializeField]
+	bool overrideProjectileMaxStayTimer = false;
+
+	[SerializeField]
+	float projectileMaxStayTimer = 1f;
 	
 	[SerializeField]
 	protected Vector3 projectileSpawnPosition;
@@ -62,8 +74,11 @@ public class ShootingPooled : MonoBehaviour {
 	{
 		if (CanShoot ())
 		{
-			if (inputShoot)
-			Shoot ();
+			if (shootTrigger)
+			{
+				shootTrigger = false;		// Trigger
+				Shoot ();
+			}
 		}
 	}
 	
@@ -85,9 +100,11 @@ public class ShootingPooled : MonoBehaviour {
 		GameObject projectile = GetPooledObject ();
 		if (projectile != null)
 		{
-			ProjectileObjectScript projectileScript = projectile.GetComponent<ProjectileObjectScript>();
-			projectileScript.OwnerObjectScript = this.GetComponent<CrystalQuestObjectScript>();
-			Vector3 shootDirection = inputMoveDirection;
+			Projectile projectileScript = projectile.GetComponent<Projectile>();
+			projectileScript.OwnerObject = this.gameObject;
+			if (overrideProjectileMaxStayTimer)
+				projectileScript.SetSelfDestroyTime (projectileMaxStayTimer);
+			Vector3 shootDirection = m_ShootDirection;
 			if (shootDirection == Vector3.zero)
 			{
 				shootDirection = transform.rotation.eulerAngles;
@@ -179,14 +196,32 @@ public class ShootingPooled : MonoBehaviour {
 
 	#region Input
 
-	Vector2 inputMoveDirection;
-	bool inputShoot = false;
+//	Vector2 inputMoveDirection;
+//	void Update()
+//	{
+//		inputMoveDirection.x = Input.GetAxis("Horizontal");
+//		inputMoveDirection.y = Input.GetAxis("Vertical");
+//		inputShoot = Input.GetButton("Fire1");
+//
+//		SetShootDirection (inputMoveDirection);
+//	}
 
-	void Update()
+	void SetShootDirection (Vector2 direction)
 	{
-		inputMoveDirection.x = Input.GetAxis("Horizontal");
-		inputMoveDirection.y = Input.GetAxis("Vertical");
-		inputShoot = Input.GetButton("Fire1");
+		if (direction != Vector2.zero)
+		{
+			m_ShootDirection = direction.normalized;
+		}
+		else
+		{
+			// use last shootDirection...
+		}
+	}
+
+	public void TriggerShoot (Vector2 direction)
+	{
+		shootTrigger = true;
+		SetShootDirection (direction);
 	}
 	#endregion
 }

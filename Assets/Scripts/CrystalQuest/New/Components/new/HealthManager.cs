@@ -3,17 +3,13 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum HealthManagerEvents
-{
-	OnReceiveDamage,
-	OnDie,
-	OnGameOver,
-	OnHealthValueUpdate,
-	OnLifeValueUpdate,
-	count
-};
-
 public class HealthManager : MonoBehaviour {
+
+	void NotExecuted ()
+	{
+		myNoHealthEvent = null;
+		myHealthUpdateEvent = null;
+	}
 
 	[SerializeField]
 	private float minHealth = 0f;
@@ -28,6 +24,9 @@ public class HealthManager : MonoBehaviour {
 		get {return currentHealth;}
 		set
 		{
+			if (IsDead)
+				return;
+
 			float temp = currentHealth;
 			if (value > maxHealth)
 			{
@@ -51,49 +50,16 @@ public class HealthManager : MonoBehaviour {
 				OnHealthUpdate (currentHealth);
 		}
 	}
-	
-	void Die ()
+
+	public void Revive ()
 	{
-		Lifes--;
-		IsDead = true;
+		IsDead = false;
+		Health = maxHealth;
 	}
 
-	public void Respawn ()
+	void Die ()
 	{
-		// eigentlich erst hier Life--
-		Health = maxHealth;
-		IsDead = false;
-	}
-	
-	[SerializeField]
-	private int lifes = 3;
-	
-	[SerializeField]
-	private int minLifes = 0;
-	
-	private int Lifes {
-		get {return lifes;}
-		set
-		{
-			int tempLifes = lifes;
-			bool gameOver = false;
-			
-			if (value > minLifes)
-				lifes = value;
-			else
-			{
-				lifes = minLifes;
-				// TODO FIX problem #1  gameOver flag, zum merken und späteren ausführen von GameOver () notify, als LifeUpdate ()
-				gameOver = true;
-				// NotifyGameOverListener ();			// TODO problem #1, reihenfolge!
-			}
-			
-			if (lifes != tempLifes)
-				OnLifeUpdate (lifes);	// TODO problem #1, reihenfolge
-			
-			if (gameOver)
-				OnGameOver ();				// TODO Fix problem #1
-		}
+		IsDead = true;
 	}
 
 	void OnHealthUpdate (float newHealth)
@@ -101,57 +67,34 @@ public class HealthManager : MonoBehaviour {
 		// notify healthValue listener
 		NotifyHealthValueListener (newHealth);
 	}
-	void OnLifeUpdate (int newAmountOfLifes)
-	{
-		// notify lifeValue listener
-		NotifyLifeValueListener (newAmountOfLifes);
-	}
+
 
 	void OnNoHealth ()
 	{
-		OnDie ();
+		Die ();	// cant't regain life if dead
+		NotifyNoHealthListener ();
 	}
 
-	void OnDie ()
-	{
-		Die ();
-		// notify die interface
-		NotifyDieListener ();
-	}
-	void OnGameOver ()
-	{
-		// notify gameOver interface
-		NotifyGameOverListener ();
-	}
 
-	void OnEnable ()
-	{
-		DomainEventManager.StartListening (this.gameObject, EventNames.OnReceiveDamage, ReceiveHealthDamage);
-		DomainEventManager.StartListening (this.gameObject, EventNames.OnReceiveFullDamage, ReceiveFullDamage);
-		DomainEventManager.StartListening (this.gameObject, EventNames.OnRespawn, Respawn);
-	}
-	
-	void OnDisable ()
-	{
-		DomainEventManager.StopListening (this.gameObject, EventNames.OnReceiveDamage, ReceiveHealthDamage);
-		DomainEventManager.StopListening (this.gameObject, EventNames.OnReceiveFullDamage, ReceiveFullDamage);
-		DomainEventManager.StopListening (this.gameObject, EventNames.OnRespawn, Respawn);
-	}
+//	void OnEnable ()
+//	{
+//		DomainEventManager.StartListening (this.gameObject, EventNames.OnReceiveDamage, ReceiveHealthDamage);
+//		DomainEventManager.StartListening (this.gameObject, EventNames.OnReceiveFullDamage, ReceiveFullDamage);
+//		DomainEventManager.StartListening (this.gameObject, EventNames.OnRespawn, Respawn);
+//	}
+//	
+//	void OnDisable ()
+//	{
+//		DomainEventManager.StopListening (this.gameObject, EventNames.OnReceiveDamage, ReceiveHealthDamage);
+//		DomainEventManager.StopListening (this.gameObject, EventNames.OnReceiveFullDamage, ReceiveFullDamage);
+//		DomainEventManager.StopListening (this.gameObject, EventNames.OnRespawn, Respawn);
+//	}
 
 	[SerializeField]
-	private MyEvent myDieEvent;
-
-	[SerializeField]
-	private MyEvent myLifeEvent;
-
-	[SerializeField]
-	private MyEvent myGameOverEvent;
+	private MyEvent myNoHealthEvent;
 
 	[SerializeField]
 	private MyFloatEvent myHealthUpdateEvent;
-
-	[SerializeField]
-	private MyIntEvent myLifesUpdateEvent;
 
 	void Awake ()
 	{
@@ -179,32 +122,27 @@ public class HealthManager : MonoBehaviour {
 	{
 		ReceiveHealthDamage (Health);
 	}
+
+	public void ReceiveFullDamageIgnoreInvincible ()
+	{
+		Health = minHealth;
+	}
 	
 	public void ReceiveHealthDamage(float damageValue)
 	{
-		Debug.Log (this.ToString () + " ReceiveHealthDamage value: " + damageValue + " but INVINCIBLE!!!");
 		if(invincible)
+		{
+			#if UNITY_EDITOR
+			Debug.Log (this.ToString () + " ReceiveHealthDamage value: " + damageValue + " but INVINCIBLE!!!");
+			#endif 
 			return;
+		}
 
+		#if UNITY_EDITOR
 		Debug.Log (this.ToString () + " ReceiveHealthDamage value: " + damageValue);
+		#endif 
 
 		Health -= damageValue;
-	}
-	
-
-	public void ReceiveLifeDamge(int lifeDamage)
-	{
-		Lifes -= lifeDamage;
-	}
-
-	void NotifyLifeValueListener (int numberOflifes)
-	{
-		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnLifeValueUpdate, numberOflifes);
-
-		if (myLifesUpdateEvent != null)
-			myLifesUpdateEvent.Invoke (numberOflifes);
-		else
-			Debug.LogError ("myLifesUpdateEvent == NULL");
 	}
 
 	void NotifyHealthValueListener (float currentAmountOfHealth)
@@ -217,33 +155,14 @@ public class HealthManager : MonoBehaviour {
 			Debug.LogError ("myHealthUpdateEvent == NULL");
 	}
 
-	void NotifyDieListener ()
+	void NotifyNoHealthListener ()
 	{
 		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnDie);
 		
-		if (myDieEvent != null)
-			myDieEvent.Invoke ();
+		if (myNoHealthEvent != null)
+			myNoHealthEvent.Invoke ();
 		else
 			Debug.LogError ("myDieEvent == NULL");
 	}
-
-	void NotifyLifeListener ()
-	{
-		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnLife);
-		
-		if (myLifeEvent != null)
-			myLifeEvent.Invoke ();
-		else
-			Debug.LogError ("myLifeEvent == NULL");
-	}
-
-	void NotifyGameOverListener ()
-	{
-		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnGameOver);
-
-		if (myGameOverEvent != null)
-			myGameOverEvent.Invoke ();
-		else
-			Debug.LogError ("myGameOverEvent == NULL");
-	}
+	
 }

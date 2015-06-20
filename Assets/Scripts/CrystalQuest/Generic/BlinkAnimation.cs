@@ -40,7 +40,7 @@ public class BlinkAnimation : MonoBehaviour {
 	{
 		currentColorId++;
 		currentColorId = currentColorId % colorList.Length;
-		if (colorList[currentColorId] != null)
+//		if (colorList[currentColorId] != null)						// can't compare color == null => always true
 			spriteRenderer.color = colorList[currentColorId];
 	}
 }

@@ -24,9 +24,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 434748}
-  - 61: {fileID: 6194938}
-  - 114: {fileID: 11428428}
   - 212: {fileID: 21251672}
+  - 61: {fileID: 6194938}
+  - 114: {fileID: 11455894}
+  - 114: {fileID: 11428428}
   m_Layer: 14
   m_Name: Gate
   m_TagString: Untagged
@@ -43,8 +44,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 428900}
   - 61: {fileID: 6136458}
-  - 114: {fileID: 11431798}
   - 212: {fileID: 21285766}
+  - 114: {fileID: 11475308}
   m_Layer: 14
   m_Name: Right
   m_TagString: Untagged
@@ -76,8 +77,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 470524}
   - 61: {fileID: 6184300}
-  - 114: {fileID: 11459042}
   - 212: {fileID: 21276500}
+  - 114: {fileID: 11411746}
   m_Layer: 14
   m_Name: Left
   m_TagString: Untagged
@@ -259,6 +260,33 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: .25}
+--- !u!114 &11411746
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1225f381e1c2f5244b157da856cfb9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sendDamageEnabled: 1
+  sendDamageValue: 100
+  sendDamageMulti: 1
+  receiveDamageEnabled: 1
+  receiveDamageMulti: 1
+  IgnoreCollisionIfLayerNotInList: 0
+  layerCollision: []
+  myCollisionDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  myCollisionEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &11428428
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -291,64 +319,33 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   collider2d: {fileID: 0}
   sendCollisionDamageEnabled: 1
---- !u!114 &11431798
+--- !u!114 &11455894
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 168926}
+  m_GameObject: {fileID: 143068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18dfd116ff7c5cf47beba97c0d9db761, type: 3}
+  m_Script: {fileID: 11500000, guid: 1225f381e1c2f5244b157da856cfb9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transform: {fileID: 0}
-  destroyScore: 0
-  releasePoints:
+  sendDamageEnabled: 1
+  sendDamageValue: 100
+  sendDamageMulti: 1
+  receiveDamageEnabled: 1
+  receiveDamageMulti: 1
+  IgnoreCollisionIfLayerNotInList: 0
+  layerCollision: []
+  myCollisionDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  myCollisionEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  selfAttack: 0
-  teamAttack: 0
-  invincible: 1
-  minHealth: 0
-  maxHealth: 100
-  currentHealth: 100
-  lifes: 3
-  minLifes: 0
-  isDead: 0
-  useCollisionEvents: 0
-  collisionSendDamageValue: Infinity
---- !u!114 &11459042
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 174918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18dfd116ff7c5cf47beba97c0d9db761, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transform: {fileID: 0}
-  destroyScore: 0
-  releasePoints:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  selfAttack: 0
-  teamAttack: 0
-  invincible: 1
-  minHealth: 0
-  maxHealth: 100
-  currentHealth: 100
-  lifes: 3
-  minLifes: 0
-  isDead: 0
-  useCollisionEvents: 0
-  collisionSendDamageValue: Infinity
 --- !u!114 &11471876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -378,6 +375,33 @@ MonoBehaviour:
   isDead: 0
   useCollisionEvents: 0
   collisionSendDamageValue: Infinity
+--- !u!114 &11475308
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1225f381e1c2f5244b157da856cfb9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sendDamageEnabled: 1
+  sendDamageValue: 100
+  sendDamageMulti: 1
+  receiveDamageEnabled: 1
+  receiveDamageMulti: 1
+  IgnoreCollisionIfLayerNotInList: 0
+  layerCollision: []
+  myCollisionDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  myCollisionEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!212 &21251672
 SpriteRenderer:
   m_ObjectHideFlags: 1

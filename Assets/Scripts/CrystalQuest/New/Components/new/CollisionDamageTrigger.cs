@@ -12,6 +12,22 @@ public class LayerCollision
 	[SerializeField]
 	bool ignoreCollision;
 
+	[SerializeField]
+	MyEvent collisionEvent = null;
+
+	[SerializeField]
+	MyFloatEvent collisionDamageEvent = null;
+
+	public void TriggerCollisionEvent ()
+	{
+		collisionEvent.Invoke ();
+	}
+
+	public void TriggerCollisionEvent (float damageValue)
+	{
+		collisionDamageEvent.Invoke (damageValue);
+	}
+
 	public string LayerName {
 		get {return layerName;}
 		set {layerName = value;}
@@ -92,11 +108,26 @@ public class CollisionDamageTrigger : MonoBehaviour {
 		return IgnoreCollisionIfLayerNotInList;
 	}
 
+	private LayerCollision GetLayerCollision (Collider2D otherCollider2D)
+	{
+		for (int i=0; i<layerCollision.Count; i++)
+		{
+			if (layerCollision[i].LayerName == LayerMask.LayerToName (otherCollider2D.gameObject.layer))
+			{
+				return layerCollision[i];
+			}
+		}
+		return null;
+	}
+
 	private void OnTriggerEnter2D (Collider2D otherCollider2d)
 	{
 		if (CheckIfCollisionShouldBeIgnored (otherCollider2d))
 		{
 			// generic, alle Collisionen werden gleich behandelt/verarbeitet
+			#if UNITY_EDITOR
+			Debug.LogError (this.ToString () + " ignore Collision with " + otherCollider2d.gameObject.name);
+			#endif 
 		}
 		else
 		{
@@ -115,10 +146,20 @@ public class CollisionDamageTrigger : MonoBehaviour {
 
 				// de-coupling
 
-				// Trigger Collision Event
+				LayerCollision currentLayerCollision = GetLayerCollision (otherCollider2d);
+				if (currentLayerCollision != null)
+				{
+					// Trigger Layer specific Collision Event
+					currentLayerCollision.TriggerCollisionEvent ();
+
+					// Trigger Layer spzefic Collision Damage Event
+					currentLayerCollision.TriggerCollisionEvent (receiveDamageValue);
+				}
+
+				// Trigger global Collision Event
 				NotifyCollision ();
 
-				// Trigger CollisionDamage Event
+				// Trigger global CollisionDamage Event
 				if (receiveDamageEnabled)
 					NotifyCollisionDamage (receiveDamageValue);
 	//				else
@@ -130,7 +171,7 @@ public class CollisionDamageTrigger : MonoBehaviour {
 			else
 			{
 				#if UNITY_EDITOR
-				Debug.LogError (otherCollider2d.gameObject.name + " has no CollisionTrigger Script attached!");
+				Debug.LogError (this.ToString () + " can't find  CollisionTriggerScript @ " + otherCollider2d.gameObject.name);
 				#endif
 			}
 
