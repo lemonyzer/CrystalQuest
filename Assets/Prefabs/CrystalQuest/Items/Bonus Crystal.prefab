@@ -14,6 +14,7 @@ GameObject:
   - 114: {fileID: 11459724}
   - 114: {fileID: 11409238}
   - 114: {fileID: 11402576}
+  - 114: {fileID: 11460232}
   m_Layer: 12
   m_Name: Bonus Crystal
   m_TagString: Untagged
@@ -148,6 +149,33 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &11460232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 597f619f0b5ea8f43afbdb918b852234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSmartBombTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11409238}
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!212 &21212956
 SpriteRenderer:
   m_ObjectHideFlags: 1

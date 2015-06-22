@@ -10,9 +10,10 @@ GameObject:
   - 4: {fileID: 439874}
   - 212: {fileID: 21236314}
   - 58: {fileID: 5845348}
-  - 114: {fileID: 11469038}
-  - 50: {fileID: 5063132}
   - 114: {fileID: 11411514}
+  - 114: {fileID: 11465868}
+  - 114: {fileID: 11405060}
+  - 114: {fileID: 11404580}
   m_Layer: 12
   m_Name: Level Crystal
   m_TagString: Untagged
@@ -32,21 +33,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &5063132
-Rigidbody2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 155068}
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: .0500000007
-  m_GravityScale: 0
-  m_FixedAngle: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
 --- !u!58 &5845348
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -60,6 +46,68 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: .200000003
+--- !u!114 &11404580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 796b3e87015521b4ea93ce192e41a759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11405060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1225f381e1c2f5244b157da856cfb9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sendDamageEnabled: 1
+  sendDamageValue: 0
+  sendDamageMulti: 1
+  receiveDamageEnabled: 1
+  receiveDamageMulti: 1
+  IgnoreCollisionIfLayerNotInList: 0
+  layerCollision: []
+  myCollisionDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  myCollisionEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11465868}
+        m_MethodName: TriggerCollected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11404580}
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &11411514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,7 +128,7 @@ MonoBehaviour:
   - {r: 1, g: .992156863, b: 1, a: 1}
   - {r: 0, g: 0, b: 0, a: 1}
   currentColorId: 0
---- !u!114 &11469038
+--- !u!114 &11465868
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -88,39 +136,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 155068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 364673f7a7716c64ea14002df2ed872b, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b7d8d892c7f4f74dae8712d0ea5ffac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transform: {fileID: 0}
-  destroyScore: 0
-  releasePoints:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  selfAttack: 0
-  teamAttack: 0
-  invincible: 0
-  minHealth: 0
-  maxHealth: 100
-  currentHealth: 100
-  lifes: 3
-  minLifes: 0
-  isDead: 0
-  useCollisionEvents: 0
-  collisionSendDamageValue: Infinity
-  enableInput: 1
-  inputMoveDirection: {x: 0, y: 0}
-  inputFire: 0
-  inputUseItem: 0
-  canMove: 1
-  maxVelocity: 5
-  rb2D: {fileID: 0}
-  collected:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!212 &21236314
 SpriteRenderer:
   m_ObjectHideFlags: 1

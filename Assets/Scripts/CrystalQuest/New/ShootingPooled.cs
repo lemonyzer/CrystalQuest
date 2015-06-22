@@ -4,6 +4,18 @@ using System.Collections.Generic;
 
 public class ShootingPooled : MonoBehaviour {
 
+	public void Disable ()
+	{
+		shootTrigger = false;
+		this.enabled = false;
+	}
+
+	public void Enable ()
+	{
+		shootTrigger = false;
+		this.enabled = true;
+	}
+
 	[SerializeField]
 	bool shootTrigger = false;
 

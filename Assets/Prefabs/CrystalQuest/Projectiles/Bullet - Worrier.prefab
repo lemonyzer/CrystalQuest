@@ -14,6 +14,8 @@ GameObject:
   - 114: {fileID: 11472416}
   - 114: {fileID: 11414410}
   - 114: {fileID: 11488126}
+  - 114: {fileID: 11445586}
+  - 114: {fileID: 11470958}
   m_Layer: 10
   m_Name: Bullet - Worrier
   m_TagString: Untagged
@@ -74,8 +76,63 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2d: {fileID: 0}
   ownerObject: {fileID: 0}
+  selfDestroyEnabled: 1
   selfDestroyTime: 5
   releaseForce: 0
+--- !u!114 &11445586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 597f619f0b5ea8f43afbdb918b852234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSmartBombTriggered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11488126}
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11470958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967f4964268333846bafc2366a20c636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelCompleted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11488126}
+        m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11472416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -93,7 +150,18 @@ MonoBehaviour:
   receiveDamageEnabled: 1
   receiveDamageMulti: 1
   IgnoreCollisionIfLayerNotInList: 1
-  layerCollision: []
+  layerCollision:
+  - layerName: ProjectileStopper
+    ignoreCollision: 0
+    collisionEvent:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    collisionDamageEvent:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
   myCollisionDamageEvent:
     m_PersistentCalls:
       m_Calls: []

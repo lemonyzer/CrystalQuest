@@ -21,7 +21,10 @@ public class Projectile : MonoBehaviour {
 		get { return ownerObject; }
 		set { ownerObject = value; }
 	}
-	
+
+	[SerializeField]
+	protected bool selfDestroyEnabled = true;
+
 	[SerializeField]
 	protected float selfDestroyTime = 5f;
 
@@ -73,7 +76,8 @@ public class Projectile : MonoBehaviour {
 
 	void Release ()
 	{
-		Invoke ("AutoDestroy", selfDestroyTime);
+		if (selfDestroyEnabled)
+			Invoke ("AutoDestroy", selfDestroyTime);
 	}
 	
 	public void RestartLevel ()

@@ -35,6 +35,8 @@ GameObject:
   - 114: {fileID: 11402570}
   - 114: {fileID: 11407798}
   - 114: {fileID: 11440418}
+  - 114: {fileID: 11453312}
+  - 114: {fileID: 11421434}
   m_Layer: 8
   m_Name: Player Ship 2
   m_TagString: Untagged
@@ -78,7 +80,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.83999991, y: 4.21999979, z: 0}
+  m_LocalPosition: {x: 6.42000008, y: -1.24000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 456926}
@@ -190,6 +192,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 11407798}
+        m_MethodName: Enable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11407798
 MonoBehaviour:
@@ -202,6 +216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85bcd71db7bbd6744910341533cd81fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootTrigger: 0
+  m_ShootDirection: {x: 0, y: 0}
   projectilePrefab: {fileID: 173978, guid: 942db8722dbb115479e10fe983f9252b, type: 2}
   overrideProjectileMaxStayTimer: 0
   projectileMaxStayTimer: 1
@@ -219,6 +235,33 @@ MonoBehaviour:
   projectilePoolWillGrow: 1
   projectilePoolAmountMax: 20
   projectilePool: []
+--- !u!114 &11421434
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7674a4dfc7e249841a2b51277e3c92bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWave:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11406520}
+        m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11440418
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -230,6 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dc78a848b2232e4d91f508083e7bc33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootingPooled: {fileID: 0}
+  m_InputFire: 0
   rb2d: {fileID: 0}
   speed: 5
 --- !u!114 &11444876
@@ -315,6 +360,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b0037352889d58489d5fd6cbddbb619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11453312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be554cff936d0424dbce357c42f3f72c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smartBombsAmount: 3
+  minAmountToUse: 1
+  minAmount: 0
+  minUseIntervall: .100000001
+  nextPossibleTrigger: 0
 --- !u!114 &11465110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -411,6 +472,18 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11478622}
         m_MethodName: Explode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11407798}
+        m_MethodName: Disable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

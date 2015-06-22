@@ -84,6 +84,7 @@ public class EnemySpawn : CrystalQuestObjectScript {
 		return Random.Range (enemySpawnIntervallMin, enemySpawnIntervallMax);
 	}
 
+	[SerializeField]
 	bool spawningEnabled = false;
 
 	// Update is called once per frame
@@ -188,7 +189,6 @@ public class EnemySpawn : CrystalQuestObjectScript {
 
 	void OnEnable ()
 	{
-		DomainEventManager.StartGlobalListening (EventNames.StartEnemySpawning, StartSpawning);
 		DomainEventManager.StartGlobalListening (EventNames.StartEnemySpawning, StartSpawning);
 		DomainEventManager.StartGlobalListening (EventNames.StopEnemySpawning, StopSpawning);
 	}

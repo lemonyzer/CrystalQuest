@@ -24,6 +24,7 @@ public class CrystalQuestCrystalManager : CrystalQuestObjectScript {
 
 	void OnEnable ()
 	{
+		DomainEventManager.StartGlobalListening (EventNames.CrystalsCollected, CrystalCollected);
 		CrystalObject.onCrystalCreated += OnCrystalCreated;
 		CrystalObject.onCrystalCollected += Collected;
 //		CrystalObject.onCreated += RegisterObjectScript;
@@ -32,6 +33,7 @@ public class CrystalQuestCrystalManager : CrystalQuestObjectScript {
 
 	void OnDisable ()
 	{
+		DomainEventManager.StopGlobalListening (EventNames.CrystalsCollected, CrystalCollected);
 		CrystalObject.onCrystalCreated -= OnCrystalCreated;
 		CrystalObject.onCrystalCollected -= Collected;
 //		CrystalObject.onCreated -= RegisterObjectScript;
@@ -63,6 +65,16 @@ public class CrystalQuestCrystalManager : CrystalQuestObjectScript {
 		crystals.Add (crystalScript);
 	}
 
+	void CrystalCollected ()
+	{
+		// crystals.Remove (crystalScript);
+		collectedCount++;
+		if (collectedCount >= crystals.Count)
+		{
+			NotifyAllCrystalsCollectedListener ();
+		}
+	}
+
 	void Collected (CrystalObject crystalScript)
 	{
 		// crystals.Remove (crystalScript);
@@ -79,6 +91,8 @@ public class CrystalQuestCrystalManager : CrystalQuestObjectScript {
 
 	void NotifyAllCrystalsCollectedListener ()
 	{
+		DomainEventManager.TriggerGlobalEvent (EventNames.AllCrystalsCollected);
+
 		if (onAllCrystalsCollected != null)
 			onAllCrystalsCollected ();
 		else

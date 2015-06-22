@@ -134,6 +134,7 @@ public class EventNames
 	public const string StartWave = "StartWave"; 
 	
 	public const string AllCrystalsCollected = "AllCrystalsCollected"; 	// -> Open Portal
+	public const string CrystalsCollected = "CrystalsCollected"; 	// -> 
 	public const string OpenLevelPortal = "OpenLevelPortal"; 			// -> Open Portal
 	public const string LevelPortalOpened = "LevelPortalOpened"; 		// -> Enemy: Agressiv
 	public const string CloseLevelPortal = "CloseLevelPortal"; 			// -> Close Portal
