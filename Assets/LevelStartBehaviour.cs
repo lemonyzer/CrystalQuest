@@ -9,11 +9,11 @@ public class LevelStartBehaviour : MonoBehaviour {
 	}
 
 	void OnEnable () {
-		DomainEventManager.StartGlobalListening (EventNames.StartWave, OnStartWave);
+		DomainEventManager.StartGlobalListening (EventNames.WaveStart, OnStartWave);
 	}
 	
 	void OnDisable () {
-		DomainEventManager.StopGlobalListening (EventNames.StartWave, OnStartWave);
+		DomainEventManager.StopGlobalListening (EventNames.WaveStart, OnStartWave);
 	}
 
 	[SerializeField]

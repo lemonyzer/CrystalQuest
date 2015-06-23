@@ -144,6 +144,8 @@ public class EnemySpawn : CrystalQuestObjectScript {
 //			nextEnemySpawnTimestamp = Time.time + RandomNextSpawnTimestamp();
 			spawnCount++;
 			GameObject newEnemy = InstantiateEnemy (enemyPrefabs[nextSpawningEnemyId], transform.position);
+			newEnemy.SetActive (true);
+			newEnemy.GetComponent<HealthManager>().Revive ();
 			EnemyObjectScript enemyScript = newEnemy.GetComponent<EnemyObjectScript>();
 			if (onEnemySpawned != null)
 			{
@@ -172,12 +174,12 @@ public class EnemySpawn : CrystalQuestObjectScript {
 	}
 	#endregion
 
-	void StartSpawning ()
+	public void StartSpawning ()
 	{
 		spawningEnabled = true;
 	}
 
-	void StopSpawning ()
+	public void StopSpawning ()
 	{
 		spawningEnabled = false;
 	}

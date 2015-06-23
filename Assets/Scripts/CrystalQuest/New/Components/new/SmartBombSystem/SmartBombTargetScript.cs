@@ -22,6 +22,6 @@ public class SmartBombTargetScript : MonoBehaviour {
 	void SmartBombTriggered ()
 	{
 		OnSmartBombTriggered.Invoke ();
-		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnReceiveFullDamage);
+//		DomainEventManager.TriggerEvent (this.gameObject, EventNames.OnReceiveFullDamage);
 	}
 }

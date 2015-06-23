@@ -129,9 +129,12 @@ public class EventNames
 	
 	public const string ShowHightScore = "ShowHightScore"; 
 	
-	public const string DestroyCurrentWave = "DestroyCurrentWave"; 
-	public const string InitNextWave = "InitNextWave"; 					// Load new Wave Objects in Pool
-	public const string StartWave = "StartWave"; 
+	public const string WaveInit = "WaveInit"; 							// Load new Wave Objects in Pool
+	public const string WaveStart = "WaveStart"; 
+	public const string WaveComplete = "WaveComplete"; 
+	public const string WaveFaied = "WaveFaied"; 
+	public const string WaveNext = "WaveNext"; 							// Load new Wave Objects in Pool
+	public const string WaveDestroyCurrent = "WaveDestroyCurrent"; 
 	
 	public const string AllCrystalsCollected = "AllCrystalsCollected"; 	// -> Open Portal
 	public const string CrystalsCollected = "CrystalsCollected"; 	// -> 
@@ -140,7 +143,6 @@ public class EventNames
 	public const string CloseLevelPortal = "CloseLevelPortal"; 			// -> Close Portal
 	public const string PortalReached = "PortalReached";	 			//
 	public const string LevelMissionComplete = "LevelMissionComplete";	// -> Destroy(Disable)CurrentWave
-	public const string WaveComplete = "WaveComplete"; 
 	
 	public const string StartEnemySpawning = "StartEnemySpawning"; 
 	public const string StopEnemySpawning = "StopEnemySpawning"; 

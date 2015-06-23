@@ -3,7 +3,10 @@ using System.Collections;
 
 [System.Serializable]
 public class WaveEnemy {
-	
+
+	[SerializeField]
+	string enemyName;
+
 	[SerializeField]
 	bool enabled = true;
 	
@@ -13,5 +16,12 @@ public class WaveEnemy {
 	[SerializeField]
 	int amount;
 	
-	
+	void OnEnable ()
+	{
+		if (enemy != null)
+		{
+			if (enemy.Prefab != null)
+				this.enemyName = this.enemy.Prefab.name;
+		}
+	}
 }

@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be554cff936d0424dbce357c42f3f72c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smartBombsAmount: 3
+  smartBombsAmount: 10
   minAmountToUse: 1
   minAmount: 0
   minUseIntervall: .100000001
