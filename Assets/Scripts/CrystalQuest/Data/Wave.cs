@@ -25,7 +25,25 @@ public class Wave : ScriptableObject {
 	public List<WaveEnemy> enemies;
 
 	[SerializeField]
-	public WaveCrystal crystal;
+	WaveCrystal crystal;
+
+	[SerializeField]
+	public int mineAmount;
+
+	public void SetAmountOfCrystals (int value)
+	{
+		crystal.amount = value;
+	}
+
+	public int GetAmountOfCrystals ()
+	{
+		return crystal.amount;
+	}
+
+	public int GetAmountOfMines ()
+	{
+		return mineAmount;
+	}
 
 	void OnEnable ()
 	{

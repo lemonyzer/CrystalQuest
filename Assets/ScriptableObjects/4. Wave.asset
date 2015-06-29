@@ -65,3 +65,4 @@ MonoBehaviour:
     prefab: {fileID: 0}
     amount: 10
     enabled: 0
+  mineAmount: 10

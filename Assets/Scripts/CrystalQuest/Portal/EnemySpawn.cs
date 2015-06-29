@@ -179,6 +179,18 @@ public class EnemySpawn : CrystalQuestObjectScript {
 		spawningEnabled = true;
 	}
 
+	public void ResetSpawning ()
+	{
+		nextEnemySpawnTimestamp = Time.time + RandomNextSpawnTimestamp();
+		spawnCount = 0;
+	}
+
+	public void RestartSpawning ()
+	{
+		ResetSpawning ();
+		StartSpawning ();
+	}
+
 	public void StopSpawning ()
 	{
 		spawningEnabled = false;
@@ -189,15 +201,47 @@ public class EnemySpawn : CrystalQuestObjectScript {
 
 	}
 
+	void OnWaveInit ()
+	{
+		// Pooling
+		RestartSpawning ();
+	}
+
+	void OnWaveStart ()
+	{
+		// Spawning enabled
+	}
+
+	void OnWaveFailed ()
+	{
+		StopSpawning ();
+		ResetSpawning ();
+	}
+
+	void OnWaveComplete ()
+	{
+
+	}
+
 	void OnEnable ()
 	{
-		DomainEventManager.StartGlobalListening (EventNames.StartEnemySpawning, StartSpawning);
-		DomainEventManager.StartGlobalListening (EventNames.StopEnemySpawning, StopSpawning);
+		DomainEventManager.StartGlobalListening (EventNames.WaveInit, OnWaveInit);
+		DomainEventManager.StartGlobalListening (EventNames.WaveStart, OnWaveStart);
+		DomainEventManager.StartGlobalListening (EventNames.WaveFailed, OnWaveFailed);
+		DomainEventManager.StartGlobalListening (EventNames.WaveComplete, OnWaveComplete);
+		// TODO DONE: Dependency Inversion
+		// Gedanke dahinter war Componenten unabhängig vom Spiel zu machen, dann muss aber eine Componente alle Componenten kennen und deren Events einzeln aufrufen
+//		DomainEventManager.StartGlobalListening (EventNames.StartEnemySpawning, StartSpawning);
+//		DomainEventManager.StartGlobalListening (EventNames.StopEnemySpawning, StopSpawning);
 	}
 
 	void OnDisable ()
 	{
-		DomainEventManager.StopGlobalListening (EventNames.StartEnemySpawning, StartSpawning);
-		DomainEventManager.StopGlobalListening (EventNames.StopEnemySpawning, StopSpawning);
+		DomainEventManager.StopGlobalListening (EventNames.WaveInit, OnWaveInit);
+		DomainEventManager.StopGlobalListening (EventNames.WaveStart, OnWaveStart);
+		DomainEventManager.StopGlobalListening (EventNames.WaveFailed, OnWaveFailed);
+		DomainEventManager.StopGlobalListening (EventNames.WaveComplete, OnWaveComplete);
+//		DomainEventManager.StopGlobalListening (EventNames.StartEnemySpawning, StartSpawning);
+//		DomainEventManager.StopGlobalListening (EventNames.StopEnemySpawning, StopSpawning);
 	}
 }

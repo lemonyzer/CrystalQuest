@@ -110,10 +110,11 @@ public class CrystalQuestWaveManager : MonoBehaviour {
 		DomainEventManager.StartGlobalListening (EventNames.WaveInit, OnWaveInit);
 		DomainEventManager.StartGlobalListening (EventNames.PlayerDied, OnPlayerDied);
 		DomainEventManager.StartGlobalListening (EventNames.PlayerWillRespawn, OnPlayerWillRespawn);
+		DomainEventManager.StartGlobalListening (EventNames.PlayerRespawned, OnPlayerRespawned);
 		DomainEventManager.StartGlobalListening (EventNames.AllCrystalsCollected, OnAllCrystallsCollected);
 //		DomainEventManager.StartGlobalListening (EventNames.CrystalsCollected, OnCrystalCollected);
 		DomainEventManager.StartGlobalListening (EventNames.PortalReached, OnPlayerTriggerWaveExit);
-		DomainEventManager.StartGlobalListening (EventNames.WaveDestroyCurrent, OnWaveDestroyCurrent);
+//		DomainEventManager.StartGlobalListening (EventNames.WaveDestroyCurrent, OnWaveDestroyCurrent);
 	}
 
 	void OnDisable ()
@@ -121,10 +122,11 @@ public class CrystalQuestWaveManager : MonoBehaviour {
 		DomainEventManager.StopGlobalListening (EventNames.WaveInit, OnWaveInit);
 		DomainEventManager.StopGlobalListening (EventNames.PlayerDied, OnPlayerDied);
 		DomainEventManager.StopGlobalListening (EventNames.PlayerWillRespawn, OnPlayerWillRespawn);
+		DomainEventManager.StopGlobalListening (EventNames.PlayerRespawned, OnPlayerRespawned);
 		DomainEventManager.StopGlobalListening (EventNames.AllCrystalsCollected, OnAllCrystallsCollected);
 //		DomainEventManager.StopGlobalListening (EventNames.CrystalsCollected, OnCrystalCollected);
 		DomainEventManager.StopGlobalListening (EventNames.PortalReached, OnPlayerTriggerWaveExit);
-		DomainEventManager.StopGlobalListening (EventNames.WaveDestroyCurrent, OnWaveDestroyCurrent);
+//		DomainEventManager.StopGlobalListening (EventNames.WaveDestroyCurrent, OnWaveDestroyCurrent);
 	}
 
 	void TriggerAllCrystalsCollected ()
@@ -147,7 +149,10 @@ public class CrystalQuestWaveManager : MonoBehaviour {
 		DomainEventManager.TriggerGlobalEvent (EventNames.WaveFailed);
 	}
 
-
+	void OnPlayerRespawned ()
+	{
+		DomainEventManager.TriggerGlobalEvent (EventNames.WaveStart);
+	}
 
 	void OnAllCrystallsCollected ()
 	{
@@ -179,9 +184,10 @@ public class CrystalQuestWaveManager : MonoBehaviour {
 //		DomainEventManager.TriggerGlobalEvent (EventNames.WaveStart);
 	}
 
-	void OnWaveDestroyCurrent ()
-	{
-		DomainEventManager.TriggerGlobalEvent (EventNames.RemoveAllProjectiles);
-		DomainEventManager.TriggerGlobalEvent (EventNames.RemoveAllProjectiles);
-	}
+	// TODO DONE Dependency Inversion
+//	void OnWaveDestroyCurrent ()
+//	{
+//		DomainEventManager.TriggerGlobalEvent (EventNames.RemoveAllProjectiles);
+//		DomainEventManager.TriggerGlobalEvent (EventNames.RemoveAllProjectiles);
+//	}
 }

@@ -98,6 +98,7 @@ public class EventNames
 	 **/
 
 	public const string ScoredValue = "ScoredValue"; 	 
+	public const string ScoreUpdate = "ScoreUpdate"; 	 
 	
 
 	public const string Pause = "Pause"; 								// Stop Spawning, Stop Moving, Stop Timer 

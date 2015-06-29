@@ -29,7 +29,7 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 		set {
 			collectedCrystals = value;
 			
-			if (value >= CrystalQuestWaveManager.Instance.GetCurrentWave().crystal.amount)
+			if (value >= CrystalQuestWaveManager.Instance.GetCurrentWave ().GetAmountOfCrystals ())
 				NotifyAllCrystalsCollectedListener ();
 		}
 	}
@@ -54,7 +54,7 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 	{
 		collectedCrystals = 0;
 		Wave currentWave = CrystalQuestWaveManager.Instance.GetCurrentWave();
-		int crystalAmount = currentWave.crystal.amount;
+		int crystalAmount = currentWave.GetAmountOfCrystals ();
 		int crystalSpawnedAmount = 0;
 
 		CrystalPoolManager.Instance.Grow (crystalAmount);
@@ -73,7 +73,7 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 				Debug.LogWarning (this.ToString () + " Crystal SpawnPosition failed");
 			}
 		}
-		currentWave.crystal.amount = crystalSpawnedAmount;
+		currentWave.SetAmountOfCrystals (crystalSpawnedAmount);
 	}
 
 	Vector3 GetSpawnPosition () {

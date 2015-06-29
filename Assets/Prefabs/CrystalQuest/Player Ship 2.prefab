@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 456926}
   - 58: {fileID: 5873794}
   m_Layer: 13
-  m_Name: GameObject
+  m_Name: LevelStopper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,6 +37,7 @@ GameObject:
   - 114: {fileID: 11440418}
   - 114: {fileID: 11453312}
   - 114: {fileID: 11421434}
+  - 114: {fileID: 11491398}
   m_Layer: 8
   m_Name: Player Ship 2
   m_TagString: Untagged
@@ -204,6 +205,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 11491398}
+        m_MethodName: NotifyPlayerRespawned
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11407798
 MonoBehaviour:
@@ -296,7 +309,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  IgnoreCollisionIfLayerNotInList: 0
+  IgnoreCollisionIfLayerNotInList: 1
   layerCollision:
   - layerName: Enemy
     layerMask:
@@ -452,6 +465,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   explosionTyp: 0
+--- !u!114 &11491398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dc8af452f77f924eb133abd346a041c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11494330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -496,6 +520,18 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 11407798}
         m_MethodName: Disable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11491398}
+        m_MethodName: NotifyPlayerDie
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

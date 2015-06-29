@@ -40,6 +40,11 @@ public class PlayerCrystalQuestTrigger : MonoBehaviour {
 		DomainEventManager.TriggerGlobalEvent (EventNames.PlayerGameOver);
 	}
 
+	public void NotifyPlayerRespawned ()
+	{
+		DomainEventManager.TriggerGlobalEvent (EventNames.PlayerRespawned);
+	}
+
 	public void Die ()
 	{
 //		if (onDied != null)

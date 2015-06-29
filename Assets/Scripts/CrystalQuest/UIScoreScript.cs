@@ -47,12 +47,17 @@ public class UIScoreScript : MonoBehaviour {
 		// Variante C
 		// score wird von CrystalQuestScoreManager verwaltet
 		CrystalQuestScoreManager.onScoreUpdate += UpdateUI;
+
+		// Variante D
+		DomainEventManager.StartGlobalListening (EventNames.ScoreUpdate, UpdateUI);
 	}
 	
 	void OnDisable() {
 //		PointsObject.onReleasePoints -= UpdateUI;
 //		PlayerObjectScript.onScoreUpdate -= UpdateUI;
 		CrystalQuestScoreManager.onScoreUpdate -= UpdateUI;
+
+		DomainEventManager.StopGlobalListening (EventNames.ScoreUpdate, UpdateUI);
 	}
 	#endregion
 

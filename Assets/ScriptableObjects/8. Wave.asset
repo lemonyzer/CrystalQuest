@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd0632ec22b9054e8a451d1a3feedc7, type: 3}
   m_Name: 8. Wave
   m_EditorClassIdentifier: 
-  waveName: 4. Wave 3
+  waveName: 8. Wave
   enemies:
   - enemyName: 
     enabled: 1
@@ -65,3 +65,4 @@ MonoBehaviour:
     prefab: {fileID: 0}
     amount: 18
     enabled: 0
+  mineAmount: 18
