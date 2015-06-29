@@ -17,6 +17,7 @@ GameObject:
   - 114: {fileID: 11400884}
   - 114: {fileID: 11455800}
   - 114: {fileID: 11437442}
+  - 114: {fileID: 11478112}
   m_Layer: 10
   m_Name: Bouncing Bomb - Bane
   m_TagString: Untagged
@@ -142,6 +143,17 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11478112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dafc0224c7deda4fb3d364004863856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11484356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,6 +186,9 @@ MonoBehaviour:
   sendDamageMulti: 1
   receiveDamageEnabled: 1
   receiveDamageMulti: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   IgnoreCollisionIfLayerNotInList: 1
   layerCollision: []
   myCollisionDamageEvent:

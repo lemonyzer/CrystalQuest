@@ -2,7 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class CrystalQuestCrystalManager : CrystalQuestObjectScript {
+[System.Serializable]
+public class LayerDistance 
+{
+	public LayerMask layerMask;
+	public float distance = 1f;
+}
+
+public class CrystalQuestCrystalManager : MonoBehaviour {
 
 	// sucht alle in der Scene instanziierten Crystalle
 	// listen to neue Crystalinstanziierung
@@ -14,6 +21,27 @@ public class CrystalQuestCrystalManager : CrystalQuestObjectScript {
 	[SerializeField]
 	float collectedCount = 0;
 
+	[SerializeField]
+	int collectedCrystals = 0;
+	
+	public int CollectedCrystals {
+		get {return collectedCrystals;}
+		set {
+			collectedCrystals = value;
+			
+			if (value >= CrystalQuestWaveManager.Instance.GetCurrentWave().crystal.amount)
+				NotifyAllCrystalsCollectedListener ();
+		}
+	}
+
+	[SerializeField]
+	List<LayerDistance> distances;
+
+//	[SerializeField]	LayerMask crystalls;
+//	[SerializeField]	LayerMask mines;
+//	[SerializeField]	float distanceBetweenCrystalls = 1f;
+//	[SerializeField]	float distanceBetweenMines = 1f;
+
 //	[SerializeField]
 //	List<CollectableObject> crystals2;
 
@@ -22,20 +50,80 @@ public class CrystalQuestCrystalManager : CrystalQuestObjectScript {
 	// element count = 0 -> open gate
 
 
+	void OnWaveInit ()
+	{
+		collectedCrystals = 0;
+		Wave currentWave = CrystalQuestWaveManager.Instance.GetCurrentWave();
+		int crystalAmount = currentWave.crystal.amount;
+		int crystalSpawnedAmount = 0;
+
+		CrystalPoolManager.Instance.Grow (crystalAmount);
+		for (int i=0; i<crystalAmount; i++)
+		{
+			Vector3 spawnPosition = GetSpawnPosition ();
+			if (spawnPosition != Vector3.zero)
+			{
+				GameObject pooledCrystal = CrystalPoolManager.Instance.GetObject ();
+				pooledCrystal.SetActive (true);
+				pooledCrystal.transform.position = spawnPosition;
+				crystalSpawnedAmount++;
+			}
+			else
+			{
+				Debug.LogWarning (this.ToString () + " Crystal SpawnPosition failed");
+			}
+		}
+		currentWave.crystal.amount = crystalSpawnedAmount;
+	}
+
+	Vector3 GetSpawnPosition () {
+		Vector3 spawnPosition = new Vector3 ();
+		float startTime = Time.realtimeSinceStartup;
+		bool overlapping = true;
+		while (overlapping == true) {
+			Vector2 spawnPositionRaw = CrystalQuestLevelManager.Instance.GetRandomLevelPositionWithoutPlayerSpawn();
+			spawnPosition = spawnPositionRaw;
+//			overlapping = !Physics.CheckSphere (spawnPosition, 0.75f);
+			overlapping = IsOverlaping (spawnPosition);
+			if (Time.realtimeSinceStartup - startTime > 0.5f) {
+				Debug.Log ("Time out placing Minion!");
+				return Vector3.zero;
+			}
+		}
+		return spawnPosition;
+	}
+
+	bool IsOverlaping (Vector3 position)
+	{
+		for (int i = 0; i < distances.Count; i++)
+		{
+			LayerDistance current = distances[i];
+			Collider2D overlappingCollider2d = Physics2D.OverlapCircle (position, current.distance, current.layerMask);
+			if (overlappingCollider2d != null)
+			{
+				Debug.Log ("overlapping " + overlappingCollider2d.gameObject.ToString () + " @ " + overlappingCollider2d.transform.position);
+				return true;
+			}
+		}
+		return false;
+	}
+
 	void OnEnable ()
 	{
-		DomainEventManager.StartGlobalListening (EventNames.CrystalsCollected, CrystalCollected);
-		CrystalObject.onCrystalCreated += OnCrystalCreated;
-		CrystalObject.onCrystalCollected += Collected;
+		DomainEventManager.StartGlobalListening (EventNames.WaveInit, OnWaveInit);
+		DomainEventManager.StartGlobalListening (EventNames.CrystalsCollected, OnCrystalCollected);
+//		CrystalObject.onCrystalCreated += OnCrystalCreated;
+//		CrystalObject.onCrystalCollected += Collected;
 //		CrystalObject.onCreated += RegisterObjectScript;
 //		CrystalObject.onDestroyed += UnregisterObjectScript;
 	}
 
 	void OnDisable ()
 	{
-		DomainEventManager.StopGlobalListening (EventNames.CrystalsCollected, CrystalCollected);
-		CrystalObject.onCrystalCreated -= OnCrystalCreated;
-		CrystalObject.onCrystalCollected -= Collected;
+		DomainEventManager.StopGlobalListening (EventNames.WaveInit, OnWaveInit);
+		DomainEventManager.StopGlobalListening (EventNames.CrystalsCollected, OnCrystalCollected);
+//		CrystalObject.onCrystalCreated -= OnCrystalCreated;
+//		CrystalObject.onCrystalCollected -= Collected;
 //		CrystalObject.onCreated -= RegisterObjectScript;
 //		CrystalObject.onDestroyed -= UnregisterObjectScript;
 	}
@@ -65,43 +153,43 @@ public class CrystalQuestCrystalManager : CrystalQuestObjectScript {
 		crystals.Add (crystalScript);
 	}
 
-	void CrystalCollected ()
+	void OnCrystalCollected ()
 	{
 		// crystals.Remove (crystalScript);
-		collectedCount++;
-		if (collectedCount >= crystals.Count)
-		{
-			NotifyAllCrystalsCollectedListener ();
-		}
+		CollectedCrystals++;
+//		if (collectedCount >= crystals.Count)
+//		{
+//			NotifyAllCrystalsCollectedListener ();
+//		}
 	}
 
 	void Collected (CrystalObject crystalScript)
 	{
 		// crystals.Remove (crystalScript);
-		collectedCount++;
+		CollectedCrystals++;
 		if (collectedCount >= crystals.Count)
 		{
 			NotifyAllCrystalsCollectedListener ();
 		}
 	}
 
-	// portal gate öffnen
-	public delegate void AllCrystalsCollected ();
-	public static event AllCrystalsCollected onAllCrystalsCollected;
-
+//	// portal gate öffnen
+//	public delegate void AllCrystalsCollected ();
+//	public static event AllCrystalsCollected onAllCrystalsCollected;
+//
 	void NotifyAllCrystalsCollectedListener ()
 	{
 		DomainEventManager.TriggerGlobalEvent (EventNames.AllCrystalsCollected);
 
-		if (onAllCrystalsCollected != null)
-			onAllCrystalsCollected ();
-		else
-			Debug.LogError (this.ToString() + " no onAllCrystalsCollected listener");
+//		if (onAllCrystalsCollected != null)
+//			onAllCrystalsCollected ();
+//		else
+//			Debug.LogError (this.ToString() + " no onAllCrystalsCollected listener");
 	}
-
-	public override void NextLevel (int level)
-	{
-		base.NextLevel (level);
-		this.collectedCount = 0;
-	}
+//
+//	public override void NextLevel (int level)
+//	{
+//		base.NextLevel (level);
+//		this.collectedCount = 0;
+//	}
 }

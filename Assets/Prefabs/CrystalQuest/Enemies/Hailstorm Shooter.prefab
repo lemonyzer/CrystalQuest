@@ -39,6 +39,7 @@ GameObject:
   - 114: {fileID: 11447422}
   - 114: {fileID: 11440074}
   - 114: {fileID: 11487888}
+  - 114: {fileID: 11491912}
   m_Layer: 9
   m_Name: Hailstorm Shooter
   m_TagString: Untagged
@@ -418,6 +419,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11491912
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 182966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2a912f86fe11d4ba6bc075e43d646d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthManager: {fileID: 11423972}
+  explosionScript: {fileID: 11456340}
 --- !u!114 &11493434
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -434,9 +448,15 @@ MonoBehaviour:
   sendDamageMulti: 1
   receiveDamageEnabled: 1
   receiveDamageMulti: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   IgnoreCollisionIfLayerNotInList: 0
   layerCollision:
   - layerName: Player
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 256
     ignoreCollision: 0
     collisionEvent:
       m_PersistentCalls:
@@ -448,6 +468,9 @@ MonoBehaviour:
       m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
   - layerName: PlayerProjectiles
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 2048
     ignoreCollision: 0
     collisionEvent:
       m_PersistentCalls:

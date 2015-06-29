@@ -149,7 +149,7 @@ public class EnemySpawn : CrystalQuestObjectScript {
 			EnemyObjectScript enemyScript = newEnemy.GetComponent<EnemyObjectScript>();
 			if (onEnemySpawned != null)
 			{
-				onEnemySpawned (enemyScript);
+				onEnemySpawned (enemyScript);		// gameController / ai kann target setzen (singleplayer: singleton/cache/findGameObject)
 			}
 			else
 			{

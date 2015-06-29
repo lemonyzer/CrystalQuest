@@ -10,6 +10,9 @@ public class LayerCollision
 	string layerName;
 
 	[SerializeField]
+	LayerMask layerMask;
+
+	[SerializeField]
 	bool ignoreCollision;
 
 	[SerializeField]
@@ -26,6 +29,11 @@ public class LayerCollision
 	public void TriggerCollisionEvent (float damageValue)
 	{
 		collisionDamageEvent.Invoke (damageValue);
+	}
+
+	public LayerMask LayerMask {
+		get {return layerMask;}
+		set {layerMask = value;}
 	}
 
 	public string LayerName {
@@ -91,10 +99,26 @@ public class CollisionDamageTrigger : MonoBehaviour {
 	private float receiveDamageMulti = 1f;
 
 	[SerializeField]
+	LayerMask layerMask;
+
+	[SerializeField]
 	private bool IgnoreCollisionIfLayerNotInList = false;
 
 	[SerializeField]
 	private List<LayerCollision> layerCollision;// = new List<LayerCollision>();	//TODO -.-  BUG! not visible in Inspector!
+
+	private bool CheckIfCollisionShouldBeIgnoredWithLayerMaskCompare (Collider2D otherCollider2D)
+	{
+		int otherLayerMask = 1 << otherCollider2D.gameObject.layer;
+		for (int i=0; i<layerCollision.Count; i++)
+		{
+			if ( (layerCollision[i].LayerMask & otherLayerMask) != 0)
+			{
+				return layerCollision[i].IgnoreCollision;					// TODO Problem LayerMask könnte mehrere angeklickt werden, jedoch wird nur das erste gefundene verwendet! 
+			}
+		}
+		return IgnoreCollisionIfLayerNotInList;
+	}
 
 	private bool CheckIfCollisionShouldBeIgnored (Collider2D otherCollider2D)
 	{
@@ -126,7 +150,7 @@ public class CollisionDamageTrigger : MonoBehaviour {
 		{
 			// generic, alle Collisionen werden gleich behandelt/verarbeitet
 			#if UNITY_EDITOR
-			Debug.LogError (this.ToString () + " ignore Collision with " + otherCollider2d.gameObject.name);
+//								Debug.LogError (this.ToString () + " ignore Collision with " + otherCollider2d.gameObject.name + " in Layer "  + LayerMask.LayerToName(otherCollider2d.gameObject.layer));
 			#endif 
 		}
 		else
@@ -135,14 +159,16 @@ public class CollisionDamageTrigger : MonoBehaviour {
 			CollisionDamageTrigger otherCollisionTrigger = otherCollider2d.GetComponent <CollisionDamageTrigger>(); 
 			if (otherCollisionTrigger != null)
 			{
-
-				Debug.Log (this.ToString() + " Collision is not Ignored -> Start Triggering ");
 				float otherSendDamageValue = otherCollisionTrigger.GetDamageValue ();
 				float myDamageValue = sendDamageValue * sendDamageMulti;
-				Debug.Log (this.ToString() + " otherSendDamageValue " + otherSendDamageValue);
-				Debug.Log (this.ToString() + " myDamageValue " + myDamageValue);
-
 				float receiveDamageValue = receiveDamageMulti * otherSendDamageValue;
+				#if UNITY_EDITOR  
+//								Debug.Log (this.ToString() + " Collision is not Ignored -> Start Triggering ");
+//								Debug.Log (this.ToString() + " otherSendDamageValue " + otherSendDamageValue);
+//								Debug.Log (this.ToString() + " myDamageValue " + myDamageValue);
+//								Debug.Log (this.ToString() + " receiveDamageValue " + receiveDamageValue);
+				#endif
+
 
 				// de-coupling
 
@@ -171,7 +197,7 @@ public class CollisionDamageTrigger : MonoBehaviour {
 			else
 			{
 				#if UNITY_EDITOR
-				Debug.LogError (this.ToString () + " can't find  CollisionTriggerScript @ " + otherCollider2d.gameObject.name);
+//								Debug.LogError (this.ToString () + " can't find  CollisionTriggerScript @ " + otherCollider2d.gameObject.name + " in Layer " + LayerMask.LayerToName(otherCollider2d.gameObject.layer));
 				#endif
 			}
 

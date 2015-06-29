@@ -37,6 +37,7 @@ GameObject:
   - 114: {fileID: 11435702}
   - 114: {fileID: 11459598}
   - 114: {fileID: 11431568}
+  - 114: {fileID: 11406814}
   m_Layer: 9
   m_Name: Sleeper
   m_TagString: Untagged
@@ -110,6 +111,19 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .5, y: .5}
+--- !u!114 &11406814
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2a912f86fe11d4ba6bc075e43d646d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthManager: {fileID: 11472412}
+  explosionScript: {fileID: 11453938}
 --- !u!114 &11421756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -329,9 +343,15 @@ MonoBehaviour:
   sendDamageMulti: 1
   receiveDamageEnabled: 1
   receiveDamageMulti: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   IgnoreCollisionIfLayerNotInList: 0
   layerCollision:
   - layerName: Player
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
     ignoreCollision: 0
     collisionEvent:
       m_PersistentCalls:
@@ -355,6 +375,9 @@ MonoBehaviour:
       m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
   - layerName: PlayerProjectiles
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
     ignoreCollision: 0
     collisionEvent:
       m_PersistentCalls:

@@ -3,40 +3,41 @@ using System.Collections;
 
 public class PlayerCrystalQuestTrigger : MonoBehaviour {
 
-//	public delegate void Died ();
-//	public static event Died onDied;
-
-	void OnEnable ()
-	{
-		DomainEventManager.StartListening (this.gameObject, EventNames.OnHealthValueUpdate, NotifyHealthValueUpdate);
-		DomainEventManager.StartListening (this.gameObject, EventNames.OnLifeValueUpdate, NotifyLifeValueUpdate);
-		DomainEventManager.StartListening (this.gameObject, EventNames.OnDie, NotifyDie);
-		
-	}
-
-	void OnDisable ()
-	{
-		DomainEventManager.StopListening (this.gameObject, EventNames.OnHealthValueUpdate, NotifyHealthValueUpdate);
-		DomainEventManager.StopListening (this.gameObject, EventNames.OnLifeValueUpdate, NotifyLifeValueUpdate);
-		DomainEventManager.StopListening (this.gameObject, EventNames.OnDie, NotifyDie);
-		
-	}
+//	void OnEnable ()
+//	{
+//		DomainEventManager.StartListening (this.gameObject, EventNames.OnDie, NotifyDie);
+//	}
+//
+//	void OnDisable ()
+//	{
+//		DomainEventManager.StopListening (this.gameObject, EventNames.OnDie, NotifyDie);
+//	}
 
 
-	// health, life update geht auch über UIScript an GameObject (um in richtiger Domain zu lauschen)
-	void NotifyHealthValueUpdate (float newValue)
-	{
-		
-	}
+//	// health, life update geht auch über UIScript an GameObject (um in richtiger Domain zu lauschen)
+//	void NotifyHealthValueUpdate (float newValue)
+//	{
+//		
+//	}
+//
+//	void NotifyLifeValueUpdate (float newValue)
+//	{
+//		
+//	}
 
-	void NotifyLifeValueUpdate (float newValue)
-	{
-		
-	}
-
-	void NotifyDie ()
+	public void NotifyPlayerDie ()
 	{
 		DomainEventManager.TriggerGlobalEvent (EventNames.PlayerDied);
+	}
+
+	public void NotifyPlayerWillRespawn ()
+	{
+		DomainEventManager.TriggerGlobalEvent (EventNames.PlayerWillRespawn);
+	}
+
+	public void NotifyPlayerIsGameOver ()
+	{
+		DomainEventManager.TriggerGlobalEvent (EventNames.PlayerGameOver);
 	}
 
 	public void Die ()

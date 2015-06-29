@@ -293,9 +293,15 @@ MonoBehaviour:
   sendDamageMulti: 1
   receiveDamageEnabled: 1
   receiveDamageMulti: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   IgnoreCollisionIfLayerNotInList: 0
   layerCollision:
   - layerName: Enemy
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 512
     ignoreCollision: 0
     collisionEvent:
       m_PersistentCalls:
@@ -307,6 +313,9 @@ MonoBehaviour:
       m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
   - layerName: EnemyProjectiles
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 1024
     ignoreCollision: 0
     collisionEvent:
       m_PersistentCalls:
@@ -318,6 +327,9 @@ MonoBehaviour:
       m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
   - layerName: LevelDamage
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 16384
     ignoreCollision: 0
     collisionEvent:
       m_PersistentCalls:

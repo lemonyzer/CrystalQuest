@@ -78,4 +78,26 @@ public class AIShooting : MonoBehaviour {
 			myPooledShooting.TriggerShoot (Random.onUnitSphere);
 		}
 	}
+
+	public void StopShooting ()
+	{
+		aiShooting = false;
+	}
+
+	public void ResumeShooting ()
+	{
+		aiShooting = true;
+	}
+
+	public void StartShooting ()
+	{
+		aiShooting = true;
+		nextTriggerTime = Time.time;
+	}
+
+	public void RestartShooting ()
+	{
+		aiShooting = true;
+		nextTriggerTime = Time.time;
+	}
 }

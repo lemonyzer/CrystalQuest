@@ -9,7 +9,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 450788}
   - 61: {fileID: 6172860}
-  m_Layer: 14
+  - 114: {fileID: 11452270}
+  - 114: {fileID: 11415068}
+  m_Layer: 15
   m_Name: ExitZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,6 +281,9 @@ MonoBehaviour:
   sendDamageMulti: 1
   receiveDamageEnabled: 1
   receiveDamageMulti: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   IgnoreCollisionIfLayerNotInList: 0
   layerCollision: []
   myCollisionDamageEvent:
@@ -290,6 +295,17 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &11415068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0ab0aacff28344c929dc1350b7f365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11419472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -397,6 +413,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
   collider2d: {fileID: 0}
+--- !u!114 &11452270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1225f381e1c2f5244b157da856cfb9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sendDamageEnabled: 1
+  sendDamageValue: 100
+  sendDamageMulti: 1
+  receiveDamageEnabled: 1
+  receiveDamageMulti: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  IgnoreCollisionIfLayerNotInList: 1
+  layerCollision:
+  - layerName: Player
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 256
+    ignoreCollision: 0
+    collisionEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11415068}
+          m_MethodName: NotifyPlayerExitReachedListener
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+              Culture=neutral, PublicKeyToken=null
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    collisionDamageEvent:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  myCollisionDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  myCollisionEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &11455894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -413,6 +485,9 @@ MonoBehaviour:
   sendDamageMulti: 1
   receiveDamageEnabled: 1
   receiveDamageMulti: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   IgnoreCollisionIfLayerNotInList: 0
   layerCollision: []
   myCollisionDamageEvent:
@@ -469,6 +544,9 @@ MonoBehaviour:
   sendDamageMulti: 1
   receiveDamageEnabled: 1
   receiveDamageMulti: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   IgnoreCollisionIfLayerNotInList: 0
   layerCollision: []
   myCollisionDamageEvent:

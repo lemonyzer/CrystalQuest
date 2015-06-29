@@ -16,6 +16,7 @@ GameObject:
   - 114: {fileID: 11488126}
   - 114: {fileID: 11445586}
   - 114: {fileID: 11470958}
+  - 114: {fileID: 11488430}
   m_Layer: 10
   m_Name: Bullet - Worrier
   m_TagString: Untagged
@@ -149,9 +150,15 @@ MonoBehaviour:
   sendDamageMulti: 1
   receiveDamageEnabled: 1
   receiveDamageMulti: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   IgnoreCollisionIfLayerNotInList: 1
   layerCollision:
   - layerName: ProjectileStopper
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
     ignoreCollision: 0
     collisionEvent:
       m_PersistentCalls:
@@ -192,6 +199,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 796b3e87015521b4ea93ce192e41a759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11488430
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dafc0224c7deda4fb3d364004863856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &21254780

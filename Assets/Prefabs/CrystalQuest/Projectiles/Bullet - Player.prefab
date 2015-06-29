@@ -16,6 +16,7 @@ GameObject:
   - 114: {fileID: 11416016}
   - 114: {fileID: 11402858}
   - 114: {fileID: 11468642}
+  - 114: {fileID: 11463472}
   m_Layer: 11
   m_Name: Bullet - Player
   m_TagString: Untagged
@@ -30,7 +31,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.1099999, y: 2.38000011, z: 0}
+  m_LocalPosition: {x: -2.38000011, y: .99000001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,7 +45,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_FixedAngle: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -117,6 +118,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 796b3e87015521b4ea93ce192e41a759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11463472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dafc0224c7deda4fb3d364004863856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11468642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,6 +172,9 @@ MonoBehaviour:
   sendDamageMulti: 1
   receiveDamageEnabled: 1
   receiveDamageMulti: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   IgnoreCollisionIfLayerNotInList: 0
   layerCollision: []
   myCollisionDamageEvent:

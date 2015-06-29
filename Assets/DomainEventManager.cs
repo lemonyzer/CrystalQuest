@@ -114,7 +114,11 @@ public class EventNames
 	public const string RemoveAllEnemysTriggered = "RemoveAllEnemysTriggered";
 	
 	public const string RemoveAllItems = "RemoveAllItems"; 				// <-
+
+	public const string RemoveAllProjectiles = "RemoveAllProjectiles"; 				// <-
+	public const string RemoveAllWaveMines = "RemoveAllWaveMines"; 				// <-
 	
+
 	public const string RemoveAllEnemies = "RemoveAllEnemies"; 			// -> remove all enemies
 	public const string KillAllEnemies = "KillAllEnemies"; 				// -> kill all enemies
 	
@@ -123,6 +127,7 @@ public class EventNames
 	
 	public const string PlayerHitted = "PlayerHitted"; 					// Animation ?? Overlayeffekt
 	public const string PlayerDied = "PlayerDied"; 						// Respawner, instant respawn/ respawn with delay
+	public const string PlayerWillRespawn = "PlayerWillRespawn"; 				// ->
 	public const string PlayerRespawn = "PlayerRespawn"; 				// ->
 	public const string PlayerRespawned = "PlayerRespawned"; 			// -> ControllsEnable ?
 	public const string PlayerGameOver = "PlayerGameOver"; 				// -> TODO doppelter event DIE/GameOver
@@ -131,10 +136,14 @@ public class EventNames
 	
 	public const string WaveInit = "WaveInit"; 							// Load new Wave Objects in Pool
 	public const string WaveStart = "WaveStart"; 
+	public const string WaveFailed = "WaveFailed"; 
+	public const string WaveRetry = "WaveRetry"; 
 	public const string WaveComplete = "WaveComplete"; 
-	public const string WaveFaied = "WaveFaied"; 
 	public const string WaveNext = "WaveNext"; 							// Load new Wave Objects in Pool
 	public const string WaveDestroyCurrent = "WaveDestroyCurrent"; 
+
+	public const string AllWavesCompleted = "AllWavesCompleted"; 
+	
 	
 	public const string AllCrystalsCollected = "AllCrystalsCollected"; 	// -> Open Portal
 	public const string CrystalsCollected = "CrystalsCollected"; 	// -> 
@@ -266,7 +275,8 @@ public class DomainEventManager : MonoBehaviour {
 
 	public static void UnlistDomain (string domain)
 	{
-		instance.registeredDomains.Remove (domain);
+		if (instance != null)
+			instance.registeredDomains.Remove (domain);
 	}
 
 	public static void StartGlobalListening (string globalEventName, UnityAction listener)

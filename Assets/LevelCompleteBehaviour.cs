@@ -11,13 +11,13 @@ public class LevelCompleteBehaviour : MonoBehaviour {
 	void OnEnable ()
 	{
 		//		SmartBombManager.onSmartBombing += SmartBombTriggered;
-		DomainEventManager.StartGlobalListening (EventNames.LevelMissionComplete, OnLevelCompleted);
+		DomainEventManager.StartGlobalListening (EventNames.WaveComplete, OnLevelCompleted);
 	}
 	
 	void OnDisable ()
 	{
 		//		SmartBombManager.onSmartBombing -= SmartBombTriggered;
-		DomainEventManager.StopGlobalListening (EventNames.LevelMissionComplete, OnLevelCompleted);
+		DomainEventManager.StopGlobalListening (EventNames.WaveComplete, OnLevelCompleted);
 	}
 	
 	[SerializeField]

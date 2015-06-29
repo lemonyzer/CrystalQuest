@@ -6,26 +6,26 @@ using System.Collections.Generic;
 public class WaveCrystal 
 {
 	[SerializeField]
-	GameObject prefab;
+	public GameObject prefab;
 
 	[SerializeField]
-	int amount = 0;
+	public int amount = 0;
 
 	[SerializeField]
-	bool enabled = false;
+	public bool enabled = false;
 }
 
 [System.Serializable]
 public class Wave : ScriptableObject {
 
 	[SerializeField]
-	string waveName;
+	public string waveName;
 
 	[SerializeField]
-	List<WaveEnemy> enemies;
+	public List<WaveEnemy> enemies;
 
 	[SerializeField]
-	WaveCrystal crystal;
+	public WaveCrystal crystal;
 
 	void OnEnable ()
 	{
