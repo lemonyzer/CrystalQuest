@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a14ed6747b64994eac2b41e96f964ac, type: 3}
   m_Name: Trimpet
   m_EditorClassIdentifier: 
-  prefab: {fileID: 194476, guid: 3115b449b84e3aa4bb4b7b3b0690541b, type: 2}
+  prefab: {fileID: 149358, guid: 572e5d236e1de8d46bbe0cc4219e5cc7, type: 2}

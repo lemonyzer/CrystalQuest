@@ -38,6 +38,8 @@ GameObject:
   - 114: {fileID: 11453312}
   - 114: {fileID: 11421434}
   - 114: {fileID: 11491398}
+  - 114: {fileID: 11435924}
+  - 114: {fileID: 11455290}
   m_Layer: 8
   m_Name: Player Ship 2
   m_TagString: Untagged
@@ -217,6 +219,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 11455290}
+        m_MethodName: Enable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11407798
 MonoBehaviour:
@@ -254,7 +268,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118482}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7674a4dfc7e249841a2b51277e3c92bc, type: 3}
   m_Name: 
@@ -264,6 +278,33 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 11406520}
         m_MethodName: Activate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11435924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fdd498d8e8517441a126050d7f6e7f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onWavePreInit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11455290}
+        m_MethodName: Enable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -289,7 +330,7 @@ MonoBehaviour:
   shootingPooled: {fileID: 0}
   m_InputFire: 0
   rb2d: {fileID: 0}
-  speed: 5
+  speed: 8
 --- !u!114 &11444876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -401,6 +442,57 @@ MonoBehaviour:
   minAmount: 0
   minUseIntervall: .100000001
   nextPossibleTrigger: 0
+--- !u!114 &11455290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9087c8ba225294b94c5de8e02c1f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  components:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5857664}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11444876}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 21273950}
+        m_MethodName: set_enabled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: BoolEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11465110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -518,7 +610,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 11407798}
+      - m_Target: {fileID: 11455290}
         m_MethodName: Disable
         m_Mode: 1
         m_Arguments:
@@ -547,7 +639,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11406520}
-        m_MethodName: ActivateWithDelay
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

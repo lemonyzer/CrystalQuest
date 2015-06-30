@@ -118,16 +118,20 @@ public class WaveMineManager : MonoBehaviour {
 		Vector3 spawnPosition = new Vector3 ();
 		float startTime = Time.realtimeSinceStartup;
 		bool overlapping = true;
+		int overlappingCount = 0;
 		while (overlapping == true) {
 			Vector2 spawnPositionRaw = CrystalQuestLevelManager.Instance.GetRandomLevelPositionWithoutPlayerSpawn();
 			spawnPosition = spawnPositionRaw;
 			//			overlapping = !Physics.CheckSphere (spawnPosition, 0.75f);
 			overlapping = IsOverlaping (spawnPosition);
+			if (overlapping)
+				overlappingCount++;
 			if (Time.realtimeSinceStartup - startTime > 0.5f) {
 				Debug.Log ("Time out placing Minion!");
 				return Vector3.zero;
 			}
 		}
+		Debug.Log (this.ToString() + " overlappingCount = " + overlappingCount);
 		return spawnPosition;
 	}
 
@@ -139,7 +143,7 @@ public class WaveMineManager : MonoBehaviour {
 			Collider2D overlappingCollider2d = Physics2D.OverlapCircle (position, current.distance, current.layerMask);
 			if (overlappingCollider2d != null)
 			{
-				Debug.Log ("overlapping " + overlappingCollider2d.gameObject.ToString () + " @ " + overlappingCollider2d.transform.position);
+//				Debug.Log ("overlapping " + overlappingCollider2d.gameObject.ToString () + " @ " + overlappingCollider2d.transform.position);
 				return true;
 			}
 		}

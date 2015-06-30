@@ -24,4 +24,12 @@ public class WaveEnemy {
 				this.enemyName = this.enemy.Prefab.name;
 		}
 	}
+
+	public Enemy Enemy {
+		get {return enemy;}
+	}
+
+	public int Amount {
+		get {return amount;}
+	}
 }

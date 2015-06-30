@@ -132,13 +132,17 @@ public class EventNames
 	public const string PlayerRespawn = "PlayerRespawn"; 				// ->
 	public const string PlayerRespawned = "PlayerRespawned"; 			// -> ControllsEnable ?
 	public const string PlayerGameOver = "PlayerGameOver"; 				// -> TODO doppelter event DIE/GameOver
+	public const string PlayerInvincibleEnable = "PlayerInvincibleEnable";
+	public const string PlayerInvincibleDisable = "PlayerInvincibleDisable";
 	
 	public const string ShowHightScore = "ShowHightScore"; 
 	
+	public const string WavePreInit = "WavePreInit"; 							// Load new Wave Objects in Pool
 	public const string WaveInit = "WaveInit"; 							// Load new Wave Objects in Pool
 	public const string WaveStart = "WaveStart"; 
 	public const string WaveFailed = "WaveFailed"; 
 	public const string WaveRetry = "WaveRetry"; 
+	public const string WaveTaskCompleted = "WaveCompleted"; 
 	public const string WaveComplete = "WaveComplete"; 
 	public const string WaveNext = "WaveNext"; 							// Load new Wave Objects in Pool
 	public const string WaveDestroyCurrent = "WaveDestroyCurrent"; 
@@ -401,8 +405,11 @@ public class DomainEventManager : MonoBehaviour {
 		UnityEvent thisEvent = null;
 		if (instance.eventDictionary.TryGetValue (globalEventName, out thisEvent))
 		{
+			Debug.Log (globalEventName + " executed");
 			thisEvent.Invoke ();
 		}
+		else
+			Debug.LogError (globalEventName + " not found");
 	}
 
 	public static void TriggerGlobalEvent (string globalEventName, float value)

@@ -48,5 +48,35 @@ public class Wave : ScriptableObject {
 	void OnEnable ()
 	{
 		this.waveName = this.name;
+#if UNITY_EDITOR 
+		ValidateEnemies ();
+#endif 
+	}
+
+	public void ValidateEnemies ()
+	{
+		for (int i=0; i< enemies.Count; i++)
+		{
+			if (enemies[i].Amount <= 0)
+				Debug.LogError (this.ToString () + " Enemy at Position " + i + " has no valid Amount!");
+
+			if (enemies[i].Enemy == null)
+				Debug.LogError (this.ToString () + " Enemy at Position " + i + " has no valid Enemy set!");
+			else
+			{
+				if (enemies[i].Enemy.Prefab == null)
+					Debug.LogError (this.ToString () + " Enemy at Position " + i + " has no valid Enemy Prefab set!");
+			}
+
+		}
+	}
+
+	public WaveEnemy GetRandomWaveEnemy ()
+	{
+		if (enemies == null)
+			return null;
+
+		int random = Random.Range (0, enemies.Count);
+		return enemies[random];
 	}
 }

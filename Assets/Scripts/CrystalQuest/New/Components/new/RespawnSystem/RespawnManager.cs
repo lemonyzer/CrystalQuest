@@ -5,6 +5,9 @@ public class RespawnManager : MonoBehaviour {
 
 	private static RespawnManager m_instance;
 
+	[SerializeField]
+	GameObject player;
+
 	public RespawnManager Instance {
 		get {return m_instance;}
 		private set {m_instance = value;}
@@ -17,6 +20,7 @@ public class RespawnManager : MonoBehaviour {
 
 	void OnEnable ()
 	{
+//		DomainEventManager.StartGlobalListening (EventNames.WavePreInit, OnWavePreInit);
 //		DomainEventManager.StartGlobalListening (EventNames.OnDelayedReactivateRequest, ReactivateWithDelay);
 		RespawnScript.onDelayedReactivateRequest += ReactivateWithDelay;
 //		RespawnScript.onReactivateRequest += Reactivate;
@@ -24,6 +28,7 @@ public class RespawnManager : MonoBehaviour {
 
 	void OnDisable ()
 	{
+//		DomainEventManager.StopGlobalListening (EventNames.WavePreInit, OnWavePreInit);
 //		DomainEventManager.StopGlobalListening (EventNames.OnDelayedReactivateRequest, ReactivateWithDelay);
 		RespawnScript.onDelayedReactivateRequest -= ReactivateWithDelay;
 //		RespawnScript.onReactivateRequest -= Reactivate;
@@ -56,5 +61,10 @@ public class RespawnManager : MonoBehaviour {
 	{
 		activateionEventScript.Activate ();
 	}
+
+//	void OnWavePreInit ()
+//	{
+//
+//	}
 
 }
