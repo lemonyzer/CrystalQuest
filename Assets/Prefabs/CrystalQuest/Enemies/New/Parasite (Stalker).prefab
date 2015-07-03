@@ -160,11 +160,11 @@ MonoBehaviour:
     moveSpeed: 2
     nextMoveTimestamp: 0
     nextChangeDirectionTimestamp: 0
-    changeDirectionIntervalMax: 0
-    changeDirectionIntervalMin: 0
+    changeDirectionIntervalMax: .5
+    changeDirectionIntervalMin: .200000003
     orbitCenterPosition: {x: 0, y: 0, z: 0}
-    orbitDistance: 0
-    winkelGeschwindigkeit: 0
+    orbitDistance: 2
+    winkelGeschwindigkeit: 1
   moveToPositionMovement:
     transform: {fileID: 0}
     moveDirection: {x: 0, y: 0}
@@ -190,7 +190,7 @@ MonoBehaviour:
   scored:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11423572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -302,7 +302,7 @@ MonoBehaviour:
   myHealthUpdateEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   invincible: 0
   m_isDead: 0
 --- !u!114 &11474924
@@ -327,7 +327,7 @@ MonoBehaviour:
   myCollisionDamageEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   myCollisionEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -359,8 +359,7 @@ MonoBehaviour:
     collisionDamageEvent:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
+      m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - layerName: PlayerProjectiles
     layerMask:
       serializedVersion: 2
@@ -385,8 +384,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
+      m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!212 &21224284
 SpriteRenderer:
   m_ObjectHideFlags: 1

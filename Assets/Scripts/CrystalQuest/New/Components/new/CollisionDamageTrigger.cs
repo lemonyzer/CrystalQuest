@@ -19,7 +19,7 @@ public class LayerCollision
 	MyEvent collisionEvent = null;
 
 	[SerializeField]
-	MyFloatEvent collisionDamageEvent = null;
+	FloatEvent collisionDamageEvent = null;
 
 	public void TriggerCollisionEvent ()
 	{
@@ -102,7 +102,7 @@ public class CollisionDamageTrigger : MonoBehaviour {
 	LayerMask layerMask;
 
 	[SerializeField]
-	private MyFloatEvent myCollisionDamageEvent;					// Event for my Event-Domain
+	private FloatEvent myCollisionDamageEvent;					// Event for my Event-Domain
 	
 	[SerializeField]
 	private UnityEvent myCollisionEvent;								// Event for my Event-Domain

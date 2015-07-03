@@ -31,10 +31,10 @@ public class ScoreableObjectScript : MonoBehaviour {
 	ScoreDataModell scoreData;// = new ScoreDataModell();
 
 	[SerializeField]
-	MyFloatEvent scored;// = new MyFloatEvent();	// kann direkt im Unity Editor (Inspector gesetzt werden)
+	FloatEvent scored;// = new MyFloatEvent();	// kann direkt im Unity Editor (Inspector gesetzt werden)
 
 	[SerializeField]
-	public static MyFloatEvent gScored = new MyFloatEvent ();	//TODO static needs to be instantiated, not serializable in unity and no therefore not visible in inspector
+	public static FloatEvent gScored = new FloatEvent ();	//TODO static needs to be instantiated, not serializable in unity and no therefore not visible in inspector
 
 	public delegate void Scored (ScoreDataModell scoreData);
 	public static event Scored onScored;

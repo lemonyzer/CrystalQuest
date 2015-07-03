@@ -94,7 +94,7 @@ public class HealthManager : MonoBehaviour {
 	private MyEvent myNoHealthEvent;
 
 	[SerializeField]
-	private MyFloatEvent myHealthUpdateEvent;
+	private FloatEvent myHealthUpdateEvent;
 
 	void Awake ()
 	{

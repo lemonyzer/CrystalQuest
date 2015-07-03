@@ -22,7 +22,7 @@ public class BoolEvent : UnityEvent<bool>
 }
 
 [System.Serializable]
-public class MyIntEvent : UnityEvent<int>
+public class IntEvent : UnityEvent<int>
 {
 	
 }
@@ -33,8 +33,14 @@ public class FloatEvent : UnityEvent<float>
 	
 }
 
+//[System.Serializable]
+//public class MyFloatEvent : UnityEvent<float>
+//{
+//	
+//}
+
 [System.Serializable]
-public class MyFloatEvent : UnityEvent<float>
+public class WaveEvent : UnityEvent<Wave>
 {
 	
 }

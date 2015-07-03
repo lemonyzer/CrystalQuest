@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class UserInputScript : MonoBehaviour {
 
@@ -29,10 +30,10 @@ public class UserInputScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		m_Input.x = Input.GetAxis ("Horizontal");
-		m_Input.y = Input.GetAxis ("Vertical");
+		m_Input.x = CrossPlatformInputManager.GetAxis ("Horizontal");
+		m_Input.y = CrossPlatformInputManager.GetAxis ("Vertical");
 
-		m_InputFire = Input.GetButton ("Fire1");
+		m_InputFire = CrossPlatformInputManager.GetButton ("Fire");
 
 		if (m_InputFire)
 			shootingPooled.TriggerShoot (m_Input);

@@ -108,6 +108,7 @@ public class EventNames
 	public const string MusicVolumeChange = "MusicVolumeChange"; 		// AudioSource -> slider.value update
 	
 	
+	public const string SmartBombAmount = "SmartBombAmount"; 		// ++ numberOfSmartBombs
 	public const string SmartBombCollected = "SmartBombCollected"; 		// ++ numberOfSmartBombs
 	public const string SmartBombTriggered = "SmartBombTriggered"; 		// -> kill all enemies, bonus items
 	
@@ -180,10 +181,15 @@ public class DomainEventManager : MonoBehaviour {
 	}
 
 	private Dictionary <string, UnityEvent> eventDictionary;
+	// Basic Types
 	private Dictionary <string, FloatEvent> floatEventDictionary;
-	private Dictionary <string, MyIntEvent> IntEventDictionary;
+	private Dictionary <string, IntEvent> IntEventDictionary;
 	private Dictionary <string, BoolEvent> boolEventDictionary;
 	private Dictionary <string, ItemEvent> ItemEventDictionary;
+
+	// Komplex Types
+	private Dictionary <string, WaveEvent> waveEventDictionary;
+	
 	
 	private static DomainEventManager eventManager;
 	
@@ -229,7 +235,12 @@ public class DomainEventManager : MonoBehaviour {
 		// IntEvent
 		if (IntEventDictionary == null)
 		{
-			IntEventDictionary = new Dictionary<string, MyIntEvent>();
+			IntEventDictionary = new Dictionary<string, IntEvent>();
+		}
+		// IntEvent
+		if (waveEventDictionary == null)
+		{
+			waveEventDictionary = new Dictionary<string, WaveEvent>();
 		}
 	}
 
@@ -284,6 +295,42 @@ public class DomainEventManager : MonoBehaviour {
 			instance.registeredDomains.Remove (domain);
 	}
 
+	public static void StartListeningInitWave (UnityAction<Wave> waveListener)
+	{
+		string globalEventName = EventNames.WaveInit;
+		ListDomain (globalEventName);
+
+		WaveEvent thisEvent = null;
+		if (instance.waveEventDictionary.TryGetValue (globalEventName, out thisEvent))
+		{
+			thisEvent.AddListener (waveListener);
+		} 
+		else
+		{
+			thisEvent = new WaveEvent ();
+			thisEvent.AddListener (waveListener);
+			instance.waveEventDictionary.Add (globalEventName, thisEvent);
+		}
+	}
+
+	public static void StopListeningInitWave (UnityAction<Wave> waveListener)
+	{
+		string globalEventName = EventNames.WaveInit;
+		UnlistDomain (globalEventName);
+		
+		if (eventManager == null) return;
+		WaveEvent thisEvent = null;
+		if (instance.waveEventDictionary.TryGetValue (globalEventName, out thisEvent))
+		{
+			thisEvent.RemoveListener (waveListener);
+		}
+	}
+
+	public static void TriggerInitWave (Wave wave)
+	{
+		TriggerGlobalEvent (EventNames.WaveInit, wave);
+	}
+
 	public static void StartGlobalListening (string globalEventName, UnityAction listener)
 	{
 		ListDomain (globalEventName);
@@ -312,11 +359,11 @@ public class DomainEventManager : MonoBehaviour {
 			thisEvent.RemoveListener (listener);
 		}
 	}
-
+	#region float
 	public static void StartGlobalListening (string globalEventName, UnityAction<float> listener)
 	{
 		ListDomain (globalEventName);
-
+		
 		FloatEvent thisEvent = null;
 		if (instance.floatEventDictionary.TryGetValue (globalEventName, out thisEvent))
 		{
@@ -333,7 +380,7 @@ public class DomainEventManager : MonoBehaviour {
 	public static void StopGlobalListening (string globalEventName, UnityAction<float> listener)
 	{
 		UnlistDomain (globalEventName);
-
+		
 		if (eventManager == null) return;
 		FloatEvent thisEvent = null;
 		if (instance.floatEventDictionary.TryGetValue (globalEventName, out thisEvent))
@@ -341,7 +388,39 @@ public class DomainEventManager : MonoBehaviour {
 			thisEvent.RemoveListener (listener);
 		}
 	}
+	#endregion
 
+	#region int
+	public static void StartGlobalListening (string globalEventName, UnityAction<int> listener)
+	{
+		ListDomain (globalEventName);
+		
+		IntEvent thisEvent = null;
+		if (instance.IntEventDictionary.TryGetValue (globalEventName, out thisEvent))
+		{
+			thisEvent.AddListener (listener);
+		} 
+		else
+		{
+			thisEvent = new IntEvent ();
+			thisEvent.AddListener (listener);
+			instance.IntEventDictionary.Add (globalEventName, thisEvent);
+		}
+	}
+	
+	public static void StopGlobalListening (string globalEventName, UnityAction<int> listener)
+	{
+		UnlistDomain (globalEventName);
+		
+		if (eventManager == null) return;
+		IntEvent thisEvent = null;
+		if (instance.IntEventDictionary.TryGetValue (globalEventName, out thisEvent))
+		{
+			thisEvent.RemoveListener (listener);
+		}
+	}
+	#endregion
+	
 	#region UnityEvent
 	public static void StartListening (Object obj, string eventName, UnityAction listener)
 	{
@@ -412,6 +491,15 @@ public class DomainEventManager : MonoBehaviour {
 			Debug.LogError (globalEventName + " not found");
 	}
 
+	public static void TriggerGlobalEvent (string globalEventName, int value)
+	{
+		IntEvent thisEvent = null;
+		if (instance.IntEventDictionary.TryGetValue (globalEventName, out thisEvent))
+		{
+			thisEvent.Invoke (value);
+		}
+	}
+
 	public static void TriggerGlobalEvent (string globalEventName, float value)
 	{
 		FloatEvent thisEvent = null;
@@ -427,6 +515,15 @@ public class DomainEventManager : MonoBehaviour {
 		if (instance.boolEventDictionary.TryGetValue (globalEventName, out thisEvent))
 		{
 			thisEvent.Invoke (value);
+		}
+	}
+
+	public static void TriggerGlobalEvent (string globalEventName, Wave wave)
+	{
+		WaveEvent thisEvent = null;
+		if (instance.waveEventDictionary.TryGetValue (globalEventName, out thisEvent))
+		{
+			thisEvent.Invoke (wave);
 		}
 	}
 	

@@ -44,6 +44,7 @@ public class CrystalQuestWaveManager : MonoBehaviour {
 	void Start ()
 	{
 		DomainEventManager.TriggerGlobalEvent (EventNames.WaveInit);
+		DomainEventManager.TriggerInitWave (GetCurrentWave ());
 	}
 
 	[SerializeField]
@@ -98,6 +99,7 @@ public class CrystalQuestWaveManager : MonoBehaviour {
 		DomainEventManager.TriggerGlobalEvent (EventNames.WaveNext);		// für scripts die selbst mitzählen
 		DomainEventManager.TriggerGlobalEvent (EventNames.WavePreInit);		// loading: pooling
 		DomainEventManager.TriggerGlobalEvent (EventNames.WaveInit);		// loading: pooling
+		DomainEventManager.TriggerInitWave (GetCurrentWave ());		// loading: pooling
 		DomainEventManager.TriggerGlobalEvent (EventNames.WaveStart);
 	}
 

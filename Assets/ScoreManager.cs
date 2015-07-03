@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 public class ScoreManager : MonoBehaviour {
@@ -10,17 +11,21 @@ public class ScoreManager : MonoBehaviour {
 	{
 		if (score == null)
 			score = new ScoreDataModell ();
+
+		onScoring = new UnityAction<float> (OnScoring);
 	}
 
 	// Use this for initialization
 	void OnEnable () {
-		DomainEventManager.StartGlobalListening (EventNames.ScoredValue, OnScoring);
+		DomainEventManager.StartGlobalListening (EventNames.ScoredValue, onScoring);
 	}
 	
 	// Update is called once per frame
 	void OnDisable () {
-		DomainEventManager.StopGlobalListening (EventNames.ScoredValue, OnScoring);
+		DomainEventManager.StopGlobalListening (EventNames.ScoredValue, onScoring);
 	}
+
+	UnityAction<float> onScoring;// = new UnityAction<float> (OnScoring);
 
 	void OnScoring (float scoreValue)
 	{

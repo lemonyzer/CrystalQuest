@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class SmartBombUserScript : MonoBehaviour {
 
@@ -37,7 +38,7 @@ public class SmartBombUserScript : MonoBehaviour {
 	{
 		if (smartBombsAmount >= minAmountToUse)
 		{
-			if (Input.GetKeyDown (KeyCode.Space))
+			if (CrossPlatformInputManager.GetButton ("Bomb"))
 			{
 				if (Time.time >= nextPossibleTrigger)
 				{
@@ -50,7 +51,14 @@ public class SmartBombUserScript : MonoBehaviour {
 
 	void Trigger ()
 	{
+		DomainEventManager.TriggerGlobalEvent (EventNames.SmartBombTriggered);
+		// SmartBombManager.Instance.BombTriggered (); // singleton nötig ?
 		SmartBombsAmount--;
-		SmartBombManager.Instance.BombTriggered ();
+
+	}
+
+	void NotifySmartBombAmountListener ()
+	{
+		DomainEventManager.TriggerGlobalEvent (EventNames.SmartBombAmount, smartBombsAmount);
 	}
 }

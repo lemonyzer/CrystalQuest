@@ -7,7 +7,7 @@ public class LifeManager : MonoBehaviour {
 //	private MyEvent myLifeEvent;
 
 	[SerializeField]
-	private MyIntEvent myLifesUpdateEvent;
+	private IntEvent myLifesUpdateEvent;
 
 	[SerializeField]
 	private MyEvent myDieEvent;
