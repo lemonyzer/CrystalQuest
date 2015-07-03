@@ -9,6 +9,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a14ed6747b64994eac2b41e96f964ac, type: 3}
-  m_Name: Pest
+  m_Name: Pest (Planting Mines)
   m_EditorClassIdentifier: 
-  prefab: {fileID: 108424, guid: f589c6bb30263734fab7bfd5bdd9f7d6, type: 2}
+  prefab: {fileID: 108424, guid: e46e97bd49972f94b82002f8985061a8, type: 2}

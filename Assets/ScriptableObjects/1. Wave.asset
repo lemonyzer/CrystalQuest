@@ -25,6 +25,14 @@ MonoBehaviour:
     enabled: 1
     enemy: {fileID: 11400000, guid: 9c25048cdf6b0b744a624c7ed69ba2c6, type: 2}
     amount: 2
+  - enemyName: 
+    enabled: 1
+    enemy: {fileID: 11400000, guid: 55566849dae4f8243b5f53e7e0e02039, type: 2}
+    amount: 10
+  - enemyName: 
+    enabled: 1
+    enemy: {fileID: 11400000, guid: 69732c1979f180d44a4d83efe996db74, type: 2}
+    amount: 10
   crystal:
     prefab: {fileID: 0}
     amount: 4

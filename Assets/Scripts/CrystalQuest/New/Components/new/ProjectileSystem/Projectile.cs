@@ -70,7 +70,19 @@ public class Projectile : MonoBehaviour {
 	
 	public void ReleasedWithVelocity (Vector3 direction, float force)
 	{
-		rb2d.velocity = direction * force;
+		if (rb2d != null)
+			rb2d.velocity = direction * force;
+		else
+		{
+			#if UNITY_EDITOR 
+				Debug.LogWarning (this.ToString() + " has no rigidbody2d, releasing without movement!");
+			#endif 
+		}
+		Release ();
+	}
+
+	public void ReleasedWithoutMovement ()
+	{
 		Release ();
 	}
 

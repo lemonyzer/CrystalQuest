@@ -617,7 +617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &289097150
 Transform:
   m_ObjectHideFlags: 0
@@ -625,7 +625,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 289097149}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.429613411, y: -.507012188, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 763360063}
@@ -1146,7 +1146,7 @@ MonoBehaviour:
   - transform: {fileID: 1982581324}
     offset: {x: -.5, y: 0, z: 0}
   spawnCount: 0
-  spawnCountMax: 10
+  spawnCountMax: 100
   nextSpawningEnemyId: -1
   nextEnemySpawnTimestamp: 0
   enemySpawnIntervallMin: 1
@@ -2107,7 +2107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1322059295
 Transform:
   m_ObjectHideFlags: 0

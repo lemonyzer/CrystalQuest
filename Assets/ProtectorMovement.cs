@@ -38,7 +38,7 @@ public class ProtectorMovement : MonoBehaviour {
 	
 	 void Awake()
 	{
-
+		rb2d = this.GetComponent<Rigidbody2D>();
 		idleMovement.Transform = transform;
 		orbitMovement.Transform = transform;
 		moveToPositionMovement.Transform = transform;

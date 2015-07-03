@@ -27,7 +27,6 @@ GameObject:
   - 212: {fileID: 21224284}
   - 58: {fileID: 5839542}
   - 50: {fileID: 5025186}
-  - 114: {fileID: 11441904}
   - 114: {fileID: 11474924}
   - 114: {fileID: 11466754}
   - 114: {fileID: 11410624}
@@ -77,7 +76,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_FixedAngle: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -158,7 +157,7 @@ MonoBehaviour:
   orbitMovement:
     transform: {fileID: 0}
     moveDirection: {x: 0, y: 0}
-    moveSpeed: 0
+    moveSpeed: 2
     nextMoveTimestamp: 0
     nextChangeDirectionTimestamp: 0
     changeDirectionIntervalMax: 0
@@ -169,11 +168,11 @@ MonoBehaviour:
   moveToPositionMovement:
     transform: {fileID: 0}
     moveDirection: {x: 0, y: 0}
-    moveSpeed: 0
-    nextMoveTimestamp: 0
+    moveSpeed: 4
+    nextMoveTimestamp: .100000001
     nextChangeDirectionTimestamp: 0
-    changeDirectionIntervalMax: 0
-    changeDirectionIntervalMin: 0
+    changeDirectionIntervalMax: .5
+    changeDirectionIntervalMin: 1
     destination: {x: 0, y: 0, z: 0}
 --- !u!114 &11410624
 MonoBehaviour:
@@ -235,91 +234,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
---- !u!114 &11441904
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 758350b674596564999b204476ff0181, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  transform: {fileID: 0}
-  destroyScore: 250
-  releasePoints:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  selfAttack: 0
-  teamAttack: 0
-  invincible: 0
-  minHealth: 0
-  maxHealth: 100
-  currentHealth: 100
-  lifes: 3
-  minLifes: 0
-  isDead: 0
-  useCollisionEvents: 0
-  collisionSendDamageValue: 3.40282347e+38
-  enableInput: 1
-  inputMoveDirection: {x: 0, y: 0}
-  inputFire: 0
-  inputUseItem: 0
-  canMove: 1
-  maxVelocity: 1
-  rb2D: {fileID: 0}
-  targetScript: {fileID: 0}
-  aiMovementType: 0
-  aiMoveState: 0
-  limitedDegreeChange: 1
-  moveDirection: {x: 0, y: 0}
-  levelLeft: -10
-  levelTop: 5
-  levelWidth: 20
-  levelHeight: 10
-  deltaDistanceToReach: .100000001
-  useTargetPosition: 1
-  targetPosition: {x: 0, y: 0, z: 0}
-  targetReached: 0
-  currentMovement:
-    transform: {fileID: 0}
-    moveDirection: {x: 0, y: 0}
-    moveSpeed: 0
-    nextMoveTimestamp: 0
-    nextChangeDirectionTimestamp: 0
-    changeDirectionIntervalMax: 0
-    changeDirectionIntervalMin: 0
-  idleMovement:
-    transform: {fileID: 0}
-    moveDirection: {x: 0, y: 0}
-    moveSpeed: 0
-    nextMoveTimestamp: 0
-    nextChangeDirectionTimestamp: 0
-    changeDirectionIntervalMax: 0
-    changeDirectionIntervalMin: 0
-  orbitMovement:
-    transform: {fileID: 0}
-    moveDirection: {x: 0, y: 0}
-    moveSpeed: 3
-    nextMoveTimestamp: 0
-    nextChangeDirectionTimestamp: 0
-    changeDirectionIntervalMax: 0
-    changeDirectionIntervalMin: 0
-    orbitCenterPosition: {x: 0, y: 0, z: 0}
-    orbitDistance: 1
-    winkelGeschwindigkeit: 10
-  moveToPositionMovement:
-    transform: {fileID: 0}
-    moveDirection: {x: 0, y: 0}
-    moveSpeed: 2
-    nextMoveTimestamp: 0
-    nextChangeDirectionTimestamp: 0
-    changeDirectionIntervalMax: 0
-    changeDirectionIntervalMin: 0
-    destination: {x: 0, y: 0, z: 0}
 --- !u!114 &11452304
 MonoBehaviour:
   m_ObjectHideFlags: 1
