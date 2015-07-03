@@ -9,6 +9,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a14ed6747b64994eac2b41e96f964ac, type: 3}
-  m_Name: Tentawarble
+  m_Name: Menace (laser beams)
   m_EditorClassIdentifier: 
-  prefab: {fileID: 162996, guid: 88954efd43fa6a0458ed485404b56320, type: 2}
+  prefab: {fileID: 112518, guid: ba0d6a2308da98b449296946d8e0f5b8, type: 2}

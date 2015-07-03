@@ -653,7 +653,7 @@ GameObject:
   m_Layer: 15
   m_Name: 2D World
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -976,22 +976,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  IgnoreCollisionIfLayerNotInList: 1
-  layerCollision:
-  - layerName: Player
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    ignoreCollision: 0
-    collisionEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    collisionDamageEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
   myCollisionDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -1001,6 +985,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  IgnoreCollisionIfLayerNotInList: 1
+  layerCollision: []
 --- !u!1 &428847586
 GameObject:
   m_ObjectHideFlags: 0
@@ -2552,6 +2538,15 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
+  myCollisionDamageEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  myCollisionEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   IgnoreCollisionIfLayerNotInList: 1
   layerCollision:
   - layerName: EnemyProjectiles
@@ -2582,15 +2577,6 @@ MonoBehaviour:
         m_Calls: []
       m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
-  myCollisionDamageEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  myCollisionEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
 --- !u!1001 &1449902709
 Prefab:
   m_ObjectHideFlags: 0
@@ -3660,8 +3646,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  IgnoreCollisionIfLayerNotInList: 1
-  layerCollision: []
   myCollisionDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -3671,6 +3655,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  IgnoreCollisionIfLayerNotInList: 1
+  layerCollision: []
 --- !u!1001 &2004819044
 Prefab:
   m_ObjectHideFlags: 0

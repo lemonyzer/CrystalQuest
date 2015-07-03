@@ -9,6 +9,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a14ed6747b64994eac2b41e96f964ac, type: 3}
-  m_Name: Trimpet
+  m_Name: Worrier (Simple Shooter)
   m_EditorClassIdentifier: 
-  prefab: {fileID: 149358, guid: 572e5d236e1de8d46bbe0cc4219e5cc7, type: 2}
+  prefab: {fileID: 183132, guid: 8806098af886ae549b6ee7af404a3bed, type: 2}

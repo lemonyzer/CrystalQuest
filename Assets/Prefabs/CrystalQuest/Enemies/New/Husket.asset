@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a14ed6747b64994eac2b41e96f964ac, type: 3}
   m_Name: Husket
   m_EditorClassIdentifier: 
-  prefab: {fileID: 157758, guid: 71d35ad1dd89db94eaaca5311ff5b2fc, type: 2}
+  prefab: {fileID: 157758, guid: 0f658789715bedb43bd31ceba6646b66, type: 2}

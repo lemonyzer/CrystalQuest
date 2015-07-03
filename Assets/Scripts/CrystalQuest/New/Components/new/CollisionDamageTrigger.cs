@@ -102,6 +102,12 @@ public class CollisionDamageTrigger : MonoBehaviour {
 	LayerMask layerMask;
 
 	[SerializeField]
+	private MyFloatEvent myCollisionDamageEvent;					// Event for my Event-Domain
+	
+	[SerializeField]
+	private UnityEvent myCollisionEvent;								// Event for my Event-Domain
+
+	[SerializeField]
 	private bool IgnoreCollisionIfLayerNotInList = false;
 
 	[SerializeField]
@@ -146,7 +152,8 @@ public class CollisionDamageTrigger : MonoBehaviour {
 
 	private void OnTriggerEnter2D (Collider2D otherCollider2d)
 	{
-		if (CheckIfCollisionShouldBeIgnored (otherCollider2d))
+//		if (CheckIfCollisionShouldBeIgnored (otherCollider2d))
+		if (CheckIfCollisionShouldBeIgnoredWithLayerMaskCompare (otherCollider2d))
 		{
 			// generic, alle Collisionen werden gleich behandelt/verarbeitet
 			#if UNITY_EDITOR
@@ -252,17 +259,27 @@ public class CollisionDamageTrigger : MonoBehaviour {
 			return 0f;
 	}
 	
-	[SerializeField]
-	private MyFloatEvent myCollisionDamageEvent;					// Event for my Event-Domain
+
+
+	void CheckInit ()
+	{
+		for (int i=0; i < layerCollision.Count; i++)
+		{
+			if ( (layerCollision[i].LayerMask | 0) == 0 )
+			{
+				Debug.LogError (this.ToString() + " layerCollision " + i + " not initialized!!!");
+			}
+		}
+	}
 
 	void Awake ()
 	{
+		CheckInit();
 //		healthManager = InitHealthManager (healthManager);
 //		myCollisionDamageEvent = new MyFloatEvent();
 	}
 
-	[SerializeField]
-	private UnityEvent myCollisionEvent;								// Event for my Event-Domain
+
 
 //	public void StartListening (UnityAction newListener)
 //	{

@@ -31,6 +31,10 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 
+	public GameObject PlayerGO {
+		get {return playerGO;}
+	}
+
 	void OnEnable ()
 	{
 		DomainEventManager.StartGlobalListening (EventNames.PlayerDied, OnPlayerDied);

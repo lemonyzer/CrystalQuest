@@ -14,13 +14,13 @@ public class EnemyBehaviour : MonoBehaviour {
 		if (healthManager == null)
 		{
 			healthManager = this.GetComponent<HealthManager>();
-			Debug.LogError ("no HealthManager attached");
+			Debug.LogError (this.ToString() + " no HealthManager attached");
 		}
 
 		if (explosionScript == null)
 		{
 			explosionScript = this.GetComponent<ExplosionScript>();
-			Debug.LogError ("no ExplosionScript attached");
+			Debug.LogError (this.ToString() + " no ExplosionScript attached");
 		}
 	}
 

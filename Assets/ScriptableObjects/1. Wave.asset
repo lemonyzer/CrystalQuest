@@ -19,7 +19,7 @@ MonoBehaviour:
     amount: 5
   - enemyName: 
     enabled: 1
-    enemy: {fileID: 11400000, guid: c61961f1144f66c4d9c80984cb838685, type: 2}
+    enemy: {fileID: 11400000, guid: 5ed9bc1852fdd6f4da7edb94107c59c9, type: 2}
     amount: 2
   - enemyName: 
     enabled: 1

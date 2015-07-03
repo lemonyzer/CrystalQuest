@@ -201,7 +201,9 @@ public class EnemyManager : MonoBehaviour {
 	{
 		GameObject enemy = GetObject (waveEnemy);
 		if (enemy != null)
+		{
 			enemy.transform.position = spawnPos.Position;
+		}
 
 		return enemy;
 	}

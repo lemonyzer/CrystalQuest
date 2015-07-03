@@ -9,6 +9,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a14ed6747b64994eac2b41e96f964ac, type: 3}
-  m_Name: Parasite
+  m_Name: Zarklephaser (Hailstorm Shooter)
   m_EditorClassIdentifier: 
-  prefab: {fileID: 199794, guid: ecd8ce6d4297eac4c88868727e4696f7, type: 2}
+  prefab: {fileID: 182966, guid: 923a3d7cd14224b40a7dde87bd76319c, type: 2}
