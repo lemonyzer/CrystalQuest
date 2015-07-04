@@ -25,7 +25,7 @@ public class TestUserInputScript : MonoBehaviour {
 	private Vector2 m_Input;
 
 	[SerializeField]
-	float speed = 5;
+	float speed = 0.05f;
 
 	void Update () {
 
@@ -42,7 +42,7 @@ public class TestUserInputScript : MonoBehaviour {
 //		if (currentPosition.x < testLevel.xMin)
 //			currentPosition.x = testLevel.xMin;
 
-		this.transform.Translate (m_Input);
+		this.transform.Translate (m_Input * speed);
 		Vector3 currentPosition = this.transform.localPosition;
 		
 		if (useClamp)
@@ -74,6 +74,11 @@ public class TestUserInputScript : MonoBehaviour {
 //		}
 		
 
+	}
+
+	public void ResetLocalPosition ()
+	{
+		this.transform.localPosition = Vector3.zero;
 	}
 
 }
