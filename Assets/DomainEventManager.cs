@@ -183,7 +183,7 @@ public class DomainEventManager : MonoBehaviour {
 	private Dictionary <string, UnityEvent> eventDictionary;
 	// Basic Types
 	private Dictionary <string, FloatEvent> floatEventDictionary;
-	private Dictionary <string, IntEvent> IntEventDictionary;
+//	private Dictionary <string, IntEvent> IntEventDictionary;
 	private Dictionary <string, BoolEvent> boolEventDictionary;
 	private Dictionary <string, ItemEvent> ItemEventDictionary;
 
@@ -232,12 +232,12 @@ public class DomainEventManager : MonoBehaviour {
 		{
 			boolEventDictionary = new Dictionary<string, BoolEvent>();
 		}
-		// IntEvent
-		if (IntEventDictionary == null)
-		{
-			IntEventDictionary = new Dictionary<string, IntEvent>();
-		}
-		// IntEvent
+//		// IntEvent
+//		if (IntEventDictionary == null)
+//		{
+//			IntEventDictionary = new Dictionary<string, IntEvent>();
+//		}
+		// WaveEvent
 		if (waveEventDictionary == null)
 		{
 			waveEventDictionary = new Dictionary<string, WaveEvent>();
@@ -391,34 +391,34 @@ public class DomainEventManager : MonoBehaviour {
 	#endregion
 
 	#region int
-	public static void StartGlobalListening (string globalEventName, UnityAction<int> listener)
-	{
-		ListDomain (globalEventName);
-		
-		IntEvent thisEvent = null;
-		if (instance.IntEventDictionary.TryGetValue (globalEventName, out thisEvent))
-		{
-			thisEvent.AddListener (listener);
-		} 
-		else
-		{
-			thisEvent = new IntEvent ();
-			thisEvent.AddListener (listener);
-			instance.IntEventDictionary.Add (globalEventName, thisEvent);
-		}
-	}
-	
-	public static void StopGlobalListening (string globalEventName, UnityAction<int> listener)
-	{
-		UnlistDomain (globalEventName);
-		
-		if (eventManager == null) return;
-		IntEvent thisEvent = null;
-		if (instance.IntEventDictionary.TryGetValue (globalEventName, out thisEvent))
-		{
-			thisEvent.RemoveListener (listener);
-		}
-	}
+//	public static void StartGlobalListening (string globalEventName, UnityAction<int> listener)
+//	{
+//		ListDomain (globalEventName);
+//		
+//		IntEvent thisEvent = null;
+//		if (instance.IntEventDictionary.TryGetValue (globalEventName, out thisEvent))
+//		{
+//			thisEvent.AddListener (listener);
+//		} 
+//		else
+//		{
+//			thisEvent = new IntEvent ();
+//			thisEvent.AddListener (listener);
+//			instance.IntEventDictionary.Add (globalEventName, thisEvent);
+//		}
+//	}
+//	
+//	public static void StopGlobalListening (string globalEventName, UnityAction<int> listener)
+//	{
+//		UnlistDomain (globalEventName);
+//		
+//		if (eventManager == null) return;
+//		IntEvent thisEvent = null;
+//		if (instance.IntEventDictionary.TryGetValue (globalEventName, out thisEvent))
+//		{
+//			thisEvent.RemoveListener (listener);
+//		}
+//	}
 	#endregion
 	
 	#region UnityEvent
@@ -491,14 +491,14 @@ public class DomainEventManager : MonoBehaviour {
 			Debug.LogError (globalEventName + " not found");
 	}
 
-	public static void TriggerGlobalEvent (string globalEventName, int value)
-	{
-		IntEvent thisEvent = null;
-		if (instance.IntEventDictionary.TryGetValue (globalEventName, out thisEvent))
-		{
-			thisEvent.Invoke (value);
-		}
-	}
+//	public static void TriggerGlobalEvent (string globalEventName, int value)
+//	{
+//		IntEvent thisEvent = null;
+//		if (instance.IntEventDictionary.TryGetValue (globalEventName, out thisEvent))
+//		{
+//			thisEvent.Invoke (value);
+//		}
+//	}
 
 	public static void TriggerGlobalEvent (string globalEventName, float value)
 	{

@@ -36,7 +36,7 @@ public class UISmartBombs : MonoBehaviour {
 	#endregion
 	
 	#region Update
-	void UpdateUI (int amount)
+	void UpdateUI (float amount)
 	{
 		//		Debug.LogWarning (this.ToString () + " UpdateUI () " + value);
 		if (uiText != null)

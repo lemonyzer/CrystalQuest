@@ -48,9 +48,12 @@ public class ShootingPooled : MonoBehaviour {
 
 	[SerializeField]
 	float projectileMaxStayTimer = 1f;
-	
+
 	[SerializeField]
-	protected Vector3 projectileSpawnPosition;
+	float projectileSpawnDistance = 0.5f;
+
+//	[SerializeField]
+//	protected Vector3 projectileSpawnPosition;
 	#endregion
 	
 	#region Weapon
@@ -123,7 +126,7 @@ public class ShootingPooled : MonoBehaviour {
 				if (shootDirection == Vector3.zero)
 					shootDirection = Vector2.up;
 			}
-			projectileScript.transform.position = this.transform.position + shootDirection;
+			projectileScript.transform.position = this.transform.position + (shootDirection * projectileSpawnDistance);
 			projectile.SetActive (true);
 			projectileScript.ReleasedWithVelocity (shootDirection, weaponForce);
 		}

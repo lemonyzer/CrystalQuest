@@ -29,10 +29,15 @@ public class SmartBombUserScript : MonoBehaviour {
 	}
 
 	[SerializeField]
-	float minUseIntervall = 0.1f;
+	float minUseIntervall = 0.5f;
 
 	[SerializeField]
 	float nextPossibleTrigger = 0f;
+
+	void Start ()
+	{
+		NotifySmartBombAmountListener ();
+	}
 
 	void Update ()
 	{
@@ -54,7 +59,7 @@ public class SmartBombUserScript : MonoBehaviour {
 		DomainEventManager.TriggerGlobalEvent (EventNames.SmartBombTriggered);
 		// SmartBombManager.Instance.BombTriggered (); // singleton nötig ?
 		SmartBombsAmount--;
-
+		NotifySmartBombAmountListener ();
 	}
 
 	void NotifySmartBombAmountListener ()

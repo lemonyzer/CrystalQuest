@@ -30,6 +30,15 @@ public class Wave : ScriptableObject {
 	[SerializeField]
 	public int mineAmount;
 
+	[SerializeField]
+	public int smartBombs;
+
+	[SerializeField]
+	public int bonusCrystals;
+
+	[SerializeField]
+	public int bonusPoints;
+
 	public void SetAmountOfCrystals (int value)
 	{
 		crystal.amount = value;

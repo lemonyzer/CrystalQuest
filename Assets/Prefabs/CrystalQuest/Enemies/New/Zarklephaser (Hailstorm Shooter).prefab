@@ -81,7 +81,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 0
-  m_FixedAngle: 0
+  m_FixedAngle: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -169,7 +169,7 @@ MonoBehaviour:
   myHealthUpdateEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   invincible: 0
   m_isDead: 0
 --- !u!114 &11427958
@@ -188,7 +188,7 @@ MonoBehaviour:
   scored:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11428770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -423,36 +423,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  IgnoreCollisionIfLayerNotInList: 0
-  layerCollision:
-  - layerName: Player
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 256
-    ignoreCollision: 0
-    collisionEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    collisionDamageEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-  - layerName: PlayerProjectiles
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 2048
-    ignoreCollision: 0
-    collisionEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    collisionDamageEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
   myCollisionDamageEvent:
     m_PersistentCalls:
       m_Calls:
@@ -468,12 +438,40 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   myCollisionEvent:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  IgnoreCollisionIfLayerNotInList: 0
+  layerCollision:
+  - layerName: Player
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 256
+    ignoreCollision: 0
+    collisionEvent:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    collisionDamageEvent:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - layerName: PlayerProjectiles
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 2048
+    ignoreCollision: 0
+    collisionEvent:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    collisionDamageEvent:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11494306
 MonoBehaviour:
   m_ObjectHideFlags: 1
