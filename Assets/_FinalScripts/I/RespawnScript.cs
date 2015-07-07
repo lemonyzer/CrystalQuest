@@ -45,9 +45,14 @@ public class RespawnScript : MonoBehaviour {
 		myActivatedEvent.Invoke ();
 	}
 
-	public void Activate ()
+	public void SetRespawnPosition ()
 	{
 		this.transform.position = reactivatePos;
+	}
+
+	public void Activate ()
+	{
+		SetRespawnPosition ();
 		this.gameObject.SetActive (true);
 
 		Rigidbody2D myRigibody2d = this.gameObject.GetComponent<Rigidbody2D>();
