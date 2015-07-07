@@ -40,6 +40,7 @@ GameObject:
   - 114: {fileID: 11491398}
   - 114: {fileID: 11435924}
   - 114: {fileID: 11455290}
+  - 82: {fileID: 8278264}
   m_Layer: 8
   m_Name: Player Ship 2
   m_TagString: Untagged
@@ -156,6 +157,75 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: .25
+--- !u!82 &8278264
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118482}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11402570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,6 +313,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85bcd71db7bbd6744910341533cd81fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 8278264}
+  releaseProjectileClip: {fileID: 8300000, guid: b7d304aafa2ab7744a5011b72c5b41f5,
+    type: 3}
   shootTrigger: 0
   m_ShootDirection: {x: 0, y: 0}
   projectilePrefab: {fileID: 173978, guid: 942db8722dbb115479e10fe983f9252b, type: 2}
@@ -344,12 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sendDamageEnabled: 1
   sendDamageValue: 100
-  sendDamageMulti: 1
   receiveDamageEnabled: 1
-  receiveDamageMulti: 1
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
   myCollisionDamageEvent:
     m_PersistentCalls:
       m_Calls:
@@ -373,36 +441,10 @@ MonoBehaviour:
       PublicKeyToken=null
   IgnoreCollisionIfLayerNotInList: 1
   layerCollision:
-  - layerName: Enemy
+  - layerName: 
     layerMask:
       serializedVersion: 2
-      m_Bits: 512
-    ignoreCollision: 0
-    collisionEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    collisionDamageEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - layerName: EnemyProjectiles
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 1024
-    ignoreCollision: 0
-    collisionEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    collisionDamageEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - layerName: LevelDamage
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 16384
+      m_Bits: 17920
     ignoreCollision: 0
     collisionEvent:
       m_PersistentCalls:
@@ -434,6 +476,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be554cff936d0424dbce357c42f3f72c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 8278264}
+  smartBombTriggeredClip: {fileID: 8300000, guid: 34b75276a58c07448821919baaa38f07,
+    type: 3}
   smartBombsAmount: 10
   minAmountToUse: 1
   minAmount: 0

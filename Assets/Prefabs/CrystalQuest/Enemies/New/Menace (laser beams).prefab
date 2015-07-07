@@ -13,12 +13,13 @@ GameObject:
   - 50: {fileID: 5053342}
   - 114: {fileID: 11430064}
   - 114: {fileID: 11489298}
-  - 114: {fileID: 11421846}
   - 114: {fileID: 11478180}
+  - 114: {fileID: 11421846}
   - 114: {fileID: 11418152}
+  - 114: {fileID: 11486330}
   - 114: {fileID: 11405768}
   - 114: {fileID: 11491276}
-  - 114: {fileID: 11486330}
+  - 82: {fileID: 8273114}
   m_Layer: 9
   m_Name: Menace (laser beams)
   m_TagString: Untagged
@@ -108,6 +109,75 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .5, y: .5}
+--- !u!82 &8273114
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112518}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11405768
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -162,7 +232,7 @@ MonoBehaviour:
   scored:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11430064
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,7 +267,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   myCollisionEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -217,8 +287,7 @@ MonoBehaviour:
     collisionDamageEvent:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
+      m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - layerName: PlayerProjectiles
     layerMask:
       serializedVersion: 2
@@ -231,8 +300,7 @@ MonoBehaviour:
     collisionDamageEvent:
       m_PersistentCalls:
         m_Calls: []
-      m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
+      m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11478180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -347,7 +415,7 @@ MonoBehaviour:
   myHealthUpdateEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: MyFloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   invincible: 0
   m_isDead: 0
 --- !u!114 &11491276

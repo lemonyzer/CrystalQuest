@@ -89,17 +89,17 @@ public class CollisionDamageTrigger : MonoBehaviour {
 	[SerializeField]
 	private float sendDamageValue = 100f;
 	
-	[SerializeField]
+//	[SerializeField]
 	private float sendDamageMulti = 1f;
 	
 	[SerializeField]
 	private bool receiveDamageEnabled = true;
 	
-	[SerializeField]
+//	[SerializeField]
 	private float receiveDamageMulti = 1f;
 
-	[SerializeField]
-	LayerMask layerMask;
+//	[SerializeField]
+//	LayerMask layerMask;
 
 	[SerializeField]
 	private FloatEvent myCollisionDamageEvent;					// Event for my Event-Domain
@@ -182,11 +182,20 @@ public class CollisionDamageTrigger : MonoBehaviour {
 				LayerCollision currentLayerCollision = GetLayerCollision (otherCollider2d);
 				if (currentLayerCollision != null)
 				{
-					// Trigger Layer specific Collision Event
-					currentLayerCollision.TriggerCollisionEvent ();
+					// Kollisionpartner-Ebene ist in layerCollision aufgelistet
+					if (!currentLayerCollision.IgnoreCollision)
+					{
+						// Trigger Layer specific Collision Event
+						currentLayerCollision.TriggerCollisionEvent ();
 
-					// Trigger Layer spzefic Collision Damage Event
-					currentLayerCollision.TriggerCollisionEvent (receiveDamageValue);
+						if (receiveDamageEnabled)
+							// Trigger Layer spzefic Collision Damage Event
+							currentLayerCollision.TriggerCollisionEvent (receiveDamageValue);
+					}
+				}
+				else
+				{
+					// Kollisionpartner-Ebene ist NICHT in layerCollision aufgelistet
 				}
 
 				// Trigger global Collision Event

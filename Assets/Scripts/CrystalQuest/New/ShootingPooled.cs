@@ -4,6 +4,12 @@ using System.Collections.Generic;
 
 public class ShootingPooled : MonoBehaviour {
 
+	[SerializeField]
+	AudioSource audioSource;
+
+	[SerializeField]
+	AudioClip releaseProjectileClip;
+
 	public void Disable ()
 	{
 		shootTrigger = false;
@@ -25,6 +31,9 @@ public class ShootingPooled : MonoBehaviour {
 	void Awake ()
 	{
 		CreateProjectilePool ();
+		if (audioSource == null)
+			audioSource = this.GetComponent<AudioSource> ();
+
 	}
 
 	bool CanUseWeapon ()
@@ -129,6 +138,11 @@ public class ShootingPooled : MonoBehaviour {
 			projectileScript.transform.position = this.transform.position + (shootDirection * projectileSpawnDistance);
 			projectile.SetActive (true);
 			projectileScript.ReleasedWithVelocity (shootDirection, weaponForce);
+
+			if (audioSource != null && releaseProjectileClip != null)
+				audioSource.PlayOneShot (releaseProjectileClip);
+			else
+				Debug.LogError ("audioSource || releaseProjectileClip not set");
 		}
 	}
 	#endregion

@@ -20,6 +20,7 @@ GameObject:
   - 114: {fileID: 11472742}
   - 114: {fileID: 11467310}
   - 114: {fileID: 11494830}
+  - 82: {fileID: 8220534}
   m_Layer: 9
   m_Name: Shrapwarden (Explode)
   m_TagString: Untagged
@@ -109,6 +110,75 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .5, y: .5}
+--- !u!82 &8220534
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131290}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!114 &11410758
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,17 +230,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sendDamageEnabled: 1
   sendDamageValue: 100
-  sendDamageMulti: 1
   receiveDamageEnabled: 1
-  receiveDamageMulti: 1
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
   myCollisionDamageEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11488712}
-        m_MethodName: ReceiveFullDamageIgnoreInvincible
+      - m_Target: {fileID: 11496516}
+        m_MethodName: ReleaseScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11493422}
+        m_MethodName: Explode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11467310}
+        m_MethodName: Shoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11426328}
+        m_MethodName: Disable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -189,23 +290,10 @@ MonoBehaviour:
       PublicKeyToken=null
   IgnoreCollisionIfLayerNotInList: 1
   layerCollision:
-  - layerName: Player
+  - layerName: 
     layerMask:
       serializedVersion: 2
-      m_Bits: 256
-    ignoreCollision: 0
-    collisionEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    collisionDamageEvent:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  - layerName: PlayerProjectiles
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 2048
+      m_Bits: 2304
     ignoreCollision: 0
     collisionEvent:
       m_PersistentCalls:
@@ -315,19 +403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionTriggered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11467310}
-        m_MethodName: Shoot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   explosionTyp: 0
 --- !u!114 &11494830

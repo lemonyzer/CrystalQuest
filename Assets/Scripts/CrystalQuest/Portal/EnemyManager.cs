@@ -33,6 +33,13 @@ public class SpawnPosition
 public class EnemyManager : MonoBehaviour {
 
 
+	[SerializeField]
+	AudioSource audioSource;
+
+	[SerializeField]
+	AudioClip spawnClip;
+
+
 	/**
 	 * 
 	 * Enemy Pooler included
@@ -56,6 +63,8 @@ public class EnemyManager : MonoBehaviour {
 	void Awake ()
 	{
 		objectsPool = new Dictionary<GameObject, List<GameObject>>();
+		if (audioSource == null)
+			audioSource = this.GetComponent<AudioSource> ();
 	}
 
 	[SerializeField]
@@ -193,6 +202,10 @@ public class EnemyManager : MonoBehaviour {
 				newEnemy.GetComponent<HealthManager>().Revive ();
 				//			newEnemy.GetComponent<PooledObject>().Reuse ();		// TODO
 				//			EnemyObjectScript enemyScript = newEnemy.GetComponent<EnemyObjectScript>();
+				if (audioSource != null && spawnClip != null)
+					audioSource.PlayOneShot (spawnClip);
+				else
+					Debug.LogError ("AudioSource or SpawnClip not set");
 			}
 		}
 	}

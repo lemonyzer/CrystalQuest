@@ -9,6 +9,12 @@ public class SmartBombUserScript : MonoBehaviour {
 //	public static event Triggered onTriggered;
 
 	[SerializeField]
+	AudioSource audioSource;
+
+	[SerializeField]
+	AudioClip smartBombTriggeredClip;
+
+	[SerializeField]
 	int smartBombsAmount = 3;
 
 	[SerializeField]
@@ -34,6 +40,11 @@ public class SmartBombUserScript : MonoBehaviour {
 	[SerializeField]
 	float nextPossibleTrigger = 0f;
 
+	void Awake ()
+	{
+		audioSource = this.GetComponent<AudioSource> ();
+	}
+
 	void Start ()
 	{
 		NotifySmartBombAmountListener ();
@@ -56,6 +67,14 @@ public class SmartBombUserScript : MonoBehaviour {
 
 	void Trigger ()
 	{
+		if (audioSource != null && smartBombTriggeredClip != null)
+		{
+			audioSource.PlayOneShot (smartBombTriggeredClip);
+		}
+		else
+		{
+			Debug.LogError (this.ToString () + " has no AudioSource / AudioClip!");
+		}
 		DomainEventManager.TriggerGlobalEvent (EventNames.SmartBombTriggered);
 		// SmartBombManager.Instance.BombTriggered (); // singleton nötig ?
 		SmartBombsAmount--;

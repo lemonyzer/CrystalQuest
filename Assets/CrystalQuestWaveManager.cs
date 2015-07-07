@@ -14,6 +14,12 @@ public class CrystalQuestWaveManager : MonoBehaviour {
 //	List<WaveTask> waveTasks;
 
 	[SerializeField]
+	AudioSource audioSource;
+
+	[SerializeField]
+	AudioClip waveCompleteClip;
+
+	[SerializeField]
 	WaveDataBase waveDB;
 
 	static CrystalQuestWaveManager m_instance;
@@ -171,6 +177,7 @@ public class CrystalQuestWaveManager : MonoBehaviour {
 		DomainEventManager.TriggerGlobalEvent (EventNames.PlayerInvincibleEnable);
 
 		// tell everyone wave completed
+		audioSource.PlayOneShot (waveCompleteClip);
 		DomainEventManager.TriggerGlobalEvent (EventNames.WaveComplete);
 
 		// TODO show wave stats

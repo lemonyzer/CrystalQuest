@@ -11,6 +11,19 @@ public class ExplosionAnimation : MonoBehaviour {
 	}
 
 	[SerializeField]
+	AudioSource audioSource;
+
+	void Awake ()
+	{
+		if (this.audioSource == null)
+			this.audioSource = this.GetComponent<AudioSource> ();
+
+	}
+
+	[SerializeField]
+	AudioClip explosionClip;
+
+	[SerializeField]
 	private SpriteRenderer spriteRenderer;
 
 	[SerializeField]
@@ -33,6 +46,11 @@ public class ExplosionAnimation : MonoBehaviour {
 			else
 				animationLoops = value;
 		}
+	}
+
+	public void Explode ()
+	{
+		this.audioSource.PlayOneShot (explosionClip);
 	}
 
 	void AnimationFinished ()

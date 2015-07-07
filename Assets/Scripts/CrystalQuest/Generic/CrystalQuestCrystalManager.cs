@@ -11,6 +11,15 @@ public class LayerDistance
 
 public class CrystalQuestCrystalManager : MonoBehaviour {
 
+	[SerializeField]
+	AudioSource audioSource;		// TODO weil crystals nach dem einsammeln deaktiviert werden -> audiosource componente kann nicht laufen wenn gameobject deaktiviert ist
+
+	[SerializeField]
+	AudioClip crystalCollectedClip;
+
+	[SerializeField]
+	AudioClip allCrystalCollectedClip;
+
 	// sucht alle in der Scene instanziierten Crystalle
 	// listen to neue Crystalinstanziierung
 	// listen to destroy Crystal
@@ -159,6 +168,19 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 
 	void OnCrystalCollected ()
 	{
+		PlayerClip (crystalCollectedClip);
+
+		// TODO DONE ersetzt:
+//		if (audioSource != null)
+//		{
+//			if (crystalCollectedClip != null)
+//				audioSource.PlayOneShot (crystalCollectedClip);
+//			else
+//				Debug.LogError (this.ToString () + " has no crystalCollectedClip set!!!");
+//		}
+//		else
+//			Debug.LogError (this.ToString () + " has no audioSource set!!!");
+
 		// crystals.Remove (crystalScript);
 		CollectedCrystals++;
 //		if (collectedCount >= crystals.Count)
@@ -183,6 +205,7 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 //
 	void NotifyAllCrystalsCollectedListener ()
 	{
+		PlayerClip (allCrystalCollectedClip);
 		DomainEventManager.TriggerGlobalEvent (EventNames.AllCrystalsCollected);
 
 //		if (onAllCrystalsCollected != null)
@@ -196,4 +219,18 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 //		base.NextLevel (level);
 //		this.collectedCount = 0;
 //	}
+
+	void PlayerClip (AudioClip clip)
+	{
+		if (audioSource != null)
+		{
+			if (clip != null)
+				audioSource.PlayOneShot (clip);
+			else
+				Debug.LogError (this.ToString () + " audioClip is not set!");
+		}
+		else
+			Debug.LogError (this.ToString () + " audioSource is not set!");
+			
+	}
 }

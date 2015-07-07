@@ -5,6 +5,12 @@ using System.Collections.Generic;
 public class BurstShootingPooled : MonoBehaviour {
 
 	[SerializeField]
+	AudioSource audioSource;
+
+	[SerializeField]
+	AudioClip releasingProjectileClip;
+
+	[SerializeField]
 	bool shootTrigger = false;
 
 	[SerializeField]
@@ -58,6 +64,7 @@ public class BurstShootingPooled : MonoBehaviour {
 
 	void Awake ()
 	{
+		audioSource = this.GetComponent<AudioSource> ();
 		CreateProjectilePool ();
 	}
 
@@ -200,6 +207,11 @@ public class BurstShootingPooled : MonoBehaviour {
 			projectileScript.transform.position = this.transform.position + shootDirection;
 			projectile.SetActive (true);
 			projectileScript.ReleasedWithVelocity (shootDirection, weaponForce);
+
+			if (audioSource != null && releasingProjectileClip != null)
+				audioSource.PlayOneShot (releasingProjectileClip);
+			else
+				Debug.LogError (this.ToString () + " audioSource or audioClip not set!!!");
 		}
 	}
 	#endregion
