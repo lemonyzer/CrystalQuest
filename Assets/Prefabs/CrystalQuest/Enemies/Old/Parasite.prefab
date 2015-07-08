@@ -27,17 +27,16 @@ GameObject:
   - 212: {fileID: 21224284}
   - 58: {fileID: 5839542}
   - 50: {fileID: 5025186}
+  - 114: {fileID: 11441904}
   - 114: {fileID: 11474924}
   - 114: {fileID: 11466754}
   - 114: {fileID: 11410624}
   - 114: {fileID: 11423572}
   - 114: {fileID: 11452304}
   - 114: {fileID: 11427920}
-  - 114: {fileID: 11404616}
-  - 114: {fileID: 11407468}
-  - 82: {fileID: 8299618}
+  - 114: {fileID: 11450638}
   m_Layer: 9
-  m_Name: Parasite (Protector)
+  m_Name: Parasite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +76,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_FixedAngle: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -109,141 +108,6 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: .5, y: .5}
---- !u!82 &8299618
-AudioSource:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199794}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
---- !u!114 &11404616
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b2a912f86fe11d4ba6bc075e43d646d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthManager: {fileID: 11466754}
-  explosionScript: {fileID: 11423572}
---- !u!114 &11407468
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dc9eb7528500994b9949541255b7ce7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetScript: {fileID: 0}
-  moveDirection: {x: 0, y: 0}
-  rb2d: {fileID: 0}
-  useTargetPosition: 1
-  targetPosition: {x: 1, y: 1, z: 1}
-  targetReached: 0
-  currentMovement:
-    transform: {fileID: 0}
-    moveDirection: {x: 0, y: 0}
-    moveSpeed: 0
-    nextMoveTimestamp: 0
-    nextChangeDirectionTimestamp: 0
-    changeDirectionIntervalMax: 0
-    changeDirectionIntervalMin: 0
-  idleMovement:
-    transform: {fileID: 0}
-    moveDirection: {x: 0, y: 0}
-    moveSpeed: 0
-    nextMoveTimestamp: 0
-    nextChangeDirectionTimestamp: 0
-    changeDirectionIntervalMax: 0
-    changeDirectionIntervalMin: 0
-  orbitMovement:
-    transform: {fileID: 0}
-    moveDirection: {x: 0, y: 0}
-    moveSpeed: 2
-    nextMoveTimestamp: 0
-    nextChangeDirectionTimestamp: 0
-    changeDirectionIntervalMax: .5
-    changeDirectionIntervalMin: .200000003
-    orbitCenterPosition: {x: 0, y: 0, z: 0}
-    orbitDistance: 2
-    winkelGeschwindigkeit: 1
-  moveToPositionMovement:
-    transform: {fileID: 0}
-    moveDirection: {x: 0, y: 0}
-    moveSpeed: 4
-    nextMoveTimestamp: .100000001
-    nextChangeDirectionTimestamp: 0
-    changeDirectionIntervalMax: .5
-    changeDirectionIntervalMin: 1
-    destination: {x: 0, y: 0, z: 0}
 --- !u!114 &11410624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -256,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreData:
-    m_scoreValue: 1000
+    m_scoreValue: 110000
   scored:
     m_PersistentCalls:
       m_Calls: []
@@ -292,7 +156,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11466754}
-        m_MethodName: ReceiveFullDamageIgnoreInvincible
+        m_MethodName: ReceiveFullDamage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -304,6 +168,102 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11441904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 758350b674596564999b204476ff0181, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transform: {fileID: 0}
+  destroyScore: 250
+  releasePoints:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  selfAttack: 0
+  teamAttack: 0
+  invincible: 0
+  minHealth: 0
+  maxHealth: 100
+  currentHealth: 100
+  lifes: 3
+  minLifes: 0
+  isDead: 0
+  useCollisionEvents: 0
+  collisionSendDamageValue: 3.40282347e+38
+  enableInput: 1
+  inputMoveDirection: {x: 0, y: 0}
+  inputFire: 0
+  inputUseItem: 0
+  canMove: 1
+  maxVelocity: 1
+  rb2D: {fileID: 0}
+  targetScript: {fileID: 0}
+  aiMovementType: 0
+  aiMoveState: 0
+  limitedDegreeChange: 1
+  moveDirection: {x: 0, y: 0}
+  levelLeft: -10
+  levelTop: 5
+  levelWidth: 20
+  levelHeight: 10
+  deltaDistanceToReach: .100000001
+  useTargetPosition: 1
+  targetPosition: {x: 0, y: 0, z: 0}
+  targetReached: 0
+  currentMovement:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: 0
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: 0
+    changeDirectionIntervalMin: 0
+  idleMovement:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: 0
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: 0
+    changeDirectionIntervalMin: 0
+  orbitMovement:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: 3
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: 0
+    changeDirectionIntervalMin: 0
+    orbitCenterPosition: {x: 0, y: 0, z: 0}
+    orbitDistance: 1
+    winkelGeschwindigkeit: 10
+  moveToPositionMovement:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: 2
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: 0
+    changeDirectionIntervalMin: 0
+    destination: {x: 0, y: 0, z: 0}
+--- !u!114 &11450638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ccf55ab0400b5b48ba01e15000ed547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11452304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -331,55 +291,7 @@ MonoBehaviour:
   currentHealth: 100
   myNoHealthEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11423572}
-        m_MethodName: Explode
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11410624}
-        m_MethodName: ReleaseScore
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11452304}
-        m_MethodName: Disable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 11407468}
-        m_MethodName: Reset
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   myHealthUpdateEvent:
     m_PersistentCalls:
@@ -403,7 +315,19 @@ MonoBehaviour:
   receiveDamageEnabled: 1
   myCollisionDamageEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11466754}
+        m_MethodName: ReceiveHealthDamage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   myCollisionEvent:
     m_PersistentCalls:
@@ -415,23 +339,11 @@ MonoBehaviour:
   - layerName: Player
     layerMask:
       serializedVersion: 2
-      m_Bits: 256
+      m_Bits: 0
     ignoreCollision: 0
     collisionEvent:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 11466754}
-          m_MethodName: ReceiveFullDamageIgnoreInvincible
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-              Culture=neutral, PublicKeyToken=null
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     collisionDamageEvent:
       m_PersistentCalls:
@@ -440,7 +352,7 @@ MonoBehaviour:
   - layerName: PlayerProjectiles
     layerMask:
       serializedVersion: 2
-      m_Bits: 2048
+      m_Bits: 0
     ignoreCollision: 0
     collisionEvent:
       m_PersistentCalls:
@@ -448,19 +360,7 @@ MonoBehaviour:
       m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     collisionDamageEvent:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 11466754}
-          m_MethodName: ReceiveHealthDamage
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-              Culture=neutral, PublicKeyToken=null
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
       m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!212 &21224284
 SpriteRenderer:

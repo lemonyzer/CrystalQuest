@@ -78,6 +78,11 @@ public class ProtectorMovement : MonoBehaviour {
 	{
 		targetReached = false;
 	}
+
+	void OnEnable ()
+	{
+		Reset ();
+	}
 	
 	float PredictCircleAngle(Vector3 position, Vector3 center)
 	{

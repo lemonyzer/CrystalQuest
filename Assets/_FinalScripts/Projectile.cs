@@ -4,7 +4,7 @@ using System.Collections;
 public class Projectile : MonoBehaviour {
 
 	[SerializeField]
-	Rigidbody2D rb2d;
+	protected Rigidbody2D rb2d;
 
 //	[SerializeField]
 //	protected CrystalQuestObjectScript ownerObjectScript;
@@ -28,9 +28,11 @@ public class Projectile : MonoBehaviour {
 	[SerializeField]
 	protected float selfDestroyTime = 5f;
 
-	void Awake ()
+	protected virtual void Awake ()
 	{
 		rb2d = this.GetComponent<Rigidbody2D> ();
+
+		Release ();
 	}
 	
 //	void OnEnable ()
@@ -68,7 +70,7 @@ public class Projectile : MonoBehaviour {
 		selfDestroyTime = duration;
 	}
 	
-	public void ReleasedWithVelocity (Vector3 direction, float force)
+	public virtual void ReleasedWithVelocity (Vector3 direction, float force)
 	{
 		if (rb2d != null)
 			rb2d.velocity = direction * force;
@@ -86,7 +88,7 @@ public class Projectile : MonoBehaviour {
 		Release ();
 	}
 
-	void Release ()
+	protected void Release ()
 	{
 		if (selfDestroyEnabled)
 			Invoke ("AutoDestroy", selfDestroyTime);
