@@ -61,8 +61,15 @@ MonoBehaviour:
     enabled: 1
     enemy: {fileID: 11400000, guid: 05b76665ff5fc3c40b317bb5ed29939e, type: 2}
     amount: 3
+  - enemyName: 
+    enabled: 1
+    enemy: {fileID: 11400000, guid: cc4feca2a51d1df4d89a1409033eabe3, type: 2}
+    amount: 3
   crystal:
     prefab: {fileID: 0}
     amount: 14
     enabled: 0
   mineAmount: 14
+  smartBombs: 0
+  bonusCrystals: 0
+  bonusPoints: 0

@@ -281,7 +281,7 @@ MonoBehaviour:
   moveRandom:
     transform: {fileID: 0}
     moveDirection: {x: 0, y: 0}
-    moveSpeed: 1
+    moveSpeed: 2.5
     nextMoveTimestamp: 0
     nextChangeDirectionTimestamp: 0
     changeDirectionIntervalMax: .200000003
@@ -423,12 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sendDamageEnabled: 1
   sendDamageValue: 100
-  sendDamageMulti: 1
   receiveDamageEnabled: 1
-  receiveDamageMulti: 1
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
   myCollisionDamageEvent:
     m_PersistentCalls:
       m_Calls:
@@ -512,14 +507,14 @@ MonoBehaviour:
   m_ShootDirection: {x: 0, y: 0}
   currentBurstProjectileAmount: 0
   randBurstProjectileAmount: 0
-  minBurstProjectileAmount: 6
+  minBurstProjectileAmount: 2
   maxBurstProjectileAmount: 12
   randomizeBurstProjectileIntervall: 1
   randTimeBetweenProjectiles: 0
   minTimeBetweenProjectiles: .100000001
   maxTimeBetweenProjectiles: .200000003
   randTimeBetweenBursts: 0
-  minTimeBetweenBursts: 1
+  minTimeBetweenBursts: 2
   maxTimeBetweenBursts: 8
   nextProjectileTimeStamp: 0
   nextBurstTimeStamp: 0

@@ -254,7 +254,7 @@ MonoBehaviour:
   moveRandom:
     transform: {fileID: 0}
     moveDirection: {x: 0, y: 0}
-    moveSpeed: 1
+    moveSpeed: 2.5
     nextMoveTimestamp: 0
     nextChangeDirectionTimestamp: 0
     changeDirectionIntervalMax: .200000003
@@ -382,12 +382,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sendDamageEnabled: 1
   sendDamageValue: 100
-  sendDamageMulti: 1
   receiveDamageEnabled: 1
-  receiveDamageMulti: 1
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
   myCollisionDamageEvent:
     m_PersistentCalls:
       m_Calls: []

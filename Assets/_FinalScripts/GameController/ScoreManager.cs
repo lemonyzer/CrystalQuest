@@ -5,7 +5,19 @@ using System.Collections;
 public class ScoreManager : MonoBehaviour {
 
 	[SerializeField]
+	AudioClip extraLifeClip;
+
+	[SerializeField]
+	AudioSource myAudioSource;
+
+	[SerializeField]
 	ScoreDataModell score;
+
+	[SerializeField]
+	int pointsForExtraLive = 10000;
+
+	[SerializeField]
+	int extraLiveStep = 1;
 
 	void Awake ()
 	{
@@ -13,6 +25,8 @@ public class ScoreManager : MonoBehaviour {
 			score = new ScoreDataModell ();
 
 		onScoring = new UnityAction<float> (OnScoring);
+
+		myAudioSource = this.GetComponent<AudioSource> ();
 	}
 
 	// Use this for initialization
@@ -31,5 +45,12 @@ public class ScoreManager : MonoBehaviour {
 	{
 		this.score.AddPoints (scoreValue);
 		DomainEventManager.TriggerGlobalEvent (EventNames.ScoreUpdate, this.score.ScoreValue);
+
+		if ( 0 <= (this.score.ScoreValue - pointsForExtraLive * extraLiveStep))
+		{
+			extraLiveStep++;
+			DomainEventManager.TriggerGlobalEvent (EventNames.ExtraLifeGained);
+			myAudioSource.PlayOneShot (extraLifeClip);
+		}
 	}
 }

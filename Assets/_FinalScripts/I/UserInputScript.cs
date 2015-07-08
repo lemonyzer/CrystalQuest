@@ -30,6 +30,17 @@ public class UserInputScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+
+		if (!readInput)
+		{
+			if (overrideInput)
+			{
+				m_Input = overrideDirection;
+				m_InputFire = overrideShoot;
+			}
+			return;
+		}
+
 		m_Input.x = CrossPlatformInputManager.GetAxis ("Horizontal");
 		m_Input.y = CrossPlatformInputManager.GetAxis ("Vertical");
 
@@ -37,6 +48,49 @@ public class UserInputScript : MonoBehaviour {
 
 		if (m_InputFire)
 			shootingPooled.TriggerShoot (m_Input);
+	}
+
+	// Use this for initialization
+	void OnEnable () {
+		DomainEventManager.StartGlobalListening (EventNames.WavePreInit, OnWavePreInit);
+		DomainEventManager.StartGlobalListening (EventNames.WaveStart, OnWaveStart);
+	}
+	
+	// Update is called once per frame
+	void OnDisable () {
+		DomainEventManager.StopGlobalListening (EventNames.WavePreInit, OnWavePreInit);
+		DomainEventManager.StopGlobalListening (EventNames.WaveStart, OnWaveStart);
+	}
+
+	[SerializeField]
+	bool readInput = true;
+	[SerializeField]
+	bool overrideInput = false;
+	[SerializeField]
+	Vector2 overrideDirection = Vector2.zero;
+	[SerializeField]
+	bool overrideShoot = false;
+
+	void StopInputMovement ()
+	{
+		readInput = false;
+		overrideInput = true;
+	}
+
+	void StartInputReading ()
+	{
+		readInput = true;
+		overrideInput = false;
+	}
+
+	void OnWavePreInit ()
+	{
+		StopInputMovement ();
+	}
+
+	void OnWaveStart ()
+	{
+		StartInputReading ();
 	}
 
 	[SerializeField]

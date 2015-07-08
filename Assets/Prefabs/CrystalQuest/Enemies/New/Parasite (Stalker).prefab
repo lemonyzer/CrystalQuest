@@ -34,8 +34,8 @@ GameObject:
   - 114: {fileID: 11452304}
   - 114: {fileID: 11427920}
   - 114: {fileID: 11404616}
-  - 114: {fileID: 11407468}
   - 82: {fileID: 8299618}
+  - 114: {fileID: 11440274}
   m_Layer: 9
   m_Name: Parasite (Stalker)
   m_TagString: Untagged
@@ -191,59 +191,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthManager: {fileID: 11466754}
   explosionScript: {fileID: 11423572}
---- !u!114 &11407468
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dc9eb7528500994b9949541255b7ce7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetScript: {fileID: 0}
-  moveDirection: {x: 0, y: 0}
-  rb2d: {fileID: 0}
-  useTargetPosition: 1
-  targetPosition: {x: 1, y: 1, z: 1}
-  targetReached: 0
-  currentMovement:
-    transform: {fileID: 0}
-    moveDirection: {x: 0, y: 0}
-    moveSpeed: 0
-    nextMoveTimestamp: 0
-    nextChangeDirectionTimestamp: 0
-    changeDirectionIntervalMax: 0
-    changeDirectionIntervalMin: 0
-  idleMovement:
-    transform: {fileID: 0}
-    moveDirection: {x: 0, y: 0}
-    moveSpeed: 0
-    nextMoveTimestamp: 0
-    nextChangeDirectionTimestamp: 0
-    changeDirectionIntervalMax: 0
-    changeDirectionIntervalMin: 0
-  orbitMovement:
-    transform: {fileID: 0}
-    moveDirection: {x: 0, y: 0}
-    moveSpeed: 2
-    nextMoveTimestamp: 0
-    nextChangeDirectionTimestamp: 0
-    changeDirectionIntervalMax: .5
-    changeDirectionIntervalMin: .200000003
-    orbitCenterPosition: {x: 0, y: 0, z: 0}
-    orbitDistance: 2
-    winkelGeschwindigkeit: 1
-  moveToPositionMovement:
-    transform: {fileID: 0}
-    moveDirection: {x: 0, y: 0}
-    moveSpeed: 4
-    nextMoveTimestamp: .100000001
-    nextChangeDirectionTimestamp: 0
-    changeDirectionIntervalMax: .5
-    changeDirectionIntervalMin: 1
-    destination: {x: 0, y: 0, z: 0}
 --- !u!114 &11410624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -304,6 +251,40 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11440274
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be442387039fac34eabe5f47c1d47493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetTransform: {fileID: 0}
+  moveDirection: {x: 0, y: 0}
+  rb2d: {fileID: 0}
+  useTargetPosition: 1
+  targetPosition: {x: 1, y: 1, z: 1}
+  targetReached: 0
+  currentMovement:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: 0
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: 0
+    changeDirectionIntervalMin: 0
+  moveToTargetTransform:
+    transform: {fileID: 0}
+    moveDirection: {x: 0, y: 0}
+    moveSpeed: 3
+    nextMoveTimestamp: 0
+    nextChangeDirectionTimestamp: 0
+    changeDirectionIntervalMax: .5
+    changeDirectionIntervalMin: .100000001
+    targetTransform: {fileID: 0}
 --- !u!114 &11452304
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -388,12 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sendDamageEnabled: 1
   sendDamageValue: 100
-  sendDamageMulti: 1
   receiveDamageEnabled: 1
-  receiveDamageMulti: 1
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 0
   myCollisionDamageEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -480,7 +456,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 13d1a5d3d52c9004193ba9f6fb8e0690, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

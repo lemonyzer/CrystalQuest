@@ -108,6 +108,9 @@ public class EventNames
 	public const string MusicVolumeChange = "MusicVolumeChange"; 		// AudioSource -> slider.value update
 	
 	
+	public const string ExtraLifeGained = "ExtraLifeGained"; 		// ++ numberOfSmartBombs
+
+
 	public const string SmartBombAmount = "SmartBombAmount"; 		// ++ numberOfSmartBombs
 	public const string SmartBombCollected = "SmartBombCollected"; 		// ++ numberOfSmartBombs
 	public const string SmartBombTriggered = "SmartBombTriggered"; 		// -> kill all enemies, bonus items

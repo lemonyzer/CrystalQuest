@@ -63,6 +63,12 @@ public class LifeManager : MonoBehaviour {
 		}
 	}
 
+	public void AddLife ()
+	{
+		lifes++;	// direkt ändern nicht über property - löst sonst event aus!
+		OnLifeUpdate (lifes);
+	}
+
 	void OnGameOver ()
 	{
 		// notify gameOver interface
