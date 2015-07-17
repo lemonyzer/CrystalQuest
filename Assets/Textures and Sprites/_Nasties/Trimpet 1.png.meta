@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 98cc37f292e562a4290a6b49ba86121c
-timeCreated: 1430001644
+guid: d936e623b5be78c4b9c613b22ac83933
+timeCreated: 1436473888
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,10 @@ TextureImporter:
     21300002: Trimpet_1
     21300004: Trimpet_2
     21300006: Trimpet_3
+    21300008: Trimpet 1_0
+    21300010: Trimpet 1_1
+    21300012: Trimpet 1_2
+    21300014: Trimpet 1_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -33,7 +37,7 @@ TextureImporter:
   textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 0
+    filterMode: 1
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -53,7 +57,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Trimpet_0
+    - name: Trimpet 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -63,7 +67,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Trimpet_1
+    - name: Trimpet 1_1
       rect:
         serializedVersion: 2
         x: 18
@@ -73,7 +77,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Trimpet_2
+    - name: Trimpet 1_2
       rect:
         serializedVersion: 2
         x: 36
@@ -83,7 +87,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Trimpet_3
+    - name: Trimpet 1_3
       rect:
         serializedVersion: 2
         x: 54
