@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreData:
-    m_scoreValue: 0
+    m_scoreValue: 10000
   scored:
     m_PersistentCalls:
       m_Calls: []

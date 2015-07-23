@@ -113,7 +113,7 @@ public class ShootingPooled : MonoBehaviour {
 		
 		if (Time.time >= nextShootTimestamp)
 		{
-			nextShootTimestamp += fireRateIntervall;
+			nextShootTimestamp = Time.time + fireRateIntervall;
 			return true;
 		}
 		return false;
