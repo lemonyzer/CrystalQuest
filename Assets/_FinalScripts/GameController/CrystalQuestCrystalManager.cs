@@ -24,8 +24,8 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 	// listen to neue Crystalinstanziierung
 	// listen to destroy Crystal
 
-	[SerializeField]
-	List<CrystalObject> crystals;
+//	[SerializeField]
+//	List<CrystalObject> crystals;
 
 	[SerializeField]
 	float collectedCount = 0;
@@ -161,10 +161,10 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 //		crystals.Remove (crystalScript);
 //	}
 
-	void OnCrystalCreated (CrystalObject crystalScript)
-	{
-		crystals.Add (crystalScript);
-	}
+//	void OnCrystalCreated (CrystalObject crystalScript)
+//	{
+//		crystals.Add (crystalScript);
+//	}
 
 	void OnCrystalCollected ()
 	{
@@ -189,15 +189,15 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 //		}
 	}
 
-	void Collected (CrystalObject crystalScript)
-	{
-		// crystals.Remove (crystalScript);
-		CollectedCrystals++;
-		if (collectedCount >= crystals.Count)
-		{
-			NotifyAllCrystalsCollectedListener ();
-		}
-	}
+//	void Collected (CrystalObject crystalScript)
+//	{
+//		// crystals.Remove (crystalScript);
+//		CollectedCrystals++;
+//		if (collectedCount >= crystals.Count)
+//		{
+//			NotifyAllCrystalsCollectedListener ();
+//		}
+//	}
 
 //	// portal gate öffnen
 //	public delegate void AllCrystalsCollected ();

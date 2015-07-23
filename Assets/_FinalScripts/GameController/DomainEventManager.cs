@@ -188,7 +188,7 @@ public class DomainEventManager : MonoBehaviour {
 	private Dictionary <string, FloatEvent> floatEventDictionary;
 //	private Dictionary <string, IntEvent> IntEventDictionary;
 	private Dictionary <string, BoolEvent> boolEventDictionary;
-	private Dictionary <string, ItemEvent> ItemEventDictionary;
+//	private Dictionary <string, ItemEvent> ItemEventDictionary;
 
 	// Komplex Types
 	private Dictionary <string, WaveEvent> waveEventDictionary;
