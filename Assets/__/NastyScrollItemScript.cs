@@ -8,13 +8,4 @@ public class NastyScrollItemScript : MonoBehaviour {
 	public Image itemImage;
 	public Toggle itemToggle;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

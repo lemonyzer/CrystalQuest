@@ -51,6 +51,8 @@ public class CrystalQuestWaveManager : MonoBehaviour {
 	{
 		DomainEventManager.TriggerGlobalEvent (EventNames.WaveInit);
 		DomainEventManager.TriggerInitWave (GetCurrentWave ());
+		DomainEventManager.TriggerGlobalEvent (EventNames.WaveStart);
+		
 	}
 
 	[SerializeField]
@@ -117,6 +119,7 @@ public class CrystalQuestWaveManager : MonoBehaviour {
 	void OnEnable ()
 	{
 		DomainEventManager.StartGlobalListening (EventNames.WaveInit, OnWaveInit);
+//		DomainEventManager.StartGlobalListening (EventNames.WaveStart, OnWaveStart);
 		DomainEventManager.StartGlobalListening (EventNames.PlayerDied, OnPlayerDied);
 		DomainEventManager.StartGlobalListening (EventNames.PlayerWillRespawn, OnPlayerWillRespawn);
 //		DomainEventManager.StartGlobalListening (EventNames.PlayerRespawned, OnPlayerRespawned);
@@ -129,6 +132,7 @@ public class CrystalQuestWaveManager : MonoBehaviour {
 	void OnDisable ()
 	{
 		DomainEventManager.StopGlobalListening (EventNames.WaveInit, OnWaveInit);
+//		DomainEventManager.StopGlobalListening (EventNames.WaveStart, OnWaveStart);
 		DomainEventManager.StopGlobalListening (EventNames.PlayerDied, OnPlayerDied);
 		DomainEventManager.StopGlobalListening (EventNames.PlayerWillRespawn, OnPlayerWillRespawn);
 //		DomainEventManager.StopGlobalListening (EventNames.PlayerRespawned, OnPlayerRespawned);
@@ -169,6 +173,40 @@ public class CrystalQuestWaveManager : MonoBehaviour {
 		DomainEventManager.TriggerGlobalEvent (EventNames.WaveTaskCompleted);
 	}
 
+//	float currentWaveTime = 0;
+//	float gameTime = 0;
+//
+//	void Update ()
+//	{
+//		currentWaveTime += Time.deltaTime;
+//		gameTime += Time.deltaTime;
+//	}
+//
+//	void OnWaveStart ()
+//	{
+//		currentWaveTime = 0f;
+//	}
+//
+//	void OnGUI ()
+//	{
+//		GUILayout.TextField ("GameTime: " + gameTime.ToString ("F3"));
+//		GUILayout.TextField ("WaveTime: " + currentWaveTime.ToString ("F2"));
+//		GUILayout.TextField ("TimeLimit: " + GetCurrentWave().bonusTimeLimit.ToString ("F2"));
+//	}
+//	
+//	void CalculateBonusPoints ()
+//	{
+//		Debug.Log ("current Wave Time = " + currentWaveTime + ", bonus time limit = " + GetCurrentWave ().bonusTimeLimit);
+//
+//		float timeDiff = currentWaveTime - GetCurrentWave ().bonusTimeLimit;
+//
+//		if (timeDiff > 0f)
+//		{
+//			float scoreBonus = timeDiff * GetCurrentWave ().timeBonus;
+//			DomainEventManager.TriggerGlobalEvent (EventNames.ScoredValue, scoreBonus);
+//		}
+//	}
+
 	void OnPlayerTriggerWaveExit ()
 	{
 		// player must not collid with anything No Bullet no Enemy...
@@ -176,9 +214,12 @@ public class CrystalQuestWaveManager : MonoBehaviour {
 		// set player back to 0,0,0 (PreInit)
 		DomainEventManager.TriggerGlobalEvent (EventNames.PlayerInvincibleEnable);
 
+//		CalculateBonusPoints ();
+
 		// tell everyone wave completed
 		audioSource.PlayOneShot (waveCompleteClip);
 		DomainEventManager.TriggerGlobalEvent (EventNames.WaveComplete);
+
 
 		// TODO show wave stats
 		//

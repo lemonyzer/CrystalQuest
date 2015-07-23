@@ -37,6 +37,12 @@ public class Wave : ScriptableObject {
 	public int bonusPoints;
 
 	[SerializeField]
+	public float bonusTimeLimit;
+
+	[SerializeField]
+	public float timeBonus = 1000f;
+
+	[SerializeField]
 	public List<WaveEnemy> enemies;
 
 

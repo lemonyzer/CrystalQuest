@@ -13,14 +13,38 @@ public class UIWaveTime : MonoBehaviour {
 	[SerializeField]
 	float waveTime = 0f;
 
+	[SerializeField]
+	float gameTime = 0f;
+
+	[SerializeField]
+	bool count = false;
+
 	// Use this for initialization
 	void OnEnable () {
+		DomainEventManager.StartGlobalListening (EventNames.WaveInit, OnWaveInit);
 		DomainEventManager.StartGlobalListening (EventNames.WaveStart, OnWaveStart);
+		DomainEventManager.StartGlobalListening (EventNames.WaveFailed, OnWaveFailed);
+		DomainEventManager.StartGlobalListening (EventNames.WaveComplete, OnWaveComplete);
+		DomainEventManager.StartGlobalListening (EventNames.OnGameOver, OnGameOver);
 	}
 	
 	// Update is called once per frame
 	void OnDisable () {
+		DomainEventManager.StopGlobalListening (EventNames.WaveInit, OnWaveInit);
 		DomainEventManager.StopGlobalListening (EventNames.WaveStart, OnWaveStart);
+		DomainEventManager.StopGlobalListening (EventNames.WaveFailed, OnWaveFailed);
+		DomainEventManager.StopGlobalListening (EventNames.WaveComplete, OnWaveComplete);
+		DomainEventManager.StopGlobalListening (EventNames.OnGameOver, OnGameOver);
+	}
+
+	void StartTime ()
+	{
+		count = true;
+	}
+	
+	void StopTime ()
+	{
+		count = false;
 	}
 
 	void ResetTime ()
@@ -28,18 +52,69 @@ public class UIWaveTime : MonoBehaviour {
 		waveTime = 0f;
 	}
 
-	void OnWaveStart ()
+	void OnWaveInit ()
 	{
 		ResetTime ();
 	}
 
+	void OnWaveStart ()
+	{
+		StartTime ();
+	}
+
+	void OnWaveFailed ()
+	{
+		StopTime ();
+	}
+
+	void OnGameOver ()
+	{
+		StopTime ();
+	}
+
 	void Update ()
 	{
-		waveTime += Time.deltaTime;
-		if (uiText != null)
+		gameTime += Time.deltaTime; 
+		if (count)
 		{
-			uiText.text = pre + waveTime.ToString ("F2");
+			waveTime += Time.deltaTime;
+			if (uiText != null)
+			{
+				uiText.text = pre + waveTime.ToString ("F2");
+			}
 		}
+	}
+
+	void OnWaveComplete ()
+	{
+		CalculateBonusPoints ();
+	}
+
+	void CalculateBonusPoints ()
+	{
+		float currentBonusTimeLimit = CrystalQuestWaveManager.Instance.GetCurrentWave ().bonusTimeLimit;
+		float currentTimeBonus = CrystalQuestWaveManager.Instance.GetCurrentWave ().timeBonus;
+		Debug.Log ("current Wave Time = " + waveTime + ", bonus time limit = " + currentBonusTimeLimit);
+		
+		float timeDiff = currentBonusTimeLimit - waveTime;
+		
+		if (timeDiff > 0f)
+		{
+			float scoreBonus = timeDiff * currentTimeBonus;
+			if (scoreBonus > 0f)
+			{
+				DomainEventManager.TriggerGlobalEvent (EventNames.ScoredValue, scoreBonus);
+			}
+			else
+			{
+				Debug.Log ("kein negativer Bonus!");
+			}
+		}
+	}
+
+	public float GetPlayTime ()
+	{
+		return gameTime;
 	}
 
 }

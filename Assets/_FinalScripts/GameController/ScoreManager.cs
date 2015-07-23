@@ -53,4 +53,12 @@ public class ScoreManager : MonoBehaviour {
 			myAudioSource.PlayOneShot (extraLifeClip);
 		}
 	}
+
+
+	public float GetScore ()	
+	{
+		return score.ScoreValue;
+	}
+
+
 }

@@ -15,7 +15,7 @@ public class ScoreDataModell {
 	public void AddPoints (float value)
 	{
 		Debug.Log ("AddPoints " + m_scoreValue + " + " + value); 
-		m_scoreValue += value;
+		m_scoreValue += Mathf.CeilToInt (value);
 	}
 
 	public void AddPoints (ScoreDataModell addingScoreData)

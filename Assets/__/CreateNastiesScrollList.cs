@@ -32,9 +32,5 @@ public class CreateNastiesScrollList : MonoBehaviour {
 			newScrollContent.transform.SetParent(scrollViewContent.transform,false);
 		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }

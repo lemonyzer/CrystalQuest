@@ -12,6 +12,16 @@ MonoBehaviour:
   m_Name: 2. Wave
   m_EditorClassIdentifier: 
   waveName: 2. Wave
+  crystal:
+    prefab: {fileID: 0}
+    amount: 6
+    enabled: 0
+  mineAmount: 2
+  smartBombs: 0
+  bonusCrystals: 0
+  bonusPoints: 0
+  bonusTimeLimit: 15
+  timeBonus: 500
   enemies:
   - enemyName: 
     enabled: 1
@@ -37,8 +47,3 @@ MonoBehaviour:
     enabled: 1
     enemy: {fileID: 11400000, guid: aa4a48099f4e1c24ea6a0c173f52be7e, type: 2}
     amount: 1
-  crystal:
-    prefab: {fileID: 0}
-    amount: 6
-    enabled: 0
-  mineAmount: 2
