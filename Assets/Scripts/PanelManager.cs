@@ -63,7 +63,10 @@ public class PanelManager : MonoBehaviour {
 	public void CloseCurrent()
 	{
 		if (m_Open == null)
+		{
+//			Debug.LogWarning("m_Open == null");
 			return;
+		}
 
 		m_Open.SetBool(m_OpenParameterId, false);
 		SetSelected(m_PreviouslySelected);
