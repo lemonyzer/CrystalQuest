@@ -52,20 +52,31 @@ public class EnemyManager : MonoBehaviour {
 	 * 
 	 **/
 
-	public List<GameObject> enemyPrefabs;
+//	public List<GameObject> enemyPrefabs;
 
 	[SerializeField]
-	List<GameObject> objectPool;
+	List<GameObject> currentWaveEnemyFrequency;
 
 	[SerializeField]
 	Dictionary<GameObject, List<GameObject>> objectsPool;
 
 	void Awake ()
 	{
+//		CheckPrefabList ();
 		objectsPool = new Dictionary<GameObject, List<GameObject>>();
 		if (audioSource == null)
 			audioSource = this.GetComponent<AudioSource> ();
 	}
+
+//	void CheckPrefabList ()
+//	{
+//		for (int i = 0; i < enemyPrefabs.Count; i++)
+//		{
+//			if (enemyPrefabs[i] == null)
+//				Debug.LogError (this.ToString () + " enemyPrefabs " + i + " not initialized!");
+//		}
+//	}
+
 
 	[SerializeField]
 	private List<SpawnPosition> spawnPositions;
@@ -116,17 +127,26 @@ public class EnemyManager : MonoBehaviour {
 	private float enemySpawnIntervallMin = 0.1f;
 	[SerializeField]
 	private float enemySpawnIntervallMax = 2f;
-	
 
 	int RandomEnemyId()
 	{
-		if (enemyPrefabs == null)
+		if (currentWaveEnemyFrequency == null)
 			return -1;
-		if (enemyPrefabs.Count < 1)
+		if (currentWaveEnemyFrequency.Count < 1)
 			return -1;
 
-		return Random.Range(0, enemyPrefabs.Count);
+		return Random.Range(0, currentWaveEnemyFrequency.Count);
 	}
+
+//	int RandomEnemyId()
+//	{
+//		if (enemyPrefabs == null)
+//			return -1;
+//		if (enemyPrefabs.Count < 1)
+//			return -1;
+//
+//		return Random.Range(0, enemyPrefabs.Count);
+//	}
 
 	float RandomNextSpawnTimestamp()
 	{
@@ -151,7 +171,7 @@ public class EnemyManager : MonoBehaviour {
 		if (!spawningEnabled)
 			return false;
 
-		if (enemyPrefabs != null && enemyPrefabs.Count > 0)
+		if (currentWaveEnemyFrequency != null && currentWaveEnemyFrequency.Count > 0)
 		{
 			if (!SpawnCountMaxReached ())
 			{
@@ -161,6 +181,11 @@ public class EnemyManager : MonoBehaviour {
 					Spawn();
 				}
 			}
+		}
+		else
+		{
+			Debug.LogError ("current Wave has no Enemy Frequency, stop spawning");
+			spawningEnabled = false;
 		}
 		return false;
 	}
@@ -173,51 +198,95 @@ public class EnemyManager : MonoBehaviour {
 			return false;
 	}
 
-	bool ValidNextSpawningEnemy()
-	{
-		nextSpawningEnemyId = RandomEnemyId();
-		if (nextSpawningEnemyId > -1)
-		{
-			if (enemyPrefabs[nextSpawningEnemyId] != null)
-				return true;
-			else
-				return false;
-		}
-		return false;
-	}
+//	bool ValidNextSpawningEnemy()
+//	{
+//		nextSpawningEnemyId = RandomEnemyId();
+//		if (nextSpawningEnemyId > -1)
+//		{
+//			if (enemyPrefabs[nextSpawningEnemyId] != null)
+//				return true;
+//			else
+//			{
+//				Debug.LogError ("EnemyID: " + nextSpawningEnemyId + " is not valid");
+//				return false;
+//			}
+//		}
+//		return false;
+//	}
 
+// TOTAL RANDOM
+//	void Spawn() 
+//	{
+////		if (ValidNextSpawningEnemy())
+////		{	
+////			nextEnemySpawnTimestamp = Time.time + RandomNextSpawnTimestamp();
+//			spawnCount++;
+//			int randomSpawn = Random.Range (0, spawnPositions.Count);
+//			SpawnPosition randomSpawnPosition = spawnPositions[randomSpawn];
+//			WaveEnemy randomWaveEnemy = CrystalQuestWaveManager.Instance.GetCurrentWave ().GetRandomWaveEnemy ();
+//			GameObject newEnemy = InstantiateEnemy (randomWaveEnemy, randomSpawnPosition);
+//			if (newEnemy != null)
+//			{
+//				newEnemy.SetActive (true);
+//				newEnemy.GetComponent<HealthManager>().Revive ();
+//				//			newEnemy.GetComponent<PooledObject>().Reuse ();		// TODO
+//				//			EnemyObjectScript enemyScript = newEnemy.GetComponent<EnemyObjectScript>();
+//				if (audioSource != null && spawnClip != null)
+//					audioSource.PlayOneShot (spawnClip);
+//				else
+//					Debug.LogError ("AudioSource or SpawnClip not set");
+//			}
+////		}
+//	}
+
+	/// <summary>
+	/// Spawn Enemy with considering frequency.
+	/// </summary>
 	void Spawn()
 	{
-		if (ValidNextSpawningEnemy())
-		{	
-//			nextEnemySpawnTimestamp = Time.time + RandomNextSpawnTimestamp();
-			spawnCount++;
-			int randomSpawn = Random.Range (0, spawnPositions.Count);
-			SpawnPosition randomSpawnPosition = spawnPositions[randomSpawn];
-			WaveEnemy randomWaveEnemy = CrystalQuestWaveManager.Instance.GetCurrentWave ().GetRandomWaveEnemy ();
-			GameObject newEnemy = InstantiateEnemy (randomWaveEnemy, randomSpawnPosition);
-			if (newEnemy != null)
-			{
-				newEnemy.SetActive (true);
-				newEnemy.GetComponent<HealthManager>().Revive ();
-				//			newEnemy.GetComponent<PooledObject>().Reuse ();		// TODO
-				//			EnemyObjectScript enemyScript = newEnemy.GetComponent<EnemyObjectScript>();
-				if (audioSource != null && spawnClip != null)
-					audioSource.PlayOneShot (spawnClip);
-				else
-					Debug.LogError ("AudioSource or SpawnClip not set");
-			}
+		//		if (ValidNextSpawningEnemy())
+		//		{	
+		//			nextEnemySpawnTimestamp = Time.time + RandomNextSpawnTimestamp();
+		spawnCount++;
+		int randomSpawn = Random.Range (0, spawnPositions.Count);
+		SpawnPosition randomSpawnPosition = spawnPositions[randomSpawn];
+//		WaveEnemy randomWaveEnemy = CrystalQuestWaveManager.Instance.GetCurrentWave ().GetRandomWaveEnemy ();
+		int randomConsideringFrequency = RandomEnemyId ();
+		GameObject enemyPrefab = currentWaveEnemyFrequency[randomConsideringFrequency];
+		GameObject newEnemy = InstantiateEnemy (enemyPrefab, randomSpawnPosition);
+		if (newEnemy != null)
+		{
+			newEnemy.SetActive (true);
+			newEnemy.GetComponent<HealthManager>().Revive ();
+			//			newEnemy.GetComponent<PooledObject>().Reuse ();		// TODO
+			//			EnemyObjectScript enemyScript = newEnemy.GetComponent<EnemyObjectScript>();
+			if (audioSource != null && spawnClip != null)
+				audioSource.PlayOneShot (spawnClip);
+			else
+				Debug.LogError ("AudioSource or SpawnClip not set");
 		}
+		//		}
 	}
 
-	GameObject InstantiateEnemy (WaveEnemy waveEnemy, SpawnPosition spawnPos)
+//	GameObject InstantiateEnemy (WaveEnemy waveEnemy, SpawnPosition spawnPos)
+//	{
+//		GameObject enemy = GetObject (waveEnemy);
+//		if (enemy != null)
+//		{
+//			enemy.transform.position = spawnPos.Position;
+//		}
+//		
+//		return enemy;
+//	}
+
+	GameObject InstantiateEnemy (GameObject enemyPrefab, SpawnPosition spawnPos)
 	{
-		GameObject enemy = GetObject (waveEnemy);
+		GameObject enemy = GetObject (enemyPrefab);
 		if (enemy != null)
 		{
 			enemy.transform.position = spawnPos.Position;
 		}
-
+		
 		return enemy;
 	}
 
@@ -248,20 +317,35 @@ public class EnemyManager : MonoBehaviour {
 
 	}
 
-	GameObject GetObject (WaveEnemy waveEnemy)
+//	GameObject GetObject (WaveEnemy waveEnemy)
+//	{
+//		if (waveEnemy == null)
+//			return null;
+//
+//		if (waveEnemy.Enemy == null)
+//			return null;
+//
+//		if (waveEnemy.Enemy.Prefab == null)
+//			return null;
+//
+//		List<GameObject> currentEnemyPool = null;
+//
+//		if (objectsPool.TryGetValue (waveEnemy.Enemy.Prefab, out currentEnemyPool))
+//		{
+//			return GetInactive (currentEnemyPool);
+//		}
+//		else
+//			return null;
+//	}
+
+	GameObject GetObject (GameObject enemyPrefab)
 	{
-		if (waveEnemy == null)
+		if (enemyPrefab == null)
 			return null;
-
-		if (waveEnemy.Enemy == null)
-			return null;
-
-		if (waveEnemy.Enemy.Prefab == null)
-			return null;
-
+		
 		List<GameObject> currentEnemyPool = null;
-
-		if (objectsPool.TryGetValue (waveEnemy.Enemy.Prefab, out currentEnemyPool))
+		
+		if (objectsPool.TryGetValue (enemyPrefab, out currentEnemyPool))
 		{
 			return GetInactive (currentEnemyPool);
 		}
@@ -283,8 +367,55 @@ public class EnemyManager : MonoBehaviour {
 	void OnWaveInit ()
 	{
 		// Pooling Enemys
+
+		// aktuelle Welle auslesen
 		Wave currentWave = CrystalQuestWaveManager.Instance.GetCurrentWave ();
 
+		// wahrscheinlichkeit
+		ReadEnemyFrequenzyList (currentWave);
+
+		// Create Wave Pool
+		CreateWavePool (currentWave);
+
+		// Pooling Projectiles
+
+		// Reset all
+		ResetSpawning ();
+	}
+
+	void ReadEnemyFrequenzyList (Wave currentWave)
+	{
+		currentWaveEnemyFrequency.Clear ();
+
+		for (int i=0; i < currentWave.enemies.Count; i++)
+		{
+			// für jeden gegnertyp in wave, füge anzahl in liste um später mit random eine wahrscheinlichkeit zu erreichen
+
+			if (currentWave.enemies[i] == null)
+			{
+				Debug.LogError ("currentWave enemy " + i + " not initialized!", currentWave);
+				continue;
+			}
+			if (currentWave.enemies[i].Enemy == null)
+			{
+				Debug.LogError ("currentWave enemy " + i + " has no enemy object  initialized!", currentWave);
+				continue;
+			}
+			if (currentWave.enemies[i].Enemy.Prefab == null)
+			{
+				Debug.LogError ("currentWave enemy " + i + " -> enemy object has no prefab!", currentWave.enemies[i].Enemy);
+				continue;
+			}
+
+			for (int x = 0; x < currentWave.enemies[i].Frequenzy; x++)
+			{
+				currentWaveEnemyFrequency.Add (currentWave.enemies[i].Enemy.Prefab);
+			}
+		}
+	}
+
+	void CreateWavePool (Wave currentWave)
+	{
 		for (int i=0; i< currentWave.enemies.Count; i++)
 		{
 			// für jeden Enemy in WaveDB
@@ -317,7 +448,7 @@ public class EnemyManager : MonoBehaviour {
 						// liste in dictionary eintragen
 						objectsPool.Add (currentEnemy.Prefab, currentEnemyPool);
 					}
-
+					
 					// erzeuge falls notwendig restliche GameObject instancen von Prefab, deaktivieren und in pool laden
 					if (initAmount > 0)
 					{
@@ -336,31 +467,29 @@ public class EnemyManager : MonoBehaviour {
 			else
 				Debug.LogError ("error in currentWave " + currentWave.waveName + " @ EnemyField " + i);
 		}
-		// Pooling Projectiles
-
-		// Reset all
-		RestartSpawning ();
 	}
 
 	void OnWaveRetry ()
 	{
-		RestartSpawning ();
+		StopSpawning ();
 	}
 
 	void OnWaveStart ()
 	{
 		// Spawning enabled
+		ResetSpawning ();
+		StartSpawning ();
+		nextEnemySpawnTimestamp = Time.time + CrystalQuestWaveManager.Instance.GetCurrentWave ().minSpawnTime + Random.Range (0f,  CrystalQuestWaveManager.Instance.GetCurrentWave ().randSpawnTimeDelay);
 	}
 
 	void OnWaveFailed ()
 	{
 		StopSpawning ();
-		ResetSpawning ();
 	}
 
 	void OnWaveComplete ()
 	{
-
+		StopSpawning ();
 	}
 
 	void OnEnable ()

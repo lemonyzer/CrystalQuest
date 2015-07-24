@@ -4,6 +4,9 @@ using System.Collections;
 public class PlayerBehaviour : MonoBehaviour {
 
 	[SerializeField]
+	UserInputScript playerController;
+
+	[SerializeField]
 	MyEvent onWavePreInit;
 
 	[SerializeField]
@@ -17,6 +20,7 @@ public class PlayerBehaviour : MonoBehaviour {
 		DomainEventManager.StartGlobalListening (EventNames.WavePreInit, OnWavePreInit);
 		DomainEventManager.StartGlobalListening (EventNames.ExtraLifeGained, OnExtraLifeGained);
 		DomainEventManager.StartGlobalListening (EventNames.WaveStart, OnWaveStart);
+		DomainEventManager.StartGlobalListening (EventNames.WaveComplete, OnWaveComplete);
 //		DomainEventManager.StartGlobalListening (EventNames.WaveInit, OnWaveInit);
 	}
 	
@@ -24,7 +28,8 @@ public class PlayerBehaviour : MonoBehaviour {
 	{
 		DomainEventManager.StopGlobalListening (EventNames.WavePreInit, OnWavePreInit);
 		DomainEventManager.StopGlobalListening (EventNames.ExtraLifeGained, OnExtraLifeGained);
-		DomainEventManager.StartGlobalListening (EventNames.WaveStart, OnWaveStart);
+		DomainEventManager.StopGlobalListening (EventNames.WaveStart, OnWaveStart);
+		DomainEventManager.StopGlobalListening (EventNames.WaveComplete, OnWaveComplete);
 //		DomainEventManager.StopGlobalListening (EventNames.WaveInit, OnWaveInit);
     }
 
@@ -48,5 +53,11 @@ public class PlayerBehaviour : MonoBehaviour {
 	void OnExtraLifeGained ()
 	{
 		onExtraLifeGained.Invoke ();
+	}
+
+	void OnWaveComplete ()
+	{
+		playerController.StopInputMovement ();
+		this.transform.position = Vector3.zero;
 	}
 }

@@ -15,6 +15,9 @@ public class SmartBombUserScript : MonoBehaviour {
 	AudioClip smartBombTriggeredClip;
 
 	[SerializeField]
+	AudioClip smartBombCollectedClip;
+
+	[SerializeField]
 	int smartBombsAmount = 3;
 
 	[SerializeField]
@@ -27,10 +30,15 @@ public class SmartBombUserScript : MonoBehaviour {
 		get {return smartBombsAmount;}
 		set
 		{
+			int temp = smartBombsAmount;
+
 			if (value >= minAmount)
 				smartBombsAmount = value;
 			else
 				smartBombsAmount = minAmount;
+
+			if (temp != smartBombsAmount)
+				NotifySmartBombAmountListener ();
 		}
 	}
 
@@ -84,5 +92,29 @@ public class SmartBombUserScript : MonoBehaviour {
 	void NotifySmartBombAmountListener ()
 	{
 		DomainEventManager.TriggerGlobalEvent (EventNames.SmartBombAmount, smartBombsAmount);
+	}
+
+	void OnEnable ()
+	{
+		DomainEventManager.StartGlobalListening (EventNames.SmartBombCollected, OnSmartBombCollected);
+	}
+
+	void OnDisable ()
+	{
+		DomainEventManager.StopGlobalListening (EventNames.SmartBombCollected, OnSmartBombCollected);
+	}
+
+	void OnSmartBombCollected ()
+	{
+		SmartBombsAmount++;
+
+		if (audioSource != null && smartBombCollectedClip != null)
+		{
+			audioSource.PlayOneShot (smartBombCollectedClip);
+		}
+		else
+		{
+			Debug.LogError (this.ToString () + " has no AudioSource / AudioClip!");
+		}
 	}
 }

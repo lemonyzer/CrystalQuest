@@ -15,6 +15,9 @@ public class WaveEnemy {
 	
 	[SerializeField]
 	int amount;
+
+	[SerializeField]
+	int frequenzy = 1;
 	
 	void OnEnable ()
 	{
@@ -31,5 +34,9 @@ public class WaveEnemy {
 
 	public int Amount {
 		get {return amount;}
+	}
+
+	public int Frequenzy {
+		get {return frequenzy;}
 	}
 }

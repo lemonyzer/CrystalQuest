@@ -107,7 +107,16 @@ public class CrystalQuestWaveManager : MonoBehaviour {
 		DomainEventManager.TriggerGlobalEvent (EventNames.WaveNext);		// für scripts die selbst mitzählen
 		DomainEventManager.TriggerGlobalEvent (EventNames.WavePreInit);		// loading: pooling
 		DomainEventManager.TriggerGlobalEvent (EventNames.WaveInit);		// loading: pooling
-		DomainEventManager.TriggerInitWave (GetCurrentWave ());		// loading: pooling
+		DomainEventManager.TriggerInitWave (GetCurrentWave ());				// loading: pooling
+
+		Invoke ("StartDelay", nextWaveStartDelay);							// delay muss eingebaut werden da aufbau der Welt sehr viel länger dauern kann als ein Frame.
+	}
+
+	[SerializeField]
+	float nextWaveStartDelay = 1f;
+
+	void StartDelay ()
+	{
 		DomainEventManager.TriggerGlobalEvent (EventNames.WaveStart);
 	}
 

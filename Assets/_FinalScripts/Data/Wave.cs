@@ -2,18 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[System.Serializable]
-public class WaveCrystal 
-{
-	[SerializeField]
-	public GameObject prefab;
-
-	[SerializeField]
-	public int amount = 0;
-
-	[SerializeField]
-	public bool enabled = false;
-}
+//[System.Serializable]
+//public class WaveCrystal 
+//{
+//	[SerializeField]
+//	public GameObject prefab;
+//
+//	[SerializeField]
+//	public int amount = 0;
+//
+//	[SerializeField]
+//	public bool enabled = false;
+//}
 
 [System.Serializable]
 public class Wave : ScriptableObject {
@@ -21,8 +21,11 @@ public class Wave : ScriptableObject {
 	[SerializeField]
 	public string waveName;
 
+//	[SerializeField]
+//	WaveCrystal crystal;
+
 	[SerializeField]
-	WaveCrystal crystal;
+	public int crystalAmount;
 	
 	[SerializeField]
 	public int mineAmount;
@@ -43,17 +46,22 @@ public class Wave : ScriptableObject {
 	public float timeBonus = 1000f;
 
 	[SerializeField]
+	public float minSpawnTime = 5f;
+	[SerializeField]
+	public float randSpawnTimeDelay = 2f;
+
+	[SerializeField]
 	public List<WaveEnemy> enemies;
 
 
 	public void SetAmountOfCrystals (int value)
 	{
-		crystal.amount = value;
+		crystalAmount = value;
 	}
 
 	public int GetAmountOfCrystals ()
 	{
-		return crystal.amount;
+		return crystalAmount;
 	}
 
 	public int GetAmountOfMines ()
@@ -61,29 +69,42 @@ public class Wave : ScriptableObject {
 		return mineAmount;
 	}
 
+	public int GetAmountOfSmartBombs ()
+	{
+		return smartBombs;
+	}
+
 	void OnEnable ()
 	{
 		this.waveName = this.name;
 #if UNITY_EDITOR 
 		ValidateEnemies ();
+//		crystalAmount = crystal.amount;
 #endif 
 	}
 
 	public void ValidateEnemies ()
 	{
-		for (int i=0; i< enemies.Count; i++)
+		if (enemies != null)
 		{
-			if (enemies[i].Amount <= 0)
-				Debug.LogError (this.ToString () + " Enemy at Position " + i + " has no valid Amount!");
-
-			if (enemies[i].Enemy == null)
-				Debug.LogError (this.ToString () + " Enemy at Position " + i + " has no valid Enemy set!");
-			else
+			for (int i=0; i< enemies.Count; i++)
 			{
-				if (enemies[i].Enemy.Prefab == null)
-					Debug.LogError (this.ToString () + " Enemy at Position " + i + " has no valid Enemy Prefab set!");
-			}
+				if (enemies[i].Amount <= 0)
+					Debug.LogError (this.ToString () + " Enemy at Position " + i + " has no valid Amount!", this);
 
+				if (enemies[i].Enemy == null)
+					Debug.LogError (this.ToString () + " Enemy at Position " + i + " has no valid Enemy set!", this);
+				else
+				{
+					if (enemies[i].Enemy.Prefab == null)
+						Debug.LogError (this.ToString () + " Enemy at Position " + i + " has no valid Enemy Prefab set!", this);
+				}
+
+			}
+		}
+		else
+		{
+			Debug.LogError (this.ToString () + " EnemyList not initialized!", this);
 		}
 	}
 

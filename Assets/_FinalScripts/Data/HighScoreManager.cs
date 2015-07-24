@@ -46,6 +46,7 @@ public class HighScoreManager : MonoBehaviour
 		if (DomainEventManager.instance != null)
 		{
 			DomainEventManager.StartGlobalListening (EventNames.PlayerGameOver, OnGameOver);
+			DomainEventManager.StartGlobalListening (EventNames.AllWavesCompleted, OnGameOver);
 //			DomainEventManager.StartGlobalListening (EventNames.OnGameOver, OnGameOver);
 		}
 	}
@@ -55,6 +56,7 @@ public class HighScoreManager : MonoBehaviour
 		if (DomainEventManager.instance != null)
 		{
 			DomainEventManager.StopGlobalListening (EventNames.PlayerGameOver, OnGameOver);
+			DomainEventManager.StopGlobalListening (EventNames.AllWavesCompleted, OnGameOver);
 //		    DomainEventManager.StopGlobalListening (EventNames.OnGameOver, OnGameOver);
 		}
 	}

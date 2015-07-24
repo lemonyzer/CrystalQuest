@@ -83,6 +83,11 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 			}
 		}
 		currentWave.SetAmountOfCrystals (crystalSpawnedAmount);
+		if (crystalSpawnedAmount == 0)
+		{
+			Debug.LogError ("no Crystals in this Wave!");
+			NotifyAllCrystalsCollectedListener ();
+		}
 	}
 
 	Vector3 GetSpawnPosition () {
@@ -124,7 +129,7 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 	void OnEnable ()
 	{
 		DomainEventManager.StartGlobalListening (EventNames.WaveInit, OnWaveInit);
-		DomainEventManager.StartGlobalListening (EventNames.CrystalsCollected, OnCrystalCollected);
+		DomainEventManager.StartGlobalListening (EventNames.CrystalCollected, OnCrystalCollected);
 //		CrystalObject.onCrystalCreated += OnCrystalCreated;
 //		CrystalObject.onCrystalCollected += Collected;
 //		CrystalObject.onCreated += RegisterObjectScript;
@@ -134,7 +139,7 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 	void OnDisable ()
 	{
 		DomainEventManager.StopGlobalListening (EventNames.WaveInit, OnWaveInit);
-		DomainEventManager.StopGlobalListening (EventNames.CrystalsCollected, OnCrystalCollected);
+		DomainEventManager.StopGlobalListening (EventNames.CrystalCollected, OnCrystalCollected);
 //		CrystalObject.onCrystalCreated -= OnCrystalCreated;
 //		CrystalObject.onCrystalCollected -= Collected;
 //		CrystalObject.onCreated -= RegisterObjectScript;

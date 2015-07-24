@@ -74,7 +74,7 @@ public class ExplosionScript : MonoBehaviour {
 			ExplosionAnimation explosionAnimation = go.GetComponent<ExplosionAnimation>();		// pooled object can be used for different objects, if event is listened so the domain needs to be the same
 			if (explosionAnimation != null)
 			{
-				explosionAnimation.Explode ();
+//				explosionAnimation.Explode ();
 				explosionAnimation.EventDomain = this.gameObject;
 			}
 			else

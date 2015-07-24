@@ -16,7 +16,6 @@ GameObject:
   - 114: {fileID: 11425310}
   - 114: {fileID: 11485930}
   - 114: {fileID: 11441370}
-  - 114: {fileID: 11485664}
   - 114: {fileID: 11480664}
   - 114: {fileID: 11407526}
   - 114: {fileID: 11467532}
@@ -254,6 +253,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  collisionDetectionEnabled: 1
 --- !u!114 &11407526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -380,6 +380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcda33b01ece77e46a2b3c7aa150a626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthDamageClip: {fileID: 8300000, guid: 2021dc8f945181e4d8aed1500a764b9b, type: 3}
+  deathClip: {fileID: 8300000, guid: 2021dc8f945181e4d8aed1500a764b9b, type: 3}
   minHealth: 0
   maxHealth: 500
   currentHealth: 500
@@ -442,33 +444,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthManager: {fileID: 11471764}
   explosionScript: {fileID: 11485930}
---- !u!114 &11485664
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 183132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 597f619f0b5ea8f43afbdb918b852234, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnSmartBombTriggered:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11471764}
-        m_MethodName: ReceiveFullDamage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11485930
 MonoBehaviour:
   m_ObjectHideFlags: 1

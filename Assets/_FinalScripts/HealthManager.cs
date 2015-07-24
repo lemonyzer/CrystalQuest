@@ -12,6 +12,12 @@ public class HealthManager : MonoBehaviour {
 	}
 
 	[SerializeField]
+	private AudioClip healthDamageClip;
+
+	[SerializeField]
+	private AudioClip deathClip;
+
+	[SerializeField]
 	private float minHealth = 0f;
 	
 	[SerializeField]
@@ -36,6 +42,10 @@ public class HealthManager : MonoBehaviour {
 			else if (maxHealth >= value &&
 			         value > minHealth)
 			{
+
+//				if (value < currentHealth)
+//					PlayClip (healthDamageClip);
+
 				//				Debug.LogError (maxHealth + " >= [" + value + "] > " + minHealth);
 				currentHealth = value;
 			}
@@ -51,6 +61,17 @@ public class HealthManager : MonoBehaviour {
 		}
 	}
 
+	void PlayClip (AudioClip clip)
+	{
+		if (!playDeathAudioTrigger)
+		{
+			playDeathAudioTrigger = playDeathAudioTriggerDefault;
+			return;
+		}
+		if (AudioManager.Instance != null)
+			AudioManager.Instance.PlayClip (clip);
+	}
+
 	public void Revive ()
 	{
 		IsDead = false;
@@ -59,6 +80,7 @@ public class HealthManager : MonoBehaviour {
 
 	void Die ()
 	{
+		PlayClip (deathClip);
 		IsDead = true;
 	}
 
@@ -125,8 +147,12 @@ public class HealthManager : MonoBehaviour {
 
 	public void ReceiveFullDamageIgnoreInvincible ()
 	{
+		playDeathAudioTrigger = false;
 		Health = minHealth;
 	}
+
+	bool playDeathAudioTriggerDefault = true;
+	bool playDeathAudioTrigger = true;
 	
 	public void ReceiveHealthDamage(float damageValue)
 	{
@@ -142,8 +168,14 @@ public class HealthManager : MonoBehaviour {
 		Debug.Log (this.ToString () + " ReceiveHealthDamage value: " + damageValue);
 		#endif 
 
+		if (damageValue >0f)
+		{
+			PlayClip (healthDamageClip);
+		}
+
 		Health -= damageValue;
 	}
+
 
 	void NotifyHealthValueListener (float currentAmountOfHealth)
 	{

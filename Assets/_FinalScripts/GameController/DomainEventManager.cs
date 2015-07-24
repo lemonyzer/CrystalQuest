@@ -99,6 +99,7 @@ public class EventNames
 
 	public const string ScoredValue = "ScoredValue"; 	 
 	public const string ScoreUpdate = "ScoreUpdate"; 	 
+	public const string ScoredExtraBonus = "ScoredExtraBonus"; 	 
 	
 
 	public const string Pause = "Pause"; 								// Stop Spawning, Stop Moving, Stop Timer 
@@ -155,7 +156,7 @@ public class EventNames
 	
 	
 	public const string AllCrystalsCollected = "AllCrystalsCollected"; 	// -> Open Portal
-	public const string CrystalsCollected = "CrystalsCollected"; 	// -> 
+	public const string CrystalCollected = "CrystalCollected"; 	// -> 
 	public const string OpenLevelPortal = "OpenLevelPortal"; 			// -> Open Portal
 	public const string LevelPortalOpened = "LevelPortalOpened"; 		// -> Enemy: Agressiv
 	public const string CloseLevelPortal = "CloseLevelPortal"; 			// -> Close Portal

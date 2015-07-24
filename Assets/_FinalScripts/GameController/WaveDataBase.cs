@@ -4,8 +4,11 @@ using System.Collections.Generic;
 
 public class WaveDataBase : MonoBehaviour {
 
+//	[SerializeField]
+//	List<Wave> waves;
+
 	[SerializeField]
-	List<Wave> waves;
+	WaveSystem waves;
 
 	static WaveDataBase m_instance;
 	
@@ -16,20 +19,20 @@ public class WaveDataBase : MonoBehaviour {
 	void Awake ()
 	{
 		m_instance = this;
-		if (waves == null)
-			waves = new List<Wave>();
+//		if (waves == null)
+//			waves = new List<Wave>();
 	}
 
 	public Wave GetWave(int index)
 	{
-		if (0<=index && index < waves.Count)
-			return waves[index];
+		if (0<=index && index < waves.waveList.Count)
+			return waves.waveList[index];
 		else
 			return null;
 	}
 
 	public int GetNumberOfWaves ()
 	{
-		return waves.Count;
+		return waves.waveList.Count;
 	}
 }

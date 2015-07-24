@@ -74,9 +74,9 @@ public class UIWaveTime : MonoBehaviour {
 
 	void Update ()
 	{
-		gameTime += Time.deltaTime; 
 		if (count)
 		{
+			gameTime += Time.deltaTime; 
 			waveTime += Time.deltaTime;
 			if (uiText != null)
 			{
@@ -87,6 +87,7 @@ public class UIWaveTime : MonoBehaviour {
 
 	void OnWaveComplete ()
 	{
+		StopTime ();
 		CalculateBonusPoints ();
 	}
 
@@ -104,6 +105,7 @@ public class UIWaveTime : MonoBehaviour {
 			if (scoreBonus > 0f)
 			{
 				DomainEventManager.TriggerGlobalEvent (EventNames.ScoredValue, scoreBonus);
+				DomainEventManager.TriggerGlobalEvent (EventNames.ScoredExtraBonus);
 			}
 			else
 			{

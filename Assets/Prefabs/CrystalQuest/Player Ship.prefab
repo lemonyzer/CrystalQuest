@@ -58,7 +58,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 470430}
   - 58: {fileID: 5868746}
-  - 114: {fileID: 11447068}
   m_Layer: 16
   m_Name: Collector
   m_TagString: Untagged
@@ -374,6 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fdd498d8e8517441a126050d7f6e7f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerController: {fileID: 11440418}
   onWavePreInit:
     m_PersistentCalls:
       m_Calls:
@@ -491,17 +491,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
       m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
---- !u!114 &11447068
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 134724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b0037352889d58489d5fd6cbddbb619, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  collisionDetectionEnabled: 1
 --- !u!114 &11448378
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -527,7 +517,9 @@ MonoBehaviour:
   audioSource: {fileID: 8278264}
   smartBombTriggeredClip: {fileID: 8300000, guid: 34b75276a58c07448821919baaa38f07,
     type: 3}
-  smartBombsAmount: 10
+  smartBombCollectedClip: {fileID: 8300000, guid: c8bdd0298a059254e9fa76171a6d0d04,
+    type: 3}
+  smartBombsAmount: 3
   minAmountToUse: 1
   minAmount: 0
   minUseIntervall: .5
@@ -594,6 +586,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcda33b01ece77e46a2b3c7aa150a626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthDamageClip: {fileID: 8300000, guid: 2021dc8f945181e4d8aed1500a764b9b, type: 3}
+  deathClip: {fileID: 8300000, guid: 33a7e4d80ff9b8b4b8ecf37ab95b725d, type: 3}
   minHealth: 0
   maxHealth: 100
   currentHealth: 100
@@ -745,7 +739,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: MyEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  lifes: 10
+  lifes: 3
   minLifes: 0
 --- !u!212 &21273950
 SpriteRenderer:

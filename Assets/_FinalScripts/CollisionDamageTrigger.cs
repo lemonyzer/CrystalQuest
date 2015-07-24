@@ -150,8 +150,44 @@ public class CollisionDamageTrigger : MonoBehaviour {
 		return null;
 	}
 
+	void OnEnable ()
+	{
+		EnableCollisionDetection ();
+		DomainEventManager.StartGlobalListening (EventNames.PlayerDied, OnPlayerDied);
+		DomainEventManager.StartGlobalListening (EventNames.WaveStart, EnableCollisionDetection);
+	}
+
+	void OnDisable ()
+	{
+		DomainEventManager.StopGlobalListening (EventNames.PlayerDied, OnPlayerDied);
+		DomainEventManager.StopGlobalListening (EventNames.WaveStart, EnableCollisionDetection);
+	}
+
+	[SerializeField]
+	bool collisionDetectionEnabled = true;
+
+	void StopCollisionDetection ()
+	{
+		collisionDetectionEnabled = false;
+	}
+
+	void OnPlayerDied ()
+	{
+		StopCollisionDetection ();
+	}
+
+	void EnableCollisionDetection ()
+	{
+		collisionDetectionEnabled = true;
+	}
+
 	private void OnTriggerEnter2D (Collider2D otherCollider2d)
 	{
+		if (!collisionDetectionEnabled)
+		{
+			Debug.LogWarning (this.ToString () + " Collision Detection disabled!");
+		}
+
 //		if (CheckIfCollisionShouldBeIgnored (otherCollider2d))
 		if (CheckIfCollisionShouldBeIgnoredWithLayerMaskCompare (otherCollider2d))
 		{
@@ -303,15 +339,15 @@ public class CollisionDamageTrigger : MonoBehaviour {
 //	[SerializeField]
 //	private UnityAction<float> collisionDamage;
 
-	void OnEnable ()
-	{
-//		DomainEventManager.StartListening (this.gameObject, "Collision", collisionDamage);
-	}
+//	void OnEnable ()
+//	{
+////		DomainEventManager.StartListening (this.gameObject, "Collision", collisionDamage);
+//	}
 
-	void OnDisable ()
-	{
-//		DomainEventManager.StopListening (this.gameObject, "Collision", collisionDamage);
-	}
+//	void OnDisable ()
+//	{
+////		DomainEventManager.StopListening (this.gameObject, "Collision", collisionDamage);
+//	}
 
 	void OnDestroy ()
 	{

@@ -307,6 +307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcda33b01ece77e46a2b3c7aa150a626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthDamageClip: {fileID: 8300000, guid: 2021dc8f945181e4d8aed1500a764b9b, type: 3}
+  deathClip: {fileID: 8300000, guid: 2021dc8f945181e4d8aed1500a764b9b, type: 3}
   minHealth: 0
   maxHealth: 300
   currentHealth: 300
@@ -431,6 +433,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
       m_TypeName: FloatEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  collisionDetectionEnabled: 1
 --- !u!212 &21224284
 SpriteRenderer:
   m_ObjectHideFlags: 1

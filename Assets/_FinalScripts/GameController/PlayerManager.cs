@@ -39,12 +39,14 @@ public class PlayerManager : MonoBehaviour {
 	{
 		DomainEventManager.StartGlobalListening (EventNames.PlayerDied, OnPlayerDied);
 		DomainEventManager.StartGlobalListening (EventNames.WaveRetry, OnWaveRetry);
+		DomainEventManager.StartGlobalListening (EventNames.ExtraLifeGained, OnExtraLifeGained);
 	}
 
 	void OnDisable ()
 	{
 		DomainEventManager.StopGlobalListening (EventNames.PlayerDied, OnPlayerDied);
 		DomainEventManager.StopGlobalListening (EventNames.WaveRetry, OnWaveRetry);
+		DomainEventManager.StopGlobalListening (EventNames.ExtraLifeGained, OnExtraLifeGained);
 	}
 
 	void OnPlayerDied ()
@@ -54,6 +56,11 @@ public class PlayerManager : MonoBehaviour {
 			DomainEventManager.TriggerGlobalEvent (EventNames.PlayerWillRespawn);
 		else 
 			DomainEventManager.TriggerGlobalEvent (EventNames.PlayerGameOver);
+	}
+
+	void OnExtraLifeGained ()
+	{
+		lifes++;
 	}
 
 	void OnWaveRetry ()

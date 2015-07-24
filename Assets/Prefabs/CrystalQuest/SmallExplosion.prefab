@@ -111,8 +111,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_eventDomain: {fileID: 0}
-  audioSource: {fileID: 8275388}
-  explosionClip: {fileID: 8300000, guid: 33a7e4d80ff9b8b4b8ecf37ab95b725d, type: 3}
   spriteRenderer: {fileID: 21288708}
   sprites:
   - {fileID: 21300000, guid: 435cc2e0d0af6734a994935254a98fcf, type: 3}

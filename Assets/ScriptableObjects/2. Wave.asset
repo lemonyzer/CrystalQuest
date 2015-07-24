@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Name: 2. Wave
   m_EditorClassIdentifier: 
   waveName: 2. Wave
-  crystal:
-    prefab: {fileID: 0}
-    amount: 6
-    enabled: 0
+  crystalAmount: 11
   mineAmount: 2
   smartBombs: 0
   bonusCrystals: 0
@@ -27,23 +24,14 @@ MonoBehaviour:
     enabled: 1
     enemy: {fileID: 11400000, guid: d74d45a75c6b31447b73b5dd57e7c0eb, type: 2}
     amount: 5
+    frequenzy: 1
   - enemyName: 
     enabled: 1
     enemy: {fileID: 11400000, guid: c61961f1144f66c4d9c80984cb838685, type: 2}
-    amount: 1
+    amount: 5
+    frequenzy: 1
   - enemyName: 
     enabled: 1
-    enemy: {fileID: 11400000, guid: 9c25048cdf6b0b744a624c7ed69ba2c6, type: 2}
-    amount: 1
-  - enemyName: 
-    enabled: 1
-    enemy: {fileID: 11400000, guid: b8e8c18822225fb478342af918f1b873, type: 2}
-    amount: 1
-  - enemyName: 
-    enabled: 1
-    enemy: {fileID: 11400000, guid: 29148d3e8c92d3a4ab7b0c47e75cd76b, type: 2}
-    amount: 1
-  - enemyName: 
-    enabled: 1
-    enemy: {fileID: 11400000, guid: aa4a48099f4e1c24ea6a0c173f52be7e, type: 2}
-    amount: 1
+    enemy: {fileID: 11400000, guid: 5ed9bc1852fdd6f4da7edb94107c59c9, type: 2}
+    amount: 5
+    frequenzy: 1

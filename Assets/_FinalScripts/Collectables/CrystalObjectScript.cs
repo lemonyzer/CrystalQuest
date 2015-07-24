@@ -20,7 +20,7 @@ public class CrystalObjectScript : MonoBehaviour {
 	
 	public void TriggerCollected ()
 	{
-		DomainEventManager.TriggerGlobalEvent (EventNames.CrystalsCollected);
+		DomainEventManager.TriggerGlobalEvent (EventNames.CrystalCollected);
 	}
 
 }

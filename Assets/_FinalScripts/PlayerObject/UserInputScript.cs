@@ -71,13 +71,13 @@ public class UserInputScript : MonoBehaviour {
 	[SerializeField]
 	bool overrideShoot = false;
 
-	void StopInputMovement ()
+	public void StopInputMovement ()
 	{
 		readInput = false;
 		overrideInput = true;
 	}
 
-	void StartInputReading ()
+	public void StartInputReading ()
 	{
 		readInput = true;
 		overrideInput = false;
@@ -108,5 +108,7 @@ public class UserInputScript : MonoBehaviour {
 	void FixedUpdate ()
 	{
 		rb2d.MovePosition (rb2d.position + m_Input * speed * Time.deltaTime);
+//		if (Time.deltaTime > 0.02f)
+//			Debug.Log (Time.deltaTime);
 	}
 }

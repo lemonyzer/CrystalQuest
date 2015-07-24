@@ -10,18 +10,18 @@ public class ExplosionAnimation : MonoBehaviour {
 		set {m_eventDomain = value;}
 	}
 
-	[SerializeField]
-	AudioSource audioSource;
+//	[SerializeField]
+//	AudioSource audioSource;
 
-	void Awake ()
-	{
-		if (this.audioSource == null)
-			this.audioSource = this.GetComponent<AudioSource> ();
+//	void Awake ()
+//	{
+//		if (this.audioSource == null)
+//			this.audioSource = this.GetComponent<AudioSource> ();
+//
+//	}
 
-	}
-
-	[SerializeField]
-	AudioClip explosionClip;
+//	[SerializeField]
+//	AudioClip explosionClip;
 
 	[SerializeField]
 	private SpriteRenderer spriteRenderer;
@@ -48,10 +48,10 @@ public class ExplosionAnimation : MonoBehaviour {
 		}
 	}
 
-	public void Explode ()
-	{
-		this.audioSource.PlayOneShot (explosionClip);
-	}
+//	public void Explode ()
+//	{
+//		this.audioSource.PlayOneShot (explosionClip);
+//	}
 
 	void AnimationFinished ()
 	{
