@@ -19,6 +19,8 @@ MonoBehaviour:
   bonusPoints: 0
   bonusTimeLimit: 15
   timeBonus: 500
+  minSpawnTime: 2.5
+  randSpawnTimeDelay: 2
   enemies:
   - enemyName: 
     enabled: 1

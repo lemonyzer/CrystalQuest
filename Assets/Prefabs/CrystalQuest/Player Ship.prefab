@@ -522,8 +522,9 @@ MonoBehaviour:
   smartBombsAmount: 3
   minAmountToUse: 1
   minAmount: 0
-  minUseIntervall: .5
+  minTriggerIntervall: 1
   nextPossibleTrigger: 0
+  smartBombActivated: 0
 --- !u!114 &11455290
 MonoBehaviour:
   m_ObjectHideFlags: 1

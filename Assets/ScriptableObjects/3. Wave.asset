@@ -19,6 +19,8 @@ MonoBehaviour:
   bonusPoints: 0
   bonusTimeLimit: 15
   timeBonus: 500
+  minSpawnTime: 2.5
+  randSpawnTimeDelay: 2
   enemies:
   - enemyName: 
     enabled: 1
@@ -38,16 +40,6 @@ MonoBehaviour:
   - enemyName: 
     enabled: 1
     enemy: {fileID: 11400000, guid: b8e8c18822225fb478342af918f1b873, type: 2}
-    amount: 2
-    frequenzy: 1
-  - enemyName: 
-    enabled: 1
-    enemy: {fileID: 11400000, guid: 29148d3e8c92d3a4ab7b0c47e75cd76b, type: 2}
-    amount: 2
-    frequenzy: 1
-  - enemyName: 
-    enabled: 1
-    enemy: {fileID: 11400000, guid: aa4a48099f4e1c24ea6a0c173f52be7e, type: 2}
     amount: 2
     frequenzy: 1
   - enemyName: 

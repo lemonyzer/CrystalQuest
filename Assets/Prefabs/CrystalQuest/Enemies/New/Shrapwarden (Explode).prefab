@@ -443,7 +443,7 @@ MonoBehaviour:
   moveRandom:
     transform: {fileID: 0}
     moveDirection: {x: 0, y: 0}
-    moveSpeed: 2.5
+    moveSpeed: 3
     nextMoveTimestamp: 0
     nextChangeDirectionTimestamp: 0
     changeDirectionIntervalMax: .200000003

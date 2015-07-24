@@ -10,6 +10,13 @@ public class GameOverPanelManager : MonoBehaviour {
 	[SerializeField]
 	Text panelTitel;
 
+	[SerializeField]
+	string gameOver = "Game Over";
+
+	[SerializeField]
+	string win = "Congratulations! You Won!";
+
+
 	void OnEnable ()
 	{
 		DomainEventManager.StartGlobalListening (EventNames.OnGameOver, OnGameOver);
@@ -27,14 +34,14 @@ public class GameOverPanelManager : MonoBehaviour {
 	void OnGameOver ()
 	{
 		if (panelTitel != null)
-			panelTitel.text = "Game Over";
+			panelTitel.text = gameOver;
 		gameOverPanel.SetActive (true);
 	}
 
 	void OnAllWavesCompleted ()
 	{
 		if (panelTitel != null)	
-			panelTitel.text = "You win!";
+			panelTitel.text = win;
 		gameOverPanel.SetActive (true);
 	}
 

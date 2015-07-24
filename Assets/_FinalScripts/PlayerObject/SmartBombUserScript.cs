@@ -43,10 +43,13 @@ public class SmartBombUserScript : MonoBehaviour {
 	}
 
 	[SerializeField]
-	float minUseIntervall = 0.5f;
+	float minTriggerIntervall = 1f;
 
 	[SerializeField]
 	float nextPossibleTrigger = 0f;
+
+	[SerializeField]
+	bool smartBombActivated = false;
 
 	void Awake ()
 	{
@@ -60,13 +63,16 @@ public class SmartBombUserScript : MonoBehaviour {
 
 	void Update ()
 	{
+		if (!smartBombActivated)
+			return;
+
 		if (smartBombsAmount >= minAmountToUse)
 		{
 			if (CrossPlatformInputManager.GetButton ("Bomb"))
 			{
 				if (Time.time >= nextPossibleTrigger)
 				{
-					nextPossibleTrigger = Time.time + minUseIntervall;
+					nextPossibleTrigger = Time.time + minTriggerIntervall;
 					Trigger ();
 				}
 			}
@@ -84,6 +90,10 @@ public class SmartBombUserScript : MonoBehaviour {
 			Debug.LogError (this.ToString () + " has no AudioSource / AudioClip!");
 		}
 		DomainEventManager.TriggerGlobalEvent (EventNames.SmartBombTriggered);
+		DomainEventManager.TriggerGlobalEvent (EventNames.SmartBombButtonDisabled);
+
+		Invoke ("NotifySmartBombUI", minTriggerIntervall);
+		
 		// SmartBombManager.Instance.BombTriggered (); // singleton nötig ?
 		SmartBombsAmount--;
 		NotifySmartBombAmountListener ();
@@ -97,11 +107,48 @@ public class SmartBombUserScript : MonoBehaviour {
 	void OnEnable ()
 	{
 		DomainEventManager.StartGlobalListening (EventNames.SmartBombCollected, OnSmartBombCollected);
+		DomainEventManager.StartGlobalListening (EventNames.WaveStart, OnWaveStart);
+		DomainEventManager.StartGlobalListening (EventNames.WaveFailed, Disable);
+		DomainEventManager.StartGlobalListening (EventNames.WaveComplete, Disable);
 	}
 
 	void OnDisable ()
 	{
 		DomainEventManager.StopGlobalListening (EventNames.SmartBombCollected, OnSmartBombCollected);
+		DomainEventManager.StopGlobalListening (EventNames.WaveStart, OnWaveStart);
+		DomainEventManager.StopGlobalListening (EventNames.WaveFailed, Disable);
+		DomainEventManager.StopGlobalListening (EventNames.WaveComplete, Disable);
+	}
+
+	void OnWaveStart ()
+	{
+		Activate ();
+	}
+
+	void Activate ()
+	{
+		smartBombActivated = true;
+		NotifySmartBombUI ();
+	}
+
+	void NotifySmartBombUI ()
+	{
+		if (smartBombActivated)
+		{
+			if (smartBombsAmount > 0)
+				DomainEventManager.TriggerGlobalEvent (EventNames.SmartBombButtonEnabled);
+			else
+				DomainEventManager.TriggerGlobalEvent (EventNames.SmartBombButtonDisabled);
+		}
+		else
+		{
+			DomainEventManager.TriggerGlobalEvent (EventNames.SmartBombButtonDisabled);
+		}
+	}
+
+	void Disable ()
+	{
+		smartBombActivated = false;
 	}
 
 	void OnSmartBombCollected ()

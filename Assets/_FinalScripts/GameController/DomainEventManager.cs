@@ -97,6 +97,10 @@ public class EventNames
 	 * 
 	 **/
 
+	public const string SmartBombButtonEnabled = "SmartBombButtonEnabled"; 	 
+	public const string SmartBombButtonDisabled = "SmartBombButtonDisabled"; 	 
+	
+
 	public const string ScoredValue = "ScoredValue"; 	 
 	public const string ScoreUpdate = "ScoreUpdate"; 	 
 	public const string ScoredExtraBonus = "ScoredExtraBonus"; 	 

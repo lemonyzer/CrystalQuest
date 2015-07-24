@@ -14,12 +14,12 @@ MonoBehaviour:
   waveName: 1. Wave
   crystalAmount: 10
   mineAmount: 0
-  smartBombs: 5
+  smartBombs: 1
   bonusCrystals: 0
   bonusPoints: 0
   bonusTimeLimit: 15
   timeBonus: 500
-  minSpawnTime: 5
+  minSpawnTime: 2.5
   randSpawnTimeDelay: 2
   enemies:
   - enemyName: 
