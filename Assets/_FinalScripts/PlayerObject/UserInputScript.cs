@@ -2,7 +2,25 @@
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
 
+public enum StandaloneInput {
+	Keyboard,
+	Mouse
+}
+
 public class UserInputScript : MonoBehaviour {
+
+	static UserInputScript instance;
+
+	public UserInputScript Instance {
+		get {return instance;}
+	}
+
+	public StandaloneInput StandaloneInput {
+		get {return standaloneInput;}
+	}
+
+	[SerializeField]
+	StandaloneInput standaloneInput = StandaloneInput.Mouse;
 
 	[SerializeField]
 	ShootingPooled shootingPooled;
@@ -41,13 +59,48 @@ public class UserInputScript : MonoBehaviour {
 			return;
 		}
 
+#if UNITY_STANDALONE
+		switch (standaloneInput) {
+		case (StandaloneInput.Mouse): {
+			m_Input.x = Input.GetAxis ("Mouse X");
+			m_Input.y = Input.GetAxis ("Mouse Y");
+			break;
+		}
+		case (StandaloneInput.Keyboard): {
+			m_Input.x = CrossPlatformInputManager.GetAxis ("Horizontal");
+			m_Input.y = CrossPlatformInputManager.GetAxis ("Vertical");
+			break;
+		}
+		}
+#endif
+#if UNITY_ANDROID
 		m_Input.x = CrossPlatformInputManager.GetAxis ("Horizontal");
 		m_Input.y = CrossPlatformInputManager.GetAxis ("Vertical");
+		
+#endif
 
 		m_InputFire = CrossPlatformInputManager.GetButton ("Fire");
 
-		if (m_InputFire)
+#if UNITY_STANDALONE
+		switch (standaloneInput) {
+		case (StandaloneInput.Mouse): {
+			if (m_InputFire)
+				shootingPooled.TriggerShoot (rb2d.velocity);
+			break;
+		}
+		case (StandaloneInput.Keyboard): {
+			if (m_InputFire)
+				shootingPooled.TriggerShoot (m_Input);
+			break;
+		}
+		}
+#endif
+#if UNITY_ANDROID
+		if (m_InputFire) {
 			shootingPooled.TriggerShoot (m_Input);
+		}
+#endif
+
 	}
 
 	// Use this for initialization
@@ -99,15 +152,35 @@ public class UserInputScript : MonoBehaviour {
 	[SerializeField]
 	float speed = 5;
 
+	[SerializeField]
+	float forceMultiplier = 20;
+
 	void Awake ()
 	{
 		rb2d = this.GetComponent<Rigidbody2D>();
 		shootingPooled = this.GetComponent<ShootingPooled>();
+
+		instance = this;
 	}
 
 	void FixedUpdate ()
 	{
+		#if UNITY_ANDROID
 		rb2d.MovePosition (rb2d.position + m_Input * speed * Time.deltaTime);
+		#endif
+
+		#if UNITY_STANDALONE
+		switch (standaloneInput) {
+		case (StandaloneInput.Mouse): {
+			rb2d.AddForce (m_Input * speed * forceMultiplier * Time.deltaTime);
+			break;
+		}
+		case (StandaloneInput.Keyboard): {
+			rb2d.MovePosition (rb2d.position + m_Input * speed * Time.deltaTime);
+			break;
+		}
+		}
+		#endif
 //		if (Time.deltaTime > 0.02f)
 //			Debug.Log (Time.deltaTime);
 	}
