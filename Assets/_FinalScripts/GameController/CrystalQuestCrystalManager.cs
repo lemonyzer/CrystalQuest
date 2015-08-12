@@ -20,6 +20,13 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 	[SerializeField]
 	AudioClip allCrystalCollectedClip;
 
+	[SerializeField]
+	float creationStartTime = 0f;
+
+	[SerializeField]
+	float maxCreationTime = 0.2f;
+	
+
 	// sucht alle in der Scene instanziierten Crystalle
 	// listen to neue Crystalinstanziierung
 	// listen to destroy Crystal
@@ -66,6 +73,8 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 		int crystalAmount = currentWave.GetAmountOfCrystals ();
 		int crystalSpawnedAmount = 0;
 
+		creationStartTime = Time.realtimeSinceStartup;
+
 		CrystalPoolManager.Instance.Grow (crystalAmount);
 		for (int i=0; i<crystalAmount; i++)
 		{
@@ -80,6 +89,11 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 			else
 			{
 				Debug.LogWarning (this.ToString () + " Crystal SpawnPosition failed");
+				// break;
+			}
+			if (Time.realtimeSinceStartup > creationStartTime + maxCreationTime)
+			{
+				break;
 			}
 		}
 		currentWave.SetAmountOfCrystals (crystalSpawnedAmount);
@@ -92,7 +106,6 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 
 	Vector3 GetSpawnPosition () {
 		Vector3 spawnPosition = new Vector3 ();
-		float startTime = Time.realtimeSinceStartup;
 		bool overlapping = true;
 		int overlappingCount = 0;
 		while (overlapping == true) {
@@ -102,7 +115,7 @@ public class CrystalQuestCrystalManager : MonoBehaviour {
 			overlapping = IsOverlaping (spawnPosition);
 			if (overlapping)
 				overlappingCount++;
-			if (Time.realtimeSinceStartup - startTime > 0.5f) {
+			if (Time.realtimeSinceStartup - creationStartTime > maxCreationTime) {
 				Debug.Log ("Time out placing Minion!");
 				return Vector3.zero;
 			}

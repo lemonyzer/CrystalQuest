@@ -4,8 +4,8 @@ using System.Collections;
 [System.Serializable]
 public class WaveEnemy {
 
-	[SerializeField]
-	string enemyName;
+//	[SerializeField]
+//	string enemyName;
 
 	[SerializeField]
 	bool enabled = true;
@@ -19,14 +19,14 @@ public class WaveEnemy {
 	[SerializeField]
 	int frequenzy = 1;
 	
-	void OnEnable ()
-	{
-		if (enemy != null)
-		{
-			if (enemy.Prefab != null)
-				this.enemyName = this.enemy.Prefab.name;
-		}
-	}
+//	void OnEnable ()
+//	{
+//		if (enemy != null)
+//		{
+//			if (enemy.Prefab != null)
+//				this.enemyName = this.enemy.Prefab.name;
+//		}
+//	}
 
 	public Enemy Enemy {
 		get {return enemy;}

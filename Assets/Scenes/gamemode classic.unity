@@ -3941,6 +3941,8 @@ MonoBehaviour:
     type: 3}
   allCrystalCollectedClip: {fileID: 8300000, guid: f6f7db5089f5fc54c9ac107a7e9f8645,
     type: 3}
+  creationStartTime: 0
+  maxCreationTime: .200000003
   collectedCount: 0
   collectedCrystals: 0
   distances:
