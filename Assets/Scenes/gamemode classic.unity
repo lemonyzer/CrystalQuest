@@ -7245,6 +7245,10 @@ Prefab:
       propertyPath: myLifesUpdateEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2059590410}
+    - target: {fileID: 11440418, guid: 6f435687b4b66594d96d99b4fcd73f7e, type: 2}
+      propertyPath: standaloneInput
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6f435687b4b66594d96d99b4fcd73f7e, type: 2}
   m_IsPrefabParent: 0
