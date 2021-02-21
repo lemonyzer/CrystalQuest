@@ -1,0 +1,152 @@
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "CrystalQuest_2015.01.02.rar" --date "Fri, 02 Jan 2015 13:23:18 +0100"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "CrystalQuest_2015.01.14.rar" --date "Wed, 14 Jan 2015 20:43:53 +0100"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "CrystalQuest_2015.01.16.rar" --date "Fri, 16 Jan 2015 14:50:51 +0100"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "CrystalQuest_2015.01.16_2.rar" --date "Sat, 17 Jan 2015 00:11:12 +0100"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "CrystalQuest_2015.01.18_Sound_ShootingEnemy.rar" --date "Sun, 18 Jan 2015 20:40:28 +0100"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "CrystalQuest_2015.01.18_2_AccelerationTranslated.rar" --date "Sun, 18 Jan 2015 23:32:01 +0100"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "CrystalQuest_2015.01.21_check.rar" --date "Wed, 21 Jan 2015 13:47:39 +0100"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "CrystalQuest_2015.02.01_check.rar" --date "Sun, 01 Feb 2015 02:01:01 +0100"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "CrystalQuest_2015.04.26_1_UI-GameModeSettings.rar" --date "Sun, 26 Apr 2015 01:32:02 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "CrystalQuest_2015.04.26_2_UI-GameModeSettings-ScrollView_Works_ContentSizeFitter_was_missing.rar" --date "Sun, 26 Apr 2015 03:52:26 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept.rar" --date "Tue, 12 May 2015 19:31:42 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept generic ansatz.rar" --date "Sat, 16 May 2015 18:28:24 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.05.18.rar" --date "Mon, 18 May 2015 13:21:28 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.05.19.rar" --date "Tue, 19 May 2015 01:24:27 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.05.31.rar" --date "Sun, 31 May 2015 02:05:47 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.01.rar" --date "Mon, 01 Jun 2015 00:35:15 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.01_2.rar" --date "Mon, 01 Jun 2015 04:42:58 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.05.rar" --date "Fri, 05 Jun 2015 16:04:45 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.06.rar" --date "Sat, 06 Jun 2015 21:54:10 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.07.rar" --date "Sun, 07 Jun 2015 23:22:29 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.08.rar" --date "Mon, 08 Jun 2015 02:40:24 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.08_2 overrides.rar" --date "Mon, 08 Jun 2015 20:46:24 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.09_1.rar" --date "Tue, 09 Jun 2015 01:23:37 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.09_2.rar" --date "Tue, 09 Jun 2015 16:33:00 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.10_1.rar" --date "Wed, 10 Jun 2015 02:07:47 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.10_2.rar" --date "Wed, 10 Jun 2015 03:00:45 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.10_3.rar" --date "Wed, 10 Jun 2015 20:44:52 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.11_1.rar" --date "Thu, 11 Jun 2015 13:43:40 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.11_2 shooting pooling.rar" --date "Thu, 11 Jun 2015 23:33:46 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.12_1 before shooting component.rar" --date "Fri, 12 Jun 2015 01:15:08 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.12_2 shooting component.rar" --date "Fri, 12 Jun 2015 01:39:41 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.12_3 before switching to Component Concept.rar" --date "Fri, 12 Jun 2015 10:50:56 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.12_4 Event Trigger Concept.rar" --date "Fri, 12 Jun 2015 22:22:01 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.13_1 Event Concept failed.rar" --date "Sat, 13 Jun 2015 15:49:07 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.13_2 New Event Concept failed, too.rar" --date "Sat, 13 Jun 2015 17:45:12 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.14_1 Concect looks good.rar" --date "Sun, 14 Jun 2015 02:42:07 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.15_1 Custom MVC Concept with EventTrigger.rar" --date "Mon, 15 Jun 2015 00:46:33 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.15_2 Movinig to Custom MVC Concept with Controller Coupling.rar" --date "Mon, 15 Jun 2015 07:49:08 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.15_3 Mysterie Behaviour counting score is not robust check bug.rar" --date "Mon, 15 Jun 2015 16:47:08 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.15_3_1 Mysterie Behaviour Bug not found.rar" --date "Mon, 15 Jun 2015 17:25:57 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.16_1 work on.rar" --date "Tue, 16 Jun 2015 00:40:12 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.16_2 enemies components initialisiert.rar" --date "Tue, 16 Jun 2015 14:36:25 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.16_3 ai movement.rar" --date "Tue, 16 Jun 2015 21:26:58 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.16_4 crystalquest event system trigger and handler.rar" --date "Wed, 17 Jun 2015 01:48:27 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.17_1 crystalquest DOMAIN event Manager.rar" --date "Wed, 17 Jun 2015 18:37:27 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.18_1 crystalquest DOMAIN event Manager little improved.rar" --date "Thu, 18 Jun 2015 17:45:21 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.18_2 crystalquest DOMAIN event Manager little improved I DONT Like complete de-coupled system.rar" --date "Thu, 18 Jun 2015 21:33:49 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.20_1 UnityEvent reused, improved very flexible. NEXT intercommunication  .rar" --date "Sat, 20 Jun 2015 02:15:30 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.21_1 Auto BurstShooting added, NEXT intercommunication  .rar" --date "Sun, 21 Jun 2015 03:30:33 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.22_1 SpawningSystem WaveSystem.rar" --date "Mon, 22 Jun 2015 19:00:25 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.23_1 SpawningSystem WaveSystem.rar" --date "Tue, 23 Jun 2015 10:58:27 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.29_1 completing EventSystem.rar" --date "Mon, 29 Jun 2015 15:20:38 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.29_2 completing EventSystem.rar" --date "Mon, 29 Jun 2015 19:06:23 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.06.30_1 completing EventSystem, EnemySpawner has WaveDB EnemyPooler added.rar" --date "Tue, 30 Jun 2015 02:43:15 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.03 Enemys added.rar" --date "Fri, 03 Jul 2015 14:10:00 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.03_2 Enemys added + Pest AI Mine Planting.rar" --date "Fri, 03 Jul 2015 15:03:04 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.04_1 CrossPlatformInput added.rar" --date "Sat, 04 Jul 2015 01:42:41 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.04_2 CrossPlatformInput UI Stuff.rar" --date "Sat, 04 Jul 2015 14:46:15 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.04_3 CrossPlatformInput UI Stuff.rar" --date "Sat, 04 Jul 2015 15:17:34 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.07_Backup (CollisionDamageTrigger changes, Shrapwarden changed).rar" --date "Tue, 07 Jul 2015 12:00:12 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.07_2_Scripts_Moved_to_Final.rar" --date "Tue, 07 Jul 2015 20:04:44 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.07_3_Scripts_Moved_more_to_Final.rar" --date "Wed, 08 Jul 2015 00:27:57 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.08_1 ExtraLife onScore added, New EnemyMovement.rar" --date "Wed, 08 Jul 2015 02:42:16 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.08_2 ProtectorResetMovement, LaserWeaponAdded.rar" --date "Wed, 08 Jul 2015 17:53:54 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.17_1 before Unity5.1.2f.rar" --date "Fri, 17 Jul 2015 11:47:48 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.23 vor finalem cleanup.rar" --date "Thu, 23 Jul 2015 12:23:52 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.23_2 (1. tidy up).rar" --date "Thu, 23 Jul 2015 13:21:34 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.23_3 (2. tidy up + HighScore Panel).rar" --date "Thu, 23 Jul 2015 14:17:49 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.23_3 (3. tidy up + persistent HighScore working).rar" --date "Thu, 23 Jul 2015 18:49:04 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.23_4 (4. tidy up + HighScore Position + playershooting fix).rar" --date "Thu, 23 Jul 2015 19:46:18 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.24_5 (5. tidy up + wavesystem + smartbombs).rar" --date "Fri, 24 Jul 2015 18:12:37 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.07.24_6 (6. tidy up + smartbomb ui messages).rar" --date "Fri, 24 Jul 2015 20:00:55 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.08.05 - Standalone Mousemovement, Keyboard added (editor only).rar" --date "Wed, 05 Aug 2015 21:07:59 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept 2015.08.12 - Abgabe versuch.rar" --date "Wed, 12 Aug 2015 19:00:32 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept_2015.08.17-2118.rar" --date "Mon, 17 Aug 2015 21:18:23 +0200"
+repo.git.add(A=True)
+repo.git.commit (git commit) --allow-empty -m "Crystal Quest UI Concept_2015.08.17-2118-BuildFix - Kopie.rar" --date "Wed, 19 Aug 2015 13:45:41 +0200"
