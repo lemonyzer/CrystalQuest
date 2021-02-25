@@ -194,6 +194,53 @@ Im Fall des Punktesystems ist der ScoreManager der Event Listener und wartet auf
 Der Anmelde- und Abmeldeprozess ist im C# Listing 39 dargestellt. Die Aktion, die beim Eintreten des Events ausgeführt wird, ist in C# Listing 40 definiert.
 
 
+```csharp
+	void OnEnable () {
+		EventManager.StartGlobalListening (EventNames.ScoredValue, OnScoring);
+	}
+	
+	void OnDisable () {
+		EventManager.StopGlobalListening (EventNames.ScoredValue, OnScoring);
+	}
+```
+C# Listing 39: Register- / Deregisterprozess
+
+
+```csharp
+	void OnScoring (float scoreValue)
+	{
+		this.score.AddPoints (scoreValue);
+                // UI-Listener informieren
+		EventManager.TriggerGlobalEvent (EventNames.ScoreUpdate, scoreValue);
+
+                // Bonusleben Berechnen
+		if ( 0 <= (scoreValue - pointsForExtraLive * extraLiveStep))
+		{
+			extraLiveStep++;
+                        // Bonusleben erhalten, informiere Lebensverwaltung (und UI)
+			EventManager.TriggerGlobalEvent (EventNames.ExtraLifeGained);
+			myAudioSource.PlayOneShot (extraLifeClip);
+		}
+	}
+```
+C# Listing 40: Event Action (UnityAction<float> bzw. Methode mit float-Parameter)
+ 
+### 7.5.3	Event Trigger
+Ein Event Trigger ist derjenige, der das initialisierte Event System aktiviert und die Kommunikation startet. In dem Punktesystem aktiviert das ScoreableObjectScript-Skript das Event „ScoredValue“ und übergibt dabei den Parameter „scoreValue“ an die Event Listener. Dies hat zu Folge, dass alle aktiven „ScoredValue“-Event Listener die Nachricht erhalten und auswerten können. Im dargestellten Beispiel erhält der ScoreManager die Punktzahl und addiert sie zu der Punktzahl, die der Spieler bereits gesammelt hat.
+C# Listing 41 zeigt den Ausschnit des ScoreableObjectScript-Skripts, dass den Trigger-Vorgang aktiviert.
+
+```csharp
+    [SerializeField]
+    float scoreValue;
+
+    public void ReleaseScore()
+    {
+        EventManager.TriggerGlobalEvent(EventNames.ScoredValue, scoreValue);
+    }
+```
+C# Listing 41: Event Trigger
+
+
 ## 7.6	Spielablauf
 Das Spiel besteht aus mehreren Waves. Die Waves bestehen wiederum aus einzelnen Wellenzuständen. In Abbildung 131 ist der Ablauf von Wave-Zuständen bildlich dargstellt.
 Nach dem Ladevorgang der Spielszene wird durch das Skript „CrystalQuestWaveManager“ der Spielstart signalisiert. Dazu wird der Initialisierungsprozess „WaveInit“ der ersten Wave ausgeführt und anschließend das WaveStart Signal gemeldet.
