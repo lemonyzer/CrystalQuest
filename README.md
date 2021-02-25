@@ -2,6 +2,7 @@
 
 Crystal Quest ist ein 2D Top-Down Weltraumactionspiel, das 1987 Patrick Buckland auf dem Mac veröffentlicht hat [4].
 
+![Abbildung 126: Crystal Quest by Patrick Buckland](/docs/image164.png)
 Abbildung 126: Crystal Quest by Patrick Buckland
 
 Das Spiel besteht insgesamt aus 19 Wellen (Waves), die als Level aufzufassen sind. Der Spieler hat die Aufgabe, mit seinem Raumschiff alle Kristalle der Welle einzusammeln, um ein Tor zu öffnen, durch welches das nächste Level erreicht werden kann. KI-gesteuerte Gegner, die über Portale ins Spielgeschehen eingreifen, versuchen den Spieler mit unterschiedlichen Mitteln von seiner Aufgabe abzuhalten. Diese Gegner werden im fortschreitenden Spiel stärker und zahlreicher. Zusätzlich erscheinen mit jeder neuen Welle Minen im Spielbereich, die dem Spieler das Fliegen von einem Kristall zum nächsten und das Ausweichen vor den Gegnern und deren Geschossen erschwert [4].
@@ -26,6 +27,7 @@ In Folgenden ist eine Übersicht der wichtigsten Eigenschaften der verschiedenen
 
 Abbildung 127 zeigt die Übersicht der verschiedenen Gegenspieler mit Eigenschaften
 
+![](/docs/image165.png)
 Abbildung 127: Übersicht der Gegenspieler mit Eigenschaften [4]
 
  
@@ -63,9 +65,8 @@ Zusammenfassend sind die wichtigsten Konzepte in der folgenden Liste dargestellt
 
 Abbildung 128 zeigt eine Übersicht der in Crystal Quest zum Einsatz kommenden Scripts. Die Darstellung zeigt die GameObjects (schwarzer Kasten) als System und die darin arbeitenden Scripts des GameObjects. Zusätzlich ist die Kommunikation mit dem DomainEventManager eingetragen. Diese Abbildung dient der Übersicht und strebt keine umfassende Darstellung an.
 
+![](/docs/image166.png)
 Abbildung 128: Übersicht der Skriptkomponenten von Crystal Quest
-
- 
 
  
 ## 7.5        DomainEventManager – Message System
@@ -76,16 +77,18 @@ Das Nachrichtensystem wird am Beispiel des Punkteystem von Crystal Quest erörte
 
 Abbildung 129 zeigt das Klassendiagramm der beteiligten Scripts.
 
+![](/docs/image167.png)
 Abbildung 129: Klassendiagramm des Eventsystems am Beispiel des Punktesystems
 
 Abbildung 130 zeigt den sequenziellen Kommunikationsablauf des Punktesystems über das Nachrichtensystem für den Fall, dass ein ScoreableObjectScript-Skript meldet, dass Punkte freigegeben wurden.
 
+![](/docs/image168.png)
 Abbildung 130: Sequenzdiagramm des „ReleasedScoreValue“-Events
 
  
-
 Abbildung 131 zeigt die Übersicht und den Kommunikationsfluss des Punktesystems im Nachrichtensystem.
 
+![](/docs/image169.png)
 Abbildung 131: Event „ReleasedScoreValue“
 
  
@@ -278,34 +281,35 @@ Das Spiel besteht aus mehreren Waves. Die Waves bestehen wiederum aus einzelnen 
 
 Nach dem Ladevorgang der Spielszene wird durch das Skript „CrystalQuestWaveManager“ der Spielstart signalisiert. Dazu wird der Initialisierungsprozess „WaveInit“ der ersten Wave ausgeführt und anschließend das WaveStart Signal gemeldet.
 
+![](/docs/image170.png)
 Abbildung 132: Spielablauf (WaveManager)
 
 In den folgenden Abbildungen dieses Kapitels werden die einzelnen Wave-Zustände detailliert beschrieben.
 
  
-
+![](/docs/image171.png)
 Abbildung 133: Event „WaveInit“
-
  
-
+![](/docs/image172.png)
 Abbildung 134: Event „WaveStart“
 
+![](/docs/image173.png)
 Abbildung 135: Event „WaveTaskComplete“
 
+![](/docs/image174.png)
 Abbildung 136: Event „WaveFailed“
 
+![](/docs/image175.png)
 Abbildung 137: Event „PortalReached“
 
+![](/docs/image176.png)
 Abbildung 138: Event „PlayerDied“
 
+![](/docs/image177.png)
 Abbildung 139: Event "PlayerWillRespawn"
 
+![](/docs/image178.png)
 Abbildung 140: Event "SmartBombTriggered"
-
- 
-
- 
-
  
 ## 7.7        Object Pooling
 
@@ -433,28 +437,22 @@ Abbildung 144 zeigt das WaveSystem, das aus insgesammt 19 Wellen besteht.
 Abbildung 145 zeigt den WaveSystem Editor, der die Zuordnung von Eigenschaften an die Wellen im WaveSystem durch einen Algorithmus erlaubt. Dies erleichtert das Setzen der Welleneigenschaften für alle Wellen, da nur so die Parameter des Algorithmus definiert und übernommen werden müssen. Dieser setzt die Eigenschaften der Wellen daraufhin automatisch und es muss nicht jede Welle einzeln manuell über den Inspector (Abbildung 141) definiert werden.
 
 Der WaveSystem Editor ist eine Unity Editor-Erweiterung und dient der Demonstration der Flexibilität von Unity. Diese Erweiterung zeigt nur im Ansatz die Erweiterungsmöglichkeiten des Unity Editors [115].
-
-	
-
 	
 
 Abbildung 141: 1. Wave
-	
+![](/docs/image181.png)
 
 Abbildung 142: 7. Wave
-	
+![](/docs/image182.png)
 
 Abbildung 143: 19. Wave
-
- 
-
-	
+![](/docs/image183.png)
 
 Abbildung 144: WaveSystem
-	
+![](/docs/image184.png)
 
 Abbildung 145: WaveSystem Editor (Unity Editor Erweiterung)
-
+![](/docs/image185.png)
  
 ## 7.9        Highscore - Persistente Daten
 
@@ -477,13 +475,13 @@ Da Interaktionen zwischen GameObjects überwiegend durch Kollisionen auftreten, 
 Abbildung 146 zeigt die Interaktionsmöglichkeiten der Layer des Physiksystems und definiert damit welche Layer miteinander kollidieren können [129].
 
 Abbildung 146: Interaktionsmöglichkeiten der Layer des Physiksystems
-
+![](/docs/image186.png)
  
 
 Abbildung 147 zeigt den sequenziellen Ablauf einer Kollision am Gegenspielertyp “Annoyer” im UML Sequenzdiagramm. Die schwarzen Endpunkte stellen Event-Signale dar.
 
 Abbildung 147: Sequenzdiagram von Gegner Annoyer – Kollision mit Schaden führt zur Explosion
-
+![](/docs/image187.png)
  
 # 8         Zusammenfassung und Diskussion
 ## 8.1        Projektorientierten Einführung
