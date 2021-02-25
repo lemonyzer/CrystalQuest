@@ -7,7 +7,7 @@ Abbildung 126: Crystal Quest by Patrick Buckland
 Das Spiel besteht insgesamt aus 19 Wellen (Waves), die als Level aufzufassen sind. Der Spieler hat die Aufgabe, mit seinem Raumschiff alle Kristalle der Welle einzusammeln, um ein Tor zu öffnen, durch welches das nächste Level erreicht werden kann. KI-gesteuerte Gegner, die über Portale ins Spielgeschehen eingreifen, versuchen den Spieler mit unterschiedlichen Mitteln von seiner Aufgabe abzuhalten. Diese Gegner werden im fortschreitenden Spiel stärker und zahlreicher. Zusätzlich erscheinen mit jeder neuen Welle Minen im Spielbereich, die dem Spieler das Fliegen von einem Kristall zum nächsten und das Ausweichen vor den Gegnern und deren Geschossen erschwert [4].
 
 Die Umsetzung des Crystal Quest in Unity und die daraus resultierenden Cross-Plattform Anwendungen dienen dem Zweck, die Möglichkeiten der Unity Engine an einem praktischen Beispiel zu erarbeiten. Es kommt dabei weniger auf die grafische Umsetzung der Inhalte an. Die Umsetzung und Realisierung des Spiels mit der Entwicklungsumgebung Unity stehen im Vordergrund und bilden den Schwerpunkt der Bachelorarbeit. Im Rahmen dieser Arbeit soll ein möglichst fertiges, lauffähiges Spiel, das dem 1987 von Patrick Buckland veröffentlichten Crystal Quest ähnelt, entwickelt werden, das auf unterschiedlichen Endgeräten spielbar ist [4].
-7.1        Motivation und Ziel des Spiels
+## 7.1        Motivation und Ziel des Spiels
 
 Ziel des Spiels ist es, die Gesamtpunktzahl (Highscore) anderer Spieler zu überbieten. Hierfür versucht der Spieler während jeder Wave mit seinem Flugobjekt möglichst schnell alle Kristalle im Level einzusammeln, da Bonuspunkte vergeben werden, wenn diese Aufgabe in einer gewissen Zeit erfüllt wird.
 
@@ -21,9 +21,7 @@ Zwölf verschiedene KI-Gegner Typen versuchen den Spieler vom Erreichen des näc
 In Folgenden ist eine Übersicht der wichtigsten Eigenschaften der verschiedenen Gegenspieler-Typen dargestellt:
 
 *         Bonus-Punkte, die der Spieler erhält, wenn er diesen Gegner zerstört
-
 *         Zufälliges Bewegungsmuster, Angriffsbewegung - Bewegung auf kürzestem Weg zu Spieler, mehrere Bewegungsmuster
-
 *         Schussfrequenz und Projektiltyp
 
 Abbildung 127 zeigt die Übersicht der verschiedenen Gegenspieler mit Eigenschaften
@@ -50,23 +48,14 @@ Speicherzugriffe und das Anlegen von neuen Objekten werden weitestgehend in den 
 Zusammenfassend sind die wichtigsten Konzepte in der folgenden Liste dargestellt:
 
 *         Code mit einfachen Mitteln mit möglichst wenig Abhängigkeiten in Scenesimulation testbar
-
 *         Code nicht mehrfach schreiben
-
 *         Mit dem Inspector arbeiten: Flags und Fields im Inspector sollten nutzbar bleiben
-
 *         Kein coupling à flexibilität (erweiterbar), wartbar
-
 *         Dependency inversion (n zu 1 statt 1 zu n Verbindung) à leicht erweiterbar
-
 *         Kein Erzeugen der GameObjects in laufender Spielzeit, wenn Spieler Spielfigur steuert
-
 *         Kleinstmögliche Anzahl von Suchvorgängen der UnityEngine wird angestrebt
-
 *         Objekte werden wiederverwendet (Object Pooling)
-
 *         Echtzeitsystem soll stabil gehalten werden
-
 *         Suchvorgänge verhindern à Referenzen setzen / Singleton
 
  
@@ -325,15 +314,10 @@ Object Pooling ist ein Konzept, das ebenfalls ein Entwurfsmuster der OOP darstel
 In Crystal Quest wurde dieses System für verschiedene Objekttypen realisiert. Die PoolManager, die den „Object Pool“ verwalten, sind unter anderem:
 
 *         EnemyManager
-
 *         CrystalManager
-
 *         WaveMineManager
-
 *         SmartBombItems
-
 *         ExplosionManager
-
 *         BurstShootingPooled
 
 Object Pooling wird für Gegenspieler, Projektile, Explosionen, Kristalle, WaveMines und SmartBombItems eingesetzt. Es handelt sich hierbei bei allen um GameObjects, die nicht dauerhaft in der Scene aktiv sind.
@@ -480,19 +464,12 @@ Wenn der Spieler das Spielende erreicht, werden die aktuelle Punktzahl, die erre
 Da Interaktionen zwischen GameObjects überwiegend durch Kollisionen auftreten, wurde ein Script entwickelt, das flexibel genug ist, an allen GameObjects eingesetzt zu werden. Dazu wurden die GameObjects in die folgenden Hauptkategorien (Layer) eingeteilt [127]:
 
 *         Player: Raumschiff des Spielers
-
 *         Player Projectile: Projektile des Spielers
-
 *         Level: Spielbereichsabgrenzung
-
 *         LevelStopper: Bewegte Objekte können damit im Spielbereich gehalten werden
-
 *         Level Damage: Bereiche im Level, die zu einem Schaden am Raumschiff des Spielers führen
-
 *         Enemy: Raumschiffe der Gegenspieler
-
 *         Enemy Projectile: Projektile der Gegenspieler
-
 *         Collectables: Vom Spieler einsammelbare Objekte (Kristalle und SmartBombs)
 
  
