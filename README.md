@@ -65,8 +65,8 @@ Zusammenfassend sind die wichtigsten Konzepte in der folgenden Liste dargestellt
 
 Abbildung 128 zeigt eine Übersicht der in Crystal Quest zum Einsatz kommenden Scripts. Die Darstellung zeigt die GameObjects (schwarzer Kasten) als System und die darin arbeitenden Scripts des GameObjects. Zusätzlich ist die Kommunikation mit dem DomainEventManager eingetragen. Diese Abbildung dient der Übersicht und strebt keine umfassende Darstellung an.
 
-![](/docs/image166.png)
 Abbildung 128: Übersicht der Skriptkomponenten von Crystal Quest
+![](/docs/image166.png)
 
  
 ## 7.5        DomainEventManager – Message System
@@ -77,19 +77,19 @@ Das Nachrichtensystem wird am Beispiel des Punkteystem von Crystal Quest erörte
 
 Abbildung 129 zeigt das Klassendiagramm der beteiligten Scripts.
 
-![](/docs/image167.png)
 Abbildung 129: Klassendiagramm des Eventsystems am Beispiel des Punktesystems
+![](/docs/image167.png)
 
 Abbildung 130 zeigt den sequenziellen Kommunikationsablauf des Punktesystems über das Nachrichtensystem für den Fall, dass ein ScoreableObjectScript-Skript meldet, dass Punkte freigegeben wurden.
 
-![](/docs/image168.png)
 Abbildung 130: Sequenzdiagramm des „ReleasedScoreValue“-Events
+![](/docs/image168.png)
 
  
 Abbildung 131 zeigt die Übersicht und den Kommunikationsfluss des Punktesystems im Nachrichtensystem.
 
-![](/docs/image169.png)
 Abbildung 131: Event „ReleasedScoreValue“
+![](/docs/image169.png)
 
  
 ### 7.5.1        EventManager
@@ -226,6 +226,7 @@ Im Fall des Punktesystems ist der ScoreManager der Event Listener und wartet auf
 
 Der Anmelde- und Abmeldeprozess ist im C# Listing 39 dargestellt. Die Aktion, die beim Eintreten des Events ausgeführt wird, ist in C# Listing 40 definiert.
 
+C# Listing 39: Register- / Deregisterprozess
 ```csharp
 	void OnEnable () {
 		EventManager.StartGlobalListening (EventNames.ScoredValue, OnScoring);
@@ -235,9 +236,9 @@ Der Anmelde- und Abmeldeprozess ist im C# Listing 39 dargestellt. Die Aktion, di
 		EventManager.StopGlobalListening (EventNames.ScoredValue, OnScoring);
 	}
 ```
-C# Listing 39: Register- / Deregisterprozess
 
 
+C# Listing 40: Event Action (UnityAction<float> bzw. Methode mit float-Parameter)
 ```csharp
 	void OnScoring (float scoreValue)
 	{
@@ -255,7 +256,7 @@ C# Listing 39: Register- / Deregisterprozess
 		}
 	}
 ```
-C# Listing 40: Event Action (UnityAction<float> bzw. Methode mit float-Parameter)
+
 
 ### 7.5.3        Event Trigger
 
@@ -263,6 +264,7 @@ Ein Event Trigger ist derjenige, der das initialisierte Event System aktiviert u
 
 C# Listing 41 zeigt den Ausschnit des ScoreableObjectScript-Skripts, dass den Trigger-Vorgang aktiviert.
 
+C# Listing 41: Event Trigger
 ```csharp
     [SerializeField]
     float scoreValue;
@@ -272,7 +274,6 @@ C# Listing 41 zeigt den Ausschnit des ScoreableObjectScript-Skripts, dass den Tr
         EventManager.TriggerGlobalEvent(EventNames.ScoredValue, scoreValue);
     }
 ```
-C# Listing 41: Event Trigger
 
  
 ## 7.6        Spielablauf
@@ -281,35 +282,35 @@ Das Spiel besteht aus mehreren Waves. Die Waves bestehen wiederum aus einzelnen 
 
 Nach dem Ladevorgang der Spielszene wird durch das Skript „CrystalQuestWaveManager“ der Spielstart signalisiert. Dazu wird der Initialisierungsprozess „WaveInit“ der ersten Wave ausgeführt und anschließend das WaveStart Signal gemeldet.
 
-![](/docs/image170.png)
 Abbildung 132: Spielablauf (WaveManager)
+![](/docs/image170.png)
 
 In den folgenden Abbildungen dieses Kapitels werden die einzelnen Wave-Zustände detailliert beschrieben.
 
  
-![](/docs/image171.png)
 Abbildung 133: Event „WaveInit“
+![](/docs/image171.png)
  
-![](/docs/image172.png)
 Abbildung 134: Event „WaveStart“
+![](/docs/image172.png)
 
-![](/docs/image173.png)
 Abbildung 135: Event „WaveTaskComplete“
+![](/docs/image173.png)
 
-![](/docs/image174.png)
 Abbildung 136: Event „WaveFailed“
+![](/docs/image174.png)
 
-![](/docs/image175.png)
 Abbildung 137: Event „PortalReached“
+![](/docs/image175.png)
 
-![](/docs/image176.png)
 Abbildung 138: Event „PlayerDied“
+![](/docs/image176.png)
 
-![](/docs/image177.png)
 Abbildung 139: Event "PlayerWillRespawn"
+![](/docs/image177.png)
 
-![](/docs/image178.png)
 Abbildung 140: Event "SmartBombTriggered"
+![](/docs/image178.png)
  
 ## 7.7        Object Pooling
 
@@ -332,6 +333,7 @@ C# Listing 42 beschreibt den Object Pooler Manager, der nach der Szeneninitialis
 
 C# Listing 43 zeigt einen Client des Pool Managers. Wenn die linke Maustaste gedrückt ist fragt dieser in jedem Frame-Zyklus nach einem „pooledObject“.
 
+C# Listing 42: ObjectPoolerManager
 ```csharp
 using UnityEngine;
 using System.Collections;
@@ -397,9 +399,9 @@ public class ObjectPoolManager : MonoBehaviour {
 }
 
 ```
-C# Listing 42: ObjectPoolerManager
 
 
+C# Listing 43: PoolClient.cs
 ```csharp
 public class PoolClient : MonoBehaviour
 {
@@ -421,8 +423,6 @@ public class PoolClient : MonoBehaviour
     }
 }
 ```
-C# Listing 43: PoolClient.cs
-
  
 
  
