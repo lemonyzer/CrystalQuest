@@ -20,9 +20,9 @@ Zwölf verschiedene KI-Gegner Typen versuchen den Spieler vom Erreichen des näc
 
 In Folgenden ist eine Übersicht der wichtigsten Eigenschaften der verschiedenen Gegenspieler-Typen dargestellt:
 
-*         Bonus-Punkte, die der Spieler erhält, wenn er diesen Gegner zerstört
-*         Zufälliges Bewegungsmuster, Angriffsbewegung - Bewegung auf kürzestem Weg zu Spieler, mehrere Bewegungsmuster
-*         Schussfrequenz und Projektiltyp
+* Bonus-Punkte, die der Spieler erhält, wenn er diesen Gegner zerstört
+* Zufälliges Bewegungsmuster, Angriffsbewegung - Bewegung auf kürzestem Weg zu Spieler, mehrere Bewegungsmuster
+* Schussfrequenz und Projektiltyp
 
 Abbildung 127 zeigt die Übersicht der verschiedenen Gegenspieler mit Eigenschaften
 
@@ -47,16 +47,16 @@ Speicherzugriffe und das Anlegen von neuen Objekten werden weitestgehend in den 
 
 Zusammenfassend sind die wichtigsten Konzepte in der folgenden Liste dargestellt:
 
-*         Code mit einfachen Mitteln mit möglichst wenig Abhängigkeiten in Scenesimulation testbar
-*         Code nicht mehrfach schreiben
-*         Mit dem Inspector arbeiten: Flags und Fields im Inspector sollten nutzbar bleiben
-*         Kein coupling à flexibilität (erweiterbar), wartbar
-*         Dependency inversion (n zu 1 statt 1 zu n Verbindung) à leicht erweiterbar
-*         Kein Erzeugen der GameObjects in laufender Spielzeit, wenn Spieler Spielfigur steuert
-*         Kleinstmögliche Anzahl von Suchvorgängen der UnityEngine wird angestrebt
-*         Objekte werden wiederverwendet (Object Pooling)
-*         Echtzeitsystem soll stabil gehalten werden
-*         Suchvorgänge verhindern à Referenzen setzen / Singleton
+* Code mit einfachen Mitteln mit möglichst wenig Abhängigkeiten in Scenesimulation testbar
+* Code nicht mehrfach schreiben
+* Mit dem Inspector arbeiten: Flags und Fields im Inspector sollten nutzbar bleiben
+* Kein coupling à flexibilität (erweiterbar), wartbar
+* Dependency inversion (n zu 1 statt 1 zu n Verbindung) à leicht erweiterbar
+* Kein Erzeugen der GameObjects in laufender Spielzeit, wenn Spieler Spielfigur steuert
+* Kleinstmögliche Anzahl von Suchvorgängen der UnityEngine wird angestrebt
+* Objekte werden wiederverwendet (Object Pooling)
+* Echtzeitsystem soll stabil gehalten werden
+* Suchvorgänge verhindern à Referenzen setzen / Singleton
 
  
 ## 7.4        Skript-Komponenten
@@ -313,12 +313,12 @@ Object Pooling ist ein Konzept, das ebenfalls ein Entwurfsmuster der OOP darstel
 
 In Crystal Quest wurde dieses System für verschiedene Objekttypen realisiert. Die PoolManager, die den „Object Pool“ verwalten, sind unter anderem:
 
-*         EnemyManager
-*         CrystalManager
-*         WaveMineManager
-*         SmartBombItems
-*         ExplosionManager
-*         BurstShootingPooled
+* EnemyManager
+* CrystalManager
+* WaveMineManager
+* SmartBombItems
+* ExplosionManager
+* BurstShootingPooled
 
 Object Pooling wird für Gegenspieler, Projektile, Explosionen, Kristalle, WaveMines und SmartBombItems eingesetzt. Es handelt sich hierbei bei allen um GameObjects, die nicht dauerhaft in der Scene aktiv sind.
 
@@ -463,14 +463,14 @@ Wenn der Spieler das Spielende erreicht, werden die aktuelle Punktzahl, die erre
 
 Da Interaktionen zwischen GameObjects überwiegend durch Kollisionen auftreten, wurde ein Script entwickelt, das flexibel genug ist, an allen GameObjects eingesetzt zu werden. Dazu wurden die GameObjects in die folgenden Hauptkategorien (Layer) eingeteilt [127]:
 
-*         Player: Raumschiff des Spielers
-*         Player Projectile: Projektile des Spielers
-*         Level: Spielbereichsabgrenzung
-*         LevelStopper: Bewegte Objekte können damit im Spielbereich gehalten werden
-*         Level Damage: Bereiche im Level, die zu einem Schaden am Raumschiff des Spielers führen
-*         Enemy: Raumschiffe der Gegenspieler
-*         Enemy Projectile: Projektile der Gegenspieler
-*         Collectables: Vom Spieler einsammelbare Objekte (Kristalle und SmartBombs)
+* Player: Raumschiff des Spielers
+* Player Projectile: Projektile des Spielers
+* Level: Spielbereichsabgrenzung
+* LevelStopper: Bewegte Objekte können damit im Spielbereich gehalten werden
+* Level Damage: Bereiche im Level, die zu einem Schaden am Raumschiff des Spielers führen
+* Enemy: Raumschiffe der Gegenspieler
+* Enemy Projectile: Projektile der Gegenspieler
+* Collectables: Vom Spieler einsammelbare Objekte (Kristalle und SmartBombs)
 
  
 
