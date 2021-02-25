@@ -2,8 +2,8 @@
 
 Crystal Quest ist ein 2D Top-Down Weltraumactionspiel, das 1987 Patrick Buckland auf dem Mac veröffentlicht hat [4].
 
-![Abbildung 126: Crystal Quest by Patrick Buckland](/docs/image164.png)
 Abbildung 126: Crystal Quest by Patrick Buckland
+![Abbildung 126: Crystal Quest by Patrick Buckland](/docs/image164.png)
 
 Das Spiel besteht insgesamt aus 19 Wellen (Waves), die als Level aufzufassen sind. Der Spieler hat die Aufgabe, mit seinem Raumschiff alle Kristalle der Welle einzusammeln, um ein Tor zu öffnen, durch welches das nächste Level erreicht werden kann. KI-gesteuerte Gegner, die über Portale ins Spielgeschehen eingreifen, versuchen den Spieler mit unterschiedlichen Mitteln von seiner Aufgabe abzuhalten. Diese Gegner werden im fortschreitenden Spiel stärker und zahlreicher. Zusätzlich erscheinen mit jeder neuen Welle Minen im Spielbereich, die dem Spieler das Fliegen von einem Kristall zum nächsten und das Ausweichen vor den Gegnern und deren Geschossen erschwert [4].
 
@@ -27,8 +27,8 @@ In Folgenden ist eine Übersicht der wichtigsten Eigenschaften der verschiedenen
 
 Abbildung 127 zeigt die Übersicht der verschiedenen Gegenspieler mit Eigenschaften
 
-![](/docs/image165.png)
 Abbildung 127: Übersicht der Gegenspieler mit Eigenschaften [4]
+![](/docs/image165.png)
 
  
 ## 7.3        Programmierkonzept
