@@ -16,9 +16,9 @@ Wenn der Spieler eine Smart Bomb aktiviert, werden vorhandene Gegenspieler sowie
 7.2	KI-Gegner
 Zwölf verschiedene KI-Gegner Typen versuchen den Spieler vom Erreichen des nächsten Levels abzuhalten. Sie unterscheiden sich im Bewegungsverhalten, in der Anzahl der Punkte, die der Spieler als Belohnung für deren Zerstörung erhält sowie in der Fähigkeit, Projektile abzufeuern, und besitzen ein unterschiedliches Maß an „Lebensenergie“.
 In Folgenden ist eine Übersicht der wichtigsten Eigenschaften der verschiedenen Gegenspieler-Typen dargestellt: 
-•	Bonus-Punkte, die der Spieler erhält, wenn er diesen Gegner zerstört
-•	Zufälliges Bewegungsmuster, Angriffsbewegung - Bewegung auf kürzestem Weg zu Spieler, mehrere Bewegungsmuster 
-•	Schussfrequenz und Projektiltyp
+*	Bonus-Punkte, die der Spieler erhält, wenn er diesen Gegner zerstört
+*	Zufälliges Bewegungsmuster, Angriffsbewegung - Bewegung auf kürzestem Weg zu Spieler, mehrere Bewegungsmuster 
+*	Schussfrequenz und Projektiltyp
 Abbildung 126 zeigt die Übersicht der verschiedenen Gegenspieler mit Eigenschaften
  
 Abbildung 126: Übersicht der Gegenspieler mit Eigenschaften [82]
@@ -33,16 +33,16 @@ So besteht das Spiel Crystal Quest in der Realisierung aus einem übergeordnetem
 Speicherzugriffe und das Anlegen von neuen Objekten werden weitestgehend in den Zeitbereich verlagert, in der der Spieler sein Spielobjekt nicht bewegen kann und keine Bewegungen im Spiel sattfinden. In dieser Zeit wird in anderen Programmen meist ein Ladebildschirm oder ein Standbild angezeigt. Dies geht auf die Nutzung des Objekt Pooling-Konzepts zurück. In der Ladezeit werden alle auftauchenden Objekte erstellt und müssen somit nicht während der Spielzeit erzeugt werden. GameObjecs, die visuell nicht mehr sichtbar sind, werden nicht zerstört, sondern lediglich deaktiviert und recycelt, um das Echtzeitsystem durch die Ausführung des Garbage Collectors nicht instabil werden zu lassen.
 
 Zusammenfassend sind die wichtigsten Konzepte in der folgenden Liste dargestellt:
-•	Code mit einfachen Mitteln mit möglichst wenig Abhängigkeiten in Scenesimulation testbar
-•	Code nicht mehrfach schreiben
-•	Mit dem Inspector arbeiten: Flags und Fields im Inspector sollten nutzbar bleiben
-•	Kein coupling  flexibilität (erweiterbar), wartbar 
-•	Dependency inversion (n zu 1 statt 1 zu n Verbindung)  leicht erweiterbar
-•	Kein Erzeugen der GameObjects in laufender Spielzeit, wenn Spieler Spielfigur steuert
-•	Kleinstmögliche Anzahl von Suchvorgängen der UnityEngine wird angestrebt
-•	Objekte werden wiederverwendet (Object Pooling)
-•	Echtzeitsystem soll stabil gehalten werden
-•	Suchvorgänge verhindern  Referenzen setzen / Singleton
+* Code mit einfachen Mitteln mit möglichst wenig Abhängigkeiten in Scenesimulation testbar
+* Code nicht mehrfach schreiben
+* Mit dem Inspector arbeiten: Flags und Fields im Inspector sollten nutzbar bleiben
+* Kein coupling  flexibilität (erweiterbar), wartbar 
+* Dependency inversion (n zu 1 statt 1 zu n Verbindung)  leicht erweiterbar
+* Kein Erzeugen der GameObjects in laufender Spielzeit, wenn Spieler Spielfigur steuert
+* Kleinstmögliche Anzahl von Suchvorgängen der UnityEngine wird angestrebt
+* Objekte werden wiederverwendet (Object Pooling)
+* Echtzeitsystem soll stabil gehalten werden
+* Suchvorgänge verhindern  Referenzen setzen / Singleton
 
 
 ## 7.4	Skript-Komponenten
@@ -274,12 +274,14 @@ Abbildung 141: Event "SmartBombTriggered"
 ## 7.7	Object Pooling
 Object Pooling ist ein Konzept, das ebenfalls ein Entwurfsmuster der OOP darstellt. Ziel dieses Konzepts ist es Objekte zu recyclen, d.h. Objekte werden nicht zerstört und aus dem Speicher entfernt. Der Erzeugungs- und Zerstörungsprozess von Objekten hat den Nachteil, dass in einer verwalteten Programmumgebung wie C# und Java im Hintergrund ein Garbage Collector zerstörte und nicht mehr referenzierte Objekte sammelt und zu einem bestimmten Zeitpunkt entfernt. Zu diesem Zeitpunkt gehört dem Garbage Collector die komplette Rechenleistung und andere Vorgänge der Anwendung werden somit angehalten. In Echtzeitanwendungen wie Spielen kann dies zu massiven Einbrüchen der Verarbeitung der Frame Loop führen und eine unmittelbare Reaktion auf eine Eingabe nicht mehr gewährleisten. Dass der Garbage Collector nicht anspringen muss und damit das Echtzeitsystem stabil bleibt, kann somit auf Objekt Pooling zurückgegriffen werden, da dieses System dafür sorgt, dass Objekte nicht zerstört werden, sondern deaktiviert und bei Wiederbenötigen eines Objekts gleichen Typs wieder aktiviert und recyelt werden [84]–[86].
 In Crystal Quest wurde dieses System für verschiedene Objekttypen realisiert. Die PoolManager, die den „Object Pool“ verwalten, sind unter anderem:
-•	EnemyManager
-•	CrystalManager
-•	WaveMineManager
-•	SmartBombItems
-•	ExplosionManager
-•	BurstShootingPooled
+*	EnemyManager
+*	CrystalManager
+*	WaveMineManager
+*	SmartBombItems
+*	ExplosionManager
+*	BurstShootingPooled
+
+
 Object Pooling wird für Gegenspieler, Projektile, Explosionen, Kristalle, WaveMines und SmartBombItems eingesetzt. Es handelt sich hierbei bei allen um GameObjects, die nicht dauerhaft in der Scene aktiv sind.
 Das Erzeugen von GameObjects kostet Rechenzeit. Die GameObject Pools werden daher zum Szenenbeginn, bzw. für Crystal Quest während der Welleninitialisierung, erzeugt. Während der Welleninitialisierung kann der Spieler sein Raumschiff nicht steuern und bemerkt daher nicht, dass durch den Erzeugungsvorgang die Spielsteuerung instabil war.
 C# Listing 42 beschreibt den Object Pooler Manager, der nach der Szeneninitialisierung das im Attribut „pooledObject“ mehrfach erzeugt und deaktiviert in einer Liste speichert. Wird über die Schnittstelle „GetPooledObject“ ein GameObject angefordert, durchsucht der Pool Manager den Pool nach dem ersten deaktivierten GameObject. Ist kein deaktiviertes GameObject vorhanden, bestimmt das Attribut „willGrow“, ob der Pool Manager ein weiteres GameObject aus der Vorlage erzeugt, im Pool ablegt und zurückgibt oder ob er direkt eine null-Referenz zurückgibt.
@@ -300,7 +302,7 @@ public class ObjectPoolManager : MonoBehaviour {
 	List<GameObject> pooledObjects;
 
 	void Awake ()
-	{
+	{,
 		current = this;
 	}
 
