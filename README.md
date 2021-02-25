@@ -285,6 +285,96 @@ Das Erzeugen von GameObjects kostet Rechenzeit. Die GameObject Pools werden dahe
 C# Listing 42 beschreibt den Object Pooler Manager, der nach der Szeneninitialisierung das im Attribut „pooledObject“ mehrfach erzeugt und deaktiviert in einer Liste speichert. Wird über die Schnittstelle „GetPooledObject“ ein GameObject angefordert, durchsucht der Pool Manager den Pool nach dem ersten deaktivierten GameObject. Ist kein deaktiviertes GameObject vorhanden, bestimmt das Attribut „willGrow“, ob der Pool Manager ein weiteres GameObject aus der Vorlage erzeugt, im Pool ablegt und zurückgibt oder ob er direkt eine null-Referenz zurückgibt.
 C# Listing 43 zeigt einen Client des Pool Managers. Wenn die linke Maustaste gedrückt ist fragt dieser in jedem Frame-Zyklus nach einem „pooledObject“.
 
+```csharp
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class ObjectPoolManager : MonoBehaviour {
+
+	public static ObjectPoolManager current;
+	public GameObject pooledObject;
+	public int pooledAmount = 20;
+	public bool willGrow = true;
+
+	List<GameObject> pooledObjects;
+
+	void Awake ()
+	{
+		current = this;
+	}
+
+	// Use this for initialization
+	void Start () {
+		CreatePool ();
+	}
+
+	void CreatePool () {
+		pooledObjects = new List<GameObject>();
+
+		if (pooledObject != null)
+		{
+			for (int i=0; i < pooledAmount; i++)
+			{
+				AddNewToPool ();
+			}
+		}
+	}
+
+
+	GameObject AddNewToPool ()
+	{
+		GameObject obj = (GameObject) Instantiate (pooledObject);
+		obj.SetActive (false);
+		pooledObjects.Add (obj);
+		return obj;
+	}
+
+	// Update is called once per frame
+	public GameObject GetPooledObject () {
+		for (int i=0; i < pooledAmount; i++)
+		{
+			if(!pooledObjects[i].activeInHierarchy)
+			{
+				return pooledObjects[i];
+			}
+		}
+
+		if (willGrow)
+		{
+			return AddNewToPool (); 
+		}
+
+		return null;
+	}
+}
+
+```
+C# Listing 42: ObjectPoolerManager
+
+
+```csharp
+public class PoolClient : MonoBehaviour
+{
+
+    Vector3 offset;
+
+    void Update()
+    {
+        bool intput = Input.GetButton ("Fire1");
+        if (intput)
+        {
+            GameObject go = ObjectPoolManager.current.GetPooledObject();
+            if(go != null) {
+                // Objekt von Pooler erhalten
+                go.transform.position = this.transform.position + offset;
+                go.SetActive(true);
+            }
+        }
+    }
+}
+```
+C# Listing 43: PoolClient.cs
 
 ## 7.8	WaveSystem
 Das WaveSystem besteht im Kern aus einer Liste von Waves. Jede dieser Wellen bestimmt gewisse Eigenschaften. Dazu zählen die Anzahl der Kristalle, Minen und Smart Bombs, die erzeugt werden müssen oder das Zeitlimit, das der Spieler unterschreiten muss, um einen Bonus zu erhalten.  Zusätzlich enthält jede Wave die Angabe, welche Gegnertypen vorkommen können, wie viele Gegner zu einem Zeitpunkt existieren dürfen und wie hoch die Wahrscheinlichkeit ist, dass der Gegnertyp erzeugt wird.
